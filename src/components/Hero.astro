@@ -1,0 +1,352 @@
+---
+---
+
+<section class="hero" id="home">
+  <div class="hero__image-placeholder">
+    <span>Foto próximamente</span>
+  </div>
+
+  <div class="hero__container">
+    <div class="hero__intro">
+      <span class="tag">&lt;span&gt;</span><span class="intro-text"> Hola, soy <strong class="hero__name">Wilman Montenegro</strong> </span><span class="tag">&lt;/span&gt;</span>
+    </div>
+
+    <h1 class="hero__title">
+      <span class="title-static">Ingeniero de Sistemas &amp;</span><br>
+      <span class="title-brace">{</span><span class="typing" id="typing"></span><span class="title-brace">}</span>
+    </h1>
+
+    <p class="hero__text">
+      <span class="tag">&lt;p&gt;</span>Con experiencia en React, Vue, TypeScript, Node.js y múltiples bases de datos.
+      Especializado en Inteligencia Artificial y agentes autónomos.
+      Actualmente Líder Técnico &amp; Cofundador en FruitApp.<span class="tag">&lt;/p&gt;</span>
+    </p>
+
+    <div class="hero__stack">
+      <div class="stack-track">
+        <!-- set 1 -->
+        <span class="stack-icon" title="JavaScript"><i class="devicon-javascript-plain colored"></i></span>
+        <span class="stack-icon" title="TypeScript"><i class="devicon-typescript-plain colored"></i></span>
+        <span class="stack-icon" title="PHP"><i class="devicon-php-plain colored"></i></span>
+        <span class="stack-icon" title="Python"><i class="devicon-python-plain colored"></i></span>
+        <span class="stack-icon" title="Dart"><i class="devicon-dart-plain colored"></i></span>
+        <span class="stack-icon" title="Kotlin"><i class="devicon-kotlin-plain colored"></i></span>
+        <span class="stack-icon" title="C#"><i class="devicon-csharp-plain colored"></i></span>
+        <span class="stack-icon" title="React"><i class="devicon-react-original colored"></i></span>
+        <span class="stack-icon" title="Vue"><i class="devicon-vuejs-plain colored"></i></span>
+        <span class="stack-icon" title="Angular"><i class="devicon-angularjs-plain colored"></i></span>
+        <span class="stack-icon" title="Node.js"><i class="devicon-nodejs-plain colored"></i></span>
+        <span class="stack-icon" title="NestJS"><i class="devicon-nestjs-plain colored"></i></span>
+        <span class="stack-icon" title="Flutter"><i class="devicon-flutter-plain colored"></i></span>
+        <span class="stack-icon" title="MySQL"><i class="devicon-mysql-plain colored"></i></span>
+        <span class="stack-icon" title="PostgreSQL"><i class="devicon-postgresql-plain colored"></i></span>
+        <span class="stack-icon" title="MongoDB"><i class="devicon-mongodb-plain colored"></i></span>
+        <span class="stack-icon" title="Git"><i class="devicon-git-plain colored"></i></span>
+        <span class="stack-icon" title="Linux"><i class="devicon-linux-plain"></i></span>
+        <!-- set 2 (duplicado para loop sin corte) -->
+        <span class="stack-icon" title="JavaScript"><i class="devicon-javascript-plain colored"></i></span>
+        <span class="stack-icon" title="TypeScript"><i class="devicon-typescript-plain colored"></i></span>
+        <span class="stack-icon" title="PHP"><i class="devicon-php-plain colored"></i></span>
+        <span class="stack-icon" title="Python"><i class="devicon-python-plain colored"></i></span>
+        <span class="stack-icon" title="Dart"><i class="devicon-dart-plain colored"></i></span>
+        <span class="stack-icon" title="Kotlin"><i class="devicon-kotlin-plain colored"></i></span>
+        <span class="stack-icon" title="C#"><i class="devicon-csharp-plain colored"></i></span>
+        <span class="stack-icon" title="React"><i class="devicon-react-original colored"></i></span>
+        <span class="stack-icon" title="Vue"><i class="devicon-vuejs-plain colored"></i></span>
+        <span class="stack-icon" title="Angular"><i class="devicon-angularjs-plain colored"></i></span>
+        <span class="stack-icon" title="Node.js"><i class="devicon-nodejs-plain colored"></i></span>
+        <span class="stack-icon" title="NestJS"><i class="devicon-nestjs-plain colored"></i></span>
+        <span class="stack-icon" title="Flutter"><i class="devicon-flutter-plain colored"></i></span>
+        <span class="stack-icon" title="MySQL"><i class="devicon-mysql-plain colored"></i></span>
+        <span class="stack-icon" title="PostgreSQL"><i class="devicon-postgresql-plain colored"></i></span>
+        <span class="stack-icon" title="MongoDB"><i class="devicon-mongodb-plain colored"></i></span>
+        <span class="stack-icon" title="Git"><i class="devicon-git-plain colored"></i></span>
+        <span class="stack-icon" title="Linux"><i class="devicon-linux-plain"></i></span>
+      </div>
+    </div>
+
+    <div class="hero__cta">
+      <button class="btn btn--primary">Ver Proyectos</button>
+      <a href="/cv.pdf" download class="btn btn--ghost">[ Descargar CV ]</a>
+    </div>
+
+    <div class="hero__code">
+      <span class="comment">// Santa Marta, Colombia &middot; Disponible para proyectos</span>
+    </div>
+  </div>
+
+</section>
+
+<script>
+  const roles = [
+    'Full Stack Developer',
+    'AI Agent Builder',
+    'Líder Técnico',
+    'Software Architect',
+    'Backend & APIs',
+  ];
+
+  let currentRoleIndex = 0;
+  let currentCharIndex = 0;
+  let isDeleting = false;
+  let typingElement = document.getElementById('typing');
+  
+  if (typingElement) {
+    function type() {
+      const currentRole = roles[currentRoleIndex];
+      
+      if (isDeleting) {
+        currentCharIndex--;
+      } else {
+        currentCharIndex++;
+      }
+      
+      typingElement!.textContent = currentRole.substring(0, currentCharIndex);
+      
+      if (!isDeleting && currentCharIndex === currentRole.length) {
+        isDeleting = true;
+        setTimeout(type, 1500);
+        return;
+      }
+      
+      if (isDeleting && currentCharIndex === 0) {
+        isDeleting = false;
+        currentRoleIndex = (currentRoleIndex + 1) % roles.length;
+        setTimeout(type, 500);
+        return;
+      }
+      
+      const speed = isDeleting ? 50 : 80;
+      setTimeout(type, speed);
+    }
+    
+    type();
+  }
+</script>
+
+<style>
+  .hero {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+    padding: 2rem 1.5rem 4rem;
+    max-width: var(--max-w);
+    margin: 0 auto;
+    background: linear-gradient(135deg, rgba(125, 71, 255, 0.15) 0%, rgba(12, 255, 255, 0.08) 100%);
+    border-radius: 20px;
+  }
+
+  .hero__container {
+    max-width: 600px;
+    flex: 1;
+  }
+
+  .hero__intro {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+    white-space: nowrap;
+    display: flex;
+    align-items: baseline;
+    gap: 0;
+  }
+
+  .hero__intro .tag {
+    color: var(--cyan);
+    opacity: 0.65;
+    font-size: 0.9rem;
+    font-family: var(--font-mono);
+    vertical-align: baseline;
+  }
+
+  .intro-text {
+    color: var(--muted);
+    font-size: 0.9rem;
+    font-family: var(--font-mono);
+    vertical-align: baseline;
+  }
+
+  .hero__name {
+    background: linear-gradient(90deg, #e8e8f2, #0CFFFF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+  }
+
+  .hero__title {
+    font-family: var(--font-mono);
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 1.5rem;
+    min-height: 8rem;
+  }
+
+  .title-static {
+    color: var(--text);
+  }
+
+  .title-brace {
+    font-family: var(--font-mono);
+    background: linear-gradient(90deg, #7D47FF, #0CFFFF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+  }
+
+  .typing {
+    display: inline;
+    background: linear-gradient(90deg, #7D47FF, #0CFFFF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    border-right: 3px solid #0CFFFF;
+    padding-right: 0.15em;
+    animation: blink 0.7s infinite;
+    font-weight: 600;
+  }
+
+  @keyframes blink {
+    0%, 49% { border-right-color: var(--cyan); }
+    50%, 100% { border-right-color: transparent; }
+  }
+
+  .hero__text {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--muted);
+    margin-bottom: 1.75rem;
+    max-width: 550px;
+  }
+
+  .hero__text .tag {
+    font-size: 1rem;
+    vertical-align: baseline;
+    margin: 0 0.35rem;
+  }
+
+  .hero__text .tag:first-child {
+    margin-left: 0;
+    margin-right: 0.5rem;
+  }
+
+  .hero__text .tag:last-child {
+    margin-left: 0.5rem;
+    margin-right: 0;
+  }
+
+  .hero__cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Carrusel de tecnologías */
+  .hero__stack {
+    overflow: hidden;
+    margin-bottom: 2rem;
+    -webkit-mask: linear-gradient(90deg, transparent, white 12%, white 88%, transparent);
+    mask: linear-gradient(90deg, transparent, white 12%, white 88%, transparent);
+  }
+
+  .stack-track {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: max-content;
+    animation: scroll-tech 22s linear infinite;
+  }
+
+  .hero__stack:hover .stack-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes scroll-tech {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  .stack-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 10px;
+    background: rgba(125, 71, 255, 0.1);
+    border: 1px solid rgba(125, 71, 255, 0.25);
+    transition: all 0.2s;
+    cursor: default;
+    flex-shrink: 0;
+  }
+
+  .stack-icon i {
+    font-size: 1.35rem;
+  }
+
+  .stack-icon:hover {
+    background: rgba(125, 71, 255, 0.22);
+    border-color: var(--purple);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(125, 71, 255, 0.3);
+  }
+
+  .hero__code {
+    opacity: 0.5;
+    font-size: 0.85rem;
+  }
+
+  .hero__image-placeholder {
+    flex: 0 0 340px;
+    min-height: 400px;
+    background: linear-gradient(135deg, rgba(125, 71, 255, 0.1) 0%, rgba(12, 255, 255, 0.05) 100%);
+    border-radius: 16px;
+    border: 1px solid rgba(12, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 1024px) {
+    .hero {
+      flex-direction: column;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+
+    .hero__container {
+      max-width: 100%;
+    }
+
+    .hero__image-placeholder {
+      flex: none;
+      width: 100%;
+      min-height: 300px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      min-height: auto;
+      padding: 4rem 1.25rem;
+      border-radius: 12px;
+    }
+
+    .hero__title {
+      font-size: 1.8rem;
+      min-height: 6.5rem;
+    }
+
+    .hero__image-placeholder {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,106 @@
+---
+---
+
+<nav class="navbar">
+  <div class="navbar__container">
+    <a href="#" class="navbar__logo">wilman.dev</a>
+
+    <ul class="navbar__menu">
+      <li><a href="#home" class="navbar__link">Inicio</a></li>
+      <li><a href="#about" class="navbar__link">Sobre Mí</a></li>
+      <li><a href="#projects" class="navbar__link">Proyectos</a></li>
+      <li><a href="#skills" class="navbar__link">Habilidades</a></li>
+      <li><a href="#experience" class="navbar__link">Experiencia</a></li>
+      <li><a href="#contact" class="navbar__link">Contacto</a></li>
+    </ul>
+  </div>
+</nav>
+
+<style>
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(16, 4, 37, 0.85);
+    background-image: 
+      linear-gradient(180deg, rgba(220, 0, 211, 0.05) 0%, transparent 100%);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(12, 255, 255, 0.1);
+  }
+
+  .navbar__container {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar__logo {
+    font-family: var(--font-mono);
+    font-size: 1.3rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #7D47FF, #0CFFFF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: opacity 0.3s;
+  }
+
+  .navbar__logo:hover {
+    opacity: 0.8;
+    text-shadow: none;
+  }
+
+  .navbar__menu {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+  }
+
+  .navbar__link {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--muted);
+    transition: all 0.3s;
+    position: relative;
+    letter-spacing: 0.02em;
+  }
+
+  .navbar__link:hover {
+    color: var(--cyan);
+  }
+
+  .navbar__link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--purple);
+    transition: width 0.3s;
+  }
+
+  .navbar__link:hover::after {
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .navbar__menu {
+      gap: 1.5rem;
+      font-size: 0.75rem;
+    }
+
+    .navbar__container {
+      padding: 1rem 1rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .navbar__menu {
+      display: none;
+    }
+  }
+</style>
