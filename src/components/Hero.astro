@@ -1,28 +1,28 @@
 ---
 ---
 
-<section class="hero" id="home">
-  <div class="hero__image-placeholder">
+<section class="hero min-h-[calc(100vh-80px)] flex items-center justify-between gap-16 px-6 pt-8 pb-16 max-w-[var(--max-w)] mx-auto rounded-[20px]" id="home">
+  <div class="hero__image-placeholder flex-[0_0_340px] min-h-[400px] rounded-2xl flex items-center justify-center text-muted text-[0.9rem]">
     <span>Foto próximamente</span>
   </div>
 
-  <div class="hero__container">
-    <div class="hero__intro">
+  <div class="max-w-[600px] flex-1">
+    <div class="font-mono text-[0.9rem] mb-6 leading-normal whitespace-nowrap flex items-baseline">
       <span class="tag">&lt;span&gt;</span><span class="intro-text"> Hola, soy <strong class="hero__name">Wilman Montenegro</strong> </span><span class="tag">&lt;/span&gt;</span>
     </div>
 
-    <h1 class="hero__title">
-      <span class="title-static">Ingeniero de Sistemas &amp;</span><br>
+    <h1 class="font-mono text-[clamp(2rem,4.5vw,3.2rem)] font-bold leading-tight mb-6 min-h-32">
+      <span class="text-text">Ingeniero de Sistemas &amp;</span><br>
       <span class="title-brace">{</span><span class="typing" id="typing"></span><span class="title-brace">}</span>
     </h1>
 
-    <p class="hero__text">
+    <p class="hero__text text-base leading-[1.8] text-muted mb-7 max-w-[550px]">
       <span class="tag">&lt;p&gt;</span>Con experiencia en React, Vue, TypeScript, Node.js y múltiples bases de datos.
       Especializado en Inteligencia Artificial y agentes autónomos.
       Actualmente Líder Técnico &amp; Cofundador en FruitApp.<span class="tag">&lt;/p&gt;</span>
     </p>
 
-    <div class="hero__stack">
+    <div class="hero__stack overflow-hidden mb-8">
       <div class="stack-track">
         <!-- set 1 -->
         <span class="stack-icon" title="JavaScript"><i class="devicon-javascript-plain colored"></i></span>
@@ -65,12 +65,12 @@
       </div>
     </div>
 
-    <div class="hero__cta">
+    <div class="flex gap-4 flex-wrap mb-6">
       <button class="btn btn--primary">Ver Proyectos</button>
       <a href="/cv.pdf" download class="btn btn--ghost">[ Descargar CV ]</a>
     </div>
 
-    <div class="hero__code">
+    <div class="opacity-50 text-sm">
       <span class="comment">// Santa Marta, Colombia &middot; Disponible para proyectos</span>
     </div>
   </div>
@@ -125,47 +125,16 @@
 </script>
 
 <style>
+  /* ── Hero background ── */
   .hero {
-    min-height: calc(100vh - 80px);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 4rem;
-    padding: 2rem 1.5rem 4rem;
-    max-width: var(--max-w);
-    margin: 0 auto;
     background: linear-gradient(135deg, rgba(125, 71, 255, 0.15) 0%, rgba(12, 255, 255, 0.08) 100%);
-    border-radius: 20px;
   }
 
-  .hero__container {
-    max-width: 600px;
-    flex: 1;
-  }
-
-  .hero__intro {
-    font-family: var(--font-mono);
-    font-size: 0.9rem;
-    margin-bottom: 1.5rem;
-    line-height: 1.5;
-    white-space: nowrap;
-    display: flex;
-    align-items: baseline;
-    gap: 0;
-  }
-
-  .hero__intro .tag {
-    color: var(--cyan);
-    opacity: 0.65;
-    font-size: 0.9rem;
-    font-family: var(--font-mono);
-    vertical-align: baseline;
-  }
-
+  /* ── Intro text ── */
   .intro-text {
-    color: var(--muted);
+    color: var(--color-muted);
     font-size: 0.9rem;
-    font-family: var(--font-mono);
+    font-family: var(--font-family-mono);
     vertical-align: baseline;
   }
 
@@ -177,21 +146,9 @@
     font-weight: 700;
   }
 
-  .hero__title {
-    font-family: var(--font-mono);
-    font-size: clamp(2rem, 4.5vw, 3.2rem);
-    font-weight: 700;
-    line-height: 1.25;
-    margin-bottom: 1.5rem;
-    min-height: 8rem;
-  }
-
-  .title-static {
-    color: var(--text);
-  }
-
+  /* ── Title gradient elements ── */
   .title-brace {
-    font-family: var(--font-mono);
+    font-family: var(--font-family-mono);
     background: linear-gradient(90deg, #7D47FF, #0CFFFF);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -212,18 +169,11 @@
   }
 
   @keyframes blink {
-    0%, 49% { border-right-color: var(--cyan); }
+    0%, 49% { border-right-color: var(--color-cyan); }
     50%, 100% { border-right-color: transparent; }
   }
 
-  .hero__text {
-    font-size: 1rem;
-    line-height: 1.8;
-    color: var(--muted);
-    margin-bottom: 1.75rem;
-    max-width: 550px;
-  }
-
+  /* ── Hero text tag overrides ── */
   .hero__text .tag {
     font-size: 1rem;
     vertical-align: baseline;
@@ -240,17 +190,8 @@
     margin-right: 0;
   }
 
-  .hero__cta {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 1.5rem;
-  }
-
-  /* Carrusel de tecnologías */
+  /* ── Tech carousel ── */
   .hero__stack {
-    overflow: hidden;
-    margin-bottom: 2rem;
     -webkit-mask: linear-gradient(90deg, transparent, white 12%, white 88%, transparent);
     mask: linear-gradient(90deg, transparent, white 12%, white 88%, transparent);
   }
@@ -292,38 +233,23 @@
 
   .stack-icon:hover {
     background: rgba(125, 71, 255, 0.22);
-    border-color: var(--purple);
+    border-color: var(--color-purple);
     transform: translateY(-3px);
     box-shadow: 0 6px 18px rgba(125, 71, 255, 0.3);
   }
 
-  .hero__code {
-    opacity: 0.5;
-    font-size: 0.85rem;
-  }
-
+  /* ── Image placeholder ── */
   .hero__image-placeholder {
-    flex: 0 0 340px;
-    min-height: 400px;
     background: linear-gradient(135deg, rgba(125, 71, 255, 0.1) 0%, rgba(12, 255, 255, 0.05) 100%);
-    border-radius: 16px;
     border: 1px solid rgba(12, 255, 255, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--muted);
-    font-size: 0.9rem;
   }
 
+  /* ── Responsive ── */
   @media (max-width: 1024px) {
     .hero {
       flex-direction: column;
       justify-content: center;
       gap: 2.5rem;
-    }
-
-    .hero__container {
-      max-width: 100%;
     }
 
     .hero__image-placeholder {
@@ -340,8 +266,11 @@
       border-radius: 12px;
     }
 
-    .hero__title {
+    .hero {
       font-size: 1.8rem;
+    }
+
+    h1 {
       min-height: 6.5rem;
     }
 

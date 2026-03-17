@@ -1,106 +1,158 @@
 ---
 ---
 
-<nav class="navbar">
-  <div class="navbar__container">
-    <a href="#" class="navbar__logo">wilman.dev</a>
+<nav class="sticky top-0 z-[1000] bg-[rgba(16,4,37,0.88)] backdrop-blur-[14px] border-b border-[rgba(125,71,255,0.12)]" aria-label="Navegación principal">
+  <div class="max-w-[var(--max-w)] mx-auto px-6 py-4 flex justify-between items-center">
+    <a href="#home" class="font-mono text-[1.15rem] font-bold inline-flex items-center gap-[0.15rem] transition-opacity hover:opacity-75">
+      <span class="grad-text font-normal text-[1.3rem]">{</span>
+      <span class="text-text">wilman</span><span class="text-cyan">.</span><span class="text-cyan">dev</span>
+      <span class="grad-text font-normal text-[1.3rem]">}</span>
+    </a>
 
-    <ul class="navbar__menu">
-      <li><a href="#home" class="navbar__link">Inicio</a></li>
-      <li><a href="#about" class="navbar__link">Sobre Mí</a></li>
-      <li><a href="#projects" class="navbar__link">Proyectos</a></li>
-      <li><a href="#skills" class="navbar__link">Habilidades</a></li>
-      <li><a href="#experience" class="navbar__link">Experiencia</a></li>
-      <li><a href="#contact" class="navbar__link">Contacto</a></li>
+    <button class="navbar__toggle" aria-label="Abrir menú" aria-expanded="false">
+      <span class="navbar__toggle-line"></span>
+      <span class="navbar__toggle-line"></span>
+    </button>
+
+    <ul class="navbar__menu flex list-none gap-1 items-center" id="nav-menu">
+      <li><a href="#home" class="navbar__link"><span class="navbar__link-slash">/</span>inicio</a></li>
+      <li><a href="#about" class="navbar__link"><span class="navbar__link-slash">/</span>sobre_mí</a></li>
+      <li><a href="#projects" class="navbar__link"><span class="navbar__link-slash">/</span>proyectos</a></li>
+      <li><a href="#experience" class="navbar__link"><span class="navbar__link-slash">/</span>experiencia</a></li>
+      <li><a href="#contact" class="navbar__link navbar__link--cta"><span class="navbar__link-slash">/</span>contacto</a></li>
     </ul>
   </div>
 </nav>
 
+<script>
+  const toggle = document.querySelector('.navbar__toggle');
+  const menu = document.getElementById('nav-menu');
+
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      const open = menu.classList.toggle('navbar__menu--open');
+      toggle.classList.toggle('navbar__toggle--open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+
+    menu.querySelectorAll('.navbar__link').forEach((link) => {
+      link.addEventListener('click', () => {
+        menu.classList.remove('navbar__menu--open');
+        toggle.classList.remove('navbar__toggle--open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+</script>
+
 <style>
-  .navbar {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background: rgba(16, 4, 37, 0.85);
-    background-image: 
-      linear-gradient(180deg, rgba(220, 0, 211, 0.05) 0%, transparent 100%);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(12, 255, 255, 0.1);
-  }
-
-  .navbar__container {
-    max-width: var(--max-w);
-    margin: 0 auto;
-    padding: 1.5rem 1.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .navbar__logo {
-    font-family: var(--font-mono);
-    font-size: 1.3rem;
-    font-weight: 700;
-    background: linear-gradient(90deg, #7D47FF, #0CFFFF);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    transition: opacity 0.3s;
-  }
-
-  .navbar__logo:hover {
-    opacity: 0.8;
-    text-shadow: none;
-  }
-
-  .navbar__menu {
-    display: flex;
-    list-style: none;
-    gap: 2.5rem;
-  }
-
+  /* ── Menu links ── */
   .navbar__link {
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-    color: var(--muted);
-    transition: all 0.3s;
-    position: relative;
-    letter-spacing: 0.02em;
+    font-family: var(--font-family-mono);
+    font-size: 0.82rem;
+    color: var(--color-muted);
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    transition: color 0.2s, background 0.2s;
+    letter-spacing: 0.01em;
+  }
+
+  .navbar__link-slash {
+    color: rgba(125, 71, 255, 0.5);
+    margin-right: 0.1rem;
   }
 
   .navbar__link:hover {
-    color: var(--cyan);
+    color: var(--color-cyan);
+    background: rgba(12, 255, 255, 0.06);
   }
 
-  .navbar__link::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
+  .navbar__link--cta {
+    color: var(--color-cyan);
+    border: 1px solid rgba(12, 255, 255, 0.2);
+    margin-left: 0.5rem;
+  }
+
+  .navbar__link--cta:hover {
+    background: rgba(12, 255, 255, 0.1);
+    border-color: rgba(12, 255, 255, 0.4);
+    box-shadow: 0 0 16px rgba(12, 255, 255, 0.12);
+  }
+
+  /* ── Hamburger ── */
+  .navbar__toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: 1px solid rgba(125, 71, 255, 0.25);
+    border-radius: 6px;
+    padding: 0.5rem 0.55rem;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+
+  .navbar__toggle:hover {
+    border-color: var(--color-purple);
+  }
+
+  .navbar__toggle-line {
+    display: block;
+    width: 18px;
     height: 2px;
-    background: var(--purple);
-    transition: width 0.3s;
+    background: var(--color-cyan);
+    border-radius: 2px;
+    transition: transform 0.25s, opacity 0.25s;
   }
 
-  .navbar__link:hover::after {
-    width: 100%;
+  .navbar__toggle--open .navbar__toggle-line:first-child {
+    transform: translateY(3.5px) rotate(45deg);
   }
 
+  .navbar__toggle--open .navbar__toggle-line:last-child {
+    transform: translateY(-3.5px) rotate(-45deg);
+  }
+
+  /* ── Responsive ── */
   @media (max-width: 768px) {
-    .navbar__menu {
-      gap: 1.5rem;
-      font-size: 0.75rem;
+    .navbar__toggle {
+      display: flex;
     }
 
-    .navbar__container {
-      padding: 1rem 1rem;
-    }
-  }
-
-  @media (max-width: 600px) {
     .navbar__menu {
-      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 0;
+      padding: 0.75rem 1.5rem 1rem;
+      background: rgba(16, 4, 37, 0.96);
+      border-bottom: 1px solid rgba(125, 71, 255, 0.15);
+      backdrop-filter: blur(14px);
+      transform: translateY(-8px);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+
+    .navbar__menu--open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .navbar__link {
+      padding: 0.7rem 0.75rem;
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .navbar__link--cta {
+      margin-left: 0;
+      margin-top: 0.5rem;
+      text-align: center;
+      justify-content: center;
     }
   }
 </style>
