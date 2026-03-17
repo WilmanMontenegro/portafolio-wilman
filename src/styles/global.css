@@ -6,9 +6,9 @@
   --color-bg: #100425;
   --color-surface: #1b0840;
   --color-cyan: #0CFFFF;
-  --color-purple: #7D47FF;
+  --color-purple: #DC00D3;
   --color-text: #e8e8f2;
-  --color-muted: #5c5c78;
+  --color-muted: #9494b0;
   --font-family-mono: 'JetBrains Mono', monospace;
   --font-family-sans: 'Inter', sans-serif;
 }
@@ -90,12 +90,12 @@ body {
   background: var(--gradient-diag);
   color: #fff;
   border: none;
-  box-shadow: 0 0 24px rgba(125, 71, 255, 0.4);
+  box-shadow: 0 0 24px rgba(220, 0, 211, 0.4);
 }
 
 .btn--primary:hover {
   opacity: 0.85;
-  box-shadow: 0 0 36px rgba(125, 71, 255, 0.6);
+  box-shadow: 0 0 36px rgba(220, 0, 211, 0.6);
 }
 
 .btn--ghost {
@@ -105,14 +105,14 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  border-color: rgba(125, 71, 255, 0.5);
+  border-color: rgba(220, 0, 211, 0.5);
   border-image: var(--gradient) 1;
 }
 
 .btn--ghost:hover {
-  background-color: rgba(125, 71, 255, 0.08);
+  background-color: rgba(220, 0, 211, 0.08);
   border-color: var(--color-purple);
-  box-shadow: 0 0 20px rgba(125, 71, 255, 0.25);
+  box-shadow: 0 0 20px rgba(220, 0, 211, 0.25);
 }
 
 /* ── layout de sección ── */
