@@ -1,89 +1,104 @@
 ---
 ---
 
-<section class="hero min-h-[calc(100vh-80px)] flex items-center justify-between gap-16 px-6 pt-8 pb-16 max-w-[var(--max-w)] mx-auto rounded-[20px]" id="home">
-  <div class="hero__image-placeholder flex-[0_0_340px] min-h-[400px] rounded-2xl flex items-center justify-center text-muted text-[0.9rem]">
-    <span>Foto próximamente</span>
+<section class="hero flex items-center justify-center gap-12 px-8 py-[clamp(3rem,6vw,5rem)] max-w-[var(--max-w)] mx-auto rounded-[20px]" id="home">
+  <div class="hero__photo flex items-center justify-center">
+    <img
+      src="/wilman-montenegro.png"
+      alt="Wilman Montenegro"
+      class="hero__img"
+    />
   </div>
 
-  <div class="max-w-[600px] flex-1">
+  <div class="flex-1 min-w-0">
     <div class="font-mono text-[0.9rem] mb-6 leading-normal whitespace-nowrap flex items-baseline">
-      <span class="tag">&lt;span&gt;</span><span class="intro-text"> Hola, soy <strong class="hero__name">Wilman Montenegro</strong> </span><span class="tag">&lt;/span&gt;</span>
+      <span class="font-mono text-cyan/65 text-[0.82em]">&lt;span&gt;</span><span class="intro-text"> Hola, soy <strong class="hero__name">Wilman Montenegro</strong> </span><span class="font-mono text-cyan/65 text-[0.82em]">&lt;/span&gt;</span>
     </div>
 
-    <h1 class="font-mono text-[clamp(2rem,4.5vw,3.2rem)] font-bold leading-tight mb-6 min-h-32">
+    <h1 class="font-mono text-[clamp(2rem,4.5vw,3.2rem)] font-bold leading-tight mb-6 min-h-40">
       <span class="text-text">Ingeniero de Sistemas &amp;</span><br>
       <span class="title-brace">&#123;</span><span class="typing" id="typing"></span><span class="typing-cursor">|</span><span class="title-brace">&#125;</span>
     </h1>
 
-    <p class="hero__text text-base leading-[1.8] text-text mb-7 max-w-[550px]">
-      <span class="tag">&lt;p&gt;</span>Con experiencia en React, Vue, TypeScript, Node.js y múltiples bases de datos.
-      Especializado en Inteligencia Artificial y agentes autónomos.
-      Actualmente Líder Técnico &amp; Cofundador en FruitApp.<span class="tag">&lt;/p&gt;</span>
+    <p class="hero__text text-base leading-[1.8] text-text mb-7 max-w-[720px] text-justify">
+      <span class="font-mono text-cyan/65 text-[1rem] align-baseline mr-2">&lt;p&gt;</span>Ingeniero de Sistemas con experiencia en desarrollo web y móvil, entornos corporativos y proyectos propios.
+      Apasionado por la tecnología y la enseñanza. Trabajo con emprendedores, pequeñas empresas e instituciones educativas construyendo soluciones reales.<span class="font-mono text-cyan/65 text-[1rem] align-baseline ml-2">&lt;/p&gt;</span>
     </p>
 
     <div class="hero__stack overflow-hidden mb-8">
       <div class="stack-track">
         <!-- set 1 -->
-        <span class="stack-icon" title="JavaScript"><i class="devicon-javascript-plain colored"></i></span>
-        <span class="stack-icon" title="TypeScript"><i class="devicon-typescript-plain colored"></i></span>
-        <span class="stack-icon" title="PHP"><i class="devicon-php-plain colored"></i></span>
-        <span class="stack-icon" title="Python"><i class="devicon-python-plain colored"></i></span>
-        <span class="stack-icon" title="Dart"><i class="devicon-dart-plain colored"></i></span>
-        <span class="stack-icon" title="Kotlin"><i class="devicon-kotlin-plain colored"></i></span>
-        <span class="stack-icon" title="C#"><i class="devicon-csharp-plain colored"></i></span>
-        <span class="stack-icon" title="React"><i class="devicon-react-original colored"></i></span>
-        <span class="stack-icon" title="Vue"><i class="devicon-vuejs-plain colored"></i></span>
-        <span class="stack-icon" title="Angular"><i class="devicon-angularjs-plain colored"></i></span>
-        <span class="stack-icon" title="Node.js"><i class="devicon-nodejs-plain colored"></i></span>
-        <span class="stack-icon" title="NestJS"><i class="devicon-nestjs-plain colored"></i></span>
-        <span class="stack-icon" title="Flutter"><i class="devicon-flutter-plain colored"></i></span>
-        <span class="stack-icon" title="MySQL"><i class="devicon-mysql-plain colored"></i></span>
-        <span class="stack-icon" title="PostgreSQL"><i class="devicon-postgresql-plain colored"></i></span>
-        <span class="stack-icon" title="MongoDB"><i class="devicon-mongodb-plain colored"></i></span>
-        <span class="stack-icon" title="Git"><i class="devicon-git-plain colored"></i></span>
-        <span class="stack-icon" title="Linux"><i class="devicon-linux-plain"></i></span>
+        <span class="stack-icon" data-label="JavaScript"><i class="devicon-javascript-plain colored"></i></span>
+        <span class="stack-icon" data-label="TypeScript"><i class="devicon-typescript-plain colored"></i></span>
+        <span class="stack-icon" data-label="PHP"><i class="devicon-php-plain colored"></i></span>
+        <span class="stack-icon" data-label="Python"><i class="devicon-python-plain colored"></i></span>
+        <span class="stack-icon" data-label="Dart"><i class="devicon-dart-plain colored"></i></span>
+        <span class="stack-icon" data-label="Kotlin"><i class="devicon-kotlin-plain colored"></i></span>
+        <span class="stack-icon" data-label="C#"><i class="devicon-csharp-plain colored"></i></span>
+        <span class="stack-icon" data-label="React"><i class="devicon-react-original colored"></i></span>
+        <span class="stack-icon" data-label="Vue"><i class="devicon-vuejs-plain colored"></i></span>
+        <span class="stack-icon" data-label="Angular"><i class="devicon-angularjs-plain colored"></i></span>
+        <span class="stack-icon" data-label="Node.js"><i class="devicon-nodejs-plain colored"></i></span>
+        <span class="stack-icon" data-label="NestJS"><i class="devicon-nestjs-plain colored"></i></span>
+        <span class="stack-icon" data-label="Flutter"><i class="devicon-flutter-plain colored"></i></span>
+        <span class="stack-icon" data-label="MySQL"><i class="devicon-mysql-plain colored"></i></span>
+        <span class="stack-icon" data-label="PostgreSQL"><i class="devicon-postgresql-plain colored"></i></span>
+        <span class="stack-icon" data-label="MongoDB"><i class="devicon-mongodb-plain colored"></i></span>
+        <span class="stack-icon" data-label="Git"><i class="devicon-git-plain colored"></i></span>
+        <span class="stack-icon" data-label="Linux"><i class="devicon-linux-plain"></i></span>
         <!-- set 2 (duplicado para loop sin corte) -->
-        <span class="stack-icon" title="JavaScript"><i class="devicon-javascript-plain colored"></i></span>
-        <span class="stack-icon" title="TypeScript"><i class="devicon-typescript-plain colored"></i></span>
-        <span class="stack-icon" title="PHP"><i class="devicon-php-plain colored"></i></span>
-        <span class="stack-icon" title="Python"><i class="devicon-python-plain colored"></i></span>
-        <span class="stack-icon" title="Dart"><i class="devicon-dart-plain colored"></i></span>
-        <span class="stack-icon" title="Kotlin"><i class="devicon-kotlin-plain colored"></i></span>
-        <span class="stack-icon" title="C#"><i class="devicon-csharp-plain colored"></i></span>
-        <span class="stack-icon" title="React"><i class="devicon-react-original colored"></i></span>
-        <span class="stack-icon" title="Vue"><i class="devicon-vuejs-plain colored"></i></span>
-        <span class="stack-icon" title="Angular"><i class="devicon-angularjs-plain colored"></i></span>
-        <span class="stack-icon" title="Node.js"><i class="devicon-nodejs-plain colored"></i></span>
-        <span class="stack-icon" title="NestJS"><i class="devicon-nestjs-plain colored"></i></span>
-        <span class="stack-icon" title="Flutter"><i class="devicon-flutter-plain colored"></i></span>
-        <span class="stack-icon" title="MySQL"><i class="devicon-mysql-plain colored"></i></span>
-        <span class="stack-icon" title="PostgreSQL"><i class="devicon-postgresql-plain colored"></i></span>
-        <span class="stack-icon" title="MongoDB"><i class="devicon-mongodb-plain colored"></i></span>
-        <span class="stack-icon" title="Git"><i class="devicon-git-plain colored"></i></span>
-        <span class="stack-icon" title="Linux"><i class="devicon-linux-plain"></i></span>
+        <span class="stack-icon" data-label="JavaScript"><i class="devicon-javascript-plain colored"></i></span>
+        <span class="stack-icon" data-label="TypeScript"><i class="devicon-typescript-plain colored"></i></span>
+        <span class="stack-icon" data-label="PHP"><i class="devicon-php-plain colored"></i></span>
+        <span class="stack-icon" data-label="Python"><i class="devicon-python-plain colored"></i></span>
+        <span class="stack-icon" data-label="Dart"><i class="devicon-dart-plain colored"></i></span>
+        <span class="stack-icon" data-label="Kotlin"><i class="devicon-kotlin-plain colored"></i></span>
+        <span class="stack-icon" data-label="C#"><i class="devicon-csharp-plain colored"></i></span>
+        <span class="stack-icon" data-label="React"><i class="devicon-react-original colored"></i></span>
+        <span class="stack-icon" data-label="Vue"><i class="devicon-vuejs-plain colored"></i></span>
+        <span class="stack-icon" data-label="Angular"><i class="devicon-angularjs-plain colored"></i></span>
+        <span class="stack-icon" data-label="Node.js"><i class="devicon-nodejs-plain colored"></i></span>
+        <span class="stack-icon" data-label="NestJS"><i class="devicon-nestjs-plain colored"></i></span>
+        <span class="stack-icon" data-label="Flutter"><i class="devicon-flutter-plain colored"></i></span>
+        <span class="stack-icon" data-label="MySQL"><i class="devicon-mysql-plain colored"></i></span>
+        <span class="stack-icon" data-label="PostgreSQL"><i class="devicon-postgresql-plain colored"></i></span>
+        <span class="stack-icon" data-label="MongoDB"><i class="devicon-mongodb-plain colored"></i></span>
+        <span class="stack-icon" data-label="Git"><i class="devicon-git-plain colored"></i></span>
+        <span class="stack-icon" data-label="Linux"><i class="devicon-linux-plain"></i></span>
       </div>
     </div>
 
     <div class="flex gap-4 flex-wrap mb-6">
-      <button class="btn btn--primary">Ver Proyectos</button>
+      <a class="btn btn--primary" href="#projects">Ver Proyectos</a>
       <a href="/cv.pdf" download class="btn btn--ghost">[ Descargar CV ]</a>
     </div>
 
     <div class="opacity-50 text-sm">
-      <span class="comment">// Santa Marta, Colombia &middot; Disponible para proyectos</span>
+      <span class="font-mono text-muted text-[0.78em]">// Santa Marta, Colombia &middot; Disponible para proyectos remotos</span>
     </div>
   </div>
 
 </section>
 
 <script>
+  import tippy from 'tippy.js';
+  import 'tippy.js/dist/tippy.css';
+
+  // Tooltips del carrusel
+  tippy('.stack-icon', {
+    content: (el) => el.getAttribute('data-label') ?? '',
+    placement: 'top',
+    arrow: true,
+    duration: [150, 100],
+    theme: 'wilman',
+  });
+
+  // Typewriter
   const roles = [
-    'Ingeniero de Sistemas',
+    'Desarrollador Web',
+    'Desarrollador Movil',
     'Full Stack Developer',
-    'AI Agent Builder',
-    'Líder Técnico',
-    'Software Architect',
+    'Freelancer',
   ];
 
   let currentRoleIndex = 0;
@@ -173,27 +188,13 @@
     50%, 100% { opacity: 0; }
   }
 
-  /* ── Hero text tag overrides ── */
-  .hero__text .tag {
-    font-size: 1rem;
-    vertical-align: baseline;
-    margin: 0 0.35rem;
-  }
-
-  .hero__text .tag:first-child {
-    margin-left: 0;
-    margin-right: 0.5rem;
-  }
-
-  .hero__text .tag:last-child {
-    margin-left: 0.5rem;
-    margin-right: 0;
-  }
-
   /* ── Tech carousel ── */
   .hero__stack {
     -webkit-mask: linear-gradient(90deg, transparent, white 12%, white 88%, transparent);
     mask: linear-gradient(90deg, transparent, white 12%, white 88%, transparent);
+    overflow: hidden;
+    padding-top: 6px;
+    margin-top: -6px;
   }
 
   .stack-track {
@@ -225,6 +226,7 @@
     transition: all 0.2s;
     cursor: default;
     flex-shrink: 0;
+    position: relative;
   }
 
   .stack-icon i {
@@ -238,10 +240,57 @@
     box-shadow: 0 6px 18px rgba(125, 71, 255, 0.3);
   }
 
-  /* ── Image placeholder ── */
-  .hero__image-placeholder {
-    background: linear-gradient(135deg, rgba(125, 71, 255, 0.1) 0%, rgba(12, 255, 255, 0.05) 100%);
-    border: 1px solid rgba(12, 255, 255, 0.2);
+  /* Tippy tema wilman */
+  .tippy-box[data-theme~='wilman'] {
+    background: rgba(27, 8, 64, 0.97);
+    color: #0CFFFF;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    border: 1px solid rgba(12, 255, 255, 0.3);
+    border-radius: 6px;
+  }
+
+  .tippy-box[data-theme~='wilman'] .tippy-arrow {
+    color: rgba(27, 8, 64, 0.97);
+  }
+
+  /* ── Hero foto (círculo, match altura texto) ── */
+  .hero__photo {
+    position: relative;
+    flex-shrink: 0;
+    align-self: center;
+    aspect-ratio: 1;
+  }
+
+  .hero__photo::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: var(--gradient-diag);
+    z-index: 0;
+  }
+
+  .hero__photo::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: var(--gradient-diag);
+    filter: blur(28px);
+    opacity: 0.45;
+    z-index: -1;
+  }
+
+  .hero__img {
+    position: relative;
+    z-index: 1;
+    width: 260px;
+    height: 260px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 50%;
+    border: 3px solid var(--color-bg);
   }
 
   /* ── Responsive ── */
@@ -252,10 +301,13 @@
       gap: 2.5rem;
     }
 
-    .hero__image-placeholder {
+    .hero__photo {
       flex: none;
-      width: 100%;
-      min-height: 300px;
+    }
+
+    .hero__img {
+      width: 220px;
+      height: 220px;
     }
   }
 
@@ -274,7 +326,7 @@
       min-height: 6.5rem;
     }
 
-    .hero__image-placeholder {
+    .hero__photo {
       display: none;
     }
   }
