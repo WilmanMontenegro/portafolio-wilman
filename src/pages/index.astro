@@ -119,11 +119,14 @@ const experience = [
     <div class="timeline">
       {experience.map((item) => (
         <article class="timeline-item">
-          <p class="timeline-item__period">{item.period}</p>
-          <div>
+          <div class="timeline-item__connector" aria-hidden="true">
+            <span class="timeline-item__dot"></span>
+          </div>
+          <div class="timeline-item__body">
+            <p class="timeline-item__period">{item.period}</p>
             <h3>{item.role}</h3>
             <p class="timeline-item__company">{item.company}</p>
-            <p>{item.summary}</p>
+            <p class="timeline-item__summary">{item.summary}</p>
           </div>
         </article>
       ))}
