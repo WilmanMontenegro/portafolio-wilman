@@ -14,7 +14,7 @@
 }
 
 :root {
-  --max-w: 1100px;
+  --max-w: 1280px;
   --gradient: linear-gradient(90deg, var(--color-purple), var(--color-cyan));
   --gradient-diag: linear-gradient(135deg, var(--color-purple) 0%, var(--color-cyan) 100%);
 }
@@ -49,29 +49,6 @@ body {
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: var(--color-bg); }
 ::-webkit-scrollbar-thumb { background: var(--color-purple); border-radius: 3px; }
-
-/* ── estética código ── */
-.tag {
-  font-family: var(--font-family-mono);
-  color: var(--color-cyan);
-  opacity: 0.65;
-  font-size: 0.82em;
-}
-
-.brace {
-  font-family: var(--font-family-mono);
-  color: var(--color-purple);
-}
-
-.accent {
-  color: var(--color-purple);
-}
-
-.comment {
-  font-family: var(--font-family-mono);
-  color: var(--color-muted);
-  font-size: 0.78em;
-}
 
 /* ── botones ── */
 .btn {
@@ -115,37 +92,3 @@ body {
   box-shadow: 0 0 20px rgba(220, 0, 211, 0.25);
 }
 
-/* ── layout de sección ── */
-.section {
-  padding: clamp(4rem, 10vw, 7rem) clamp(1.25rem, 5vw, 3rem);
-  max-width: var(--max-w);
-  margin: 0 auto;
-}
-
-.section__label {
-  font-family: var(--font-family-mono);
-  font-size: 0.75rem;
-  color: var(--color-cyan);
-  opacity: 0.55;
-  margin-bottom: 0.5rem;
-  letter-spacing: 0.05em;
-}
-
-.section__label--close {
-  margin-top: 2.5rem;
-  margin-bottom: 0;
-  text-align: right;
-  opacity: 0.65;
-  font-size: 0.82rem;
-}
-
-.section__title {
-  font-family: var(--font-family-mono);
-  font-size: clamp(1.7rem, 3vw, 2.4rem);
-  font-weight: 700;
-  margin-bottom: clamp(2rem, 5vw, 3.5rem);
-  background: var(--gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
