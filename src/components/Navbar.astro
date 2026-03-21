@@ -1,210 +1,178 @@
 ---
+
 ---
 
-<nav class="sticky top-0 z-[1000] bg-[rgba(16,4,37,0.88)] backdrop-blur-[14px] border-b border-[rgba(220,0,211,0.12)]" aria-label="Navegación principal">
-  <div class="navbar__container">
-    <a href="#home" class="navbar__logo">
-      <span class="grad-text font-normal text-[1.3rem]">{</span>
-      <span class="text-text">wilman</span><span class="text-cyan">.</span><span class="text-cyan">dev</span>
-      <span class="grad-text font-normal text-[1.3rem]">}</span>
-    </a>
+<nav
+    class="sticky top-0 z-[1000] border-b border-[rgba(220,0,211,0.12)] bg-[rgba(16,4,37,0.88)] backdrop-blur-[14px]"
+    aria-label="Navegacion principal"
+>
+    <div class="mx-auto flex h-14 max-w-[var(--max-w)] items-center px-6">
+        <a
+            href="#home"
+            class="inline-flex flex-shrink-0 items-center gap-0.5 font-mono text-[1.15rem] font-bold transition-all duration-200 hover:[filter:drop-shadow(0_0_8px_rgba(12,255,255,0.7))]"
+        >
+            <span class="grad-text text-[1.3rem] font-normal">&#123;</span>
+            <span class="text-text">wilman</span><span class="text-cyan">.</span
+            ><span class="text-cyan">dev</span>
+            <span class="grad-text text-[1.3rem] font-normal">&#125;</span>
+        </a>
 
-    <button class="navbar__toggle" aria-label="Abrir menú" aria-expanded="false">
-      <span class="navbar__toggle-line"></span>
-      <span class="navbar__toggle-line"></span>
-    </button>
+        <ul
+            id="nav-menu"
+            class="pointer-events-none absolute left-0 right-0 top-full hidden flex-col gap-1 border-b border-purple/20 bg-[rgba(16,4,37,0.96)] px-6 py-3 opacity-0 backdrop-blur-[14px] transition-all duration-200 md:pointer-events-auto md:static md:ml-4 md:flex md:flex-1 md:flex-row md:justify-center md:gap-1 md:border-0 md:bg-transparent md:p-0 md:opacity-100 md:backdrop-blur-none"
+        >
+            <li>
+                <a
+                    href="#home"
+                    class="nav-link block px-3 py-2 text-[0.85rem] font-medium tracking-[0.02em]"
+                    >Inicio</a
+                >
+            </li>
+            <li>
+                <a
+                    href="#experience"
+                    class="nav-link block px-3 py-2 text-[0.85rem] font-medium tracking-[0.02em]"
+                    >Experiencia</a
+                >
+            </li>
+            <li>
+                <a
+                    href="#projects"
+                    class="nav-link block px-3 py-2 text-[0.85rem] font-medium tracking-[0.02em]"
+                    >Proyectos</a
+                >
+            </li>
 
-    <ul class="navbar__menu" id="nav-menu">
-      <li><a href="#home" class="navbar__link">Inicio</a></li>
-      <li><a href="#about" class="navbar__link">Sobre mí</a></li>
-      <li><a href="#projects" class="navbar__link">Proyectos</a></li>
-      <li><a href="#experience" class="navbar__link">Experiencia</a></li>
-      <li><a href="#contact" class="navbar__link">Contacto</a></li>
-    </ul>
+            <li>
+                <a
+                    href="#education"
+                    class="nav-link block px-3 py-2 text-[0.85rem] font-medium tracking-[0.02em]"
+                    >Formación</a
+                >
+            </li>
+            <li>
+                <a
+                    href="#references"
+                    class="nav-link block px-3 py-2 text-[0.85rem] font-medium tracking-[0.02em]"
+                    >Referencias</a
+                >
+            </li>
+            <li>
+                <a
+                    href="#contact"
+                    class="nav-link block px-3 py-2 text-[0.85rem] font-medium tracking-[0.02em]"
+                    >Contacto</a
+                >
+            </li>
+        </ul>
 
-    <div class="navbar__socials">
-      <a href="https://github.com/wilmanmontenegro" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="navbar__social-link">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-      </a>
-      <a href="https://linkedin.com/in/wilman-montenegro/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="navbar__social-link">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-      </a>
-      <a href="https://x.com/wilmandev" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" class="navbar__social-link">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-      </a>
+        <div class="ml-auto mr-3 flex flex-shrink-0 items-center gap-1 md:mr-0">
+            <a
+                href="https://github.com/wilmanmontenegro"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                class="inline-flex items-center justify-center rounded-md p-1.5 text-muted transition-all duration-200 hover:bg-cyan/15 hover:text-cyan hover:[filter:drop-shadow(0_0_6px_rgba(12,255,255,0.5))]"
+            >
+                <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    ><path
+                        d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"
+                    ></path></svg
+                >
+            </a>
+            <a
+                href="https://linkedin.com/in/wilman-montenegro/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                class="inline-flex items-center justify-center rounded-md p-1.5 text-muted transition-all duration-200 hover:bg-cyan/15 hover:text-cyan hover:[filter:drop-shadow(0_0_6px_rgba(12,255,255,0.5))]"
+            >
+                <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    ><path
+                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                    ></path></svg
+                >
+            </a>
+            <a
+                href="https://x.com/wilmandev"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="X (Twitter)"
+                class="inline-flex items-center justify-center rounded-md p-1.5 text-muted transition-all duration-200 hover:bg-cyan/15 hover:text-cyan hover:[filter:drop-shadow(0_0_6px_rgba(12,255,255,0.5))]"
+            >
+                <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    ><path
+                        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                    ></path></svg
+                >
+            </a>
+        </div>
+
+        <button
+            id="nav-toggle"
+            class="inline-flex flex-col gap-[5px] rounded-md border border-purple/25 px-2.5 py-2 transition-colors hover:border-purple md:hidden"
+            aria-label="Abrir menu"
+            aria-expanded="false"
+            aria-controls="nav-menu"
+        >
+            <span
+                class="nav-line block h-[2px] w-[18px] rounded bg-cyan transition-transform duration-200"
+            ></span>
+            <span
+                class="nav-line block h-[2px] w-[18px] rounded bg-cyan transition-transform duration-200"
+            ></span>
+        </button>
     </div>
-  </div>
 </nav>
 
 <script>
-  const toggle = document.querySelector('.navbar__toggle');
-  const menu = document.getElementById('nav-menu');
+    const toggle = document.getElementById(
+        "nav-toggle",
+    ) as HTMLButtonElement | null;
+    const menu = document.getElementById("nav-menu");
 
-  if (toggle && menu) {
-    toggle.addEventListener('click', () => {
-      const open = menu.classList.toggle('navbar__menu--open');
-      toggle.classList.toggle('navbar__toggle--open', open);
-      toggle.setAttribute('aria-expanded', String(open));
-    });
+    if (toggle && menu) {
+        const lines = toggle.querySelectorAll(".nav-line");
 
-    menu.querySelectorAll('.navbar__link').forEach((link) => {
-      link.addEventListener('click', () => {
-        menu.classList.remove('navbar__menu--open');
-        toggle.classList.remove('navbar__toggle--open');
-        toggle.setAttribute('aria-expanded', 'false');
-      });
-    });
-  }
+        const setOpenState = (open: boolean) => {
+            menu.classList.toggle("hidden", !open);
+            menu.classList.toggle("flex", open);
+            menu.classList.toggle("pointer-events-none", !open);
+            menu.classList.toggle("opacity-0", !open);
+            menu.classList.toggle("opacity-100", open);
+            toggle.setAttribute("aria-expanded", String(open));
+
+            if (lines.length === 2) {
+                lines[0].classList.toggle("translate-y-[3.5px]", open);
+                lines[0].classList.toggle("rotate-45", open);
+                lines[1].classList.toggle("-translate-y-[3.5px]", open);
+                lines[1].classList.toggle("-rotate-45", open);
+            }
+        };
+
+        toggle.addEventListener("click", () => {
+            const isOpen = toggle.getAttribute("aria-expanded") === "true";
+            setOpenState(!isOpen);
+        });
+
+        menu.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => {
+                if (window.matchMedia("(max-width: 767px)").matches) {
+                    setOpenState(false);
+                }
+            });
+        });
+    }
 </script>
-
-<style>
-  /* ── Container ── */
-  .navbar__container {
-    max-width: var(--max-w);
-    margin: 0 auto;
-    padding: 0 1.5rem;
-    height: 3.5rem;
-    display: flex;
-    align-items: center;
-  }
-
-  /* ── Logo ── */
-  .navbar__logo {
-    font-family: var(--font-family-mono);
-    font-size: 1.15rem;
-    font-weight: 700;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.15rem;
-    transition: opacity 0.2s;
-    flex-shrink: 0;
-  }
-
-  .navbar__logo:hover {
-    opacity: 0.75;
-  }
-
-  /* ── Menu links ── */
-  .navbar__menu {
-    display: flex;
-    list-style: none;
-    gap: 0.25rem;
-    align-items: center;
-    flex: 1;
-    justify-content: center;
-  }
-
-  .navbar__link {
-    font-family: var(--font-family-sans);
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: var(--color-text);
-    padding: 0.45rem 0.8rem;
-    border-radius: 6px;
-    transition: color 0.25s, background 0.25s;
-    letter-spacing: 0.02em;
-  }
-
-  .navbar__link:hover {
-    color: var(--color-text);
-    background: rgba(220, 0, 211, 0.08);
-  }
-
-  /* ── Social links ── */
-  .navbar__socials {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    flex-shrink: 0;
-  }
-
-  .navbar__social-link {
-    color: var(--color-muted);
-    padding: 0.4rem;
-    border-radius: 6px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: color 0.25s, background 0.25s;
-  }
-
-  .navbar__social-link:hover {
-    color: var(--color-cyan);
-    background: rgba(12, 255, 255, 0.08);
-  }
-
-  /* ── Hamburger ── */
-  .navbar__toggle {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: 1px solid rgba(220, 0, 211, 0.25);
-    border-radius: 6px;
-    padding: 0.5rem 0.55rem;
-    cursor: pointer;
-    transition: border-color 0.2s;
-  }
-
-  .navbar__toggle:hover {
-    border-color: var(--color-purple);
-  }
-
-  .navbar__toggle-line {
-    display: block;
-    width: 18px;
-    height: 2px;
-    background: var(--color-cyan);
-    border-radius: 2px;
-    transition: transform 0.25s, opacity 0.25s;
-  }
-
-  .navbar__toggle--open .navbar__toggle-line:first-child {
-    transform: translateY(3.5px) rotate(45deg);
-  }
-
-  .navbar__toggle--open .navbar__toggle-line:last-child {
-    transform: translateY(-3.5px) rotate(-45deg);
-  }
-
-  /* ── Responsive ── */
-  @media (max-width: 768px) {
-    .navbar__toggle {
-      display: flex;
-    }
-
-    .navbar__menu {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      flex-direction: column;
-      gap: 0;
-      padding: 0.75rem 1.5rem 1rem;
-      background: rgba(16, 4, 37, 0.96);
-      border-bottom: 1px solid rgba(125, 71, 255, 0.15);
-      backdrop-filter: blur(14px);
-      transform: translateY(-8px);
-      opacity: 0;
-      pointer-events: none;
-      transition: transform 0.25s, opacity 0.25s;
-    }
-
-    .navbar__menu--open {
-      transform: translateY(0);
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .navbar__link {
-      padding: 0.7rem 0.75rem;
-      width: 100%;
-      border-radius: 8px;
-    }
-
-    .navbar__socials {
-      margin-left: auto;
-      margin-right: 0.75rem;
-    }
-  }
-</style>
