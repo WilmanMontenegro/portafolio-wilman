@@ -1,0 +1,60 @@
+---
+const education = [
+    {
+        period: "2017 - 2023",
+        title: "Ingeniería de Sistemas",
+        institution: "Universidad del Magdalena",
+        summary:
+            "Formación profesional en desarrollo de software, bases de datos, arquitectura de sistemas y resolución de problemas.",
+    },
+    {
+        period: "2010 - 2016",
+        title: "Bachillerato Técnico en Metalistería",
+        institution: "IED Técnico Industrial",
+        summary:
+            "Formación técnica de nivel medio con enfoque en fundamentos industriales y trabajo práctico.",
+    },
+];
+---
+
+<section
+    class="py-[clamp(1rem,2.5vw,1.5rem)] px-[clamp(1.25rem,5vw,3rem)] max-w-[var(--max-w)] mx-auto"
+    id="education"
+    aria-labelledby="education-title"
+>
+    <p class="font-mono text-[0.82rem] text-cyan/65 mb-2 tracking-[0.05em]">
+        &lt;section&gt; studies
+    </p>
+    <h2
+        class="grad-text font-mono text-[clamp(1.7rem,3vw,2.4rem)] font-bold mb-6"
+        id="education-title"
+    >
+        Formación Académica
+    </h2>
+
+    <div class="grid gap-5 md:grid-cols-2">
+        {
+            education.map((item) => (
+                <article class="grid gap-2 rounded-xl border border-purple/20 bg-[rgba(27,8,64,0.6)] p-[1.4rem]">
+                    <p class="font-mono text-[0.78rem] text-cyan/65 tracking-[0.04em]">
+                        {item.period}
+                    </p>
+                    <h3 class="font-mono text-[1.05rem] text-text">
+                        {item.title}
+                    </h3>
+                    <p class="font-mono text-[0.86rem] text-purple">
+                        {item.institution}
+                    </p>
+                    <p class="text-[0.92rem] leading-[1.7] text-muted">
+                        {item.summary}
+                    </p>
+                </article>
+            ))
+        }
+    </div>
+    <p
+        class="font-mono text-[0.82rem] text-cyan/65 mt-2 mb-0 text-right tracking-[0.05em]"
+    >
+        &lt;/section&gt;
+    </p>
+</section>

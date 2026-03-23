@@ -1,0 +1,70 @@
+---
+const references = [
+    {
+        name: "Yoicer Galvis",
+        role: "Coordinador DevOps",
+        image: "/yoicer-galvis.jpeg",
+        context: "Recomendación sobre Wilman Montenegro",
+        text: "Durante el tiempo que trabajamos juntos, Wilman demostró compromiso, responsabilidad y profesionalismo. Destacó por resolver retos con eficiencia, mantener una actitud proactiva, trabajar bien en equipo y comunicar con claridad. Su desempeño fue sobresaliente y lo recomiendo como un perfil confiable, resolutivo y orientado a resultados.",
+    },
+    {
+        name: "Bernabé Aguilar",
+        role: "Licenciado en Administración de Empresas y Economía",
+        image: "/bernabe-aguilar.jpeg",
+        context: "Cliente — producto digital B2B",
+        text: "Lo que me sorprendió gratamente fue su capacidad de comprensión: más allá de lo técnico, entendió la idea de negocio y aplicó un análisis crítico preciso sobre la lógica para resolver el problema. En aproximadamente mes y medio teníamos el 80% de un producto muy complejo: sistema de control de inventario, app móvil, integración de pagos y logística. También me sorprendió su manejo de conceptos económicos y de administración de empresas — entendió rápido que había que poner al usuario en el centro y brindarle la mejor experiencia.",
+    },
+];
+---
+
+<section
+    class="py-[clamp(1rem,2.5vw,1.5rem)] px-[clamp(1.25rem,5vw,3rem)] max-w-[var(--max-w)] mx-auto"
+    id="references"
+    aria-labelledby="references-title"
+>
+    <p class="font-mono text-[0.82rem] text-cyan/65 mb-2 tracking-[0.05em]">
+        &lt;section&gt; references
+    </p>
+    <h2
+        class="grad-text font-mono text-[clamp(1.7rem,3vw,2.4rem)] font-bold mb-6"
+        id="references-title"
+    >
+        Referencias
+    </h2>
+
+    <div class="grid gap-5 md:grid-cols-2">
+        {
+            references.map((item) => (
+                <article class="grid gap-4 rounded-xl border border-purple/20 bg-[rgba(27,8,64,0.6)] p-[1.5rem]">
+                    <p class="font-mono text-[0.76rem] text-cyan/70">
+                        {item.context}
+                    </p>
+                    <p class="text-[0.98rem] leading-[1.9] text-muted">
+                        "{item.text}"
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <img
+                            src={item.image}
+                            alt={item.name}
+                            class="h-12 w-12 rounded-full border border-cyan/25 object-cover object-top"
+                            loading="lazy"
+                        />
+                        <div>
+                            <p class="font-mono text-[1rem] text-text">
+                                {item.name}
+                            </p>
+                            <p class="font-mono text-[0.82rem] text-purple">
+                                {item.role}
+                            </p>
+                        </div>
+                    </div>
+                </article>
+            ))
+        }
+    </div>
+    <p
+        class="font-mono text-[0.82rem] text-cyan/65 mt-2 mb-0 text-right tracking-[0.05em]"
+    >
+        &lt;/section&gt;
+    </p>
+</section>

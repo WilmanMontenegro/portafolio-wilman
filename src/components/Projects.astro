@@ -1,0 +1,103 @@
+---
+const featuredProjects = [
+    {
+        year: "Ene–Feb 2026",
+        title: "FruitApp",
+        description:
+            "Marketplace multi-tenant para fruterías y tiendas de barrio. Desarrollado por contrato: catálogo, POS, pagos con Mercado Pago, tracking GPS en tiempo real y PWA sin instalación. 43 pantallas en 2 meses.",
+        stack: ["Flutter", "Firebase", "Mercado Pago", "Riverpod"],
+        url: "https://web.fruit-app.com",
+    },
+    {
+        year: "2025",
+        title: "Batería Champetera Virtual",
+        description:
+            "Aplicación web interactiva con batería y piano champetero virtual, samplers configurables y soporte completo para móvil.",
+        stack: ["JavaScript", "HTML5", "CSS3"],
+        url: "https://bateriachampetera.com",
+    },
+    {
+        year: "2025",
+        title: "TuPsicoana",
+        description:
+            "Plataforma web para psicóloga en formación con blog de salud mental, sistema de contacto y contenido bilingüe.",
+        stack: ["Next.js", "TypeScript", "Tailwind CSS"],
+        url: "https://www.tupsicoana.com/",
+    },
+    {
+        year: "2025",
+        title: "Gimnasio Campestre Rodadero",
+        description:
+            "Sitio institucional para colegio en Santa Marta con oferta académica, testimonios, formulario de admisiones y chat de WhatsApp.",
+        stack: ["WordPress", "PHP", "Elementor"],
+        url: "https://gimnasiocampestrerodadero.edu.co/",
+    },
+    {
+        year: "2025",
+        title: "Catalyx Group",
+        description:
+            "Landing corporativa para consultora de software a medida, con secciones de servicios, enfoque y formulario de contacto.",
+        stack: ["Astro", "TypeScript", "Tailwind CSS"],
+        url: "https://wilmanmontenegro.github.io/catalyx-group-website/",
+    },
+];
+---
+
+<section
+    class="py-[clamp(1rem,2.5vw,1.5rem)] px-[clamp(1.25rem,5vw,3rem)] max-w-[var(--max-w)] mx-auto"
+    id="projects"
+    aria-labelledby="projects-title"
+>
+    <p class="font-mono text-[0.82rem] text-cyan/65 mb-2 tracking-[0.05em]">
+        &lt;section&gt; projects
+    </p>
+    <h2
+        class="grad-text font-mono text-[clamp(1.7rem,3vw,2.4rem)] font-bold mb-6"
+        id="projects-title"
+    >
+        Proyectos
+    </h2>
+
+    <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {
+            featuredProjects.map((project) => (
+                <article class="grid gap-3 rounded-xl border border-purple/20 bg-[rgba(27,8,64,0.6)] p-[1.4rem] transition-[border-color,box-shadow] duration-200 hover:border-purple/50 hover:shadow-[0_0_30px_rgba(125,71,255,0.15)]">
+                    <p class="font-mono text-[0.78rem] text-cyan/70">
+                        <span class="font-mono text-purple">{"{"}</span>{" "}
+                        {project.year}{" "}
+                        <span class="font-mono text-purple">{"}"}</span>
+                    </p>
+                    <h3 class="font-mono text-[1.15rem] text-text">
+                        {project.title}
+                    </h3>
+                    <p class="text-[0.92rem] leading-[1.7] text-muted">
+                        {project.description}
+                    </p>
+                    <ul
+                        class="flex list-none flex-wrap gap-2"
+                        aria-label={`Stack de ${project.title}`}
+                    >
+                        {project.stack.map((item) => (
+                            <li class="rounded border border-cyan/20 bg-cyan/10 px-3 py-1.5 font-mono text-[0.75rem] text-cyan">
+                                {item}
+                            </li>
+                        ))}
+                    </ul>
+                    <a
+                        href={project.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="w-fit font-mono text-[0.82rem] text-cyan transition-opacity hover:opacity-65"
+                    >
+                        Ver proyecto →
+                    </a>
+                </article>
+            ))
+        }
+    </div>
+    <p
+        class="font-mono text-[0.82rem] text-cyan/65 mt-2 mb-0 text-right tracking-[0.05em]"
+    >
+        &lt;/section&gt;
+    </p>
+</section>

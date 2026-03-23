@@ -1,39 +1,47 @@
 ---
 ---
 
-<section class="hero flex items-center justify-center gap-12 px-8 py-[clamp(3rem,6vw,5rem)] max-w-[var(--max-w)] mx-auto rounded-[20px]" id="home">
-  <div class="hero__photo flex items-center justify-center">
+<section class="mx-auto flex max-w-[var(--max-w)] items-center justify-center gap-12 rounded-[20px] bg-[linear-gradient(135deg,rgba(220,0,211,0.15)_0%,rgba(12,255,255,0.08)_100%)] px-8 py-[clamp(3rem,6vw,5rem)] max-[1024px]:flex-col max-[1024px]:justify-center max-[1024px]:gap-8 max-[640px]:rounded-xl max-[640px]:px-5 max-[640px]:py-10" id="home">
+
+  <!-- Foto -->
+  <div class="hero-photo relative shrink-0 self-center">
     <img
       src="/wilman-montenegro.png"
       alt="Wilman Montenegro"
-      class="hero__img"
+      class="relative z-[2] block h-[260px] w-[260px] rounded-full border-[3px] border-[var(--color-bg)] object-cover object-top max-[1024px]:h-[200px] max-[1024px]:w-[200px] max-[640px]:h-[150px] max-[640px]:w-[150px]"
     />
   </div>
 
-  <div class="flex-1 min-w-0">
-    <div class="font-mono text-[0.9rem] mb-6 leading-normal whitespace-nowrap flex items-baseline">
-      <span class="font-mono text-cyan/65 text-[0.82em]">&lt;span&gt;</span><span class="intro-text"> Hola, soy <strong class="hero__name">Wilman Montenegro</strong> </span><span class="font-mono text-cyan/65 text-[0.82em]">&lt;/span&gt;</span>
-    </div>
+  <!-- Contenido -->
+  <div class="w-full min-w-0 flex-1">
 
-    <h1 class="font-mono text-[clamp(2rem,4.5vw,3.2rem)] font-bold leading-tight mb-6 min-h-40">
-      <span class="text-text">Ingeniero de Sistemas &amp;</span><br>
-      <span class="title-brace">&#123;</span><span class="typing" id="typing"></span><span class="typing-cursor">|</span><span class="title-brace">&#125;</span>
-    </h1>
-
-    <p class="hero__text text-base leading-[1.8] text-text mb-7 max-w-[720px] text-justify">
-      <span class="font-mono text-cyan/65 text-[1rem] align-baseline mr-2">&lt;p&gt;</span>Ingeniero de Sistemas con experiencia en desarrollo web y móvil, entornos corporativos y proyectos propios.
-      Apasionado por la tecnología y la enseñanza. Trabajo con emprendedores, pequeñas empresas e instituciones educativas construyendo soluciones reales.<span class="font-mono text-cyan/65 text-[1rem] align-baseline ml-2">&lt;/p&gt;</span>
+    <!-- Saludo -->
+    <p class="mb-4 font-mono text-[0.85rem] text-muted">
+      <span class="text-cyan/50">&lt;span&gt;</span>
+      Hola, soy <strong class="bg-[linear-gradient(90deg,#e8e8f2,#0CFFFF)] bg-clip-text font-bold text-transparent">Wilman Montenegro</strong>
+      <span class="text-cyan/50">&lt;/span&gt;</span>
     </p>
 
-    <div class="hero__stack overflow-hidden mb-8">
-      <div class="stack-track">
-        <!-- set 1 -->
+    <!-- Título con typewriter -->
+    <h1 class="mb-5 font-mono text-[clamp(1.8rem,4vw,3rem)] font-bold leading-tight text-text">
+      Ingeniero de Sistemas &amp;<br>
+      <span class="font-bold text-cyan">&#123;</span><span class="bg-[linear-gradient(90deg,#DC00D3,#0CFFFF)] bg-clip-text font-semibold text-transparent" id="typing"></span><span class="typing-cursor text-cyan">|</span><span class="font-bold text-cyan">&#125;</span>
+    </h1>
+
+    <!-- Descripción -->
+    <p class="mb-7 max-w-[620px] text-[0.97rem] leading-[1.8] text-muted">
+      Ingeniero de Sistemas con experiencia en desarrollo web y móvil, entornos corporativos y proyectos propios.
+      Apasionado por la tecnología y la enseñanza. Trabajo con emprendedores, pequeñas empresas e instituciones educativas construyendo soluciones reales.
+    </p>
+
+    <!-- Carrusel de tecnologías -->
+    <div class="hero-stack mb-7 overflow-hidden">
+      <div class="stack-track flex w-max items-center gap-3">
         <span class="stack-icon" data-label="JavaScript"><i class="devicon-javascript-plain colored"></i></span>
         <span class="stack-icon" data-label="TypeScript"><i class="devicon-typescript-plain colored"></i></span>
         <span class="stack-icon" data-label="PHP"><i class="devicon-php-plain colored"></i></span>
         <span class="stack-icon" data-label="Python"><i class="devicon-python-plain colored"></i></span>
         <span class="stack-icon" data-label="Dart"><i class="devicon-dart-plain colored"></i></span>
-        <span class="stack-icon" data-label="Kotlin"><i class="devicon-kotlin-plain colored"></i></span>
         <span class="stack-icon" data-label="C#"><i class="devicon-csharp-plain colored"></i></span>
         <span class="stack-icon" data-label="React"><i class="devicon-react-original colored"></i></span>
         <span class="stack-icon" data-label="Vue"><i class="devicon-vuejs-plain colored"></i></span>
@@ -46,13 +54,12 @@
         <span class="stack-icon" data-label="MongoDB"><i class="devicon-mongodb-plain colored"></i></span>
         <span class="stack-icon" data-label="Git"><i class="devicon-git-plain colored"></i></span>
         <span class="stack-icon" data-label="Linux"><i class="devicon-linux-plain"></i></span>
-        <!-- set 2 (duplicado para loop sin corte) -->
+        <!-- duplicado para loop infinito -->
         <span class="stack-icon" data-label="JavaScript"><i class="devicon-javascript-plain colored"></i></span>
         <span class="stack-icon" data-label="TypeScript"><i class="devicon-typescript-plain colored"></i></span>
         <span class="stack-icon" data-label="PHP"><i class="devicon-php-plain colored"></i></span>
         <span class="stack-icon" data-label="Python"><i class="devicon-python-plain colored"></i></span>
         <span class="stack-icon" data-label="Dart"><i class="devicon-dart-plain colored"></i></span>
-        <span class="stack-icon" data-label="Kotlin"><i class="devicon-kotlin-plain colored"></i></span>
         <span class="stack-icon" data-label="C#"><i class="devicon-csharp-plain colored"></i></span>
         <span class="stack-icon" data-label="React"><i class="devicon-react-original colored"></i></span>
         <span class="stack-icon" data-label="Vue"><i class="devicon-vuejs-plain colored"></i></span>
@@ -68,23 +75,24 @@
       </div>
     </div>
 
-    <div class="flex gap-4 flex-wrap mb-6">
+    <!-- CTAs -->
+    <div class="mb-5 flex flex-wrap gap-3">
       <a class="btn btn--primary" href="#projects">Ver Proyectos</a>
       <a href="/cv.pdf" download class="btn btn--ghost">[ Descargar CV ]</a>
     </div>
 
-    <div class="opacity-50 text-sm">
-      <span class="font-mono text-muted text-[0.78em]">// Santa Marta, Colombia &middot; Disponible para proyectos remotos</span>
-    </div>
-  </div>
+    <!-- Ubicación -->
+    <p class="font-mono text-[0.78rem] text-muted/60">
+      // Santa Marta, Colombia &middot; Disponible para proyectos remotos
+    </p>
 
+  </div>
 </section>
 
 <script>
   import tippy from 'tippy.js';
   import 'tippy.js/dist/tippy.css';
 
-  // Tooltips del carrusel
   tippy('.stack-icon', {
     content: (el) => el.getAttribute('data-label') ?? '',
     placement: 'top',
@@ -93,7 +101,6 @@
     theme: 'wilman',
   });
 
-  // Typewriter
   const roles = [
     'Desarrollador Web',
     'Desarrollador Movil',
@@ -104,114 +111,88 @@
   let currentRoleIndex = 0;
   let currentCharIndex = 0;
   let isDeleting = false;
-  let typingElement = document.getElementById('typing');
-  
+  const typingElement = document.getElementById('typing');
+
   if (typingElement) {
     function type() {
       const currentRole = roles[currentRoleIndex];
-      
-      if (isDeleting) {
-        currentCharIndex--;
-      } else {
-        currentCharIndex++;
-      }
-      
-      typingElement!.textContent = currentRole.substring(0, currentCharIndex);
-      
+
+      currentCharIndex += isDeleting ? -1 : 1;
+      typingElement.textContent = currentRole.substring(0, currentCharIndex);
+
       if (!isDeleting && currentCharIndex === currentRole.length) {
         isDeleting = true;
         setTimeout(type, 1500);
         return;
       }
-      
+
       if (isDeleting && currentCharIndex === 0) {
         isDeleting = false;
         currentRoleIndex = (currentRoleIndex + 1) % roles.length;
         setTimeout(type, 500);
         return;
       }
-      
-      const speed = isDeleting ? 50 : 80;
-      setTimeout(type, speed);
+
+      setTimeout(type, isDeleting ? 50 : 80);
     }
-    
+
     type();
   }
 </script>
 
 <style>
-  /* ── Hero background ── */
-  .hero {
-    background: linear-gradient(135deg, rgba(220, 0, 211, 0.15) 0%, rgba(12, 255, 255, 0.08) 100%);
-  }
-
-  /* ── Intro text ── */
-  .intro-text {
-    color: var(--color-muted);
-    font-size: 0.9rem;
-    font-family: var(--font-family-mono);
-    vertical-align: baseline;
-  }
-
-  .hero__name {
-    background: linear-gradient(90deg, #e8e8f2, #0CFFFF);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-weight: 700;
-  }
-
-  /* ── Title gradient elements ── */
-  .title-brace {
-    font-family: var(--font-family-mono);
-    color: var(--color-cyan);
-    font-weight: 700;
-  }
-
-  .typing {
-    display: inline;
-    background: linear-gradient(90deg, #DC00D3, #0CFFFF);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-weight: 600;
-  }
-
-  .typing-cursor {
-    color: var(--color-cyan);
-    font-weight: 300;
-    animation: blink 0.7s infinite;
-  }
-
   @keyframes blink {
     0%, 49% { opacity: 1; }
     50%, 100% { opacity: 0; }
   }
 
-  /* ── Tech carousel ── */
-  .hero__stack {
+  .typing-cursor {
+    animation: blink 0.7s infinite;
+    font-weight: 300;
+  }
+
+  .hero-photo {
+    aspect-ratio: 1;
+  }
+
+  .hero-photo::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: var(--gradient-diag);
+    z-index: -1;
+  }
+
+  .hero-photo::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: var(--gradient-diag);
+    filter: blur(28px);
+    opacity: 0.45;
+    z-index: -2;
+  }
+
+  .hero-stack {
     -webkit-mask: linear-gradient(90deg, transparent, white 12%, white 88%, transparent);
     mask: linear-gradient(90deg, transparent, white 12%, white 88%, transparent);
-    overflow: hidden;
     padding-top: 6px;
     margin-top: -6px;
   }
 
   .stack-track {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    width: max-content;
     animation: scroll-tech 22s linear infinite;
   }
 
-  .hero__stack:hover .stack-track {
+  .hero-stack:hover .stack-track {
     animation-play-state: paused;
   }
 
   @keyframes scroll-tech {
     from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
+    to { transform: translateX(-50%); }
   }
 
   .stack-icon {
@@ -226,7 +207,6 @@
     transition: all 0.2s;
     cursor: default;
     flex-shrink: 0;
-    position: relative;
   }
 
   .stack-icon i {
@@ -240,7 +220,6 @@
     box-shadow: 0 6px 18px rgba(125, 71, 255, 0.3);
   }
 
-  /* Tippy tema wilman */
   .tippy-box[data-theme~='wilman'] {
     background: rgba(27, 8, 64, 0.97);
     color: #0CFFFF;
@@ -252,82 +231,5 @@
 
   .tippy-box[data-theme~='wilman'] .tippy-arrow {
     color: rgba(27, 8, 64, 0.97);
-  }
-
-  /* ── Hero foto (círculo, match altura texto) ── */
-  .hero__photo {
-    position: relative;
-    flex-shrink: 0;
-    align-self: center;
-    aspect-ratio: 1;
-  }
-
-  .hero__photo::before {
-    content: '';
-    position: absolute;
-    inset: -4px;
-    border-radius: 50%;
-    background: var(--gradient-diag);
-    z-index: 0;
-  }
-
-  .hero__photo::after {
-    content: '';
-    position: absolute;
-    inset: -4px;
-    border-radius: 50%;
-    background: var(--gradient-diag);
-    filter: blur(28px);
-    opacity: 0.45;
-    z-index: -1;
-  }
-
-  .hero__img {
-    position: relative;
-    z-index: 1;
-    width: 260px;
-    height: 260px;
-    object-fit: cover;
-    object-position: top;
-    border-radius: 50%;
-    border: 3px solid var(--color-bg);
-  }
-
-  /* ── Responsive ── */
-  @media (max-width: 1024px) {
-    .hero {
-      flex-direction: column;
-      justify-content: center;
-      gap: 2.5rem;
-    }
-
-    .hero__photo {
-      flex: none;
-    }
-
-    .hero__img {
-      width: 220px;
-      height: 220px;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .hero {
-      min-height: auto;
-      padding: 4rem 1.25rem;
-      border-radius: 12px;
-    }
-
-    .hero {
-      font-size: 1.8rem;
-    }
-
-    h1 {
-      min-height: 6.5rem;
-    }
-
-    .hero__photo {
-      display: none;
-    }
   }
 </style>
