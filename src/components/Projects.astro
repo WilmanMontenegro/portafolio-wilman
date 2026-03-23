@@ -61,7 +61,7 @@ const featuredProjects = [
     <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {
             featuredProjects.map((project) => (
-                <article class="grid gap-3 rounded-xl border border-purple/20 bg-[rgba(27,8,64,0.6)] p-[1.4rem] transition-[border-color,box-shadow] duration-200 hover:border-purple/50 hover:shadow-[0_0_30px_rgba(125,71,255,0.15)]">
+                <article class="flex flex-col gap-3 rounded-xl border border-purple/20 bg-[rgba(27,8,64,0.6)] p-[1.4rem] transition-[border-color,box-shadow] duration-200 hover:border-purple/50 hover:shadow-[0_0_30px_rgba(125,71,255,0.15)]">
                     <p class="font-mono text-[0.78rem] text-cyan/70">
                         <span class="font-mono text-purple">{"{"}</span>{" "}
                         {project.year}{" "}
@@ -87,7 +87,7 @@ const featuredProjects = [
                         href={project.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="w-fit font-mono text-[0.82rem] text-cyan transition-opacity hover:opacity-65"
+                        class="mt-auto w-fit font-mono text-[0.82rem] text-cyan transition-opacity hover:opacity-65"
                     >
                         Ver proyecto →
                     </a>
