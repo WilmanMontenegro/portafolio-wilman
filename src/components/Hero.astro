@@ -1,13 +1,18 @@
 ---
 ---
 
-<section class="mx-auto flex max-w-[var(--max-w)] items-center justify-center gap-12 rounded-[20px] bg-[linear-gradient(135deg,rgba(220,0,211,0.15)_0%,rgba(12,255,255,0.08)_100%)] px-8 py-[clamp(3rem,6vw,5rem)] max-[1024px]:flex-col max-[1024px]:justify-center max-[1024px]:gap-8 max-[640px]:rounded-xl max-[640px]:px-5 max-[640px]:py-10" id="home">
+<section class="mx-auto flex max-w-[var(--max-w)] items-center justify-center gap-12 rounded-[20px] bg-[linear-gradient(135deg,rgba(220,0,211,0.15)_0%,rgba(12,255,255,0.08)_100%)] px-8 py-[clamp(3rem,6vw,5rem)] max-[1024px]:flex-col max-[1024px]:justify-center max-[1024px]:gap-8 max-[640px]:rounded-xl max-[640px]:px-5 max-[640px]:py-10" id="home" aria-labelledby="hero-title">
 
   <!-- Foto -->
   <div class="hero-photo relative shrink-0 self-center">
     <img
-      src={`${import.meta.env.BASE_URL}wilman-montenegro.png`}
+      src={`${import.meta.env.BASE_URL}wilman-montenegro.webp`}
       alt="Wilman Montenegro"
+      width="260"
+      height="260"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
       class="relative z-[2] block h-[260px] w-[260px] rounded-full border-[3px] border-[var(--color-bg)] object-cover object-top max-[1024px]:h-[200px] max-[1024px]:w-[200px] max-[640px]:h-[150px] max-[640px]:w-[150px]"
     />
   </div>
@@ -23,7 +28,7 @@
     </p>
 
     <!-- Título con typewriter -->
-    <h1 class="mb-5 font-mono text-[clamp(1.8rem,4vw,3rem)] font-bold leading-tight text-text">
+    <h1 class="mb-5 font-mono text-[clamp(1.8rem,4vw,3rem)] font-bold leading-tight text-text" id="hero-title">
       Ingeniero de Sistemas &amp;<br>
       <span class="font-bold text-cyan">&#123;</span><span class="bg-[linear-gradient(90deg,#DC00D3,#0CFFFF)] bg-clip-text font-semibold text-transparent" id="typing"></span><span class="typing-cursor text-cyan">|</span><span class="font-bold text-cyan">&#125;</span>
     </h1>
@@ -37,41 +42,41 @@
     <!-- Carrusel de tecnologías -->
     <div class="hero-stack mb-7 overflow-hidden">
       <div class="stack-track flex w-max items-center gap-3">
-        <span class="stack-icon" data-label="JavaScript"><i class="devicon-javascript-plain colored"></i></span>
-        <span class="stack-icon" data-label="TypeScript"><i class="devicon-typescript-plain colored"></i></span>
-        <span class="stack-icon" data-label="PHP"><i class="devicon-php-plain colored"></i></span>
-        <span class="stack-icon" data-label="Python"><i class="devicon-python-plain colored"></i></span>
-        <span class="stack-icon" data-label="Dart"><i class="devicon-dart-plain colored"></i></span>
-        <span class="stack-icon" data-label="C#"><i class="devicon-csharp-plain colored"></i></span>
-        <span class="stack-icon" data-label="React"><i class="devicon-react-original colored"></i></span>
-        <span class="stack-icon" data-label="Vue"><i class="devicon-vuejs-plain colored"></i></span>
-        <span class="stack-icon" data-label="Angular"><i class="devicon-angularjs-plain colored"></i></span>
-        <span class="stack-icon" data-label="Node.js"><i class="devicon-nodejs-plain colored"></i></span>
-        <span class="stack-icon" data-label="NestJS"><i class="devicon-nestjs-plain colored"></i></span>
-        <span class="stack-icon" data-label="Flutter"><i class="devicon-flutter-plain colored"></i></span>
-        <span class="stack-icon" data-label="MySQL"><i class="devicon-mysql-plain colored"></i></span>
-        <span class="stack-icon" data-label="PostgreSQL"><i class="devicon-postgresql-plain colored"></i></span>
-        <span class="stack-icon" data-label="MongoDB"><i class="devicon-mongodb-plain colored"></i></span>
-        <span class="stack-icon" data-label="Git"><i class="devicon-git-plain colored"></i></span>
-        <span class="stack-icon" data-label="Linux"><i class="devicon-linux-plain"></i></span>
+        <span class="stack-icon" data-label="JavaScript"><i class="devicon-javascript-plain colored" aria-hidden="true"></i></span>
+        <span class="stack-icon" data-label="TypeScript"><i class="devicon-typescript-plain colored" aria-hidden="true"></i></span>
+        <span class="stack-icon" data-label="PHP"><i class="devicon-php-plain colored" aria-hidden="true"></i></span>
+        <span class="stack-icon" data-label="Python"><i class="devicon-python-plain colored" aria-hidden="true"></i></span>
+        <span class="stack-icon" data-label="Dart"><i class="devicon-dart-plain colored" aria-hidden="true"></i></span>
+        <span class="stack-icon" data-label="C#"><i class="devicon-csharp-plain colored" aria-hidden="true"></i></span>
+        <span class="stack-icon" data-label="React"><i class="devicon-react-original colored" aria-hidden="true"></i></span>
+        <span class="stack-icon" data-label="Vue"><i class="devicon-vuejs-plain colored" aria-hidden="true"></i></span>
+        <span class="stack-icon" data-label="Angular"><i class="devicon-angularjs-plain colored" aria-hidden="true"></i></span>
+        <span class="stack-icon" data-label="Node.js"><i class="devicon-nodejs-plain colored" aria-hidden="true"></i></span>
+        <span class="stack-icon" data-label="NestJS"><i class="devicon-nestjs-plain colored" aria-hidden="true"></i></span>
+        <span class="stack-icon" data-label="Flutter"><i class="devicon-flutter-plain colored" aria-hidden="true"></i></span>
+        <span class="stack-icon" data-label="MySQL"><i class="devicon-mysql-plain colored" aria-hidden="true"></i></span>
+        <span class="stack-icon" data-label="PostgreSQL"><i class="devicon-postgresql-plain colored" aria-hidden="true"></i></span>
+        <span class="stack-icon" data-label="MongoDB"><i class="devicon-mongodb-plain colored" aria-hidden="true"></i></span>
+        <span class="stack-icon" data-label="Git"><i class="devicon-git-plain colored" aria-hidden="true"></i></span>
+        <span class="stack-icon" data-label="Linux"><i class="devicon-linux-plain" aria-hidden="true"></i></span>
         <!-- duplicado para loop infinito -->
-        <span class="stack-icon" data-label="JavaScript"><i class="devicon-javascript-plain colored"></i></span>
-        <span class="stack-icon" data-label="TypeScript"><i class="devicon-typescript-plain colored"></i></span>
-        <span class="stack-icon" data-label="PHP"><i class="devicon-php-plain colored"></i></span>
-        <span class="stack-icon" data-label="Python"><i class="devicon-python-plain colored"></i></span>
-        <span class="stack-icon" data-label="Dart"><i class="devicon-dart-plain colored"></i></span>
-        <span class="stack-icon" data-label="C#"><i class="devicon-csharp-plain colored"></i></span>
-        <span class="stack-icon" data-label="React"><i class="devicon-react-original colored"></i></span>
-        <span class="stack-icon" data-label="Vue"><i class="devicon-vuejs-plain colored"></i></span>
-        <span class="stack-icon" data-label="Angular"><i class="devicon-angularjs-plain colored"></i></span>
-        <span class="stack-icon" data-label="Node.js"><i class="devicon-nodejs-plain colored"></i></span>
-        <span class="stack-icon" data-label="NestJS"><i class="devicon-nestjs-plain colored"></i></span>
-        <span class="stack-icon" data-label="Flutter"><i class="devicon-flutter-plain colored"></i></span>
-        <span class="stack-icon" data-label="MySQL"><i class="devicon-mysql-plain colored"></i></span>
-        <span class="stack-icon" data-label="PostgreSQL"><i class="devicon-postgresql-plain colored"></i></span>
-        <span class="stack-icon" data-label="MongoDB"><i class="devicon-mongodb-plain colored"></i></span>
-        <span class="stack-icon" data-label="Git"><i class="devicon-git-plain colored"></i></span>
-        <span class="stack-icon" data-label="Linux"><i class="devicon-linux-plain"></i></span>
+        <span class="stack-icon" data-label="JavaScript"><i class="devicon-javascript-plain colored" aria-hidden="true"></i></span>
+        <span class="stack-icon" data-label="TypeScript"><i class="devicon-typescript-plain colored" aria-hidden="true"></i></span>
+        <span class="stack-icon" data-label="PHP"><i class="devicon-php-plain colored" aria-hidden="true"></i></span>
+        <span class="stack-icon" data-label="Python"><i class="devicon-python-plain colored" aria-hidden="true"></i></span>
+        <span class="stack-icon" data-label="Dart"><i class="devicon-dart-plain colored" aria-hidden="true"></i></span>
+        <span class="stack-icon" data-label="C#"><i class="devicon-csharp-plain colored" aria-hidden="true"></i></span>
+        <span class="stack-icon" data-label="React"><i class="devicon-react-original colored" aria-hidden="true"></i></span>
+        <span class="stack-icon" data-label="Vue"><i class="devicon-vuejs-plain colored" aria-hidden="true"></i></span>
+        <span class="stack-icon" data-label="Angular"><i class="devicon-angularjs-plain colored" aria-hidden="true"></i></span>
+        <span class="stack-icon" data-label="Node.js"><i class="devicon-nodejs-plain colored" aria-hidden="true"></i></span>
+        <span class="stack-icon" data-label="NestJS"><i class="devicon-nestjs-plain colored" aria-hidden="true"></i></span>
+        <span class="stack-icon" data-label="Flutter"><i class="devicon-flutter-plain colored" aria-hidden="true"></i></span>
+        <span class="stack-icon" data-label="MySQL"><i class="devicon-mysql-plain colored" aria-hidden="true"></i></span>
+        <span class="stack-icon" data-label="PostgreSQL"><i class="devicon-postgresql-plain colored" aria-hidden="true"></i></span>
+        <span class="stack-icon" data-label="MongoDB"><i class="devicon-mongodb-plain colored" aria-hidden="true"></i></span>
+        <span class="stack-icon" data-label="Git"><i class="devicon-git-plain colored" aria-hidden="true"></i></span>
+        <span class="stack-icon" data-label="Linux"><i class="devicon-linux-plain" aria-hidden="true"></i></span>
       </div>
     </div>
 
@@ -111,10 +116,10 @@
   let currentRoleIndex = 0;
   let currentCharIndex = 0;
   let isDeleting = false;
-  const typingElement = document.getElementById('typing');
+  const typingElement = document.getElementById('typing') as HTMLElement | null;
 
   if (typingElement) {
-    function type() {
+    const animateTyping = () => {
       const currentRole = roles[currentRoleIndex];
 
       currentCharIndex += isDeleting ? -1 : 1;
@@ -122,21 +127,25 @@
 
       if (!isDeleting && currentCharIndex === currentRole.length) {
         isDeleting = true;
-        setTimeout(type, 1500);
+        setTimeout(animateTyping, 1500);
         return;
       }
 
       if (isDeleting && currentCharIndex === 0) {
         isDeleting = false;
         currentRoleIndex = (currentRoleIndex + 1) % roles.length;
-        setTimeout(type, 500);
+        setTimeout(animateTyping, 500);
         return;
       }
 
-      setTimeout(type, isDeleting ? 50 : 80);
-    }
+      setTimeout(animateTyping, isDeleting ? 50 : 80);
+    };
 
-    type();
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      animateTyping();
+    } else {
+      typingElement.textContent = roles[0];
+    }
   }
 </script>
 
@@ -188,6 +197,15 @@
 
   .hero-stack:hover .stack-track {
     animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .stack-track {
+      animation: none;
+    }
+    .typing-cursor {
+      animation: none;
+    }
   }
 
   @keyframes scroll-tech {

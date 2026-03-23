@@ -11,7 +11,7 @@ interface Props {
 const {
   title = 'wilman.dev',
   description = 'Full Stack Developer especializado en construir experiencias digitales modernas.',
-  image = '/favicon.svg',
+  image = `${import.meta.env.BASE_URL}wilman-montenegro.webp`,
 } = Astro.props;
 
 const canonical = Astro.url?.href;
@@ -29,17 +29,24 @@ const canonical = Astro.url?.href;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(image, Astro.url).href} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="wilman.dev" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL(image, Astro.url).href} />
     {canonical && <link rel="canonical" href={canonical} />}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
     <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+    <link rel="icon" type="image/x-icon" href={`${import.meta.env.BASE_URL}favicon.ico`} />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@2.16.0/devicon.min.css" />
     <title>{title}</title>
   </head>
   <body>
-    <a class="absolute -top-12 left-4 z-[2000] py-3 px-4 rounded bg-purple text-white font-mono text-sm focus:top-4" href="#content">Saltar al contenido</a>
+    <a class="absolute -top-12 left-4 z-[2000] py-3 px-4 rounded bg-purple text-white font-mono text-sm focus-visible:top-4" href="#content">Saltar al contenido</a>
     <Navbar />
     <main class="pt-6" id="content">
       <slot />

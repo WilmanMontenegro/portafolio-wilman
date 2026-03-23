@@ -3,11 +3,11 @@
 ---
 
 <section
-    class="py-[clamp(1rem,2.5vw,1.5rem)] px-[clamp(1.25rem,5vw,3rem)] max-w-[var(--max-w)] mx-auto"
+    class="section-wrapper"
     id="contact"
     aria-labelledby="contact-title"
 >
-    <p class="font-mono text-[0.82rem] text-cyan/65 mb-2 tracking-[0.05em]">
+    <p class="font-mono text-[0.82rem] text-cyan/65 mb-2 tracking-[0.05em]" aria-hidden="true">
         &lt;section&gt; contact
     </p>
     <h2
@@ -80,7 +80,7 @@
                         placeholder="Tu nombre"
                         required
                         autocomplete="name"
-                        class="w-full rounded-lg border border-purple/25 bg-[rgba(27,8,64,0.6)] px-4 py-3 font-mono text-[0.9rem] text-text outline-none transition-[border-color,box-shadow] placeholder:text-[rgba(180,170,210,0.35)] focus:border-purple/60 focus:shadow-[0_0_0_3px_rgba(125,71,255,0.12)]"
+                        class="w-full rounded-lg border border-purple/25 bg-[rgba(27,8,64,0.6)] px-4 py-3 font-mono text-[0.9rem] text-text outline-none transition-[border-color,box-shadow] placeholder:text-[rgba(180,170,210,0.35)] focus-visible:border-purple/60 focus-visible:outline-2 focus-visible:outline-cyan/60 focus-visible:shadow-[0_0_0_3px_rgba(125,71,255,0.12)]"
                     />
                 </div>
                 <div class="grid gap-2">
@@ -97,7 +97,7 @@
                         required
                         autocomplete="email"
                         spellcheck="false"
-                        class="w-full rounded-lg border border-purple/25 bg-[rgba(27,8,64,0.6)] px-4 py-3 font-mono text-[0.9rem] text-text outline-none transition-[border-color,box-shadow] placeholder:text-[rgba(180,170,210,0.35)] focus:border-purple/60 focus:shadow-[0_0_0_3px_rgba(125,71,255,0.12)]"
+                        class="w-full rounded-lg border border-purple/25 bg-[rgba(27,8,64,0.6)] px-4 py-3 font-mono text-[0.9rem] text-text outline-none transition-[border-color,box-shadow] placeholder:text-[rgba(180,170,210,0.35)] focus-visible:border-purple/60 focus-visible:outline-2 focus-visible:outline-cyan/60 focus-visible:shadow-[0_0_0_3px_rgba(125,71,255,0.12)]"
                     />
                 </div>
             </div>
@@ -113,7 +113,7 @@
                     placeholder="Cuéntame de tu proyecto…"
                     rows="5"
                     required
-                    class="min-h-[130px] w-full resize-none rounded-lg border border-purple/25 bg-[rgba(27,8,64,0.6)] px-4 py-3 font-mono text-[0.9rem] text-text outline-none transition-[border-color,box-shadow] placeholder:text-[rgba(180,170,210,0.35)] focus:border-purple/60 focus:shadow-[0_0_0_3px_rgba(125,71,255,0.12)]"
+                    class="min-h-[130px] w-full resize-none rounded-lg border border-purple/25 bg-[rgba(27,8,64,0.6)] px-4 py-3 font-mono text-[0.9rem] text-text outline-none transition-[border-color,box-shadow] placeholder:text-[rgba(180,170,210,0.35)] focus-visible:border-purple/60 focus-visible:outline-2 focus-visible:outline-cyan/60 focus-visible:shadow-[0_0_0_3px_rgba(125,71,255,0.12)]"
                 ></textarea>
             </div>
 
@@ -142,6 +142,7 @@
     </div>
     <p
         class="font-mono text-[0.82rem] text-cyan/65 mt-2 mb-0 text-right tracking-[0.05em]"
+        aria-hidden="true"
     >
         &lt;/section&gt;
     </p>

@@ -27,6 +27,13 @@
   background-clip: text;
 }
 
+/* Utilidad: wrapper de sección */
+.section-wrapper {
+  padding: clamp(1rem, 2.5vw, 1.5rem) clamp(1.25rem, 5vw, 3rem);
+  max-width: var(--max-w);
+  margin-inline: auto;
+}
+
 html { scroll-behavior: smooth; }
 
 body {
@@ -107,7 +114,6 @@ body {
 
 .btn--ghost {
   background: transparent;
-  color: transparent;
   background-image: var(--gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

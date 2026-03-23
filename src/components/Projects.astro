@@ -44,11 +44,11 @@ const featuredProjects = [
 ---
 
 <section
-    class="py-[clamp(1rem,2.5vw,1.5rem)] px-[clamp(1.25rem,5vw,3rem)] max-w-[var(--max-w)] mx-auto"
+    class="section-wrapper"
     id="projects"
     aria-labelledby="projects-title"
 >
-    <p class="font-mono text-[0.82rem] text-cyan/65 mb-2 tracking-[0.05em]">
+    <p class="font-mono text-[0.82rem] text-cyan/65 mb-2 tracking-[0.05em]" aria-hidden="true">
         &lt;section&gt; projects
     </p>
     <h2
@@ -74,6 +74,7 @@ const featuredProjects = [
                         {project.description}
                     </p>
                     <ul
+                        role="list"
                         class="flex list-none flex-wrap gap-2"
                         aria-label={`Stack de ${project.title}`}
                     >
@@ -97,6 +98,7 @@ const featuredProjects = [
     </div>
     <p
         class="font-mono text-[0.82rem] text-cyan/65 mt-2 mb-0 text-right tracking-[0.05em]"
+        aria-hidden="true"
     >
         &lt;/section&gt;
     </p>
