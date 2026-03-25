@@ -1,11 +1,20 @@
 ---
-const experience = [
+interface Experience {
+    period: string;
+    role: string;
+    company: string;
+    summary: string;
+    tech: string[];
+}
+
+const experience: Experience[] = [
     {
         period: "Ene 2026 – Actualidad",
         role: "Desarrollador Full-Stack Freelance",
         company: "Independiente · Remoto",
         summary:
             "Desarrollo de aplicaciones web y móviles para emprendedores, pequeñas empresas e instituciones educativas. Marketplace, sitios corporativos y herramientas de gestión.",
+        tech: ["Astro", "Vue", "Supabase", "Firebase", "Flutter", "Node.js", "Tailwind CSS"],
     },
     {
         period: "Jul 2024 – Ene 2026",
@@ -13,6 +22,7 @@ const experience = [
         company: "Zona Franca Las Américas S.A.S (Grupo Daabon) · Santa Marta",
         summary:
             "Desarrollo y mantenimiento de aplicaciones empresariales, optimización de sistemas y automatización de procesos internos.",
+        tech: ["PHP", "Bootstrap", "jQuery", "MySQL", "JavaScript"],
     },
     {
         period: "Mar 2022 – Nov 2024",
@@ -20,6 +30,7 @@ const experience = [
         company: "Kodland · Remoto (Singapur)",
         summary:
             "Acompañamiento académico a estudiantes internacionales, resolución de dudas, evaluación de actividades y seguimiento del proceso de aprendizaje.",
+        tech: ["Python"],
     },
     {
         period: "Jul 2022 – Abr 2023",
@@ -27,6 +38,7 @@ const experience = [
         company: "BermaTech · Guayaquil, Ecuador (Remoto)",
         summary:
             "Desarrollo de landing pages y aplicaciones web, implementación de interfaces y validación de diseños.",
+        tech: ["React", "Vite", "TypeScript", "JavaScript", "MySQL"],
     },
 ];
 ---
@@ -73,6 +85,13 @@ const experience = [
                     <p class="text-[0.92rem] leading-[1.7] text-muted">
                         {item.summary}
                     </p>
+                    <ul class="mt-3 flex flex-wrap gap-2" aria-label="Tecnologías utilizadas">
+                        {item.tech.map((t) => (
+                            <li class="font-mono text-[0.72rem] px-2 py-0.5 rounded-md border border-cyan/20 bg-cyan/5 text-cyan/80">
+                                {t}
+                            </li>
+                        ))}
+                    </ul>
                 </article>
             ))
         }
