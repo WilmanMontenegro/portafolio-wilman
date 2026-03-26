@@ -57,6 +57,26 @@ body {
 ::-webkit-scrollbar-track { background: var(--color-bg); }
 ::-webkit-scrollbar-thumb { background: var(--color-purple); border-radius: 3px; }
 
+/* ── tech badges ── */
+.tech-badge {
+  font-family: var(--font-family-mono);
+  font-size: 0.72rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  border: 1px solid rgba(12, 255, 255, 0.35);
+  background: rgba(12, 255, 255, 0.06);
+  color: rgba(12, 255, 255, 0.9);
+  letter-spacing: 0.03em;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s, color 0.2s;
+}
+
+.tech-badge:hover {
+  border-color: rgba(12, 255, 255, 0.75);
+  background: rgba(12, 255, 255, 0.12);
+  color: #0CFFFF;
+  box-shadow: 0 0 10px rgba(12, 255, 255, 0.25);
+}
+
 /* ── nav links ── */
 .nav-link {
   position: relative;
