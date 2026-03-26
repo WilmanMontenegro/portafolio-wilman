@@ -7,6 +7,7 @@ const featuredProjects = [
             "Marketplace multi-tenant para fruterías y tiendas de barrio. Desarrollado por contrato: catálogo, POS, pagos con Mercado Pago, tracking GPS en tiempo real y PWA sin instalación. 43 pantallas en 2 meses.",
         stack: ["Flutter", "Firebase", "Mercado Pago", "Riverpod"],
         url: "https://web.fruit-app.com",
+        github: undefined,
     },
     {
         year: "2025",
@@ -15,6 +16,7 @@ const featuredProjects = [
             "Aplicación web interactiva con batería y piano champetero virtual, samplers configurables y soporte completo para móvil.",
         stack: ["JavaScript", "HTML5", "CSS3"],
         url: "https://bateriachampetera.com",
+        github: "https://github.com/WilmanMontenegro/Piano-Champetero",
     },
     {
         year: "2025",
@@ -23,6 +25,7 @@ const featuredProjects = [
             "Plataforma web para psicóloga en formación con blog de salud mental, sistema de contacto y contenido bilingüe.",
         stack: ["Next.js", "TypeScript", "Tailwind CSS"],
         url: "https://www.tupsicoana.com/",
+        github: "https://github.com/WilmanMontenegro/psychological-support",
     },
     {
         year: "2025",
@@ -31,6 +34,7 @@ const featuredProjects = [
             "Sitio institucional para colegio en Santa Marta con oferta académica, testimonios, formulario de admisiones y chat de WhatsApp.",
         stack: ["WordPress", "PHP", "Elementor"],
         url: "https://gimnasiocampestrerodadero.edu.co/",
+        github: undefined,
     },
     {
         year: "2025",
@@ -39,6 +43,7 @@ const featuredProjects = [
             "Landing corporativa para consultora de software a medida, con secciones de servicios, enfoque y formulario de contacto.",
         stack: ["Astro", "TypeScript", "Tailwind CSS"],
         url: "https://wilmanmontenegro.github.io/catalyx-group-website/",
+        github: "https://github.com/WilmanMontenegro/catalyx-group-website",
     },
 ];
 ---
@@ -84,14 +89,27 @@ const featuredProjects = [
                             </li>
                         ))}
                     </ul>
-                    <a
-                        href={project.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="mt-auto w-fit font-mono text-[0.82rem] text-cyan transition-opacity hover:opacity-65"
-                    >
-                        Ver proyecto →
-                    </a>
+                    <div class="mt-auto flex flex-wrap gap-4">
+                        <a
+                            href={project.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="font-mono text-[0.82rem] text-cyan transition-opacity hover:opacity-65"
+                        >
+                            Ver proyecto →
+                        </a>
+                        {project.github && (
+                            <a
+                                href={project.github}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={`Código fuente de ${project.title} en GitHub`}
+                                class="font-mono text-[0.82rem] text-purple transition-opacity hover:opacity-65"
+                            >
+                                Código fuente →
+                            </a>
+                        )}
+                    </div>
                 </article>
             ))
         }
