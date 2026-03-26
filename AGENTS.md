@@ -200,3 +200,15 @@ All content (projects, experience, education, references) is defined as **inline
 - Do not use `npm` or `yarn`.
 - Do not weaken TypeScript strict mode.
 - Do not change the visual identity (colors, fonts, dark theme) without explicit instruction.
+
+---
+
+## Utilities
+
+### Reading PDFs
+
+This model cannot read PDFs directly. Use `pdftotext` to extract text:
+
+```bash
+pdftotext public/cv.pdf - | head -100
+```
