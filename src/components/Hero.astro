@@ -34,14 +34,14 @@
     </h1>
 
     <!-- Descripción -->
-    <p class="mb-7 max-w-[620px] text-[0.97rem] leading-[1.8] text-muted">
+    <p class="mb-7 text-justify hyphens-auto text-[0.97rem] leading-[1.8] text-muted">
       Ingeniero de Sistemas con experiencia en desarrollo web y móvil, entornos corporativos y proyectos propios.
       Apasionado por la tecnología y la enseñanza. Trabajo con emprendedores, pequeñas empresas e instituciones educativas construyendo soluciones reales.
     </p>
 
     <!-- Carrusel de tecnologías -->
-    <div class="hero-stack mb-7 overflow-hidden" aria-label="Tecnologías que manejo" role="region">
-      <div class="stack-track flex w-max items-center gap-3">
+    <div class="hero-stack mb-7 overflow-x-hidden" aria-label="Tecnologías que manejo" role="region" tabindex="0" id="hero-stack">
+      <div class="stack-track flex w-max items-center gap-3" id="stack-track">
         <span class="stack-icon" data-label="JavaScript"><i class="devicon-javascript-plain colored" aria-hidden="true"></i></span>
         <span class="stack-icon" data-label="TypeScript"><i class="devicon-typescript-plain colored" aria-hidden="true"></i></span>
         <span class="stack-icon" data-label="PHP"><i class="devicon-php-plain colored" aria-hidden="true"></i></span>
@@ -98,7 +98,7 @@
   import tippy from 'tippy.js';
   import 'tippy.js/dist/tippy.css';
 
-  tippy('.stack-icon', {
+  const tippyInstances = tippy('.stack-icon', {
     content: (el) => el.getAttribute('data-label') ?? '',
     placement: 'top',
     arrow: true,
@@ -106,6 +106,20 @@
     theme: 'wilman',
   });
 
+  const disableTooltips = () => {
+    (Array.isArray(tippyInstances) ? tippyInstances : [tippyInstances]).forEach((t) => {
+      t.hide();
+      t.disable();
+    });
+  };
+
+  const enableTooltips = () => {
+    (Array.isArray(tippyInstances) ? tippyInstances : [tippyInstances]).forEach((t) => {
+      t.enable();
+    });
+  };
+
+  // ── Typewriter ──────────────────────────────────────────────────────────────
   const roles = [
     'Desarrollador Web',
     'Desarrollador Movil',
@@ -121,7 +135,6 @@
   if (typingElement) {
     const animateTyping = () => {
       const currentRole = roles[currentRoleIndex];
-
       currentCharIndex += isDeleting ? -1 : 1;
       typingElement.textContent = currentRole.substring(0, currentCharIndex);
 
@@ -130,14 +143,12 @@
         setTimeout(animateTyping, 1500);
         return;
       }
-
       if (isDeleting && currentCharIndex === 0) {
         isDeleting = false;
         currentRoleIndex = (currentRoleIndex + 1) % roles.length;
         setTimeout(animateTyping, 500);
         return;
       }
-
       setTimeout(animateTyping, isDeleting ? 50 : 80);
     };
 
@@ -146,6 +157,132 @@
     } else {
       typingElement.textContent = roles[0];
     }
+  }
+
+  // ── Carrusel interactivo ────────────────────────────────────────────────────
+  const container = document.getElementById('hero-stack') as HTMLElement | null;
+  const track = document.getElementById('stack-track') as HTMLElement | null;
+
+  if (container && track) {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // La mitad del ancho del track es el punto de reset (íconos duplicados)
+    let offset = 0;
+    const SPEED = 0.6;          // px por frame en auto-scroll
+    const STEP_KEY = 60;        // px por pulsación de tecla
+    const RESUME_DELAY = 2000;  // ms antes de reanudar auto-scroll tras drag
+
+    let autoScrollActive = !reducedMotion;
+    let rafId = 0;
+    let resumeTimer = 0;
+
+    // Dragging
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragStartOffset = 0;
+
+    const getHalfWidth = () => track.scrollWidth / 2;
+
+    const clampOffset = (val: number) => {
+      const half = getHalfWidth();
+      // mantiene el offset siempre en el rango [-half, 0)
+      return -(((-val) % half + half) % half);
+    };
+
+    const applyOffset = () => {
+      track.style.transform = `translateX(${offset}px)`;
+    };
+
+    const pauseAutoScroll = (resume = true) => {
+      autoScrollActive = false;
+      clearTimeout(resumeTimer);
+      if (resume && !reducedMotion) {
+        resumeTimer = window.setTimeout(() => {
+          autoScrollActive = true;
+        }, RESUME_DELAY);
+      }
+    };
+
+    const tick = () => {
+      if (autoScrollActive) {
+        offset = clampOffset(offset - SPEED);
+        applyOffset();
+      }
+      rafId = requestAnimationFrame(tick);
+    };
+
+    rafId = requestAnimationFrame(tick);
+
+    // ── Hover (escritorio) ───────────────────────────────────────────────────
+    container.addEventListener('mouseenter', () => {
+      if (!isDragging) pauseAutoScroll(false);
+    });
+    container.addEventListener('mouseleave', () => {
+      if (!isDragging && !reducedMotion) autoScrollActive = true;
+    });
+
+    // ── Mouse drag ───────────────────────────────────────────────────────────
+    container.addEventListener('mousedown', (e: MouseEvent) => {
+      isDragging = true;
+      dragStartX = e.clientX;
+      dragStartOffset = offset;
+      pauseAutoScroll(false);
+      disableTooltips();
+      container.style.cursor = 'grabbing';
+      e.preventDefault();
+    });
+
+    window.addEventListener('mousemove', (e: MouseEvent) => {
+      if (!isDragging) return;
+      const delta = e.clientX - dragStartX;
+      offset = clampOffset(dragStartOffset + delta);
+      applyOffset();
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (!isDragging) return;
+      isDragging = false;
+      container.style.cursor = '';
+      enableTooltips();
+      pauseAutoScroll(true);
+    });
+
+    // ── Touch / swipe ────────────────────────────────────────────────────────
+    let touchStartX = 0;
+    let touchStartOffset = 0;
+
+    container.addEventListener('touchstart', (e: TouchEvent) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartOffset = offset;
+      pauseAutoScroll(false);
+      disableTooltips();
+    }, { passive: true });
+
+    container.addEventListener('touchmove', (e: TouchEvent) => {
+      const delta = e.touches[0].clientX - touchStartX;
+      offset = clampOffset(touchStartOffset + delta);
+      applyOffset();
+    }, { passive: true });
+
+    container.addEventListener('touchend', () => {
+      enableTooltips();
+      pauseAutoScroll(true);
+    });
+
+    // ── Teclado (← →) ───────────────────────────────────────────────────────
+    container.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') {
+        offset = clampOffset(offset + STEP_KEY);
+        applyOffset();
+        pauseAutoScroll(true);
+        e.preventDefault();
+      } else if (e.key === 'ArrowRight') {
+        offset = clampOffset(offset - STEP_KEY);
+        applyOffset();
+        pauseAutoScroll(true);
+        e.preventDefault();
+      }
+    });
   }
 </script>
 
@@ -188,29 +325,24 @@
     -webkit-mask: linear-gradient(90deg, transparent, white 12%, white 88%, transparent);
     mask: linear-gradient(90deg, transparent, white 12%, white 88%, transparent);
     padding-top: 6px;
+    padding-bottom: 10px;
     margin-top: -6px;
+    cursor: grab;
+    user-select: none;
+  }
+
+  .hero-stack:active {
+    cursor: grabbing;
   }
 
   .stack-track {
-    animation: scroll-tech 22s linear infinite;
-  }
-
-  .hero-stack:hover .stack-track {
-    animation-play-state: paused;
+    will-change: transform;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .stack-track {
-      animation: none;
-    }
     .typing-cursor {
       animation: none;
     }
-  }
-
-  @keyframes scroll-tech {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
   }
 
   .stack-icon {
