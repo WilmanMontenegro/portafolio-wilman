@@ -26,8 +26,6 @@ pnpm-debug.log*
 # archivos de comentarios de aplicaciones externas
 .comments/
 
-# archivos temporales en raíz
-impacto-ia-mente-humana.png
 
 # archivos temporales del browser MCP
 .playwright-mcp/
