@@ -4,8 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://WilmanMontenegro.github.io',
-  base: '/portafolio-wilman/',
+  site: 'https://wilman.dev',
   vite: {
     plugins: [tailwindcss()],
   },
