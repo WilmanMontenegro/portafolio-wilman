@@ -27,7 +27,8 @@ const schema = {
   "sameAs": [
     "https://github.com/WilmanMontenegro",
     "https://www.linkedin.com/in/wilman-montenegro/",
-    "https://www.instagram.com/wilmanmc15/"
+    "https://www.instagram.com/wilmanmc15/",
+    "https://x.com/WilmanDev"
   ],
   "image": "https://wilman.dev/wilman-montenegro.webp",
   "description": description,
@@ -55,6 +56,8 @@ const schema = {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL(image, Astro.url).href} />
     <meta name="twitter:image:alt" content={description} />
+    <meta name="twitter:site" content="@WilmanDev" />
+    <meta name="twitter:creator" content="@WilmanDev" />
     {canonical && <link rel="canonical" href={canonical} />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
