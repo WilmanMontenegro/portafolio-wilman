@@ -9,12 +9,29 @@ interface Props {
 }
 
 const {
-  title = 'wilman.dev',
-  description = 'Full Stack Developer especializado en construir experiencias digitales modernas.',
+  title = 'Wilman Montenegro — Ingeniero de Sistemas & Full Stack Developer',
+  description = 'Ingeniero de Sistemas con experiencia en desarrollo web y móvil, entornos corporativos y proyectos freelance. Santa Marta, Colombia.',
   image = `${import.meta.env.BASE_URL}wilman-montenegro.webp`,
 } = Astro.props;
 
 const canonical = Astro.url?.href;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Wilman Montenegro",
+  "url": "https://wilman.dev",
+  "jobTitle": "Ingeniero de Sistemas & Full Stack Developer",
+  "worksFor": { "@type": "Organization", "name": "Freelance" },
+  "address": { "@type": "PostalAddress", "addressLocality": "Santa Marta", "addressCountry": "CO" },
+  "sameAs": [
+    "https://github.com/WilmanMontenegro",
+    "https://www.linkedin.com/in/wilman-montenegro/",
+    "https://www.instagram.com/wilmanmc15/"
+  ],
+  "image": "https://wilman.dev/wilman-montenegro.webp",
+  "description": description,
+};
 ---
 
 <!doctype html>
@@ -23,6 +40,7 @@ const canonical = Astro.url?.href;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <meta name="author" content="Wilman Montenegro" />
     <meta name="robots" content="index,follow" />
     <meta name="theme-color" content="#100425" />
     <meta property="og:type" content="website" />
@@ -36,14 +54,18 @@ const canonical = Astro.url?.href;
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL(image, Astro.url).href} />
+    <meta name="twitter:image:alt" content={description} />
     {canonical && <link rel="canonical" href={canonical} />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="preload" as="image" href="/wilman-montenegro.webp" fetchpriority="high" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap&subset=latin-ext" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@2.16.0/devicon.min.css" />
     <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
     <link rel="icon" type="image/x-icon" href={`${import.meta.env.BASE_URL}favicon.ico`} />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@2.16.0/devicon.min.css" />
     <title>{title}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   </head>
   <body>
     <a class="absolute -top-12 left-4 z-[2000] py-3 px-4 rounded bg-purple text-white font-mono text-sm focus-visible:top-4" href="#content">Saltar al contenido</a>
@@ -51,6 +73,9 @@ const canonical = Astro.url?.href;
     <main class="pt-6" id="content">
       <slot />
     </main>
+    <footer class="mt-16 border-t border-purple/10 py-6 text-center font-mono text-[0.78rem] text-muted/50">
+      © {new Date().getFullYear()} Wilman Montenegro · wilman.dev
+    </footer>
   </body>
 </html>
 
