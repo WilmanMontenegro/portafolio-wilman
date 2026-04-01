@@ -200,6 +200,7 @@ All content (projects, experience, education, references) is defined as **inline
 - Do not use `npm` or `yarn`.
 - Do not weaken TypeScript strict mode.
 - Do not change the visual identity (colors, fonts, dark theme) without explicit instruction.
+- **Never add files from `public/` to `.gitignore`.** Everything in `public/` is a static asset that must be committed. Adding them to `.gitignore` causes assets to be missing in production while working fine locally — a hard-to-spot bug.
 
 ---
 
