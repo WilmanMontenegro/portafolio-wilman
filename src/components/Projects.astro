@@ -1,5 +1,14 @@
 ---
-const featuredProjects = [
+interface FeaturedProject {
+    year: string;
+    title: string;
+    description: string;
+    stack: string[];
+    url: string;
+    github?: string;
+}
+
+const featuredProjects: FeaturedProject[] = [
     {
         year: "2026",
         title: "FruitApp",

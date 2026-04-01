@@ -22,3 +22,9 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# archivos de comentarios de aplicaciones externas
+.comments/
+
+# archivos temporales en raíz
+impacto-ia-mente-humana.png

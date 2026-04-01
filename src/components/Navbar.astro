@@ -1,5 +1,5 @@
 ---
-
+const base = import.meta.env.BASE_URL;
 ---
 
 <nav
@@ -8,7 +8,7 @@
 >
     <div class="mx-auto flex h-14 max-w-[var(--max-w)] items-center px-6">
         <a
-            href="#home"
+            href={base}
             class="inline-flex flex-shrink-0 items-center gap-0.5 font-mono text-[1.15rem] font-bold transition-all duration-200 hover:[filter:drop-shadow(0_0_8px_rgba(12,255,255,0.7))]"
         >
             <span class="grad-text text-[1.3rem] font-normal">&#123;</span>
@@ -23,21 +23,21 @@
         >
             <li>
                 <a
-                    href="#home"
+                    href={`${base}#home`}
                     class="nav-link block px-3 py-2 text-[0.85rem] font-medium tracking-[0.02em]"
                     >Inicio</a
                 >
             </li>
             <li>
                 <a
-                    href="#experience"
+                    href={`${base}#experience`}
                     class="nav-link block px-3 py-2 text-[0.85rem] font-medium tracking-[0.02em]"
                     >Experiencia</a
                 >
             </li>
             <li>
                 <a
-                    href="#projects"
+                    href={`${base}#projects`}
                     class="nav-link block px-3 py-2 text-[0.85rem] font-medium tracking-[0.02em]"
                     >Proyectos</a
                 >
@@ -45,21 +45,29 @@
 
             <li>
                 <a
-                    href="#education"
+                    href={`${base}#blog`}
+                    class="nav-link block px-3 py-2 text-[0.85rem] font-medium tracking-[0.02em]"
+                    >Blog</a
+                >
+            </li>
+
+            <li>
+                <a
+                    href={`${base}#education`}
                     class="nav-link block px-3 py-2 text-[0.85rem] font-medium tracking-[0.02em]"
                     >Formación</a
                 >
             </li>
             <li>
                 <a
-                    href="#references"
+                    href={`${base}#references`}
                     class="nav-link block px-3 py-2 text-[0.85rem] font-medium tracking-[0.02em]"
                     >Referencias</a
                 >
             </li>
             <li>
                 <a
-                    href="#contact"
+                    href={`${base}#contact`}
                     class="nav-link block px-3 py-2 text-[0.85rem] font-medium tracking-[0.02em]"
                     >Contacto</a
                 >
@@ -104,7 +112,7 @@
                 >
             </a>
             <a
-                href="https://www.instagram.com/wilman_montenegro/"
+                href="https://www.instagram.com/wilman.dev/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -144,10 +152,10 @@
     const toggle = document.getElementById(
         "nav-toggle",
     ) as HTMLButtonElement | null;
-    const menu = document.getElementById("nav-menu");
+    const menu = document.getElementById("nav-menu") as HTMLElement | null;
 
     if (toggle && menu) {
-        const lines = toggle.querySelectorAll(".nav-line");
+        const lines = toggle.querySelectorAll<HTMLElement>(".nav-line");
 
         const setOpenState = (open: boolean) => {
             menu.classList.toggle("hidden", !open);
@@ -165,6 +173,8 @@
                 lines[1].classList.toggle("-rotate-45", open);
             }
         };
+
+        setOpenState(false);
 
         toggle.addEventListener("click", () => {
             const isOpen = toggle.getAttribute("aria-expanded") === "true";

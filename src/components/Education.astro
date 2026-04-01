@@ -1,5 +1,12 @@
 ---
-const education = [
+interface EducationItem {
+    period: string;
+    title: string;
+    institution: string;
+    summary: string;
+}
+
+const education: EducationItem[] = [
     {
         period: "2017 - 2023",
         title: "Ingeniería de Sistemas",

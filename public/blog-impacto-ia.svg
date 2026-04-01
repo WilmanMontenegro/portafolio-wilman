@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1B0840"/>
+      <stop offset="1" stop-color="#100425"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="280" y1="180" x2="1320" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#DC00D3"/>
+      <stop offset="1" stop-color="#0CFFFF"/>
+    </linearGradient>
+    <filter id="blur" x="0" y="0" width="1600" height="900" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="42"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <g opacity="0.35" filter="url(#blur)">
+    <circle cx="380" cy="180" r="170" fill="#DC00D3"/>
+    <circle cx="1240" cy="720" r="210" fill="#0CFFFF"/>
+  </g>
+
+  <rect x="210" y="150" width="1180" height="600" rx="26" fill="#140633" stroke="url(#accent)" stroke-opacity="0.45"/>
+
+  <g opacity="0.9">
+    <path d="M340 320H540" stroke="#0CFFFF" stroke-opacity="0.8" stroke-width="4" stroke-linecap="round"/>
+    <path d="M340 390H700" stroke="#DC00D3" stroke-opacity="0.8" stroke-width="4" stroke-linecap="round"/>
+    <path d="M340 460H630" stroke="#0CFFFF" stroke-opacity="0.8" stroke-width="4" stroke-linecap="round"/>
+    <path d="M340 530H760" stroke="#DC00D3" stroke-opacity="0.8" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <circle cx="1080" cy="450" r="150" stroke="url(#accent)" stroke-width="3"/>
+  <circle cx="1080" cy="450" r="100" stroke="#0CFFFF" stroke-opacity="0.5" stroke-width="2"/>
+  <circle cx="1080" cy="450" r="52" fill="#0CFFFF" fill-opacity="0.2" stroke="#DC00D3" stroke-opacity="0.9" stroke-width="2"/>
+
+  <text x="300" y="675" fill="#E8E8F2" font-family="JetBrains Mono, monospace" font-size="34" font-weight="700">
+    IMPACTO IA
+  </text>
+  <text x="300" y="718" fill="#9494B0" font-family="Inter, sans-serif" font-size="24">
+    Productividad, calma mental y criterio humano
+  </text>
+</svg>

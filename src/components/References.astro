@@ -1,6 +1,15 @@
 ---
 const base = import.meta.env.BASE_URL;
-const references = [
+
+interface ReferenceItem {
+    name: string;
+    role: string;
+    image: string;
+    context: string;
+    text: string;
+}
+
+const references: ReferenceItem[] = [
     {
         name: "Yoicer Galvis",
         role: "Coordinador DevOps",

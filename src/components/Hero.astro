@@ -1,4 +1,28 @@
 ---
+interface TechItem {
+  label: string;
+  iconClass: string;
+}
+
+const techStack: TechItem[] = [
+  { label: 'JavaScript', iconClass: 'devicon-javascript-plain colored' },
+  { label: 'TypeScript', iconClass: 'devicon-typescript-plain colored' },
+  { label: 'PHP', iconClass: 'devicon-php-plain colored' },
+  { label: 'Python', iconClass: 'devicon-python-plain colored' },
+  { label: 'Dart', iconClass: 'devicon-dart-plain colored' },
+  { label: 'C#', iconClass: 'devicon-csharp-plain colored' },
+  { label: 'React', iconClass: 'devicon-react-original colored' },
+  { label: 'Vue', iconClass: 'devicon-vuejs-plain colored' },
+  { label: 'Angular', iconClass: 'devicon-angularjs-plain colored' },
+  { label: 'Node.js', iconClass: 'devicon-nodejs-plain colored' },
+  { label: 'NestJS', iconClass: 'devicon-nestjs-plain colored' },
+  { label: 'Flutter', iconClass: 'devicon-flutter-plain colored' },
+  { label: 'MySQL', iconClass: 'devicon-mysql-plain colored' },
+  { label: 'PostgreSQL', iconClass: 'devicon-postgresql-plain colored' },
+  { label: 'MongoDB', iconClass: 'devicon-mongodb-plain colored' },
+  { label: 'Git', iconClass: 'devicon-git-plain colored' },
+  { label: 'Linux', iconClass: 'devicon-linux-plain' },
+];
 ---
 
 <section class="mx-auto flex max-w-[var(--max-w)] items-center justify-center gap-12 rounded-[20px] bg-[linear-gradient(135deg,rgba(220,0,211,0.15)_0%,rgba(12,255,255,0.08)_100%)] px-8 py-[clamp(3rem,6vw,5rem)] max-[1024px]:flex-col max-[1024px]:justify-center max-[1024px]:gap-8 max-[640px]:rounded-xl max-[640px]:px-5 max-[640px]:py-10" id="home" aria-labelledby="hero-title">
@@ -42,41 +66,9 @@
     <!-- Carrusel de tecnologías -->
     <div class="hero-stack mb-7 overflow-x-hidden" aria-label="Tecnologías que manejo" role="region" tabindex="0" id="hero-stack">
       <div class="stack-track flex w-max items-center gap-3" id="stack-track">
-        <span class="stack-icon" data-label="JavaScript"><i class="devicon-javascript-plain colored" aria-hidden="true"></i></span>
-        <span class="stack-icon" data-label="TypeScript"><i class="devicon-typescript-plain colored" aria-hidden="true"></i></span>
-        <span class="stack-icon" data-label="PHP"><i class="devicon-php-plain colored" aria-hidden="true"></i></span>
-        <span class="stack-icon" data-label="Python"><i class="devicon-python-plain colored" aria-hidden="true"></i></span>
-        <span class="stack-icon" data-label="Dart"><i class="devicon-dart-plain colored" aria-hidden="true"></i></span>
-        <span class="stack-icon" data-label="C#"><i class="devicon-csharp-plain colored" aria-hidden="true"></i></span>
-        <span class="stack-icon" data-label="React"><i class="devicon-react-original colored" aria-hidden="true"></i></span>
-        <span class="stack-icon" data-label="Vue"><i class="devicon-vuejs-plain colored" aria-hidden="true"></i></span>
-        <span class="stack-icon" data-label="Angular"><i class="devicon-angularjs-plain colored" aria-hidden="true"></i></span>
-        <span class="stack-icon" data-label="Node.js"><i class="devicon-nodejs-plain colored" aria-hidden="true"></i></span>
-        <span class="stack-icon" data-label="NestJS"><i class="devicon-nestjs-plain colored" aria-hidden="true"></i></span>
-        <span class="stack-icon" data-label="Flutter"><i class="devicon-flutter-plain colored" aria-hidden="true"></i></span>
-        <span class="stack-icon" data-label="MySQL"><i class="devicon-mysql-plain colored" aria-hidden="true"></i></span>
-        <span class="stack-icon" data-label="PostgreSQL"><i class="devicon-postgresql-plain colored" aria-hidden="true"></i></span>
-        <span class="stack-icon" data-label="MongoDB"><i class="devicon-mongodb-plain colored" aria-hidden="true"></i></span>
-        <span class="stack-icon" data-label="Git"><i class="devicon-git-plain colored" aria-hidden="true"></i></span>
-        <span class="stack-icon" data-label="Linux"><i class="devicon-linux-plain" aria-hidden="true"></i></span>
-        <!-- duplicado para loop infinito -->
-        <span class="stack-icon" data-label="JavaScript"><i class="devicon-javascript-plain colored" aria-hidden="true"></i></span>
-        <span class="stack-icon" data-label="TypeScript"><i class="devicon-typescript-plain colored" aria-hidden="true"></i></span>
-        <span class="stack-icon" data-label="PHP"><i class="devicon-php-plain colored" aria-hidden="true"></i></span>
-        <span class="stack-icon" data-label="Python"><i class="devicon-python-plain colored" aria-hidden="true"></i></span>
-        <span class="stack-icon" data-label="Dart"><i class="devicon-dart-plain colored" aria-hidden="true"></i></span>
-        <span class="stack-icon" data-label="C#"><i class="devicon-csharp-plain colored" aria-hidden="true"></i></span>
-        <span class="stack-icon" data-label="React"><i class="devicon-react-original colored" aria-hidden="true"></i></span>
-        <span class="stack-icon" data-label="Vue"><i class="devicon-vuejs-plain colored" aria-hidden="true"></i></span>
-        <span class="stack-icon" data-label="Angular"><i class="devicon-angularjs-plain colored" aria-hidden="true"></i></span>
-        <span class="stack-icon" data-label="Node.js"><i class="devicon-nodejs-plain colored" aria-hidden="true"></i></span>
-        <span class="stack-icon" data-label="NestJS"><i class="devicon-nestjs-plain colored" aria-hidden="true"></i></span>
-        <span class="stack-icon" data-label="Flutter"><i class="devicon-flutter-plain colored" aria-hidden="true"></i></span>
-        <span class="stack-icon" data-label="MySQL"><i class="devicon-mysql-plain colored" aria-hidden="true"></i></span>
-        <span class="stack-icon" data-label="PostgreSQL"><i class="devicon-postgresql-plain colored" aria-hidden="true"></i></span>
-        <span class="stack-icon" data-label="MongoDB"><i class="devicon-mongodb-plain colored" aria-hidden="true"></i></span>
-        <span class="stack-icon" data-label="Git"><i class="devicon-git-plain colored" aria-hidden="true"></i></span>
-        <span class="stack-icon" data-label="Linux"><i class="devicon-linux-plain" aria-hidden="true"></i></span>
+        {[...techStack, ...techStack].map((tech) => (
+          <span class="stack-icon" data-label={tech.label}><i class={tech.iconClass} aria-hidden="true"></i></span>
+        ))}
       </div>
     </div>
 
@@ -95,44 +87,69 @@
 </section>
 
 <script>
-  import tippy from 'tippy.js';
+  import tippy, { type Instance } from 'tippy.js';
   import 'tippy.js/dist/tippy.css';
 
-  const tippyInstances = tippy('.stack-icon', {
-    content: (el) => el.getAttribute('data-label') ?? '',
-    placement: 'top',
-    arrow: true,
-    duration: [150, 100],
-    theme: 'wilman',
-  });
+  interface TooltipControls {
+    disable: () => void;
+    enable: () => void;
+  }
 
-  const disableTooltips = () => {
-    (Array.isArray(tippyInstances) ? tippyInstances : [tippyInstances]).forEach((t) => {
-      t.hide();
-      t.disable();
-    });
+  const toArray = <T,>(value: T | T[]) => (Array.isArray(value) ? value : [value]);
+
+  const initTechTooltips = (): TooltipControls => {
+    const icons = document.querySelectorAll<HTMLElement>('.stack-icon');
+    if (!icons.length) {
+      return {
+        disable: () => {},
+        enable: () => {},
+      };
+    }
+
+    const instances = toArray<Instance>(
+      tippy(icons, {
+        content: (el) => el.getAttribute('data-label') ?? '',
+        placement: 'top',
+        arrow: true,
+        duration: [150, 100],
+        theme: 'wilman',
+      }),
+    );
+
+    return {
+      disable: () => {
+        instances.forEach((instance) => {
+          instance.hide();
+          instance.disable();
+        });
+      },
+      enable: () => {
+        instances.forEach((instance) => {
+          instance.enable();
+        });
+      },
+    };
   };
 
-  const enableTooltips = () => {
-    (Array.isArray(tippyInstances) ? tippyInstances : [tippyInstances]).forEach((t) => {
-      t.enable();
-    });
-  };
+  const initTypewriter = () => {
+    const roles = [
+      'Desarrollador Web',
+      'Desarrollador Movil',
+      'Full Stack Developer',
+      'Freelancer',
+    ];
+    const typingElement = document.getElementById('typing') as HTMLElement | null;
 
-  // ── Typewriter ──────────────────────────────────────────────────────────────
-  const roles = [
-    'Desarrollador Web',
-    'Desarrollador Movil',
-    'Full Stack Developer',
-    'Freelancer',
-  ];
+    if (!typingElement) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      typingElement.textContent = roles[0];
+      return;
+    }
 
-  let currentRoleIndex = 0;
-  let currentCharIndex = 0;
-  let isDeleting = false;
-  const typingElement = document.getElementById('typing') as HTMLElement | null;
+    let currentRoleIndex = 0;
+    let currentCharIndex = 0;
+    let isDeleting = false;
 
-  if (typingElement) {
     const animateTyping = () => {
       const currentRole = roles[currentRoleIndex];
       currentCharIndex += isDeleting ? -1 : 1;
@@ -140,53 +157,47 @@
 
       if (!isDeleting && currentCharIndex === currentRole.length) {
         isDeleting = true;
-        setTimeout(animateTyping, 1500);
+        window.setTimeout(animateTyping, 1500);
         return;
       }
+
       if (isDeleting && currentCharIndex === 0) {
         isDeleting = false;
         currentRoleIndex = (currentRoleIndex + 1) % roles.length;
-        setTimeout(animateTyping, 500);
+        window.setTimeout(animateTyping, 500);
         return;
       }
-      setTimeout(animateTyping, isDeleting ? 50 : 80);
+
+      window.setTimeout(animateTyping, isDeleting ? 50 : 80);
     };
 
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      animateTyping();
-    } else {
-      typingElement.textContent = roles[0];
-    }
-  }
+    animateTyping();
+  };
 
-  // ── Carrusel interactivo ────────────────────────────────────────────────────
-  const container = document.getElementById('hero-stack') as HTMLElement | null;
-  const track = document.getElementById('stack-track') as HTMLElement | null;
+  const initStackCarousel = (tooltips: TooltipControls) => {
+    const container = document.getElementById('hero-stack') as HTMLElement | null;
+    const track = document.getElementById('stack-track') as HTMLElement | null;
+    if (!container || !track) return;
 
-  if (container && track) {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const SPEED = 0.6;
+    const STEP_KEY = 60;
+    const RESUME_DELAY = 2000;
 
-    // La mitad del ancho del track es el punto de reset (íconos duplicados)
     let offset = 0;
-    const SPEED = 0.6;          // px por frame en auto-scroll
-    const STEP_KEY = 60;        // px por pulsación de tecla
-    const RESUME_DELAY = 2000;  // ms antes de reanudar auto-scroll tras drag
-
     let autoScrollActive = !reducedMotion;
-    let rafId = 0;
-    let resumeTimer = 0;
-
-    // Dragging
     let isDragging = false;
     let dragStartX = 0;
     let dragStartOffset = 0;
+    let touchStartX = 0;
+    let touchStartOffset = 0;
+    let resumeTimer = 0;
 
-    const getHalfWidth = () => track.scrollWidth / 2;
+    const getHalfWidth = () => Math.max(track.scrollWidth / 2, 1);
 
-    const clampOffset = (val: number) => {
+    const clampOffset = (value: number) => {
       const half = getHalfWidth();
-      // mantiene el offset siempre en el rango [-half, 0)
-      return -(((-val) % half + half) % half);
+      return -(((-value) % half + half) % half);
     };
 
     const applyOffset = () => {
@@ -195,7 +206,8 @@
 
     const pauseAutoScroll = (resume = true) => {
       autoScrollActive = false;
-      clearTimeout(resumeTimer);
+      window.clearTimeout(resumeTimer);
+
       if (resume && !reducedMotion) {
         resumeTimer = window.setTimeout(() => {
           autoScrollActive = true;
@@ -208,82 +220,101 @@
         offset = clampOffset(offset - SPEED);
         applyOffset();
       }
-      rafId = requestAnimationFrame(tick);
+      window.requestAnimationFrame(tick);
     };
 
-    rafId = requestAnimationFrame(tick);
+    if (!reducedMotion) {
+      window.requestAnimationFrame(tick);
+    }
 
-    // ── Hover (escritorio) ───────────────────────────────────────────────────
+    const handleMouseMove = (event: MouseEvent) => {
+      if (!isDragging) return;
+      const delta = event.clientX - dragStartX;
+      offset = clampOffset(dragStartOffset + delta);
+      applyOffset();
+    };
+
+    const handleMouseUp = () => {
+      if (!isDragging) return;
+      isDragging = false;
+      container.style.cursor = '';
+      tooltips.enable();
+      pauseAutoScroll(true);
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+
     container.addEventListener('mouseenter', () => {
       if (!isDragging) pauseAutoScroll(false);
     });
+
     container.addEventListener('mouseleave', () => {
       if (!isDragging && !reducedMotion) autoScrollActive = true;
     });
 
-    // ── Mouse drag ───────────────────────────────────────────────────────────
-    container.addEventListener('mousedown', (e: MouseEvent) => {
+    container.addEventListener('mousedown', (event: MouseEvent) => {
       isDragging = true;
-      dragStartX = e.clientX;
+      dragStartX = event.clientX;
       dragStartOffset = offset;
       pauseAutoScroll(false);
-      disableTooltips();
+      tooltips.disable();
       container.style.cursor = 'grabbing';
-      e.preventDefault();
+      window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('mouseup', handleMouseUp);
+      event.preventDefault();
     });
 
-    window.addEventListener('mousemove', (e: MouseEvent) => {
-      if (!isDragging) return;
-      const delta = e.clientX - dragStartX;
-      offset = clampOffset(dragStartOffset + delta);
-      applyOffset();
-    });
+    container.addEventListener(
+      'touchstart',
+      (event: TouchEvent) => {
+        touchStartX = event.touches[0].clientX;
+        touchStartOffset = offset;
+        pauseAutoScroll(false);
+        tooltips.disable();
+      },
+      { passive: true },
+    );
 
-    window.addEventListener('mouseup', () => {
-      if (!isDragging) return;
-      isDragging = false;
-      container.style.cursor = '';
-      enableTooltips();
-      pauseAutoScroll(true);
-    });
-
-    // ── Touch / swipe ────────────────────────────────────────────────────────
-    let touchStartX = 0;
-    let touchStartOffset = 0;
-
-    container.addEventListener('touchstart', (e: TouchEvent) => {
-      touchStartX = e.touches[0].clientX;
-      touchStartOffset = offset;
-      pauseAutoScroll(false);
-      disableTooltips();
-    }, { passive: true });
-
-    container.addEventListener('touchmove', (e: TouchEvent) => {
-      const delta = e.touches[0].clientX - touchStartX;
-      offset = clampOffset(touchStartOffset + delta);
-      applyOffset();
-    }, { passive: true });
+    container.addEventListener(
+      'touchmove',
+      (event: TouchEvent) => {
+        const delta = event.touches[0].clientX - touchStartX;
+        offset = clampOffset(touchStartOffset + delta);
+        applyOffset();
+      },
+      { passive: true },
+    );
 
     container.addEventListener('touchend', () => {
-      enableTooltips();
+      tooltips.enable();
       pauseAutoScroll(true);
     });
 
-    // ── Teclado (← →) ───────────────────────────────────────────────────────
-    container.addEventListener('keydown', (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft') {
+    container.addEventListener('keydown', (event: KeyboardEvent) => {
+      if (event.key === 'ArrowLeft') {
         offset = clampOffset(offset + STEP_KEY);
         applyOffset();
         pauseAutoScroll(true);
-        e.preventDefault();
-      } else if (e.key === 'ArrowRight') {
+        event.preventDefault();
+      }
+
+      if (event.key === 'ArrowRight') {
         offset = clampOffset(offset - STEP_KEY);
         applyOffset();
         pauseAutoScroll(true);
-        e.preventDefault();
+        event.preventDefault();
       }
     });
-  }
+
+    window.addEventListener('resize', () => {
+      offset = clampOffset(offset);
+      applyOffset();
+    });
+  };
+
+  const tooltipControls = initTechTooltips();
+  initTypewriter();
+  initStackCarousel(tooltipControls);
 </script>
 
 <style>
