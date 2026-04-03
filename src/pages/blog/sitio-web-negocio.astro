@@ -1,0 +1,110 @@
+---
+import Layout from '../../layouts/Layout.astro';
+const coverImage = `${import.meta.env.BASE_URL}sitio-web.png`;
+
+const title = '¿Cómo un sitio web puede hacer crecer tu negocio?';
+const description = 'Descubre por qué tener un sitio web es la inversión más importante que puede hacer tu negocio hoy: visibilidad, ventas y presencia digital.';
+---
+
+<Layout title={`${title} | Blog`} description={description}>
+  <section class="section-wrapper" aria-labelledby="blog-title">
+    <p class="mb-2 font-mono text-[0.82rem] tracking-[0.05em] text-cyan/65" aria-hidden="true">
+      &lt;article&gt; blog
+    </p>
+
+    <article class="rounded-xl border border-purple/20 bg-[rgba(27,8,64,0.6)] p-[clamp(1.2rem,3vw,2rem)]">
+      <h1 id="blog-title" class="grad-text mb-3 font-mono text-[clamp(1.6rem,3.4vw,2.4rem)] font-bold leading-tight">
+        {title}
+      </h1>
+      <p class="mb-5 font-mono text-[0.78rem] text-cyan/50">Abr 3, 2026</p>
+
+      <div class="space-y-5 text-justify hyphens-auto text-[0.98rem] leading-[1.9] text-muted">
+
+        <!-- Imagen flotada a la derecha desde el inicio del texto -->
+        <div class="md:float-right md:ml-8 md:mb-4 md:w-[45%] overflow-hidden rounded-xl border border-cyan/20 not-prose">
+          <img
+            src={coverImage}
+            alt="Negocio local visible en internet a través de un sitio web"
+            class="w-full"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+          />
+          <p class="bg-[rgba(16,4,37,0.6)] px-4 py-3 font-mono text-[0.76rem] text-cyan/65">
+            Sin sitio web, tu negocio es invisible.
+          </p>
+        </div>
+
+        <p>
+          Los sitios web son extremadamente importantes para cualquier negocio. Son un plus que potencia y acelera la
+          visibilidad de tu negocio, y al aumentar la visibilidad aumentan las ventas. Me gusta una frase que dijo
+          Bill Gates, fundador de Microsoft:
+        </p>
+
+        <blockquote class="border-l-2 border-cyan/40 pl-5 italic text-text/80">
+          "El negocio que no está en internet está destinado a fracasar."
+        </blockquote>
+
+        <p>
+          Puede que no todos fracasen, pero el no tener un sitio web hace que tu negocio no evolucione y se estanque.
+          Que pierda clientes que prefieren comprar todo desde la comodidad de su casa.
+        </p>
+
+        <p>
+          Por eso la inversión en un sitio web es muy importante y es una de las inversiones más justificadas que
+          puede tomar una empresa. Invertir en un sitio web no tiene por qué ser costoso, puedes empezar con algo
+          sencillo e ir mejorándolo con el paso del tiempo. Ese es otro punto muy importante: no es solo tener un
+          sitio web y olvidarse de él. Es como cualquier tecnología, necesita mantenimiento, evolución y
+          actualización. Estar en constante cambio.
+        </p>
+
+        <p>
+          Por medio de las métricas que nos puede dar un sitio web sabemos qué tipo de público nos visita o se
+          interesa en nuestro contenido o producto. No importa si vendes productos o servicios, el sitio web es
+          importante para que tu negocio progrese y alcance el crecimiento que esperas, y hasta más.
+        </p>
+
+        <p class="md:clear-right">
+          Si las redes sociales ayudan bastante a que conozcan tu negocio y a generar ventas, ahora imagínate el
+          potencial de un sitio web. La gente lo primero que hace es entrar a Google y buscar productos o servicios.
+          Incluso le preguntan a su herramienta de inteligencia artificial favorita dónde pueden comprar tal
+          producto, y si tu página está bien optimizada y configurada puede aparecer entre los primeros resultados.
+          Ahí es donde está la magia y el verdadero potencial de esto.
+        </p>
+
+        <p>
+          La gente puede comprar desde la comodidad de su casa, recibir el producto en su puerta, todo sin
+          necesidad de salir, lo cual genera una experiencia de compra excelente.
+        </p>
+
+        <p>
+          El consejo de hoy es: invierte en un sitio web. Da a conocer tu negocio, tu emprendimiento, por medio de
+          un sitio web o una tienda online. ¿Qué esperas para llevar tu negocio al siguiente nivel?
+        </p>
+      </div>
+    </article>
+
+    <!-- CTA cotización -->
+    <div class="mt-8 rounded-xl border border-cyan/20 bg-[rgba(12,255,255,0.04)] p-[clamp(1.2rem,3vw,2rem)] text-center">
+      <p class="mb-2 font-mono text-[0.82rem] text-cyan/65">// ¿listo para el siguiente paso?</p>
+      <h2 class="grad-text mb-3 font-mono text-[clamp(1.2rem,2.5vw,1.6rem)] font-bold">
+        ¿Quieres un sitio web para tu negocio?
+      </h2>
+      <p class="mb-6 text-[0.95rem] leading-[1.8] text-muted">
+        Cuéntame qué necesitas y te doy una cotización sin compromiso. Creo sitios web rápidos,
+        modernos y optimizados para que tus clientes te encuentren antes que a la competencia.
+      </p>
+      <a
+        href="/#contact"
+        class="btn btn--primary inline-block"
+        aria-label="Ir al formulario de contacto para cotizar un sitio web"
+      >
+        Quiero cotizar mi sitio web
+      </a>
+    </div>
+
+    <p class="mt-2 mb-0 text-right font-mono text-[0.82rem] tracking-[0.05em] text-cyan/65" aria-hidden="true">
+      &lt;/article&gt;
+    </p>
+  </section>
+</Layout>
