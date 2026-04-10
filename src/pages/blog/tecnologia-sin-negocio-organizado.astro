@@ -1,0 +1,81 @@
+---
+import Layout from '../../layouts/Layout.astro';
+const coverImage = `${import.meta.env.BASE_URL}tecnologia-sin-cultura.png`;
+
+const title = '¿Qué pasa cuando implementas tecnología sin tener tu negocio organizado?';
+const description = 'Antes de implementar tecnología en tu negocio, necesitas procesos claros y un equipo capacitado. La tecnología sobre un proceso roto no lo arregla, lo complica.';
+---
+
+<Layout title={`${title} | Blog`} description={description}>
+  <section class="section-wrapper" aria-labelledby="blog-title">
+    <p class="mb-2 font-mono text-[0.82rem] tracking-[0.05em] text-cyan/65" aria-hidden="true">
+      &lt;article&gt; blog
+    </p>
+
+    <article class="rounded-xl border border-purple/20 bg-[rgba(27,8,64,0.6)] p-[clamp(1.2rem,3vw,2rem)]">
+      <h1 id="blog-title" class="grad-text mb-3 font-mono text-[clamp(1.6rem,3.4vw,2.4rem)] font-bold leading-tight">
+        {title}
+      </h1>
+      <p class="mb-5 font-mono text-[0.78rem] text-cyan/50">Abr 10, 2026</p>
+
+      <div class="space-y-5 text-justify hyphens-auto text-[0.98rem] leading-[1.9] text-muted">
+
+        <div class="md:float-right md:ml-8 md:mb-4 md:w-[45%] overflow-hidden rounded-xl border border-cyan/20 not-prose">
+          <img
+            src={coverImage}
+            alt="Tecnología implementada sin tener el negocio organizado genera caos"
+            class="w-full"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+          />
+          <p class="bg-[rgba(16,4,37,0.6)] px-4 py-3 font-mono text-[0.76rem] text-cyan/65">
+            Tecnología sin orden, solo es caos.
+          </p>
+        </div>
+
+        <p>
+          ¿Cuántas veces has escuchado que con solo implementar tecnología vas a solucionar tus problemas o acelerar tus procesos? Pasa mucho, especialmente en emprendimientos y negocios pequeños, pero la realidad es que no siempre es así.
+        </p>
+
+        <p>
+          Lo más importante, antes de implementar cualquier herramienta tecnológica en tu negocio, es tener una buena cultura de trabajo y procesos bien definidos. Tu equipo debe entender el impacto real de la tecnología sobre su trabajo: el ahorro de tiempo, la facilidad que genera y los múltiples beneficios que trae. Pero también deben ser conscientes de que la tecnología mal administrada es un caos — en vez de acelerar tus procesos, los atrasa, y en el peor de los casos puede hacerte perder clientes y ventas.
+        </p>
+
+        <p>
+          Antes de montar cualquier herramienta, lo ideal es capacitar a tu equipo, ya sea con cursos o guías sobre el uso de esa tecnología, para potenciar el trabajo que ya están haciendo. También es clave organizar bien los procesos de tu negocio: que estén definidos, que estén claros.
+        </p>
+
+        <p>
+          Y algo que muchos emprendedores pasan por alto: antes de llevarle tecnología a un proceso, hay que revisar si ese proceso ya se está haciendo de manera ordenada. Porque si el proceso está roto, la tecnología no lo arregla — lo complica más. Imagínate automatizar el manejo de pedidos cuando ni siquiera tienes claro cómo los estás gestionando hoy.
+        </p>
+
+        <p>
+          Por eso, antes de usar cualquier herramienta — sea WhatsApp Business, una caja registradora digital, un sistema de facturación o cualquier otra — es fundamental hacer un análisis real de cómo va a afectar el proceso al que se le quiere aplicar.
+        </p>
+      </div>
+      <div class="md:clear-right"></div>
+    </article>
+
+    <div class="mt-8 rounded-xl border border-cyan/20 bg-[rgba(12,255,255,0.04)] p-[clamp(1.2rem,3vw,2rem)] text-center">
+      <p class="mb-2 font-mono text-[0.82rem] text-cyan/65">// ¿listo para el siguiente paso?</p>
+      <h2 class="grad-text mb-3 font-mono text-[clamp(1.2rem,2.5vw,1.6rem)] font-bold">
+        ¿Necesitas organizar tu negocio antes de implementar tecnología?
+      </h2>
+      <p class="mb-6 text-[0.95rem] leading-[1.8] text-muted">
+        Cuéntame tu situación y te ayudo a determinar qué es lo que tu negocio realmente necesita. No vendemos soluciones que no necesitas.
+      </p>
+      <a
+        href="/#contact"
+        class="btn btn--primary inline-block"
+        aria-label="Ir al formulario de contacto"
+      >
+        Hablemos
+      </a>
+    </div>
+
+    <p class="mt-2 mb-0 text-right font-mono text-[0.82rem] tracking-[0.05em] text-cyan/65" aria-hidden="true">
+      &lt;/article&gt;
+    </p>
+  </section>
+</Layout>
