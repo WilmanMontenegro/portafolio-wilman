@@ -52,15 +52,25 @@ const techStack: TechItem[] = [
     </p>
 
     <!-- Título con typewriter -->
-    <h1 class="mb-5 font-mono text-[clamp(1.8rem,4vw,3rem)] font-bold leading-tight text-text" id="hero-title">
+    <h1 class="mb-4 font-mono text-[clamp(1.8rem,4vw,3rem)] font-bold leading-tight text-text" id="hero-title">
       Ingeniero de Sistemas &amp;<br>
       <span class="font-bold text-cyan">&#123;</span><span class="bg-[linear-gradient(90deg,#DC00D3,#0CFFFF)] bg-clip-text font-semibold text-transparent" id="typing"></span><span class="typing-cursor text-cyan">|</span><span class="font-bold text-cyan">&#125;</span>
     </h1>
 
+    <!-- Ubicación estilo formal, después del título -->
+    <p class="mb-4 font-mono text-[0.75rem] text-muted tracking-wide">
+      <span class="location-inline" aria-label="Ubicación: Santa Marta, Magdalena, Colombia">
+        <svg width="8" height="8" viewBox="0 0 10 10" aria-hidden="true" class="inline-block align-middle mr-1.5">
+          <circle cx="5" cy="5" r="3" fill="#00ff41" class="pulse-dot"/>
+          <circle cx="5" cy="5" r="4.5" fill="none" stroke="#00ff41" stroke-width="0.5" class="pulse-ring"/>
+        </svg>
+        <span class="text-cyan/60">Santa Marta, Magdalena, Colombia</span>
+      </span>
+    </p>
+
     <!-- Descripción -->
-    <p class="mb-7 text-justify hyphens-auto text-[0.97rem] leading-[1.8] text-muted">
-      Ingeniero de Sistemas con experiencia en desarrollo web y móvil, entornos corporativos y proyectos propios.
-      Apasionado por la tecnología y la enseñanza. Trabajo con emprendedores, pequeñas empresas e instituciones educativas construyendo soluciones reales.
+    <p class="mb-4 text-justify hyphens-auto text-[0.97rem] leading-[1.8] text-muted">
+      Me encanta trabajar con tecnología. Creo software que resuelve problemas reales. Me caracterizo por meterle curiosidad y creatividad a cada proyecto. Me gusta garantizar calidad: productos escalables, con las mejores prácticas y los más altos estándares.
     </p>
 
     <!-- Carrusel de tecnologías -->
@@ -77,11 +87,6 @@ const techStack: TechItem[] = [
       <a class="btn btn--primary" href="#projects">Ver Proyectos</a>
       <a href={`${import.meta.env.BASE_URL}cv.pdf`} download="cv-wilman-montenegro.pdf" aria-label="Descargar CV en PDF" class="btn btn--ghost">[ Descargar CV ]</a>
     </div>
-
-    <!-- Ubicación -->
-    <p class="font-mono text-[0.78rem] text-muted/60">
-      // Santa Marta, Colombia &middot; Disponible para proyectos remotos
-    </p>
 
   </div>
 </section>
@@ -412,5 +417,104 @@ const techStack: TechItem[] = [
 
   .tippy-box[data-theme~='wilman'] .tippy-arrow {
     color: rgba(27, 8, 64, 0.97);
+  }
+
+  /* Cyberpunk tracking signal effect */
+  .tracking-signal {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    text-shadow: 0 0 10px rgba(12, 255, 255, 0.8), 0 0 20px rgba(12, 255, 255, 0.4);
+  }
+
+  .signal-bracket {
+    color: var(--color-cyan);
+    opacity: 0.6;
+  }
+
+  .signal-text {
+    letter-spacing: 0.15em;
+    animation: glitch-text 3s infinite;
+  }
+
+  .signal-cursor {
+    color: var(--color-cyan);
+    animation: blink-cursor 0.8s infinite;
+  }
+
+  .signal-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pulse-dot {
+    filter: drop-shadow(0 0 4px #00ff41);
+  }
+
+  .pulse-ring {
+    animation: pulse-ring 1.5s ease-out infinite;
+  }
+
+  @keyframes pulse-ring {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(2);
+    }
+  }
+
+  @keyframes glitch-text {
+    0%, 100% {
+      opacity: 1;
+      filter: none;
+    }
+    92% {
+      opacity: 1;
+      filter: none;
+    }
+    93% {
+      opacity: 0.8;
+      filter: blur(1px);
+    }
+    94% {
+      opacity: 1;
+      filter: none;
+      text-shadow: 0 0 15px rgba(12, 255, 255, 1), -2px 0 var(--color-purple), 2px 0 var(--color-cyan);
+    }
+    95% {
+      opacity: 1;
+      filter: none;
+    }
+    96% {
+      opacity: 0.9;
+      filter: blur(0.5px);
+    }
+    97% {
+      opacity: 1;
+      text-shadow: 0 0 10px rgba(12, 255, 255, 0.8);
+    }
+  }
+
+  @keyframes blink-cursor {
+    0%, 49% {
+      opacity: 1;
+    }
+    50%, 100% {
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .signal-text {
+      animation: none;
+    }
+    .signal-cursor {
+      animation: none;
+      opacity: 1;
+    }
   }
 </style>
