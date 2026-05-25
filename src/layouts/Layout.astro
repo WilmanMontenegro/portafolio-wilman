@@ -6,13 +6,22 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  imageAlt?: string;
+  ogType?: 'website' | 'article';
 }
 
 const {
   title = 'Wilman Montenegro — Ingeniero de Sistemas & Full Stack Developer',
   description = 'Ingeniero de Sistemas con experiencia en desarrollo web y móvil, entornos corporativos y proyectos freelance. Santa Marta, Colombia.',
   image = `${import.meta.env.BASE_URL}wilman-montenegro.webp`,
+  imageAlt,
+  ogType = 'website',
 } = Astro.props;
+
+const shareImage = new URL(image, Astro.url).href;
+const shareImageAlt =
+  imageAlt ??
+  'Wilman Montenegro — Ingeniero de Sistemas y desarrollador full stack en Santa Marta, Colombia';
 
 const canonical = Astro.url?.href;
 
@@ -45,18 +54,19 @@ const schema = {
     <meta name="author" content="Wilman Montenegro" />
     <meta name="robots" content="index,follow" />
     <meta name="theme-color" content="#100425" />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(image, Astro.url).href} />
+    <meta property="og:image" content={shareImage} />
+    <meta property="og:image:alt" content={shareImageAlt} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content="es_ES" />
     <meta property="og:site_name" content="wilman.dev" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={new URL(image, Astro.url).href} />
-    <meta name="twitter:image:alt" content={description} />
+    <meta name="twitter:image" content={shareImage} />
+    <meta name="twitter:image:alt" content={shareImageAlt} />
     <meta name="twitter:site" content="@WilmanDev" />
     <meta name="twitter:creator" content="@WilmanDev" />
     {canonical && <link rel="canonical" href={canonical} />}
