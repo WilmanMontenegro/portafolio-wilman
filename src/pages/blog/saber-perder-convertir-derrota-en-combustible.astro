@@ -1,0 +1,95 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const coverImage = `${import.meta.env.BASE_URL}blog/no-te-rindas-la-derrota-tambien-es-combustible.png`;
+
+const title = 'No te rindas: la derrota también es combustible';
+const description =
+  'Sentir la derrota demuestra competitividad. Usa ese dolor como impulso: reflexiona, corrige lo que falló y persevera con disciplina y mejora continua.';
+const imageAlt =
+  'Persona de espaldas en una carretera nocturna bajo un cielo estrellado, mirando hacia un horizonte iluminado que simboliza perseverancia tras una derrota';
+---
+
+<Layout
+  title={`${title} | Blog`}
+  description={description}
+  image={coverImage}
+  imageAlt={imageAlt}
+  ogType="article"
+>
+  <section class="section-wrapper" aria-labelledby="blog-title">
+    <p class="mb-2 font-mono text-[0.82rem] tracking-[0.05em] text-cyan/65" aria-hidden="true">
+      &lt;article&gt; blog
+    </p>
+
+    <article class="rounded-xl border border-purple/20 bg-[rgba(27,8,64,0.6)] p-[clamp(1.2rem,3vw,2rem)]">
+      <h1 id="blog-title" class="grad-text mb-3 font-mono text-[clamp(1.6rem,3.4vw,2.4rem)] font-bold leading-tight">
+        {title}
+      </h1>
+      <p class="mb-5 font-mono text-[0.78rem] text-cyan/50">Jun 3, 2026</p>
+
+      <div class="space-y-5 text-justify hyphens-auto text-[0.98rem] leading-[1.9] text-muted">
+        <div class="md:float-right md:ml-8 md:mb-4 md:w-[45%] overflow-hidden rounded-xl border border-cyan/20 not-prose">
+          <img
+            src={coverImage}
+            alt={imageAlt}
+            class="w-full"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+            width="1536"
+            height="1024"
+          />
+          <p class="bg-[rgba(16,4,37,0.6)] px-4 py-3 font-mono text-[0.76rem] text-cyan/65">
+            No te rindas: la derrota también es combustible para seguir adelante.
+          </p>
+        </div>
+
+        <p>
+          Es común que muchas veces nos rindamos al pasar por un momento difícil, al perder una competencia, al perder
+          un evento. Que nos molestemos, que nos duela. Hay que saber perder, pero también hay que sentir esa derrota,
+          dejar que duela, y usarla como energía para la siguiente oportunidad.
+        </p>
+
+        <p>
+          Cuando nos duele una derrota, eso demuestra lo competitivos que somos, y eso lo usamos para mejorar, como
+          combustible para seguir adelante. Tomamos lo bueno que hicimos, pero también tomamos lo malo: para corregirlo,
+          para reflexionar sobre qué falló y cómo podemos erradicarlo o mejorarlo.
+        </p>
+
+        <p>
+          La idea es obsesionarnos con las cosas. Ese es el secreto del éxito: a pesar de no ver resultados, seguir
+          intentándolo, analizar qué pudo haber salido mal y volver a intentarlo. Volver a fracasar si es necesario. El
+          punto es no rendirse e intentarlo hasta el final, hasta lo último. Tener la personalidad de aceptar los
+          errores, mejorarlos y seguir adelante.
+        </p>
+
+        <p class="md:clear-right">
+          Ahí está la clave del éxito: en la mejora continua, en la perseverancia, en la disciplina. En que nos duelan
+          las derrotas, pero más allá de eso, en coger ese dolor como impulso y como opción de mejora constante.
+        </p>
+      </div>
+    </article>
+
+    <div class="mt-8 rounded-xl border border-cyan/20 bg-[rgba(12,255,255,0.04)] p-[clamp(1.2rem,3vw,2rem)] text-center">
+      <p class="mb-2 font-mono text-[0.82rem] text-cyan/65">// ¿listo para el siguiente intento?</p>
+      <h2 class="grad-text mb-3 font-mono text-[clamp(1.2rem,2.5vw,1.6rem)] font-bold">
+        ¿Tienes un proyecto que merece insistir hasta lograrlo?
+      </h2>
+      <p class="mb-6 text-[0.95rem] leading-[1.8] text-muted">
+        Cuéntame tu idea y trabajamos con la misma mentalidad: analizar, corregir y seguir adelante.
+      </p>
+      <a
+        href="/#contact"
+        class="btn btn--primary inline-block"
+        aria-label="Ir al formulario de contacto"
+      >
+        Hablemos
+      </a>
+    </div>
+
+    <p class="mt-2 mb-0 text-right font-mono text-[0.82rem] tracking-[0.05em] text-cyan/65" aria-hidden="true">
+      &lt;/article&gt;
+    </p>
+  </section>
+</Layout>

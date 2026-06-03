@@ -6,16 +6,16 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
+    "dev": "NODE_OPTIONS='--disable-warning=DEP0205' astro dev",
+    "build": "NODE_OPTIONS='--disable-warning=DEP0205' astro build",
+    "preview": "NODE_OPTIONS='--disable-warning=DEP0205' astro preview",
     "astro": "astro"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.2",
-    "@tailwindcss/vite": "^4.2.1",
-    "astro": "^6.0.5",
-    "tailwindcss": "^4.2.1",
+    "@tailwindcss/vite": "^4.3.0",
+    "astro": "^6.4.4",
+    "tailwindcss": "^4.3.0",
     "tippy.js": "^6.3.7"
   }
 }
