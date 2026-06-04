@@ -7,6 +7,8 @@ interface Props {
   description?: string;
   image?: string;
   imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
   ogType?: 'website' | 'article';
 }
 
@@ -15,15 +17,23 @@ const {
   description = 'Ingeniero de Sistemas con experiencia en desarrollo web y móvil, entornos corporativos y proyectos freelance. Santa Marta, Colombia.',
   image = `${import.meta.env.BASE_URL}wilman-montenegro.webp`,
   imageAlt,
+  imageWidth,
+  imageHeight,
   ogType = 'website',
 } = Astro.props;
 
-const shareImage = new URL(image, Astro.url).href;
+const site = Astro.site ?? Astro.url;
+const shareImage = new URL(image, site).href;
 const shareImageAlt =
   imageAlt ??
   'Wilman Montenegro — Ingeniero de Sistemas y desarrollador full stack en Santa Marta, Colombia';
+const shareImageType = shareImage.endsWith('.png')
+  ? 'image/png'
+  : shareImage.endsWith('.webp')
+    ? 'image/webp'
+    : 'image/jpeg';
 
-const canonical = Astro.url?.href;
+const canonical = new URL(Astro.url.pathname, site).href;
 
 const schema = {
   "@context": "https://schema.org",
@@ -58,6 +68,10 @@ const schema = {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={shareImage} />
+    <meta property="og:image:secure_url" content={shareImage} />
+    <meta property="og:image:type" content={shareImageType} />
+    {imageWidth && <meta property="og:image:width" content={String(imageWidth)} />}
+    {imageHeight && <meta property="og:image:height" content={String(imageHeight)} />}
     <meta property="og:image:alt" content={shareImageAlt} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content="es_ES" />

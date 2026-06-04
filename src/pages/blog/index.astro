@@ -5,6 +5,9 @@ const base = import.meta.env.BASE_URL;
 
 const title = 'Blog';
 const description = 'Artículos sobre desarrollo web, tecnología y emprendimiento digital por Wilman Montenegro.';
+const coverImage = `${base}blog/no-te-rindas-la-derrota-tambien-es-combustible.png`;
+const imageAlt =
+  'Blog de Wilman Montenegro sobre desarrollo web, tecnología y emprendimiento digital';
 
 const posts = [
   {
@@ -45,7 +48,14 @@ const posts = [
 ];
 ---
 
-<Layout title={`${title} | Wilman Montenegro`} description={description}>
+<Layout
+  title={`${title} | Wilman Montenegro`}
+  description={description}
+  image={coverImage}
+  imageAlt={imageAlt}
+  imageWidth={1536}
+  imageHeight={1024}
+>
   <section class="section-wrapper" aria-labelledby="blog-index-title">
     <p class="mb-2 font-mono text-[0.82rem] tracking-[0.05em] text-cyan/65" aria-hidden="true">
       &lt;section&gt; blog

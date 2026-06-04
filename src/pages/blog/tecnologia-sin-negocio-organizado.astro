@@ -4,9 +4,19 @@ const coverImage = `${import.meta.env.BASE_URL}blog/tecnologia-sin-cultura.png`;
 
 const title = '¿Qué pasa cuando implementas tecnología sin tener tu negocio organizado?';
 const description = 'Antes de implementar tecnología en tu negocio, necesitas procesos claros y un equipo capacitado. La tecnología sobre un proceso roto no lo arregla, lo complica.';
+const imageAlt =
+  'Tecnología implementada sin tener el negocio organizado genera caos en los procesos';
 ---
 
-<Layout title={`${title} | Blog`} description={description} image={coverImage}>
+<Layout
+  title={`${title} | Blog`}
+  description={description}
+  image={coverImage}
+  imageAlt={imageAlt}
+  imageWidth={1229}
+  imageHeight={768}
+  ogType="article"
+>
   <section class="section-wrapper" aria-labelledby="blog-title">
     <p class="mb-2 font-mono text-[0.82rem] tracking-[0.05em] text-cyan/65" aria-hidden="true">
       &lt;article&gt; blog

@@ -4,9 +4,18 @@ const coverImage = `${import.meta.env.BASE_URL}blog/impacto-ia-mente-humana.png`
 
 const title = 'El impacto de la inteligencia artificial en la mente humana';
 const description = 'Reflexión sobre cómo usar la inteligencia artificial como copiloto sin perder el equilibrio personal.';
+const imageAlt = 'Reflexión sobre el impacto de la inteligencia artificial en la mente humana';
 ---
 
-<Layout title={`${title} | Blog`} description={description} image={coverImage}>
+<Layout
+  title={`${title} | Blog`}
+  description={description}
+  image={coverImage}
+  imageAlt={imageAlt}
+  imageWidth={977}
+  imageHeight={698}
+  ogType="article"
+>
   <section class="section-wrapper" aria-labelledby="blog-title">
     <p class="mb-2 font-mono text-[0.82rem] tracking-[0.05em] text-cyan/65" aria-hidden="true">
       &lt;article&gt; blog
