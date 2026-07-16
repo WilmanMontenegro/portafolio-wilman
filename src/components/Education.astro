@@ -1,4 +1,11 @@
 ---
+interface Props {
+    preview?: boolean;
+}
+
+const { preview = false } = Astro.props;
+const base = import.meta.env.BASE_URL;
+
 interface EducationItem {
     period: string;
     title: string;
@@ -59,6 +66,19 @@ const education: EducationItem[] = [
             ))
         }
     </div>
+    {
+        preview && (
+            <div class="mt-6 text-right">
+                <a
+                    href={`${base}formacion`}
+                    class="font-mono text-[0.82rem] text-cyan transition-opacity hover:opacity-70"
+                    aria-label="Ver formación y certificados"
+                >
+                    Ver formación y certificados →
+                </a>
+            </div>
+        )
+    }
     <p
         class="font-mono text-[0.82rem] text-cyan/65 mt-2 mb-0 text-right tracking-[0.05em]"
         aria-hidden="true"

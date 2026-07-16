@@ -29,3 +29,11 @@ pnpm-debug.log*
 
 # archivos temporales del browser MCP
 .playwright-mcp/
+
+# Engram local (memoria va global; no por repo)
+.engram/
+
+# Docs laborales sensibles (contratos, cédulas, PDFs privados)
+vida/laboral/
+vida/yo.md
+**/CONTRATO*.pdf

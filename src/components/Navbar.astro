@@ -1,5 +1,16 @@
 ---
 const base = import.meta.env.BASE_URL;
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+const links = [
+    { href: base, label: 'Inicio', match: (p: string) => p === '/' || p === '' },
+    { href: `${base}experiencia`, label: 'Experiencia', match: (p: string) => p.endsWith('/experiencia') },
+    { href: `${base}proyectos`, label: 'Proyectos', match: (p: string) => p.endsWith('/proyectos') },
+    { href: `${base}blog`, label: 'Blog', match: (p: string) => p.includes('/blog') },
+    { href: `${base}formacion`, label: 'Formación', match: (p: string) => p.endsWith('/formacion') },
+    { href: `${base}#references`, label: 'Referencias', match: () => false },
+    { href: `${base}contacto`, label: 'Contacto', match: (p: string) => p.endsWith('/contacto') },
+];
 ---
 
 <nav
@@ -21,57 +32,25 @@ const base = import.meta.env.BASE_URL;
             id="nav-menu"
             class="pointer-events-none absolute left-0 right-0 top-full z-[1001] hidden min-w-0 flex-col gap-1 border-b border-purple/20 bg-[rgba(16,4,37,0.96)] px-6 py-3 opacity-0 backdrop-blur-[14px] transition-all duration-200 lg:pointer-events-auto lg:static lg:ml-2 lg:flex lg:min-w-0 lg:flex-1 lg:flex-row lg:justify-center lg:gap-0.5 lg:border-0 lg:bg-transparent lg:p-0 lg:opacity-100 lg:backdrop-blur-none xl:ml-4 xl:gap-1"
         >
-            <li>
-                <a
-                    href={`${base}#home`}
-                    class="nav-link block whitespace-nowrap px-3 py-2 text-[0.85rem] font-medium tracking-[0.02em] lg:px-2 lg:text-[0.8rem] xl:px-3 xl:text-[0.85rem]"
-                    >Inicio</a
-                >
-            </li>
-            <li>
-                <a
-                    href={`${base}#experience`}
-                    class="nav-link block whitespace-nowrap px-3 py-2 text-[0.85rem] font-medium tracking-[0.02em] lg:px-2 lg:text-[0.8rem] xl:px-3 xl:text-[0.85rem]"
-                    >Experiencia</a
-                >
-            </li>
-            <li>
-                <a
-                    href={`${base}#projects`}
-                    class="nav-link block whitespace-nowrap px-3 py-2 text-[0.85rem] font-medium tracking-[0.02em] lg:px-2 lg:text-[0.8rem] xl:px-3 xl:text-[0.85rem]"
-                    >Proyectos</a
-                >
-            </li>
-
-            <li>
-                <a
-                    href={`${base}blog`}
-                    class="nav-link block whitespace-nowrap px-3 py-2 text-[0.85rem] font-medium tracking-[0.02em] lg:px-2 lg:text-[0.8rem] xl:px-3 xl:text-[0.85rem]"
-                    >Blog</a
-                >
-            </li>
-
-            <li>
-                <a
-                    href={`${base}#education`}
-                    class="nav-link block whitespace-nowrap px-3 py-2 text-[0.85rem] font-medium tracking-[0.02em] lg:px-2 lg:text-[0.8rem] xl:px-3 xl:text-[0.85rem]"
-                    >Formación</a
-                >
-            </li>
-            <li>
-                <a
-                    href={`${base}#references`}
-                    class="nav-link block whitespace-nowrap px-3 py-2 text-[0.85rem] font-medium tracking-[0.02em] lg:px-2 lg:text-[0.8rem] xl:px-3 xl:text-[0.85rem]"
-                    >Referencias</a
-                >
-            </li>
-            <li>
-                <a
-                    href={`${base}#contact`}
-                    class="nav-link block whitespace-nowrap px-3 py-2 text-[0.85rem] font-medium tracking-[0.02em] lg:px-2 lg:text-[0.8rem] xl:px-3 xl:text-[0.85rem]"
-                    >Contacto</a
-                >
-            </li>
+            {
+                links.map((link) => {
+                    const active = link.match(path);
+                    return (
+                        <li>
+                            <a
+                                href={link.href}
+                                class:list={[
+                                    'nav-link block whitespace-nowrap px-3 py-2 text-[0.85rem] font-medium tracking-[0.02em] lg:px-2 lg:text-[0.8rem] xl:px-3 xl:text-[0.85rem]',
+                                    active && 'text-cyan',
+                                ]}
+                                aria-current={active ? 'page' : undefined}
+                            >
+                                {link.label}
+                            </a>
+                        </li>
+                    );
+                })
+            }
         </ul>
 
         <div class="relative z-[1002] ml-auto flex shrink-0 items-center gap-0.5 sm:gap-1 lg:mr-0">

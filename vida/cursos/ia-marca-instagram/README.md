@@ -1,0 +1,34 @@
+# Curso: IA, marca e Instagram
+
+Faceta de aprendizaje en paralelo a la profesión. **No publicado en el portafolio web** (solo documentación local).
+
+## Objetivos
+
+### Fundamentos de IA
+
+- [ ] Entender cómo funciona la IA y los modelos de lenguaje
+- [ ] Conocer las diferencias entre ChatGPT, Claude y Gemini
+- [ ] Aprender a crear prompts efectivos
+
+### Marca e identidad visual
+
+- [ ] Crear un logo con concepto y variaciones
+- [ ] Diseñar una identidad visual para tu marca
+- [ ] Generar imágenes profesionales con IA
+
+### Instagram y contenido
+
+- [ ] Optimizar tu biografía de Instagram
+- [ ] Analizar y auditar tu cuenta de Instagram
+- [ ] Definir una estrategia de posicionamiento
+- [ ] Crear una parrilla de contenido para 30 días
+- [ ] Escribir copys que conecten y vendan
+
+### Entregable transversal
+
+- [ ] Llevarte una biblioteca de prompts reutilizables
+
+## Notas
+
+- Estado: en curso / documentado
+- Publicar en el sitio: cuando se pida explícitamente

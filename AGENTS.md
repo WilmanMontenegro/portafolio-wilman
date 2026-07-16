@@ -8,6 +8,10 @@ Agent instructions for this repository. Keep this file up to date when conventio
 
 Personal portfolio for Wilman Montenegro. Static site (SSG) built with Astro 6, TypeScript strict, Tailwind CSS v4, and pnpm. No backend, no SSR adapter, no React/Vue/Svelte — pure `.astro` components only.
 
+Also contains `vida/` — local space for career notes, interview practice, and courses. Not part of the published site. PDFs under `vida/laboral/` are gitignored (PII). Do not commit contracts or IDs.
+
+**Wilman profile:** read `vida/yo.md` first for CV, experience, projects, job situation, and how he works. When he shares new career/life facts, update `vida/yo.md` and save a short Engram note (`scope: personal`).
+
 ---
 
 ## Build & Dev Commands
@@ -45,16 +49,18 @@ To verify a change works, run `pnpm build` — a successful zero-error build is 
 
 ```
 src/
-  components/     ← One .astro file per section (Hero, Navbar, Projects, …)
+  components/     ← One .astro file per section (Hero, Navbar, Projects, Certificates, …)
   layouts/        ← Layout.astro (wraps all pages, SEO head, skip link)
-  pages/          ← index.astro (single page, composes all components)
+  pages/          ← Multi-page: index (home corta) + experiencia, proyectos,
+                    formacion, contacto, blog/* (+ #references en home)
   styles/
     global.css    ← Design tokens (@theme {}), global utilities, font imports
-public/           ← Static assets (images, favicon, cv.pdf)
+public/           ← Static assets (images, favicon, cv.pdf, certificados/)
 astro.config.mjs  ← Astro + Vite config (Tailwind loaded here)
 tsconfig.json     ← Extends astro/tsconfigs/strict
 ```
 
+Home = resumen scaneable (`preview` en componentes). Detalle en páginas por sección.
 No `src/data/`, `src/lib/`, `src/utils/`, or `src/types/` directories exist. Keep the structure flat and simple.
 
 ---

@@ -1,4 +1,11 @@
 ---
+interface Props {
+    preview?: boolean;
+}
+
+const { preview = false } = Astro.props;
+const base = import.meta.env.BASE_URL;
+
 interface FeaturedProject {
     year: string;
     title: string;
@@ -64,6 +71,8 @@ const featuredProjects: FeaturedProject[] = [
         github: "https://github.com/TechCelera/techcelera-website",
     },
 ];
+
+const items = preview ? featuredProjects.slice(0, 3) : featuredProjects;
 ---
 
 <section
@@ -83,7 +92,7 @@ const featuredProjects: FeaturedProject[] = [
 
     <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {
-            featuredProjects.map((project) => (
+            items.map((project) => (
                 <article class="flex flex-col gap-3 rounded-xl border border-purple/20 bg-[rgba(27,8,64,0.6)] p-[1.4rem] transition-[border-color,box-shadow] duration-200 hover:border-purple/50 hover:shadow-[0_0_30px_rgba(125,71,255,0.15)]">
                     <p class="font-mono text-[0.78rem] text-cyan/70">
                         <span class="font-mono text-purple">{"{"}</span>{" "}
@@ -133,6 +142,19 @@ const featuredProjects: FeaturedProject[] = [
             ))
         }
     </div>
+    {
+        preview && (
+            <div class="mt-6 text-right">
+                <a
+                    href={`${base}proyectos`}
+                    class="font-mono text-[0.82rem] text-cyan transition-opacity hover:opacity-70"
+                    aria-label="Ver todos los proyectos"
+                >
+                    Ver todos los proyectos →
+                </a>
+            </div>
+        )
+    }
     <p
         class="font-mono text-[0.82rem] text-cyan/65 mt-2 mb-0 text-right tracking-[0.05em]"
         aria-hidden="true"

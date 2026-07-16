@@ -105,6 +105,14 @@ body {
   transform: scaleX(1);
 }
 
+.nav-link[aria-current="page"] {
+  color: var(--color-cyan);
+}
+
+.nav-link[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
 /* ── botones ── */
 .btn {
   font-family: var(--font-family-mono);

@@ -5,8 +5,10 @@ import Experience from "../components/Experience.astro";
 import Projects from "../components/Projects.astro";
 import Blog from "../components/Blog.astro";
 import Education from "../components/Education.astro";
+import Certificates from "../components/Certificates.astro";
 import References from "../components/References.astro";
-import Contact from "../components/Contact.astro";
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout
@@ -14,10 +16,20 @@ import Contact from "../components/Contact.astro";
   description="Ingeniero de Sistemas con experiencia en desarrollo web y móvil, entornos corporativos y proyectos freelance. Santa Marta, Colombia."
 >
     <Hero />
-    <Experience />
-    <Projects />
-    <Blog />
-    <Education />
+    <Experience preview />
+    <Projects preview />
+    <Education preview />
+    <Certificates preview />
+    <Blog preview />
     <References />
-    <Contact />
+
+    <section class="section-wrapper text-center" aria-labelledby="home-cta-title">
+        <h2 id="home-cta-title" class="grad-text mb-3 font-mono text-[clamp(1.4rem,2.5vw,1.9rem)] font-bold">
+            ¿Tienes un proyecto en mente?
+        </h2>
+        <p class="mb-6 font-mono text-[0.85rem] text-muted">
+            // Cuéntame qué necesitas y lo resolvemos juntos
+        </p>
+        <a class="btn btn--primary" href={`${base}contacto`}>Ir a contacto</a>
+    </section>
 </Layout>

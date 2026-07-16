@@ -1,0 +1,329 @@
+---
+interface Props {
+    preview?: boolean;
+}
+
+const { preview = false } = Astro.props;
+const base = import.meta.env.BASE_URL;
+
+type Issuer = 'SENA' | 'Alura' | 'Otros';
+
+interface Certificate {
+    title: string;
+    issuer: Issuer;
+    issuerLabel: string;
+    year: string;
+    file?: string;
+    verify?: string;
+    hours?: string;
+}
+
+const certificates: Certificate[] = [
+    {
+        title: 'Claude Code',
+        issuer: 'Otros',
+        issuerLabel: 'Anthropic · Skilljar',
+        year: '2026',
+        file: 'claude-code.pdf',
+        verify: 'https://verify.skilljar.com/c/wm9gtuxnguac',
+    },
+    {
+        title: 'Hackaton',
+        issuer: 'Otros',
+        issuerLabel: 'Participación · cód. SIP0S-HP6Q7',
+        year: '2026',
+        file: 'hackaton.pdf',
+    },
+    {
+        title: 'Construcción de bases de datos con MySQL',
+        issuer: 'SENA',
+        issuerLabel: 'SENA',
+        year: '2024',
+        file: 'sena-mysql.pdf',
+        hours: '48h',
+    },
+    {
+        title: 'Electrónica: magnitudes, leyes y aplicaciones',
+        issuer: 'SENA',
+        issuerLabel: 'SENA',
+        year: '2024',
+        file: 'sena-electronica.pdf',
+        hours: '40h',
+    },
+    {
+        title: 'Git y GitHub: controle y comparta su código',
+        issuer: 'Alura',
+        issuerLabel: 'Alura · Oracle ONE',
+        year: '2023',
+        file: 'alura-git-github.pdf',
+    },
+    {
+        title: 'HTML5 y CSS3 — Parte 1: Mi primera página web',
+        issuer: 'Alura',
+        issuerLabel: 'Alura · Oracle ONE',
+        year: '2023',
+        file: 'alura-html-css-1.pdf',
+    },
+    {
+        title: 'HTML5 y CSS3 — Parte 2: Posicionamiento, listas y navegación',
+        issuer: 'Alura',
+        issuerLabel: 'Alura · Oracle ONE',
+        year: '2023',
+        file: 'alura-html-css-2.pdf',
+    },
+    {
+        title: 'HTML5 y CSS3 — Parte 3: Formularios y tablas',
+        issuer: 'Alura',
+        issuerLabel: 'Alura · Oracle ONE',
+        year: '2023',
+        file: 'alura-html-css-3.pdf',
+    },
+    {
+        title: 'HTML5 y CSS3 — Parte 4: Avanzando en CSS',
+        issuer: 'Alura',
+        issuerLabel: 'Alura · Oracle ONE',
+        year: '2023',
+        file: 'alura-html-css-4.pdf',
+    },
+    {
+        title: 'Lógica de programación: conceptos primordiales',
+        issuer: 'Alura',
+        issuerLabel: 'Alura · Oracle ONE',
+        year: '2022',
+        file: 'alura-logica-conceptos.pdf',
+    },
+    {
+        title: 'Lógica de programación: primeros pasos',
+        issuer: 'Alura',
+        issuerLabel: 'Alura · Oracle ONE',
+        year: '2022',
+        file: 'alura-logica-primeros-pasos.pdf',
+    },
+    {
+        title: 'Lógica de programación: juegos y animaciones',
+        issuer: 'Alura',
+        issuerLabel: 'Alura · Oracle ONE',
+        year: '2022',
+        file: 'alura-logica-juegos.pdf',
+    },
+    {
+        title: 'Fundamentos de estructura de datos',
+        issuer: 'Otros',
+        issuerLabel: 'Capacítate para el Empleo',
+        year: '2022',
+        file: 'capacitate-estructura-datos.pdf',
+    },
+    {
+        title: 'Dinámica de Sistemas — Nivel Básico',
+        issuer: 'Otros',
+        issuerLabel: 'Universidad del Magdalena · ACDS',
+        year: '2022',
+        file: 'dinamica-sistemas.pdf',
+    },
+    {
+        title: 'HTML',
+        issuer: 'Otros',
+        issuerLabel: 'Kodland',
+        year: '2022',
+        file: 'kodland-html.pdf',
+    },
+    {
+        title: 'Inglés Básico — Nivel 1',
+        issuer: 'SENA',
+        issuerLabel: 'SENA',
+        year: '2022',
+        file: 'sena-ingles-1.pdf',
+        hours: '48h',
+    },
+    {
+        title: 'Inglés Básico — Nivel 2',
+        issuer: 'SENA',
+        issuerLabel: 'SENA',
+        year: '2022',
+        file: 'sena-ingles-2.pdf',
+        hours: '48h',
+    },
+    {
+        title: 'PHP',
+        issuer: 'Otros',
+        issuerLabel: 'Certificado PHP',
+        year: '2023',
+        file: 'php.jpg',
+    },
+    {
+        title: 'Git',
+        issuer: 'Otros',
+        issuerLabel: 'Appsco',
+        year: '2021',
+        file: 'appsco-git.pdf',
+    },
+    {
+        title: 'Estrategias de inglés',
+        issuer: 'Otros',
+        issuerLabel: 'Appsco',
+        year: '2022',
+        file: 'appsco-ingles.pdf',
+    },
+];
+
+const items = preview ? certificates.slice(0, 4) : certificates;
+const filters: Array<{ id: string; label: string }> = [
+    { id: 'all', label: 'Todos' },
+    { id: 'SENA', label: 'SENA' },
+    { id: 'Alura', label: 'Alura' },
+    { id: 'Otros', label: 'Otros' },
+];
+---
+
+<section
+    class="section-wrapper"
+    id="certificates"
+    aria-labelledby="certificates-title"
+    data-certificates-root
+>
+    <p class="font-mono text-[0.82rem] text-cyan/65 mb-2 tracking-[0.05em]" aria-hidden="true">
+        &lt;section&gt; certificates
+    </p>
+    <h2
+        class="grad-text font-mono text-[clamp(1.7rem,3vw,2.4rem)] font-bold mb-2"
+        id="certificates-title"
+    >
+        Certificados
+    </h2>
+    <p class="mb-6 font-mono text-[0.85rem] text-muted">
+        // Formación continua · tech y carrera
+    </p>
+
+    {
+        !preview && (
+            <div
+                class="mb-6 flex flex-wrap gap-2"
+                role="group"
+                aria-label="Filtrar certificados por emisor"
+            >
+                {filters.map((f, i) => (
+                    <button
+                        type="button"
+                        class:list={[
+                            'cert-filter rounded border px-3 py-1.5 font-mono text-[0.78rem] transition-colors',
+                            i === 0
+                                ? 'border-cyan/50 bg-cyan/15 text-cyan'
+                                : 'border-purple/25 text-muted hover:border-purple/50 hover:text-text',
+                        ]}
+                        data-filter={f.id}
+                        aria-pressed={i === 0 ? 'true' : 'false'}
+                    >
+                        {f.label}
+                    </button>
+                ))}
+            </div>
+        )
+    }
+
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {
+            items.map((cert) => (
+                <article
+                    class="cert-card flex flex-col gap-2 rounded-xl border border-purple/20 bg-[rgba(27,8,64,0.6)] p-[1.25rem] transition-[border-color,box-shadow] duration-200 hover:border-purple/50 hover:shadow-[0_0_30px_rgba(125,71,255,0.12)]"
+                    data-issuer={cert.issuer}
+                >
+                    <div class="flex items-start justify-between gap-2">
+                        <p class="font-mono text-[0.72rem] tracking-[0.04em] text-cyan/65">
+                            {cert.year}
+                            {cert.hours && (
+                                <span class="text-muted"> · {cert.hours}</span>
+                            )}
+                        </p>
+                        <span class="rounded border border-purple/30 px-2 py-0.5 font-mono text-[0.68rem] text-purple">
+                            {cert.issuer}
+                        </span>
+                    </div>
+                    <h3 class="font-mono text-[0.98rem] leading-snug text-text">
+                        {cert.title}
+                    </h3>
+                    <p class="font-mono text-[0.78rem] text-muted">
+                        {cert.issuerLabel}
+                    </p>
+                    <div class="mt-auto flex flex-wrap gap-3 pt-2">
+                        {cert.file && (
+                            <a
+                                href={`${base}certificados/${cert.file}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="font-mono text-[0.78rem] text-cyan transition-opacity hover:opacity-70"
+                                aria-label={`Ver certificado: ${cert.title}`}
+                            >
+                                Ver PDF →
+                            </a>
+                        )}
+                        {cert.verify && (
+                            <a
+                                href={cert.verify}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="font-mono text-[0.78rem] text-purple transition-opacity hover:opacity-70"
+                                aria-label={`Verificar certificado: ${cert.title}`}
+                            >
+                                Verificar →
+                            </a>
+                        )}
+                    </div>
+                </article>
+            ))
+        }
+    </div>
+
+    {
+        preview && (
+            <div class="mt-6 text-right">
+                <a
+                    href={`${base}formacion`}
+                    class="font-mono text-[0.82rem] text-cyan transition-opacity hover:opacity-70"
+                    aria-label="Ver todos los certificados"
+                >
+                    Ver todos los certificados →
+                </a>
+            </div>
+        )
+    }
+
+    <p
+        class="font-mono text-[0.82rem] text-cyan/65 mt-2 mb-0 text-right tracking-[0.05em]"
+        aria-hidden="true"
+    >
+        &lt;/section&gt;
+    </p>
+</section>
+
+{
+    !preview && (
+        <script>
+            const root = document.querySelector('[data-certificates-root]') as HTMLElement | null;
+            if (root) {
+                const buttons = root.querySelectorAll<HTMLButtonElement>('.cert-filter');
+                const cards = root.querySelectorAll<HTMLElement>('.cert-card');
+
+                buttons.forEach((btn) => {
+                    btn.addEventListener('click', () => {
+                        const filter = btn.dataset.filter ?? 'all';
+
+                        buttons.forEach((b) => {
+                            const active = b === btn;
+                            b.setAttribute('aria-pressed', String(active));
+                            b.classList.toggle('border-cyan/50', active);
+                            b.classList.toggle('bg-cyan/15', active);
+                            b.classList.toggle('text-cyan', active);
+                            b.classList.toggle('border-purple/25', !active);
+                            b.classList.toggle('text-muted', !active);
+                        });
+
+                        cards.forEach((card) => {
+                            const show = filter === 'all' || card.dataset.issuer === filter;
+                            card.classList.toggle('hidden', !show);
+                        });
+                    });
+                });
+            }
+        </script>
+    )
+}
