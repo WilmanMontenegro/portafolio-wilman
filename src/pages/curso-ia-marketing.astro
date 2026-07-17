@@ -1,0 +1,284 @@
+---
+import Layout from '../layouts/Layout.astro'
+
+const base = import.meta.env.BASE_URL
+const waUrl = 'https://wa.me/message/HGNZ3NX3PN7NJ1'
+const pageUrl = 'https://wilman.dev/curso-ia-marketing/'
+const ogImage = `${base}curso-ia-marketing/flyer.jpg`
+
+const learn = [
+  'Cómo funcionan la IA y los modelos de lenguaje (LLM)',
+  'Diferencias entre ChatGPT, Claude y Gemini, y cuándo usar cada una',
+  'Crear prompts profesionales para obtener mejores resultados',
+]
+
+const deliverables = [
+  'Un logo profesional',
+  'Una identidad visual definida',
+  'Tu perfil optimizado',
+  'Una auditoría de tu Instagram',
+  'Una estrategia básica de marca',
+  '30 días de contenido listos para publicar',
+  'Copys de venta',
+  'Prompts para seguir creando con IA',
+]
+
+const modalities = [
+  {
+    mode: 'Online',
+    date: '23 de julio de 2026',
+    price: 80000,
+    priceLabel: '$80.000',
+    isoDate: '2026-07-23',
+  },
+  {
+    mode: 'Presencial',
+    date: '22 de julio de 2026',
+    price: 100000,
+    priceLabel: '$100.000',
+    isoDate: '2026-07-22',
+  },
+]
+
+const title = 'Marketing con IA para Emprendedores | Curso online y presencial'
+const description =
+  'Deja de perder horas buscando información o creando contenido desde cero. Aprende a usar la Inteligencia Artificial para construir una marca profesional y hacer crecer tu negocio. Online $80.000 (23 jul) · Presencial $100.000 (22 jul).'
+
+const courseSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Course',
+  name: 'Marketing con IA para Emprendedores',
+  description,
+  url: pageUrl,
+  image: 'https://wilman.dev/curso-ia-marketing/flyer.jpg',
+  inLanguage: 'es',
+  courseMode: ['online', 'onsite'],
+  educationalLevel: 'Beginner',
+  teaches: [...learn, ...deliverables],
+  keywords: [
+    'marketing con IA',
+    'curso IA emprendedores',
+    'inteligencia artificial marketing',
+    'ChatGPT',
+    'Claude',
+    'Gemini',
+    'prompts',
+    'branding con IA',
+    'Instagram',
+    'Santa Marta',
+    'Colombia',
+  ].join(', '),
+  provider: {
+    '@type': 'Person',
+    name: 'Wilman Montenegro',
+    url: 'https://wilman.dev',
+    sameAs: ['https://www.instagram.com/wilman.dev/'],
+  },
+  instructor: [
+    {
+      '@type': 'Person',
+      name: 'Ana María Murillo',
+      description:
+        'Especialista en Marketing Digital y Branding. Experiencia docente de 3 años con IA y 13 años en marketing, con más de 40 cuentas gestionadas.',
+      sameAs: [
+        waUrl,
+        'https://www.linkedin.com/in/anamurillodigital/',
+        'https://www.instagram.com/anamurillo_digital/',
+      ],
+    },
+    {
+      '@type': 'Person',
+      name: 'Wilman Montenegro',
+      description:
+        'Ingeniero de Sistemas y desarrollador full stack. Experiencia en enseñanza de programación y uso práctico de IA para productos y negocios.',
+      url: 'https://wilman.dev',
+    },
+  ],
+  offers: modalities.map((m) => ({
+    '@type': 'Offer',
+    name: `Modalidad ${m.mode}`,
+    url: waUrl,
+    price: m.price,
+    priceCurrency: 'COP',
+    availability: 'https://schema.org/InStock',
+    validFrom: m.isoDate,
+    category: m.mode,
+  })),
+}
+---
+
+<Layout
+  title={title}
+  description={description}
+  image={ogImage}
+  imageAlt="Marketing con IA para Emprendedores — Ana María Murillo y Wilman Montenegro"
+  imageWidth={1080}
+  imageHeight={1350}
+  hideCoursePromo
+>
+  <script type="application/ld+json" set:html={JSON.stringify(courseSchema)} />
+
+  <article class="section-wrapper max-w-3xl" itemscope itemtype="https://schema.org/Course">
+    <p class="mb-2 font-mono text-[0.82rem] tracking-[0.05em] text-cyan/65" aria-hidden="true">
+      &lt;curso&gt; marketing-con-ia
+    </p>
+
+    <p class="mb-3 inline-block rounded-full bg-gradient-to-r from-purple to-[#ff4fd8] px-3 py-1 font-mono text-[0.7rem] font-semibold tracking-wide text-white">
+      ONLINE Y PRESENCIAL
+    </p>
+
+    <h1 class="mb-4 font-mono text-[clamp(1.7rem,4vw,2.5rem)] font-bold leading-tight" itemprop="name">
+      Marketing con <span class="text-cyan">IA</span>
+      <span class="block text-[0.75em] font-normal text-muted">para Emprendedores</span>
+    </h1>
+
+    <p class="mb-8 font-sans text-[1rem] leading-relaxed text-text/90" itemprop="description">
+      Deja de perder horas buscando información o creando contenido desde cero. Aprende a utilizar la
+      Inteligencia Artificial como tu mejor aliada para construir una marca profesional y hacer crecer
+      tu negocio.
+    </p>
+
+    <meta itemprop="inLanguage" content="es" />
+    <meta itemprop="url" content={pageUrl} />
+
+    <figure class="mb-10 overflow-hidden">
+      <img
+        src={`${base}curso-ia-marketing/flyer.jpg`}
+        alt="Marketing con IA para Emprendedores — Ana María Murillo y Wilman Montenegro"
+        width="1080"
+        height="1350"
+        class="mx-auto w-full max-w-md object-contain"
+        itemprop="image"
+        fetchpriority="high"
+      />
+    </figure>
+
+    <h2 class="mb-4 font-mono text-[clamp(1.2rem,2.5vw,1.5rem)] font-bold text-cyan">
+      ¿Qué aprenderás?
+    </h2>
+    <ul class="mb-6 grid gap-2">
+      {
+        learn.map((item) => (
+          <li
+            class="flex gap-2 rounded-lg border border-cyan/20 px-3 py-2.5 font-sans text-[0.9rem] leading-snug"
+            itemprop="teaches"
+          >
+            <span class="shrink-0" aria-hidden="true">✨</span>
+            <span>{item}</span>
+          </li>
+        ))
+      }
+    </ul>
+
+    <h3 class="mb-3 font-mono text-[0.95rem] font-bold text-text">
+      Te llevas
+    </h3>
+    <ul class="mb-10 grid gap-2">
+      {
+        deliverables.map((item) => (
+          <li
+            class="flex gap-2 rounded-lg border border-purple/25 px-3 py-2.5 font-sans text-[0.9rem] leading-snug"
+            itemprop="teaches"
+          >
+            <span class="shrink-0 text-cyan" aria-hidden="true">✓</span>
+            <span>{item}</span>
+          </li>
+        ))
+      }
+    </ul>
+
+    <h2 class="mb-4 font-mono text-[clamp(1.2rem,2.5vw,1.5rem)] font-bold text-cyan">
+      Modalidades
+    </h2>
+    <div class="mb-10 grid gap-3 sm:grid-cols-2">
+      {
+        modalities.map((m) => (
+          <div
+            class="rounded-xl border border-cyan/20 bg-surface/40 p-4"
+            itemprop="offers"
+            itemscope
+            itemtype="https://schema.org/Offer"
+          >
+            <meta itemprop="url" content={waUrl} />
+            <meta itemprop="priceCurrency" content="COP" />
+            <meta itemprop="price" content={String(m.price)} />
+            <meta itemprop="availability" content="https://schema.org/InStock" />
+            <p class="mb-1 font-mono text-[0.75rem] tracking-wide text-cyan/70">{m.mode}</p>
+            <p class="font-mono text-[1.05rem] font-bold text-text" itemprop="name">
+              {m.priceLabel}
+              <span class="sr-only"> COP</span>
+            </p>
+            <p class="mt-1 font-sans text-[0.85rem] text-muted">{m.date}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <h2 class="mb-4 font-mono text-[clamp(1.2rem,2.5vw,1.5rem)] font-bold text-cyan">
+      Facilitadores
+    </h2>
+    <div class="mb-10 grid gap-4">
+      <div
+        class="rounded-xl border border-purple/20 p-4"
+        itemprop="instructor"
+        itemscope
+        itemtype="https://schema.org/Person"
+      >
+        <h3 class="mb-2 font-mono text-[1rem] font-bold text-text" itemprop="name">
+          Ana María Murillo
+        </h3>
+        <p class="mb-3 font-sans text-[0.9rem] leading-relaxed text-text/85" itemprop="description">
+          Especialista en Marketing Digital y Branding. Experiencia docente de 3 años con IA y 13 años
+          en marketing, con más de 40 cuentas gestionadas.
+        </p>
+        <p class="flex flex-wrap gap-3 font-mono text-[0.78rem]">
+          <a
+            href="https://www.linkedin.com/in/anamurillodigital/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-cyan underline-offset-2 hover:underline"
+            itemprop="sameAs"
+          >
+            LinkedIn
+          </a>
+          <a
+            href="https://www.instagram.com/anamurillo_digital/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-cyan underline-offset-2 hover:underline"
+            itemprop="sameAs"
+          >
+            Instagram
+          </a>
+        </p>
+      </div>
+      <div
+        class="rounded-xl border border-purple/20 p-4"
+        itemprop="instructor"
+        itemscope
+        itemtype="https://schema.org/Person"
+      >
+        <h3 class="mb-2 font-mono text-[1rem] font-bold text-text" itemprop="name">
+          Wilman Montenegro
+        </h3>
+        <p class="font-sans text-[0.9rem] leading-relaxed text-text/85" itemprop="description">
+          Ingeniero de Sistemas y desarrollador full stack. Experiencia en enseñanza de programación y
+          uso práctico de IA para productos y negocios.
+        </p>
+        <link itemprop="url" href="https://wilman.dev" />
+      </div>
+    </div>
+
+    <div class="flex flex-wrap items-center gap-3">
+      <a
+        class="btn btn--primary"
+        href={waUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Más información por WhatsApp
+      </a>
+      <a class="btn btn--ghost" href={`${base}`}>Volver al inicio</a>
+    </div>
+  </article>
+</Layout>

@@ -31,4 +31,4 @@ Faceta de aprendizaje en paralelo a la profesión. **No publicado en el portafol
 ## Notas
 
 - Estado: en curso / documentado
-- Publicar en el sitio: cuando se pida explícitamente
+- Publicado en el sitio: modal `CoursePromoModal` (jul 2026) — flyers en `public/curso-ia-marketing/`

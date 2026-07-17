@@ -1,0 +1,186 @@
+---
+const base = import.meta.env.BASE_URL
+const slides = [
+  {
+    src: `${base}curso-ia-marketing/flyer.jpg`,
+    alt: 'IA Marketing para emprendedores — Ana María Murillo y Wilman Montenegro',
+  },
+  {
+    src: `${base}curso-ia-marketing/aprenderas.jpg`,
+    alt: 'Temario del curso: qué aprenderás con IA Marketing',
+  },
+]
+const waUrl = 'https://wa.me/message/HGNZ3NX3PN7NJ1'
+---
+
+<dialog
+  id="curso-ia-modal"
+  class="m-auto w-[min(92vw,22rem)] overflow-hidden rounded-xl border border-cyan/25 bg-bg p-0 text-text shadow-[0_0_40px_rgba(220,0,211,0.25)] backdrop:bg-black/70"
+  aria-labelledby="curso-ia-title"
+>
+  <div class="relative grid gap-0">
+    <button
+      type="button"
+      id="curso-ia-close"
+      class="absolute right-2 top-1 z-20 bg-transparent p-1 font-mono text-3xl leading-none text-cyan drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)] transition-opacity hover:opacity-70"
+      aria-label="Cerrar anuncio del curso"
+    >
+      ×
+    </button>
+
+    <h2 id="curso-ia-title" class="sr-only">Marketing con IA para Emprendedores</h2>
+
+    <div class="relative bg-black">
+      <div id="curso-ia-track" class="flex transition-transform duration-300 ease-out">
+        {
+          slides.map((slide) => (
+            <img
+              src={slide.src}
+              alt={slide.alt}
+              width="1080"
+              height="1350"
+              class="h-[min(62vh,28rem)] w-full shrink-0 object-contain"
+              loading="lazy"
+              decoding="async"
+              draggable="false"
+            />
+          ))
+        }
+      </div>
+
+      <button
+        type="button"
+        id="curso-ia-prev"
+        class="absolute left-1 top-1/2 z-10 -translate-y-1/2 bg-transparent p-1 font-mono text-4xl leading-none text-cyan drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)] transition-opacity hover:opacity-70"
+        aria-label="Imagen anterior"
+      >
+        ‹
+      </button>
+      <button
+        type="button"
+        id="curso-ia-next"
+        class="absolute right-1 top-1/2 z-10 -translate-y-1/2 bg-transparent p-1 font-mono text-4xl leading-none text-cyan drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)] transition-opacity hover:opacity-70"
+        aria-label="Imagen siguiente"
+      >
+        ›
+      </button>
+    </div>
+
+    <div class="grid gap-3 p-3 pb-4">
+      <div
+        id="curso-ia-dots"
+        class="flex justify-center gap-2"
+        role="tablist"
+        aria-label="Diapositivas del curso"
+      >
+        {
+          slides.map((_, i) => (
+            <button
+              type="button"
+              class="curso-ia-dot h-2.5 w-2.5 rounded-full bg-muted/40 transition-colors aria-[current=true]:bg-cyan"
+              data-index={i}
+              aria-label={`Ir a imagen ${i + 1}`}
+              aria-current={i === 0 ? 'true' : undefined}
+            />
+          ))
+        }
+      </div>
+
+      <a
+        class="btn btn--primary text-center"
+        href={waUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Más información
+      </a>
+      <a
+        href={`${base}curso-ia-marketing`}
+        class="text-center font-mono text-[0.72rem] text-muted underline-offset-2 hover:text-cyan hover:underline"
+      >
+        Ver página del curso
+      </a>
+
+      <button
+        type="button"
+        id="curso-ia-dismiss"
+        class="font-mono text-[0.72rem] text-muted underline-offset-2 hover:text-cyan hover:underline"
+      >
+        No volver a mostrar
+      </button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  const STORAGE_KEY = 'curso-ia-marketing-dismissed'
+  const DELAY_MS = 1800
+  const TOTAL = 2
+
+  const modal = document.getElementById('curso-ia-modal') as HTMLDialogElement | null
+  const track = document.getElementById('curso-ia-track') as HTMLElement | null
+  const closeBtn = document.getElementById('curso-ia-close') as HTMLButtonElement | null
+  const dismissBtn = document.getElementById('curso-ia-dismiss') as HTMLButtonElement | null
+  const prevBtn = document.getElementById('curso-ia-prev') as HTMLButtonElement | null
+  const nextBtn = document.getElementById('curso-ia-next') as HTMLButtonElement | null
+  const dots = document.querySelectorAll('.curso-ia-dot') as NodeListOf<HTMLButtonElement>
+
+  let index = 0
+
+  const goTo = (next: number) => {
+    index = (next + TOTAL) % TOTAL
+    if (track) track.style.transform = `translateX(-${index * 100}%)`
+    dots.forEach((dot, i) => {
+      if (i === index) dot.setAttribute('aria-current', 'true')
+      else dot.removeAttribute('aria-current')
+    })
+  }
+
+  const closeModal = () => {
+    modal?.close()
+  }
+
+  const dismissForever = () => {
+    try {
+      localStorage.setItem(STORAGE_KEY, '1')
+    } catch {
+      /* ponytail: sin storage = solo cierra esta visita */
+    }
+    closeModal()
+  }
+
+  prevBtn?.addEventListener('click', () => goTo(index - 1))
+  nextBtn?.addEventListener('click', () => goTo(index + 1))
+  dots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      const i = Number(dot.dataset.index)
+      if (!Number.isNaN(i)) goTo(i)
+    })
+  })
+
+  closeBtn?.addEventListener('click', closeModal)
+  dismissBtn?.addEventListener('click', dismissForever)
+
+  modal?.addEventListener('click', (event) => {
+    if (event.target === modal) closeModal()
+  })
+
+  modal?.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowLeft') goTo(index - 1)
+    if (event.key === 'ArrowRight') goTo(index + 1)
+  })
+
+  const alreadyDismissed = (() => {
+    try {
+      return localStorage.getItem(STORAGE_KEY) === '1'
+    } catch {
+      return false
+    }
+  })()
+
+  if (modal && !alreadyDismissed) {
+    window.setTimeout(() => {
+      if (!modal.open) modal.showModal()
+    }, DELAY_MS)
+  }
+</script>
