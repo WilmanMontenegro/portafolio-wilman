@@ -83,6 +83,19 @@
         radial-gradient(ellipse at center, rgba(7, 2, 20, 0.35), rgba(7, 2, 20, 0.92));
     }
 
+    /* Fondos de collage (tools.png) se leen como “hormigas”; usar quiet en diapos de texto/dato */
+    .slide-bg.quiet {
+      background-image: none !important;
+      background-color: var(--bg);
+      background:
+        radial-gradient(ellipse at 20% 15%, rgba(12, 255, 255, 0.07), transparent 42%),
+        radial-gradient(ellipse at 85% 80%, rgba(255, 79, 216, 0.06), transparent 40%),
+        var(--bg);
+      transform: none;
+    }
+
+    .slide-bg.quiet::after { display: none; }
+
     .slide-inner {
       position: relative;
       z-index: 1;
@@ -616,7 +629,7 @@
 
     <!-- MARKETING USES -->
     <section class="slide" data-notes="Mapa amplio: texto, visual, datos, atención. Cita HubSpot State of Marketing 2026: 86.4% usan IA; usos intensivos: content 42.5%, media 37.2%, automatización admin 35.6%. Imagen/video los detalla la compañera; aquí solo el ‘para qué’.">
-      <div class="slide-bg" style="background-image:url('assets/tools.png')"></div>
+      <div class="slide-bg quiet" aria-hidden="true"></div>
       <div class="slide-inner">
         <p class="kicker">En marketing digital</p>
         <h2>¿Para qué sirve la IA?</h2>
@@ -641,32 +654,6 @@
         </div>
         <div class="takeaway frag" style="margin-top:1.15rem">La IA acelera. Tú decides marca, verdad y estrategia.</div>
         <p style="margin-top:0.85rem;color:var(--muted);font-size:clamp(0.9rem,1.2vw,1.05rem)">Fuente: HubSpot State of Marketing 2026 — 86%+ de equipos ya usan IA; contenido y media (imagen/video) entre los usos más frecuentes.</p>
-      </div>
-    </section>
-
-    <!-- MARKETING USES PROOF -->
-    <section class="slide" data-notes="Números HubSpot para anclar. Media creation = 2º uso más popular. Short-form video = mejor ROI de formatos. Luego pasas a tokens.">
-      <div class="slide-bg center-veil" style="background-image:url('assets/tools.png')"></div>
-      <div class="slide-inner">
-        <p class="kicker">Dato, no opinión</p>
-        <h2>Lo que marcan los equipos</h2>
-        <div class="grid-3" style="margin-top:1.4rem">
-          <div class="card frag">
-            <div class="label">Adopción</div>
-            <p style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;color:var(--cyan)">86%</p>
-            <p style="margin-top:0.45rem">de equipos de marketing usan IA</p>
-          </div>
-          <div class="card frag">
-            <div class="label">Usos top</div>
-            <p>1. Contenido (texto)<br />2. Media (imagen / video)<br />3. Automatizar lo repetido</p>
-          </div>
-          <div class="card frag">
-            <div class="label">Formato fuerte</div>
-            <p>Video corto lidera ROI en medios</p>
-            <p style="margin-top:0.45rem;color:var(--muted);font-size:clamp(1rem,1.35vw,1.15rem)">La IA ayuda a producir más rápido</p>
-          </div>
-        </div>
-        <p style="margin-top:1.35rem;color:var(--muted);font-size:clamp(0.9rem,1.2vw,1.05rem)">Fuente: <a href="https://blog.hubspot.com/marketing/hubspot-blog-marketing-industry-trends-report" target="_blank" rel="noopener noreferrer" style="color:var(--cyan)">HubSpot State of Marketing 2026</a> (1.500+ marketers)</p>
       </div>
     </section>
 
