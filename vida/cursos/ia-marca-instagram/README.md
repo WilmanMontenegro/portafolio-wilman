@@ -33,7 +33,7 @@ Faceta de aprendizaje en paralelo a la profesión. **No publicado en el portafol
 - Contexto (local): `contexto-notebooklm.md`
 - Diapos públicas: `public/curso-ia-marketing/diapos/index.html`
   - Enlace tras deploy: https://wilman.dev/curso-ia-marketing/diapos/
-  - Orden: LLM → token → contexto → cobro/modelo (barato vs Pro) → riesgos → prompts → proveedores → productividad → decks
+  - Orden: LLM → token → contexto → cobro/modelo (barato vs Pro) → riesgos → prompts → proveedores → productividad → decks (deck compactado ~18 diapos)
   - Controles: `←` `→` / Espacio · `F` fullscreen · `N` notas (sin click para avanzar)
   - Creación imagen/video: fuera de este bloque (compañera)
 

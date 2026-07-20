@@ -565,7 +565,7 @@
     </section>
 
     <!-- AGENDA -->
-    <section class="slide" data-notes="Lee los 6 puntos. Subraya que hay práctica de prompts para llevarse al celular.">
+    <section class="slide" data-notes="Lee los 6 puntos. Deck corto a propósito.">
       <div class="slide-bg center-veil" style="background-image:url('assets/cover.png')"></div>
       <div class="slide-inner">
         <p class="kicker">Hoy vas a aprender</p>
@@ -581,44 +581,22 @@
       </div>
     </section>
 
-    <!-- SECTION LLM -->
-    <section class="slide" data-notes="Pausa. Título de sección.">
-      <div class="slide-bg center-veil" style="background-image:url('assets/llm.png')"></div>
-      <div class="slide-inner center-copy">
-        <span class="section-num">01</span>
-        <h2>¿Qué es un <span class="accent">LLM</span>?</h2>
-        <span class="gloss">LLM = Large Language Model<br />(modelo de lenguaje grande)</span>
-      </div>
-    </section>
-
-    <!-- LLM DEF -->
-    <section class="slide" data-notes="Enfatiza: entiende y escribe texto. No es magia.">
+    <!-- LLM DEF + NOT DB -->
+    <section class="slide" data-notes="Enfatiza: entiende y escribe texto. No es magia. No busca como Google. Completa texto. Puede equivocarse.">
       <div class="slide-inner layout-split">
         <div>
-          <p class="kicker">Concepto base</p>
+          <p class="kicker">01 · LLM</p>
           <h2>Modelo de lenguaje grande</h2>
-          <span class="gloss">Large Language Model · LLM</span>
+          <span class="gloss">Large Language Model · LLM · No es una base de datos</span>
           <div class="card frag" style="margin-top:1.5rem">
             <div class="label">En simple</div>
             <p>Una IA que entiende y genera texto.</p>
           </div>
           <div class="card frag" style="margin-top:1rem">
             <div class="label">Cómo funciona</div>
-            <p>Predice la siguiente palabra.</p>
+            <p>No “busca y encuentra”. Predice la siguiente palabra.</p>
           </div>
-        </div>
-        <div class="visual frag-auto"><img src="assets/llm.png" alt="" /></div>
-      </div>
-    </section>
-
-    <!-- NOT DB — split, not cramped center -->
-    <section class="slide" data-notes="No busca como Google. Completa texto. Puede equivocarse.">
-      <div class="slide-inner layout-split">
-        <div>
-          <p class="kicker">Idea clave</p>
-          <h2>No es una base de datos</h2>
-          <span class="gloss">No “busca y encuentra”. Completa el texto.</span>
-          <div class="formula frag" style="text-align:left">
+          <div class="formula frag" style="text-align:left;margin-top:1rem">
             patrones + tu pregunta<br />→ <span class="accent">siguiente palabra</span>
           </div>
           <div class="takeaway frag">Puede sonar bien… y estar mal.</div>
@@ -657,21 +635,11 @@
       </div>
     </section>
 
-    <!-- SECTION TOKENS -->
-    <section class="slide" data-notes="Aclara: token no es moneda física. Es pedacito de texto.">
-      <div class="slide-bg center-veil" style="background-image:url('assets/tokens.png')"></div>
-      <div class="slide-inner center-copy">
-        <span class="section-num">02</span>
-        <h2>¿Qué es un <span class="accent">token</span>?</h2>
-        <span class="gloss">Token = pedacito de texto<br />Así mide y cobra la IA</span>
-      </div>
-    </section>
-
     <!-- TOKEN DEF -->
     <section class="slide" data-notes="OpenAI da la regla solo para inglés (~750 palabras / 1.000 tokens). En español el mismo mensaje suele gastar más tokens (~20–50%), porque el recorte se entrenó sobre todo en inglés. Conclusión: escribir en español NO es más barato; suele costar más.">
       <div class="slide-inner layout-split">
         <div>
-          <p class="kicker">Unidad básica</p>
+          <p class="kicker">02 · Unidad básica</p>
           <h2>Token = pedacito de texto</h2>
           <span class="gloss">Se cobra por tokens, no por palabras</span>
           <div class="card frag" style="margin-top:1.5rem">
@@ -691,21 +659,11 @@
       </div>
     </section>
 
-    <!-- SECTION CONTEXT -->
-    <section class="slide" data-notes="Puente tras token. Contexto = lo que la IA tiene delante ahora.">
-      <div class="slide-bg center-veil" style="background-image:url('assets/tokens.png')"></div>
-      <div class="slide-inner center-copy">
-        <span class="section-num">03</span>
-        <h2>¿Qué es el <span class="accent">contexto</span>?</h2>
-        <span class="gloss">Lo que la IA “ve” en este momento<br />Se mide en tokens</span>
-      </div>
-    </section>
-
     <!-- CONTEXT DEF -->
     <section class="slide" data-notes="Contexto = prompt + historial + archivos. Hay un tope (ventana). Si te pasas, olvida lo de arriba. Takeaway: elige qué meter.">
       <div class="slide-inner layout-split">
         <div>
-          <p class="kicker">Ventana de contexto</p>
+          <p class="kicker">03 · Ventana de contexto</p>
           <h2>Cuánto puede leer de una vez</h2>
           <span class="gloss">No es memoria eterna. Es lo que cabe ahora.</span>
           <div class="card frag" style="margin-top:1.5rem">
@@ -800,21 +758,11 @@
       </div>
     </section>
 
-    <!-- SECTION RISKS -->
-    <section class="slide" data-notes="Cambia el tono: cuidado práctico.">
-      <div class="slide-bg center-veil" style="background-image:url('assets/risks.png')"></div>
-      <div class="slide-inner center-copy">
-        <span class="section-num">04</span>
-        <h2>Riesgos que debes conocer</h2>
-        <span class="gloss">Errores, sesgos y privacidad</span>
-      </div>
-    </section>
-
     <!-- THREE RISKS -->
-    <section class="slide" data-notes="Una frase por riesgo. Cierre: siempre revisa.">
+    <section class="slide" data-notes="Una frase por riesgo. Cierre: siempre revisa. Martilla: La IA propone. Tú verificas.">
       <div class="slide-inner layout-split">
         <div>
-          <p class="kicker">Cuidado</p>
+          <p class="kicker">04 · Riesgos</p>
           <h2>Tres riesgos reales</h2>
           <div class="card risk-card frag" data-tone="danger" style="margin-top:1.4rem">
             <div class="label">Alucinaciones</div>
@@ -828,25 +776,9 @@
             <div class="label">Privacidad</div>
             <p>No pegues datos sensibles.</p>
           </div>
+          <div class="takeaway frag" style="margin-top:1rem">La IA propone. Tú verificas.</div>
         </div>
         <div class="visual frag-auto"><img src="assets/risks.png" alt="" /></div>
-      </div>
-    </section>
-
-    <section class="slide" data-notes="Martilla esta frase.">
-      <div class="slide-bg center-veil" style="background-image:url('assets/risks.png')"></div>
-      <div class="slide-inner center-copy">
-        <h2>La IA propone.<br /><span class="accent">Tú verificas.</span></h2>
-      </div>
-    </section>
-
-    <!-- SECTION PROMPTS -->
-    <section class="slide" data-notes="Portada. No definir lo obvio. Entra a receta + malo/bueno.">
-      <div class="slide-bg center-veil" style="background-image:url('assets/productivity.png')"></div>
-      <div class="slide-inner center-copy">
-        <span class="section-num">05</span>
-        <h2>Prompts <span class="accent">prácticos</span></h2>
-        <span class="gloss">Ejemplos para tu negocio<br />Malo vs bueno · listos para copiar</span>
       </div>
     </section>
 
@@ -854,7 +786,7 @@
     <section class="slide" data-notes="Receta de 4 piezas. Pídeles que la usen siempre.">
       <div class="slide-bg" style="background-image:url('assets/productivity.png')"></div>
       <div class="slide-inner">
-        <p class="kicker">Receta corta</p>
+        <p class="kicker">05 · Prompts</p>
         <h2>Cuatro piezas de un buen prompt</h2>
         <div class="grid-4" style="margin-top:1.5rem">
           <div class="card frag">
@@ -902,21 +834,11 @@ No inventes precios ni premios.</p>
       </div>
     </section>
 
-    <!-- SECTION GIANTS -->
-    <section class="slide" data-notes="No hay un ganador absoluto. Cada casa tiene una fortaleza distinta.">
-      <div class="slide-bg center-veil" style="background-image:url('assets/giants.png')"></div>
-      <div class="slide-inner center-copy">
-        <span class="section-num">06</span>
-        <h2>Proveedores de IA</h2>
-        <span class="gloss">Cuatro casas grandes · elige por la tarea</span>
-      </div>
-    </section>
-
     <!-- COMPARISON + LOGOS -->
     <section class="slide" data-notes="OpenAI/ChatGPT: multimodal texto+voz+imagen (help.openai.com). Claude/Anthropic: redacción y razonamiento (anthropic.com/claude). Gemini/Google: contexto masivo ~1M tokens, docs/video nativos (ai.google.dev, blog.google). Llama/Meta: pesos abiertos, local/privado (llama.com, ai.meta.com). Diles: no hay uno ‘mejor’; elige por fortaleza.">
       <div class="slide-bg" style="background-image:url('assets/giants.png')"></div>
       <div class="slide-inner">
-        <p class="kicker">Elige por fortaleza</p>
+        <p class="kicker">06 · Elige por fortaleza</p>
         <h2>Los cuatro grandes</h2>
         <div class="grid-4">
           <div class="card frag">
@@ -956,20 +878,10 @@ No inventes precios ni premios.</p>
       </div>
     </section>
 
-    <!-- SECTION PRODUCTIVITY -->
-    <section class="slide" data-notes="Enfoque emprendedor, no técnico. Sin APIs ni OpenRouter.">
-      <div class="slide-bg center-veil" style="background-image:url('assets/productivity.png')"></div>
-      <div class="slide-inner center-copy">
-        <span class="section-num">07</span>
-        <h2>Productividad diaria</h2>
-        <span class="gloss">Herramientas útiles sin ser programador<br />Abres el chat → pegas → usas en tu negocio</span>
-      </div>
-    </section>
-
     <!-- STACK -->
     <section class="slide" data-notes="Emprendedor: ChatGPT/Claude para vender con texto. Gemini si ya vive en Google. ManyChat para DMs IG sin código (manychat.com). Nada de OpenRouter/Botpress aquí.">
       <div class="slide-inner">
-        <p class="kicker">Para tu emprendimiento</p>
+        <p class="kicker">07 · Productividad</p>
         <h2>Qué usar el lunes</h2>
         <div class="grid-3" style="margin-top:1.25rem">
           <div class="card frag">
@@ -1005,20 +917,10 @@ No inventes precios ni premios.</p>
       </div>
     </section>
 
-    <!-- SECTION DECKS -->
-    <section class="slide" data-notes="Presentaciones rápidas con IA. Fuentes: blog.google NotebookLM Slide Decks · anthropic.com Claude Design. Gamma opcional para look pitch.">
-      <div class="slide-bg center-veil" style="background-image:url('assets/tools.png')"></div>
-      <div class="slide-inner center-copy">
-        <span class="section-num">08</span>
-        <h2>Presentaciones <span class="accent">rápidas</span></h2>
-        <span class="gloss">De notas o PDFs a un deck en minutos<br />Útil en marketing: pitch, resultados, capacitación</span>
-      </div>
-    </section>
-
     <!-- DECK TOOLS -->
     <section class="slide" data-notes="NotebookLM: Studio → Slide Deck desde tus fuentes (blog.google). Claude Design: claude.ai/design → describe y exporta PPTX/PDF/HTML/Canva (anthropic.com/news/claude-design). Gamma: gamma.app si quieres look de pitch muy rápido.">
       <div class="slide-inner">
-        <p class="kicker">Herramientas</p>
+        <p class="kicker">08 · Presentaciones</p>
         <h2>Dos caminos (más uno extra)</h2>
         <div class="grid-3" style="margin-top:1.25rem">
           <div class="card frag">
@@ -1051,6 +953,7 @@ No inventes precios ni premios.</p>
             <a class="tool-link" href="https://gamma.app/" target="_blank" rel="noopener noreferrer">Abrir Gamma →</a>
           </div>
         </div>
+        <div class="takeaway frag" style="margin-top:1.2rem">Copia el prompt de la siguiente diapos · cambia [corchetes] · revisa antes de enviar. NotebookLM: primero sube tus PDFs.</div>
       </div>
     </section>
 
@@ -1081,77 +984,25 @@ Estructura:
 
 Poco texto por slide. No inventes cifras: si falta un dato, escribe <span class="slot">[completar]</span>.</p>
         </div>
-        <div class="takeaway frag" style="margin-top:1rem">Copia → cambia los <span class="accent">[corchetes]</span> → pégalo en Claude Design o Gamma.</div>
-      </div>
-    </section>
-
-    <!-- DECK PROMPT NOTEBOOK -->
-    <section class="slide" data-notes="NotebookLM: primero subir PDF/brief/notas; luego este prompt en Studio Slide Deck.">
-      <div class="slide-inner layout-split">
-        <div>
-          <p class="kicker">Si usas NotebookLM</p>
-          <h2>Primero fuentes, luego prompt</h2>
-          <div class="card frag" style="margin-top:1.2rem">
-            <div class="label">Paso 1</div>
-            <p>Sube PDF, brief o notas de <span style="color:var(--cyan)">[tu marca]</span></p>
-          </div>
-          <div class="card frag" style="margin-top:0.85rem">
-            <div class="label">Paso 2 · Studio → Slide Deck</div>
-            <p class="prompt-ex" style="margin-top:0.5rem">Con estas fuentes, crea un Slide Deck de <span class="slot">[8]</span> diapos para presentar <span class="slot">[producto]</span> a <span class="slot">[cliente ideal]</span>.
-Objetivo: <span class="slot">[vender / explicar / capacitar]</span>.
-Tono: <span class="slot">[cercano / profesional]</span>.
-Usa solo lo que está en las fuentes. Si falta un dato, marca <span class="slot">[completar]</span>.</p>
-          </div>
-          <a class="tool-link frag" href="https://notebooklm.google/" target="_blank" rel="noopener noreferrer">Abrir NotebookLM →</a>
-        </div>
-        <div class="visual frag-auto"><img src="assets/tools.png" alt="" /></div>
-      </div>
-    </section>
-
-    <!-- DECK WORKFLOW MARKETING -->
-    <section class="slide" data-notes="Cierre corto. Motiva a probar hoy con su negocio real.">
-      <div class="slide-inner layout-split">
-        <div>
-          <p class="kicker">Práctica</p>
-          <h2>Hazlo con tu negocio hoy</h2>
-          <div class="bullet-list" style="margin-top:1.25rem">
-            <div class="bullet-row frag"><span class="icon">1</span><span class="bullet">Elige Claude Design, Gamma o NotebookLM</span></div>
-            <div class="bullet-row frag"><span class="icon">2</span><span class="bullet">Pega el prompt y cambia los [corchetes]</span></div>
-            <div class="bullet-row frag"><span class="icon">3</span><span class="bullet">Revisa precios, marca y CTA antes de enviar</span></div>
-          </div>
-          <div class="takeaway frag">En 15 minutos puedes tener un borrador de pitch de <span style="color:var(--cyan)">[tu producto]</span>.</div>
-        </div>
-        <div class="visual frag-auto"><img src="assets/productivity.png" alt="" /></div>
+        <div class="takeaway frag" style="margin-top:1rem">Copia → cambia los <span class="accent">[corchetes]</span> → pégalo en Claude Design o Gamma. NotebookLM: sube fuentes primero, luego pide el Slide Deck.</div>
       </div>
     </section>
 
     <!-- TAKEAWAYS -->
-    <section class="slide" data-notes="Lee lento. Deja silencio al final.">
+    <section class="slide" data-notes="Lee lento. Deja silencio. Preguntas. Handoff: creación imagen/video lo cubre la compañera.">
       <div class="slide-bg" style="background-image:url('assets/cover.png')"></div>
       <div class="slide-inner">
         <p class="kicker">Para llevar</p>
         <h2>Recuerda esto</h2>
         <div class="bullet-list">
-          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">La IA predice palabras. No “sabe” todo.</span></div>
-          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">Token mide y cobra. Contexto = lo que cabe ahora.</span></div>
+          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">La IA predice palabras. No “sabe” todo. Tú verificas.</span></div>
+          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">Token mide y cobra. Contexto = lo que cabe ahora. Respuesta cuesta más.</span></div>
           <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">Prompt claro: rol + tarea + contexto + formato.</span></div>
-          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">Decks rápidos: NotebookLM, Claude Design (o Gamma).</span></div>
-          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">La respuesta cuesta más que la pregunta.</span></div>
-          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">Siempre revisa antes de publicar.</span></div>
           <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">Modelo barato primero. Caro con intención.</span></div>
+          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">Decks: NotebookLM, Claude Design o Gamma. Revisa antes de publicar.</span></div>
         </div>
-      </div>
-    </section>
-
-    <!-- CLOSE -->
-    <section class="slide" data-notes="Preguntas. Luego handoff: creación imagen/video lo cubre la compañera.">
-      <div class="slide-bg center-veil" style="background-image:url('assets/cover.png')"></div>
-      <div class="slide-inner center-copy">
-        <p class="kicker">Siguiente</p>
-        <h2>De teoría a <span class="accent">práctica</span></h2>
-        <p class="lead frag-auto">¿Preguntas?</p>
-        <p class="cover-meta frag-auto">Después: creación visual con IA</p>
-        <p class="cover-meta frag-auto" style="margin-top:0.75rem">Wilman Montenegro</p>
+        <p class="cover-meta frag" style="margin-top:1.5rem">Después: creación visual con IA · ¿Preguntas?</p>
+        <p class="cover-meta frag">Wilman Montenegro</p>
       </div>
     </section>
 
