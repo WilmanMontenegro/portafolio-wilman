@@ -1,7 +1,7 @@
 # IA Estratégica para Emprendedores de Marketing Digital (2026)
 
 > Exportado desde NotebookLM — bloque Wilman.
-> Base para diapositivas. Orden pedagógico: LLM → token → contexto → cobro → riesgos → proveedores → productividad → ROI.
+> Base para diapositivas. Orden pedagógico: LLM → token → contexto → cobro/modelo → riesgos → prompts → proveedores → productividad → decks.
 > Creación imagen/video: bloque de la compañera (fuera de diapos Wilman).
 
 ## 1. ¿Qué es un LLM?
@@ -79,7 +79,9 @@ Fuentes: [NotebookLM Slide Decks — Google Blog](https://blog.google/innovation
 - **Fuera de este bloque (más tech):** OpenRouter (útil a desarrolladores) y Botpress (más setup) — no priorizar para audiencia emprendedora principiante.
 - Regla: empieza con un chat; automatiza redes cuando los mensajes te ahoguen.
 
-## 10. Estrategia de Retorno de Inversión (ROI)
+## 10. Ahorro = modelo correcto (antes “ROI” aparte)
 
-- **Enrutamiento inteligente:** Usar modelos baratos (Nano/Haiku) para clasificar y resumir; modelos caros (Opus/Pro) solo para estrategia crítica.
-- **Ahorro de tiempo:** El uso de IA en tareas profesionales reporta ahorros de entre el **26% y el 75%** del tiempo.
+- No hay sección ROI separada en diapos: va junto a Mini/Pro.
+- **Regla:** barato/rápido para lo diario; fuerte/caro solo si hace falta.
+- **Retorno simple:** menos gasto en tokens + más tiempo libre.
+- (Histórico NotebookLM: ahorros de tiempo reportados ~26–75% en tareas — no martillar el techo en clase.)
