@@ -164,6 +164,81 @@
       display: block;
     }
 
+    /* Riesgos: 50/50 — cards izq, arte sangrado der (sin marco, como LLM) */
+    .risks-slide {
+      place-items: stretch;
+      padding-right: 0;
+    }
+
+    .risks-bleed {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 56%;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .risks-bleed img {
+      width: 125%;
+      height: 112%;
+      max-width: none;
+      object-fit: cover;
+      object-position: 42% 48%;
+      display: block;
+      position: absolute;
+      right: -6%;
+      bottom: -6%;
+      -webkit-mask-image: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(0, 0, 0, 0.08) 12%,
+        rgba(0, 0, 0, 0.35) 24%,
+        rgba(0, 0, 0, 0.75) 40%,
+        #000 55%,
+        #000 100%
+      );
+      mask-image: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(0, 0, 0, 0.08) 12%,
+        rgba(0, 0, 0, 0.35) 24%,
+        rgba(0, 0, 0, 0.75) 40%,
+        #000 55%,
+        #000 100%
+      );
+    }
+
+    .risks-bleed::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, var(--bg) 0%, rgba(7, 2, 20, 0.82) 10%, rgba(7, 2, 20, 0.4) 28%, transparent 52%),
+        linear-gradient(180deg, var(--bg) 0%, transparent 20%),
+        linear-gradient(0deg, var(--bg) 0%, transparent 16%);
+      pointer-events: none;
+    }
+
+    .risks-slide .risks-copy {
+      position: relative;
+      z-index: 1;
+      width: min(760px, 44%);
+      margin: auto 0 auto 4.5rem;
+      align-self: center;
+      justify-self: start;
+    }
+
+    .risks-slide .risks-copy .risks-cards {
+      margin-top: 1.25rem;
+    }
+
+    .risks-slide .risks-copy .takeaway {
+      margin-top: 1.15rem;
+    }
+
     /* LLM: 50/50 — copy izq, imagen sangrada der (sin marco) */
     .llm-slide {
       place-items: stretch;
@@ -1099,7 +1174,7 @@ No inventes precios ni premios.</p>
           <div class="card frag">
             <div class="label">Regla práctica</div>
             <p><strong>1 token</strong> ≈ 3–4 caracteres</p>
-            <p style="margin-top:0.45rem"><strong>100 palabras</strong> ≈ 130–150 tokens</p>
+            <p style="margin-top:0.45rem"><strong>130–150 tokens</strong> ≈ 100 palabras</p>
             <p style="margin-top:0.5rem;color:var(--muted);font-size:1.15rem">Caption corto ≈ 40–80 · post largo ≈ 200–400</p>
           </div>
           <div class="card frag">
@@ -1212,29 +1287,29 @@ No inventes precios ni premios.</p>
     </section>
 
     <!-- THREE RISKS -->
-    <section class="slide" data-notes="Hechos documentados, no inventos: (1) Alucinaciones = modelos inventan con confianza (literatura OpenAI/Anthropic). (2) Sesgos = datos de entrenamiento. (3) Privacidad: OpenAI/Anthropic/Google piden no pegar datos sensibles. Prompt injection = OWASP LLM01 (entrada no confiable puede manipular al modelo). En chat manual el riesgo típico = que TÚ pegues secretos o sigas instrucciones raras; el prompt solo no ‘hackea’ el PC.">
-      <div class="slide-inner">
-        <div class="layout-split" style="min-height:auto;align-items:start">
-          <div>
-            <p class="kicker">05 · Riesgos</p>
-            <h2>Tres riesgos reales</h2>
-            <div class="card risk-card frag" data-tone="danger" style="margin-top:1.4rem">
-              <div class="label">Alucinaciones</div>
-              <p><strong class="accent">Inventa</strong> cosas que suenan verdad.</p>
-            </div>
-            <div class="card risk-card frag" data-tone="warn" style="margin-top:1rem">
-              <div class="label">Sesgos</div>
-              <p>Puede <strong>repetir prejuicios</strong>.</p>
-            </div>
-            <div class="card risk-card frag" data-tone="ok" style="margin-top:1rem">
-              <div class="label">Privacidad</div>
-              <p>No pegues <strong class="accent">datos sensibles</strong> (contraseñas, clientes, docs privados).</p>
-              <p style="margin-top:0.45rem;color:var(--muted);font-size:1.15rem">Prompt de internet: <strong>léelo</strong>. Si pide datos o “ignora reglas”, <strong>no lo uses</strong>.</p>
-            </div>
+    <section class="slide risks-slide" data-notes="Hechos documentados, no inventos: (1) Alucinaciones = modelos inventan con confianza (literatura OpenAI/Anthropic). (2) Sesgos = datos de entrenamiento. (3) Privacidad: OpenAI/Anthropic/Google piden no pegar datos sensibles. Prompt injection = OWASP LLM01 (entrada no confiable puede manipular al modelo). En chat manual el riesgo típico = que TÚ pegues secretos o sigas instrucciones raras; el prompt solo no ‘hackea’ el PC.">
+      <div class="risks-bleed" aria-hidden="true">
+        <img src="assets/risks.png" alt="" />
+      </div>
+      <div class="slide-inner risks-copy">
+        <p class="kicker">05 · Riesgos</p>
+        <h2>Tres riesgos reales</h2>
+        <div class="risks-cards">
+          <div class="card risk-card frag" data-tone="danger">
+            <div class="label">Alucinaciones</div>
+            <p><strong class="accent">Inventa</strong> cosas que suenan verdad.</p>
           </div>
-          <div class="visual frag-auto"><img src="assets/risks.png" alt="" /></div>
+          <div class="card risk-card frag" data-tone="warn" style="margin-top:1rem">
+            <div class="label">Sesgos</div>
+            <p>Puede <strong>repetir prejuicios</strong>.</p>
+          </div>
+          <div class="card risk-card frag" data-tone="ok" style="margin-top:1rem">
+            <div class="label">Privacidad</div>
+            <p>No pegues <strong class="accent">datos sensibles</strong> (contraseñas, clientes, docs privados).</p>
+            <p style="margin-top:0.45rem;color:var(--muted);font-size:1.15rem">Prompt de internet: <strong>léelo</strong>. Si pide datos o “ignora reglas”, <strong>no lo uses</strong>.</p>
+          </div>
         </div>
-        <div class="takeaway tip frag" style="margin-top:1.15rem">La IA <strong>propone</strong>. Tú <strong class="accent">verificas</strong>. Mejor prompts con <strong class="accent">tu</strong> marca.</div>
+        <div class="takeaway tip frag">La IA <strong>propone</strong>. Tú <strong class="accent">verificas</strong>. Mejor prompts con <strong class="accent">tu</strong> marca.</div>
       </div>
     </section>
 
