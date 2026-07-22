@@ -4,7 +4,7 @@
   <base href="./" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IA Estratégica para Emprendedores · Wilman Montenegro</title>
+  <title>Sección técnica · Marketing con IA · Wilman Montenegro</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
@@ -250,6 +250,10 @@
       display: flex;
       flex-direction: column;
       height: 100%;
+    }
+
+    .card > *:has(+ .tool-link) {
+      margin-bottom: 1.35rem;
     }
 
     .card > .tool-link {
@@ -546,10 +550,10 @@
     .share-qr {
       display: flex;
       align-items: center;
-      gap: 1.1rem;
+      gap: 1.35rem;
       margin-top: 1.75rem;
-      padding: 0.85rem 1.1rem;
-      max-width: 34rem;
+      padding: 1rem 1.25rem;
+      max-width: 36rem;
       border-radius: var(--radius);
       border: 1px solid rgba(12, 255, 255, 0.28);
       background: rgba(22, 8, 48, 0.72);
@@ -557,39 +561,24 @@
     }
 
     .share-qr img {
-      width: 7.5rem;
-      height: 7.5rem;
+      width: 12rem;
+      height: 12rem;
       flex-shrink: 0;
       border-radius: 0.65rem;
       background: #fff;
-      padding: 0.35rem;
+      padding: 0.5rem;
     }
 
     .share-qr .share-label {
       color: var(--cyan);
       font-family: "JetBrains Mono", monospace;
-      font-size: 0.95rem;
+      font-size: 1.2rem;
       font-weight: 700;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      margin-bottom: 0.35rem;
-    }
-
-    .share-qr .share-link {
-      color: var(--text);
-      font-size: 1.05rem;
-      font-weight: 500;
       line-height: 1.35;
-      word-break: break-all;
-      text-decoration: underline;
-      text-underline-offset: 0.2em;
-    }
-
-    .share-qr .share-link:hover { color: var(--cyan); }
-
-    .center-copy .share-qr {
-      margin-inline: auto;
-      text-align: left;
+      margin: 0;
+      max-width: 12ch;
     }
 
     .notes-panel {
@@ -776,19 +765,16 @@
   <main class="deck" id="deck">
 
     <!-- COVER -->
-    <section class="slide is-active" data-notes="Presenta el bloque. Calma. Una frase: usar IA con criterio. Muestra el QR para que abran en el celular.">
+    <section class="slide is-active" data-notes="Presenta. Pide que escaneen el QR y te sigan en el celular. Una frase: usar IA con criterio.">
       <div class="slide-bg" style="background-image:url('assets/cover.png')"></div>
       <div class="slide-inner">
-        <p class="kicker frag-auto">Bloque técnico · Curso 2026</p>
-        <h1 class="frag-auto">IA <span class="accent">Estratégica</span><br />para Emprendedores</h1>
+        <p class="kicker frag-auto">Sección técnica · Marketing con IA</p>
+        <h1 class="frag-auto">IA <span class="accent">Estratégica</span></h1>
         <p class="lead frag-auto">Usar inteligencia artificial con <strong class="accent">criterio</strong>.</p>
-        <p class="cover-meta frag-auto">Wilman Montenegro · IA Estratégica para Emprendedores</p>
+        <p class="cover-meta frag-auto">Wilman Montenegro · Sección técnica</p>
         <div class="share-qr frag-auto">
-          <img src="assets/qr-diapos.png" alt="Código QR para abrir las diapositivas" width="120" height="120" />
-          <div>
-            <p class="share-label">Abre en tu celular</p>
-            <a class="share-link" href="https://wilman.dev/curso-ia-marketing/diapos/" target="_blank" rel="noopener noreferrer">wilman.dev/curso-ia-marketing/diapos/</a>
-          </div>
+          <img src="assets/qr-diapos.png" alt="Código QR para abrir las diapositivas en tu dispositivo" width="192" height="192" />
+          <p class="share-label">Escanea y sígueme en tu dispositivo</p>
         </div>
       </div>
     </section>
@@ -1213,7 +1199,7 @@ Poco texto por slide. No inventes cifras.</p>
     </section>
 
     <!-- VIDEO TOOLS -->
-    <section class="slide" data-notes="No inventar ‘gratis’ en todas. Solo Wan lleva etiqueta Gratis. Kling/Seedance/Veo: cupos o pago según cuenta. Veo 3.1 = el modelo; para emprendedores úsalo en Google Flow (labs.google/fx/tools/flow), no AI Studio (eso es más de API/devs).">
+    <section class="slide" data-notes="Muestra las 4. Alumnos: Copiar prompt → Wan (gratis). Tú demuestras en Google Flow / Veo 3.1 (pago). Solo Wan lleva etiqueta Gratis.">
       <div class="slide-inner">
         <p class="kicker">08 · Video con IA</p>
         <h2>Cuatro herramientas para crear video</h2>
@@ -1257,6 +1243,12 @@ Poco texto por slide. No inventes cifras.</p>
             <a class="tool-link" href="https://labs.google/fx/tools/flow" target="_blank" rel="noopener noreferrer">Abrir Google Flow →</a>
           </div>
         </div>
+        <div class="takeaway tip frag" style="margin-top:1rem">
+          <span class="tip-mark">Práctica</span>
+          <span style="flex:1">Tú en <strong class="accent">Wan</strong> (gratis) · yo demuestro en <strong>Veo 3.1</strong></span>
+          <button type="button" class="copy-prompt-btn" data-copy="videoPrompt" aria-label="Copiar prompt de video">Copiar prompt</button>
+        </div>
+        <p id="videoPrompt" hidden>Un video realista de 8 segundos: un vaso de café frío con hielo y gotas de condensación sobre una mesa de madera en una cafetería de Barranquilla. Luz natural de tarde. La cámara se acerca despacio a la bebida. Se escucha ambiente suave de cafetería. Sin texto ni logos en pantalla. Estilo anuncio limpio de producto.</p>
       </div>
     </section>
 
@@ -1301,7 +1293,7 @@ Poco texto por slide. No inventes cifras.</p>
     </section>
 
     <!-- REFERENCIAS -->
-    <section class="slide" data-notes="Apéndice. Solo si preguntan. Fuentes usadas en el bloque: HubSpot, OWASP, comparativas marketing 2026 ChatGPT/Claude/Gemini.">
+    <section class="slide" data-notes="Apéndice. Solo si preguntan. Fuentes usadas en la sección: HubSpot, OWASP, comparativas marketing 2026 ChatGPT/Claude/Gemini.">
       <div class="slide-inner">
         <p class="kicker">Apéndice</p>
         <h2>Referencias</h2>
@@ -1316,20 +1308,13 @@ Poco texto por slide. No inventes cifras.</p>
     </section>
 
     <!-- CIERRE -->
-    <section class="slide" data-notes="Frase final. QR de nuevo por si no lo escanearon. Preguntas.">
+    <section class="slide" data-notes="Frase final grande. Pausa. Preguntas.">
       <div class="slide-bg" style="background-image:url('assets/cover.png')"></div>
-      <div class="slide-inner center-copy" style="min-height:820px;justify-content:center;gap:0.85rem">
+      <div class="slide-inner center-copy" style="min-height:820px;justify-content:center;gap:1.25rem">
         <p class="kicker">Cierre</p>
-        <h1 style="font-size:3.1rem;max-width:18ch">La IA <strong class="accent">potencia</strong> tu trabajo.<br /><strong>No te reemplaza</strong>.</h1>
-        <p class="lead" style="margin-top:0.75rem">¿Preguntas?</p>
-        <p class="cover-meta" style="margin-top:0.75rem">Wilman Montenegro · IA Estratégica para Emprendedores</p>
-        <div class="share-qr">
-          <img src="assets/qr-diapos.png" alt="Código QR para abrir las diapositivas" width="120" height="120" />
-          <div>
-            <p class="share-label">Llévatelas</p>
-            <a class="share-link" href="https://wilman.dev/curso-ia-marketing/diapos/" target="_blank" rel="noopener noreferrer">wilman.dev/curso-ia-marketing/diapos/</a>
-          </div>
-        </div>
+        <h1 style="font-size:4.2rem;max-width:16ch;line-height:1.12">La IA <strong class="accent">potencia</strong> tu trabajo.<br /><strong>No te reemplaza</strong>.</h1>
+        <p class="lead" style="margin-top:0.5rem;font-size:1.55rem">¿Preguntas?</p>
+        <p class="cover-meta" style="margin-top:0.35rem">Wilman Montenegro · Sección técnica</p>
       </div>
     </section>
 
