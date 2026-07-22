@@ -39,7 +39,10 @@
 
     .viewport {
       position: fixed;
-      inset: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 4.5rem; /* franja del HUD — la diapo no se tapa */
       z-index: 1;
       display: flex;
       align-items: center;
@@ -240,6 +243,18 @@
       border-radius: var(--radius);
       background: var(--surface);
       backdrop-filter: blur(10px);
+    }
+
+    /* Cards con botón Abrir: misma altura + botón abajo y centrado */
+    .card:has(> .tool-link) {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .card > .tool-link {
+      margin-top: auto;
+      align-self: center;
     }
 
     .card .label {
@@ -487,16 +502,21 @@
 
     .hud {
       position: fixed;
-      right: 1rem;
-      bottom: 1rem;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 4.5rem;
       z-index: 50;
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 0.75rem;
       color: var(--muted);
       font-family: "JetBrains Mono", monospace;
       font-size: 0.95rem;
       touch-action: manipulation;
+      background: #02010a;
+      border-top: 1px solid rgba(12, 255, 255, 0.12);
     }
 
     .hud button,
@@ -939,7 +959,7 @@ No inventes precios ni premios.</p>
           </div>
           <div class="card frag">
             <div class="label">Solo lo necesario</div>
-            <p><strong>Brief, tono, precio, público</strong>. No pegues todo el Drive “por si acaso”.</p>
+            <p><strong>Resumen, tono, precio, público</strong>. No pegues todo el Drive “por si acaso”.</p>
           </div>
           <div class="card frag">
             <div class="label">Si el chat se alarga</div>
@@ -947,7 +967,7 @@ No inventes precios ni premios.</p>
           </div>
           <div class="card frag">
             <div class="label">Archivos con criterio</div>
-            <p>Sube el PDF o brief <strong>correcto</strong>. Menos archivos = menos ruido.</p>
+            <p>Sube el PDF o documento <strong>correcto</strong>. Menos archivos = menos ruido.</p>
           </div>
         </div>
         <div class="takeaway frag" style="margin-top:1.15rem">Buen contexto = <strong class="accent">lo justo</strong> para la tarea. No es “más = mejor”.</div>
@@ -1087,7 +1107,7 @@ No inventes precios ni premios.</p>
     </section>
 
     <!-- DECK TOOLS -->
-    <section class="slide" data-notes="NotebookLM: Studio → Slide Deck desde tus fuentes (blog.google). Claude Design: claude.ai/design → describe y exporta PPTX/PDF/HTML/Canva (anthropic.com/news/claude-design). Gamma: gamma.app si quieres look de pitch muy rápido.">
+    <section class="slide" data-notes="NotebookLM: subes tus PDFs → Studio → genera presentación (Slide Deck en la UI de Google). Claude Design: describe y exporta a PowerPoint/PDF/Canva. Gamma: presentación bonita muy rápido.">
       <div class="slide-inner">
         <p class="kicker">07 · Presentaciones</p>
         <h2>Herramientas para hacer presentaciones</h2>
@@ -1098,16 +1118,16 @@ No inventes precios ni premios.</p>
               <span class="brand">NotebookLM</span>
             </div>
             <p style="color:var(--muted);font-size:1.1rem;margin-bottom:0.45rem">Google</p>
-            <p>Sube PDFs, briefs o notas → <strong class="accent">Slide Deck</strong> en Studio</p>
-            <p style="margin-top:0.55rem;color:var(--muted);font-size:1.2rem">Fuerte: se basa en <strong>tus</strong> fuentes (menos inventos)</p>
+            <p>Sube tus PDFs o apuntes → te arma una <strong class="accent">presentación</strong></p>
+            <p style="margin-top:0.55rem;color:var(--muted);font-size:1.2rem">Fuerte: se basa en <strong>tus</strong> archivos (menos inventos)</p>
             <a class="tool-link" href="https://notebooklm.google/" target="_blank" rel="noopener noreferrer">Abrir NotebookLM →</a>
           </div>
           <div class="card frag">
             <div class="brand-row">
               <span class="brand">Gamma</span>
             </div>
-            <p style="color:var(--muted);font-size:1.1rem;margin-bottom:0.45rem">Pitch visual</p>
-            <p><strong>Prompt</strong> → presentación bonita lista para pitch</p>
+            <p style="color:var(--muted);font-size:1.1rem;margin-bottom:0.45rem">Rápida y visual</p>
+            <p>Escribes lo que quieres → <strong class="accent">presentación</strong> lista</p>
             <p style="margin-top:0.55rem;color:var(--muted);font-size:1.2rem">Fuerte en diseño. Tú sigues <strong>verificando</strong> datos.</p>
             <a class="tool-link" href="https://gamma.app/" target="_blank" rel="noopener noreferrer">Abrir Gamma →</a>
           </div>
@@ -1117,12 +1137,12 @@ No inventes precios ni premios.</p>
               <span class="brand">Claude Design</span>
             </div>
             <p style="color:var(--muted);font-size:1.1rem;margin-bottom:0.45rem">Anthropic · plan de pago</p>
-            <p>Describes en el chat → diapos en el canvas</p>
-            <p style="margin-top:0.55rem;color:var(--muted);font-size:1.2rem">Exporta <strong>PPTX, PDF, HTML</strong> o Canva</p>
+            <p>Lo describes en el chat → te arma las <strong class="accent">diapos</strong></p>
+            <p style="margin-top:0.55rem;color:var(--muted);font-size:1.2rem">Exporta a <strong>PowerPoint, PDF</strong> o Canva</p>
             <a class="tool-link" href="https://claude.ai/design" target="_blank" rel="noopener noreferrer">Abrir Claude Design →</a>
           </div>
         </div>
-        <div class="takeaway frag" style="margin-top:1.2rem"><strong>Copia</strong> el prompt · cambia <strong class="accent">[corchetes]</strong> · <strong>revisa</strong> antes de enviar. NotebookLM: primero sube tus PDFs.</div>
+        <div class="takeaway frag" style="margin-top:1.2rem"><strong class="accent">Prueba una</strong>. NotebookLM si ya tienes PDFs · Gamma si quieres algo bonito ya · Claude Design si pagas Claude.</div>
       </div>
     </section>
 
@@ -1323,7 +1343,13 @@ Poco texto por slide. No inventes cifras.</p>
     <span id="counter">1 / 1</span>
     <button type="button" id="nextBtn" aria-label="Siguiente">→</button>
     <button type="button" id="fsBtn" aria-label="Pantalla completa" title="Pantalla completa">⛶</button>
-    <a class="hud-btn" id="dlBtn" href="deck.zip" download="diapos-ia-estrategica.zip" aria-label="Descargar diapositivas" title="Descargar">⬇</a>
+    <a class="hud-btn" id="dlBtn" href="deck.zip" download="diapos-ia-estrategica.zip" aria-label="Descargar diapositivas" title="Descargar">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3v12" />
+        <path d="m7 11 5 5 5-5" />
+        <path d="M5 21h14" />
+      </svg>
+    </a>
   </div>
 
   <script>
@@ -1402,10 +1428,17 @@ Poco texto por slide. No inventes cifras.</p>
       show(i, frags(slides[i]).length)
     }
 
+    function viewSize() {
+      const w = viewport?.clientWidth || window.innerWidth
+      const h = viewport?.clientHeight || window.innerHeight
+      return { w, h }
+    }
+
     function clampPan() {
+      const { w, h } = viewSize()
       const scale = fitScale * userZoom
-      const maxX = Math.max(0, (STAGE_W * scale - window.innerWidth) / 2)
-      const maxY = Math.max(0, (STAGE_H * scale - window.innerHeight) / 2)
+      const maxX = Math.max(0, (STAGE_W * scale - w) / 2)
+      const maxY = Math.max(0, (STAGE_H * scale - h) / 2)
       panX = Math.min(maxX, Math.max(-maxX, panX))
       panY = Math.min(maxY, Math.max(-maxY, panY))
     }
@@ -1417,7 +1450,8 @@ Poco texto por slide. No inventes cifras.</p>
     }
 
     function fit() {
-      fitScale = Math.min(window.innerWidth / STAGE_W, window.innerHeight / STAGE_H)
+      const { w, h } = viewSize()
+      fitScale = Math.min(w / STAGE_W, h / STAGE_H)
       clampPan()
       applyTransform()
     }
