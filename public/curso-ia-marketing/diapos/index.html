@@ -34,6 +34,9 @@
       touch-action: none;
     }
 
+    /* ponytail: rem del stage vía root; 18px ≈ +12% legible en video beam */
+    html { font-size: 18px; }
+
     .viewport {
       position: fixed;
       inset: 0;
@@ -43,6 +46,7 @@
       justify-content: center;
       overflow: hidden;
       touch-action: none;
+      background: #02010a;
     }
 
     .stage {
@@ -53,6 +57,11 @@
       transform-origin: center center;
       will-change: transform;
       background: var(--bg);
+      overflow: hidden;
+      box-shadow:
+        0 0 0 3px rgba(12, 255, 255, 0.45),
+        0 0 0 6px rgba(7, 2, 20, 0.95),
+        0 28px 90px rgba(0, 0, 0, 0.7);
     }
 
     .deck {
@@ -207,6 +216,14 @@
 
     .accent { color: var(--cyan); }
     .accent-p { color: var(--purple); }
+
+    /* Cue de presentador: negrita = de qué hablar; .accent = lo más clave */
+    .slide strong {
+      font-weight: 800;
+      color: #fff;
+    }
+    .slide strong.accent { color: var(--cyan); }
+    .slide strong.accent-p { color: var(--purple); }
 
     .grid-2, .grid-3, .grid-4 {
       display: grid;
@@ -482,7 +499,8 @@
       touch-action: manipulation;
     }
 
-    .hud button {
+    .hud button,
+    .hud a.hud-btn {
       appearance: none;
       border: 1px solid rgba(12, 255, 255, 0.3);
       background: rgba(22, 8, 48, 0.85);
@@ -495,9 +513,15 @@
       font: inherit;
       font-size: 1.25rem;
       touch-action: manipulation;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
     }
 
-    .hud button:hover { border-color: var(--cyan); color: var(--cyan); }
+    .hud button:hover,
+    .hud a.hud-btn:hover { border-color: var(--cyan); color: var(--cyan); }
 
     .share-qr {
       display: flex;
@@ -737,7 +761,7 @@
       <div class="slide-inner">
         <p class="kicker frag-auto">Bloque técnico · Curso 2026</p>
         <h1 class="frag-auto">IA <span class="accent">Estratégica</span><br />para Emprendedores</h1>
-        <p class="lead frag-auto">Usar inteligencia artificial con criterio.</p>
+        <p class="lead frag-auto">Usar inteligencia artificial con <strong class="accent">criterio</strong>.</p>
         <p class="cover-meta frag-auto">Wilman Montenegro · IA Estratégica para Emprendedores</p>
         <div class="share-qr frag-auto">
           <img src="assets/qr-diapos.png" alt="Código QR para abrir las diapositivas" width="120" height="120" />
@@ -756,12 +780,12 @@
         <p class="kicker">Hoy vas a aprender</p>
         <h2>Qué aprenderás en esta sección</h2>
         <div class="bullet-list">
-          <div class="bullet-row frag"><span class="icon">01</span><span class="bullet">Qué es un LLM <span class="gloss" style="display:inline;margin:0;font-size:0.9em">(modelo de lenguaje)</span></span></div>
-          <div class="bullet-row frag"><span class="icon">02</span><span class="bullet">Qué es un prompt (y uno bueno vs malo)</span></div>
-          <div class="bullet-row frag"><span class="icon">03</span><span class="bullet">Qué es un token y cómo ahorrar</span></div>
-          <div class="bullet-row frag"><span class="icon">04</span><span class="bullet">Qué es el contexto</span></div>
-          <div class="bullet-row frag"><span class="icon">05</span><span class="bullet">Riesgos: errores, sesgos y privacidad</span></div>
-          <div class="bullet-row frag"><span class="icon">06</span><span class="bullet">Apps, presentaciones y video</span></div>
+          <div class="bullet-row frag"><span class="icon">01</span><span class="bullet">Qué es un <strong class="accent">LLM</strong> <span class="gloss" style="display:inline;margin:0;font-size:0.9em">(modelo de lenguaje)</span></span></div>
+          <div class="bullet-row frag"><span class="icon">02</span><span class="bullet">Qué es un <strong class="accent">prompt</strong> (y uno bueno vs malo)</span></div>
+          <div class="bullet-row frag"><span class="icon">03</span><span class="bullet">Qué es un <strong class="accent">token</strong> y cómo ahorrar</span></div>
+          <div class="bullet-row frag"><span class="icon">04</span><span class="bullet">Qué es el <strong class="accent">contexto</strong></span></div>
+          <div class="bullet-row frag"><span class="icon">05</span><span class="bullet"><strong>Riesgos</strong>: errores, sesgos y privacidad</span></div>
+          <div class="bullet-row frag"><span class="icon">06</span><span class="bullet"><strong>Apps</strong>, presentaciones y video</span></div>
         </div>
       </div>
     </section>
@@ -775,16 +799,16 @@
           <span class="gloss">Large Language Model · LLM · No es una base de datos</span>
           <div class="card frag" style="margin-top:1.5rem">
             <div class="label">En simple</div>
-            <p>Una IA que entiende y genera texto.</p>
+            <p>Una IA que <strong>entiende</strong> y <strong class="accent">genera texto</strong>.</p>
           </div>
           <div class="card frag" style="margin-top:1rem">
             <div class="label">Cómo funciona</div>
-            <p>No “busca y encuentra”. Predice la siguiente palabra.</p>
+            <p>No “busca y encuentra”. <strong class="accent">Predice</strong> la siguiente palabra.</p>
           </div>
           <div class="formula frag" style="text-align:left;margin-top:1rem">
             patrones + tu pregunta<br />→ <span class="accent">siguiente palabra</span>
           </div>
-          <div class="takeaway frag">Puede sonar bien… y estar mal.</div>
+          <div class="takeaway frag">Puede <strong>sonar bien</strong>… y <strong class="accent">estar mal</strong>.</div>
         </div>
         <div class="visual frag-auto"><img src="assets/llm.png" alt="" /></div>
       </div>
@@ -799,22 +823,22 @@
         <div class="grid-2" style="margin-top:1.1rem">
           <div class="card frag">
             <div class="label">Contenido</div>
-            <p>Textos, correos, guiones e ideas de posts y anuncios</p>
+            <p><strong>Textos</strong>, correos, guiones e ideas de posts y anuncios</p>
           </div>
           <div class="card frag">
             <div class="label">Creatividades</div>
-            <p>Imágenes, Reels, stories y presentaciones</p>
+            <p><strong>Imágenes</strong>, Reels, stories y presentaciones</p>
           </div>
           <div class="card frag">
             <div class="label">Datos</div>
-            <p>Analizar datos, ideas, aparecer en Google, reportes y ver a la competencia</p>
+            <p><strong>Analizar</strong>, ideas, aparecer en Google, reportes y competencia</p>
           </div>
           <div class="card frag">
             <div class="label">Atención</div>
-            <p>Mensajes, preguntas frecuentes, clientes nuevos y tareas repetidas</p>
+            <p><strong>Mensajes</strong>, FAQ, clientes nuevos y tareas repetidas</p>
           </div>
         </div>
-        <div class="takeaway frag" style="margin-top:1.15rem">La IA acelera tu trabajo. Tú tienes la última palabra.</div>
+        <div class="takeaway frag" style="margin-top:1.15rem">La IA <strong class="accent">acelera</strong> tu trabajo. <strong>Tú</strong> tienes la última palabra.</div>
       </div>
     </section>
 
@@ -823,8 +847,8 @@
       <div class="slide-bg" style="background-image:url('assets/productivity.png')"></div>
       <div class="slide-inner">
         <p class="kicker">02 · Prompts</p>
-        <h2>Prompt = lo que le pides a la IA</h2>
-        <span class="gloss">La instrucción que escribes en el chat. Un buen prompt lleva 4 piezas:</span>
+        <h2><strong class="accent">Prompt</strong> = lo que le pides a la IA</h2>
+        <span class="gloss">La instrucción que escribes en el chat. Un buen prompt lleva <strong>4 piezas</strong>:</span>
         <div class="grid-4" style="margin-top:1.35rem">
           <div class="card frag">
             <div class="label">01 Rol</div>
@@ -843,7 +867,7 @@
             <p>Largo, estructura, cómo termina</p>
           </div>
         </div>
-        <div class="takeaway frag">Sin estas 4, la IA improvisa… y tú pierdes tiempo. Hazlos con <span class="accent">tu</span> marca.</div>
+        <div class="takeaway frag">Sin estas 4, la IA <strong>improvisa</strong>… y tú pierdes tiempo. Hazlos con <strong class="accent">tu</strong> marca.</div>
       </div>
     </section>
 
@@ -856,7 +880,7 @@
           <div class="card risk-card frag" data-tone="danger">
             <div class="label">Prompt malo</div>
             <p class="prompt-ex">Escribe un copy para Instagram.</p>
-            <p style="margin-top:0.85rem;color:var(--muted);font-size:1.2rem">Vago. Sin marca, tono ni formato. Respuesta genérica.</p>
+            <p style="margin-top:0.85rem;color:var(--muted);font-size:1.2rem"><strong>Vago</strong>. Sin <strong>marca</strong>, <strong>tono</strong> ni <strong>formato</strong>. Respuesta genérica.</p>
           </div>
           <div class="card risk-card frag" data-tone="ok">
             <div class="label">Prompt bueno</div>
@@ -876,7 +900,7 @@ No inventes precios ni premios.</p>
       <div class="slide-inner">
         <p class="kicker">03 · Token y ahorrar</p>
         <h2>Token = pedacito de texto</h2>
-        <span class="gloss" style="margin-bottom:0.5rem">Se cobra por pedacitos, no por “palabras” · Entrada barata · Salida cara</span>
+        <span class="gloss" style="margin-bottom:0.5rem">Se cobra por pedacitos, no por “palabras” · <strong>Entrada barata</strong> · <strong class="accent">Salida cara</strong></span>
         <div class="grid-2" style="margin-top:0.85rem">
           <div class="card frag">
             <div class="label">Regla práctica</div>
@@ -887,18 +911,18 @@ No inventes precios ni premios.</p>
           <div class="card frag">
             <div class="label">Por qué te importa</div>
             <p>Cada mensaje reenvía el chat: <strong>lo anterior</strong> + <strong>lo nuevo</strong> + <strong>la respuesta</strong>.</p>
-            <p style="margin-top:0.5rem;color:var(--muted);font-size:1.15rem">No “recuerda” gratis. Chat largo = más gasto. Sé claro y corto.</p>
+            <p style="margin-top:0.5rem;color:var(--muted);font-size:1.15rem">No “<strong>recuerda</strong>” gratis. Chat largo = más gasto. Sé <strong>claro y corto</strong>.</p>
           </div>
           <div class="card frag">
             <div class="label">Entrada</div>
-            <p>Lo que tú escribes.<br />Más barato.</p>
+            <p>Lo que <strong>tú</strong> escribes.<br /><strong>Más barato.</strong></p>
           </div>
           <div class="card frag">
             <div class="label">Salida</div>
-            <p>Lo que responde la IA.<br /><strong>3× a 6× más caro.</strong></p>
+            <p>Lo que responde la IA.<br /><strong class="accent">3× a 6× más caro.</strong></p>
           </div>
         </div>
-        <div class="takeaway frag" style="margin-top:1.15rem">Pide formato corto. No pegues chats viejos.</div>
+        <div class="takeaway frag" style="margin-top:1.15rem">Pide <strong>formato corto</strong>. No pegues chats viejos.</div>
       </div>
     </section>
 
@@ -907,26 +931,26 @@ No inventes precios ni premios.</p>
       <div class="slide-inner">
         <p class="kicker">04 · Ventana de contexto</p>
         <h2>Contexto = lo que puede leer de una vez</h2>
-        <span class="gloss">Tu pregunta + el chat anterior + archivos. Tiene tope. No es memoria eterna.</span>
+        <span class="gloss">Tu pregunta + el chat anterior + archivos. Tiene <strong>tope</strong>. No es <strong class="accent">memoria eterna</strong>.</span>
         <div class="grid-2" style="margin-top:1.1rem">
           <div class="card frag">
             <div class="label">Chat nuevo por tarea</div>
-            <p>Un chat para captions. Otro para el correo al cliente. No mezcles temas.</p>
+            <p><strong>Un chat</strong> para captions. Otro para el correo. <strong>No mezcles</strong> temas.</p>
           </div>
           <div class="card frag">
             <div class="label">Solo lo necesario</div>
-            <p>Brief, tono, precio, público. No pegues todo el Drive “por si acaso”.</p>
+            <p><strong>Brief, tono, precio, público</strong>. No pegues todo el Drive “por si acaso”.</p>
           </div>
           <div class="card frag">
             <div class="label">Si el chat se alarga</div>
-            <p>Resume lo importante en un mensaje… o empieza un chat nuevo.</p>
+            <p><strong>Resume</strong> lo importante… o <strong class="accent">chat nuevo</strong>.</p>
           </div>
           <div class="card frag">
             <div class="label">Archivos con criterio</div>
-            <p>Sube el PDF o brief correcto. Menos archivos = menos ruido.</p>
+            <p>Sube el PDF o brief <strong>correcto</strong>. Menos archivos = menos ruido.</p>
           </div>
         </div>
-        <div class="takeaway frag" style="margin-top:1.15rem">Buen contexto = lo justo para la tarea. No es “más = mejor”.</div>
+        <div class="takeaway frag" style="margin-top:1.15rem">Buen contexto = <strong class="accent">lo justo</strong> para la tarea. No es “más = mejor”.</div>
       </div>
     </section>
 
@@ -940,15 +964,15 @@ No inventes precios ni premios.</p>
         <div class="route">
           <div class="card frag-auto">
             <div class="label">Barato · rápido</div>
-            <p>Resumir, clasificar, borradores simples</p>
+            <p><strong>Resumir</strong>, clasificar, borradores simples</p>
           </div>
           <div class="arrow frag-auto">→</div>
           <div class="card frag-auto">
             <div class="label">Fuerte · caro</div>
-            <p>Estrategia y decisiones difíciles</p>
+            <p><strong>Estrategia</strong> y decisiones difíciles</p>
           </div>
         </div>
-        <div class="takeaway frag" style="margin-top:1.35rem">Barato primero. Caro solo si hace falta. Eso es tu retorno: menos gasto y más tiempo.</div>
+        <div class="takeaway frag" style="margin-top:1.35rem"><strong class="accent">Barato primero</strong>. Caro solo si hace falta. Eso es tu retorno: menos gasto y más tiempo.</div>
       </div>
     </section>
 
@@ -966,7 +990,7 @@ No inventes precios ni premios.</p>
             <p style="margin-top:0.65rem"><strong style="color:var(--ok)">Gratis</strong> → modelo automático (en el chat normal casi no eliges)</p>
             <p style="margin-top:0.55rem"><strong style="color:var(--cyan)">Plus</strong> → puedes subir el “razonamiento” si la tarea es difícil</p>
             <p style="margin-top:0.55rem"><strong style="color:var(--purple)">Familia GPT-5.6</strong> → Luna / Terra / Sol (más en plan pago o Work)</p>
-            <p style="margin-top:0.55rem;color:var(--muted);font-size:1.1rem">Idea: empieza simple. Sube solo si la respuesta no alcanza.</p>
+            <p style="margin-top:0.55rem;color:var(--muted);font-size:1.1rem">Idea: <strong>empieza simple</strong>. Sube solo si no alcanza.</p>
           </div>
           <div class="card frag">
             <div class="brand-row">
@@ -989,7 +1013,7 @@ No inventes precios ni premios.</p>
             <p style="margin-top:0.55rem;color:var(--muted);font-size:1.1rem">Extra: Razonamiento ampliado → problemas complejos</p>
           </div>
         </div>
-        <div class="takeaway frag" style="margin-top:1.25rem">Empieza en el barato. Sube solo si la respuesta no alcanza.</div>
+        <div class="takeaway frag" style="margin-top:1.25rem"><strong class="accent">Empieza en el barato</strong>. Sube solo si la respuesta no alcanza.</div>
       </div>
     </section>
 
@@ -1002,21 +1026,21 @@ No inventes precios ni premios.</p>
             <h2>Tres riesgos reales</h2>
             <div class="card risk-card frag" data-tone="danger" style="margin-top:1.4rem">
               <div class="label">Alucinaciones</div>
-              <p>Inventa cosas que suenan verdad.</p>
+              <p><strong class="accent">Inventa</strong> cosas que suenan verdad.</p>
             </div>
             <div class="card risk-card frag" data-tone="warn" style="margin-top:1rem">
               <div class="label">Sesgos</div>
-              <p>Puede repetir prejuicios.</p>
+              <p>Puede <strong>repetir prejuicios</strong>.</p>
             </div>
             <div class="card risk-card frag" data-tone="ok" style="margin-top:1rem">
               <div class="label">Privacidad</div>
-              <p>No pegues datos sensibles (contraseñas, clientes, docs privados).</p>
-              <p style="margin-top:0.45rem;color:var(--muted);font-size:1.15rem">Prompt de internet: léelo. Si pide datos o “ignora reglas”, no lo uses.</p>
+              <p>No pegues <strong class="accent">datos sensibles</strong> (contraseñas, clientes, docs privados).</p>
+              <p style="margin-top:0.45rem;color:var(--muted);font-size:1.15rem">Prompt de internet: <strong>léelo</strong>. Si pide datos o “ignora reglas”, <strong>no lo uses</strong>.</p>
             </div>
           </div>
           <div class="visual frag-auto"><img src="assets/risks.png" alt="" /></div>
         </div>
-        <div class="takeaway tip frag" style="margin-top:1.15rem">La IA propone. Tú verificas. Mejor prompts con <span class="accent">tu</span> marca.</div>
+        <div class="takeaway tip frag" style="margin-top:1.15rem">La IA <strong>propone</strong>. Tú <strong class="accent">verificas</strong>. Mejor prompts con <strong class="accent">tu</strong> marca.</div>
       </div>
     </section>
 
@@ -1058,7 +1082,7 @@ No inventes precios ni premios.</p>
             <p class="pick-strong" style="margin-top:0.4rem">Video con IA: Google Flow (Veo)</p>
           </div>
         </div>
-        <div class="takeaway frag" style="margin-top:1rem;padding:0.85rem 1.15rem;font-size:1.25rem">No hay una ganadora. Una sola: ChatGPT. Mucho texto/marca: Claude. Todo en Google: Gemini.</div>
+        <div class="takeaway frag" style="margin-top:1rem;padding:0.85rem 1.15rem;font-size:1.25rem">No hay una ganadora. Una sola: <strong class="accent">ChatGPT</strong>. Mucho texto/marca: <strong class="accent">Claude</strong>. Todo en Google: <strong class="accent">Gemini</strong>.</div>
       </div>
     </section>
 
@@ -1074,8 +1098,8 @@ No inventes precios ni premios.</p>
               <span class="brand">NotebookLM</span>
             </div>
             <p style="color:var(--muted);font-size:1.1rem;margin-bottom:0.45rem">Google</p>
-            <p>Sube PDFs, briefs o notas → <strong>Slide Deck</strong> en Studio</p>
-            <p style="margin-top:0.55rem;color:var(--muted);font-size:1.2rem">Fuerte: se basa en <em>tus</em> fuentes (menos inventos)</p>
+            <p>Sube PDFs, briefs o notas → <strong class="accent">Slide Deck</strong> en Studio</p>
+            <p style="margin-top:0.55rem;color:var(--muted);font-size:1.2rem">Fuerte: se basa en <strong>tus</strong> fuentes (menos inventos)</p>
             <a class="tool-link" href="https://notebooklm.google/" target="_blank" rel="noopener noreferrer">Abrir NotebookLM →</a>
           </div>
           <div class="card frag">
@@ -1083,8 +1107,8 @@ No inventes precios ni premios.</p>
               <span class="brand">Gamma</span>
             </div>
             <p style="color:var(--muted);font-size:1.1rem;margin-bottom:0.45rem">Pitch visual</p>
-            <p>Prompt → presentación bonita lista para pitch</p>
-            <p style="margin-top:0.55rem;color:var(--muted);font-size:1.2rem">Fuerte en diseño. Tú sigues verificando datos.</p>
+            <p><strong>Prompt</strong> → presentación bonita lista para pitch</p>
+            <p style="margin-top:0.55rem;color:var(--muted);font-size:1.2rem">Fuerte en diseño. Tú sigues <strong>verificando</strong> datos.</p>
             <a class="tool-link" href="https://gamma.app/" target="_blank" rel="noopener noreferrer">Abrir Gamma →</a>
           </div>
           <div class="card frag">
@@ -1093,12 +1117,12 @@ No inventes precios ni premios.</p>
               <span class="brand">Claude Design</span>
             </div>
             <p style="color:var(--muted);font-size:1.1rem;margin-bottom:0.45rem">Anthropic · plan de pago</p>
-            <p>Describes la presentación en el chat → diapos en el canvas</p>
-            <p style="margin-top:0.55rem;color:var(--muted);font-size:1.2rem">Exporta PPTX, PDF, HTML o envía a Canva</p>
+            <p>Describes en el chat → diapos en el canvas</p>
+            <p style="margin-top:0.55rem;color:var(--muted);font-size:1.2rem">Exporta <strong>PPTX, PDF, HTML</strong> o Canva</p>
             <a class="tool-link" href="https://claude.ai/design" target="_blank" rel="noopener noreferrer">Abrir Claude Design →</a>
           </div>
         </div>
-        <div class="takeaway frag" style="margin-top:1.2rem">Copia el prompt de la siguiente diapos · cambia [corchetes] · revisa antes de enviar. NotebookLM: primero sube tus PDFs.</div>
+        <div class="takeaway frag" style="margin-top:1.2rem"><strong>Copia</strong> el prompt · cambia <strong class="accent">[corchetes]</strong> · <strong>revisa</strong> antes de enviar. NotebookLM: primero sube tus PDFs.</div>
       </div>
     </section>
 
@@ -1180,8 +1204,8 @@ Poco texto por slide. No inventes cifras.</p>
               <span class="brand">Kling</span>
             </div>
             <p style="color:var(--muted);font-size:1.1rem;margin-bottom:0.45rem">Empieza aquí</p>
-            <p>Texto o foto → video. También con audio nativo.</p>
-            <p style="margin-top:0.55rem;color:var(--muted);font-size:1.15rem">Ideal para: Reels y TikTok de producto o marca</p>
+            <p><strong>Texto o foto → video</strong>. También con audio nativo.</p>
+            <p style="margin-top:0.55rem;color:var(--muted);font-size:1.15rem">Ideal: <strong>Reels y TikTok</strong> de producto o marca</p>
             <a class="tool-link" href="https://kling.ai/" target="_blank" rel="noopener noreferrer">Abrir Kling →</a>
           </div>
           <div class="card frag">
@@ -1189,8 +1213,8 @@ Poco texto por slide. No inventes cifras.</p>
               <span class="brand">Seedance</span>
             </div>
             <p style="color:var(--muted);font-size:1.1rem;margin-bottom:0.45rem">Dreamina / CapCut</p>
-            <p>Baile, acción y varios sujetos juntos.</p>
-            <p style="margin-top:0.55rem;color:var(--muted);font-size:1.15rem">Ideal para: anuncios con personas bailando o en movimiento</p>
+            <p><strong>Baile, acción</strong> y varios sujetos juntos.</p>
+            <p style="margin-top:0.55rem;color:var(--muted);font-size:1.15rem">Ideal: anuncios con personas en movimiento</p>
             <a class="tool-link" href="https://dreamina.capcut.com/tools/seedance-2-0" target="_blank" rel="noopener noreferrer">Abrir Seedance →</a>
           </div>
           <div class="card frag">
@@ -1199,8 +1223,8 @@ Poco texto por slide. No inventes cifras.</p>
               <span class="tag-free">Gratis</span>
             </div>
             <p style="color:var(--muted);font-size:1.1rem;margin-bottom:0.45rem">Tongyi Wanxiang</p>
-            <p>Foto → video limpio y cámara suave.</p>
-            <p style="margin-top:0.55rem;color:var(--muted);font-size:1.15rem">Ideal para: animar fotos del catálogo sin pagar</p>
+            <p><strong>Foto → video</strong> limpio y cámara suave.</p>
+            <p style="margin-top:0.55rem;color:var(--muted);font-size:1.15rem">Ideal: animar fotos del catálogo <strong class="accent">sin pagar</strong></p>
             <a class="tool-link" href="https://tongyi.aliyun.com/wanxiang" target="_blank" rel="noopener noreferrer">Abrir Wan →</a>
           </div>
           <div class="card frag">
@@ -1208,8 +1232,8 @@ Poco texto por slide. No inventes cifras.</p>
               <span class="brand">Veo 3.1</span>
             </div>
             <p style="color:var(--muted);font-size:1.1rem;margin-bottom:0.45rem">Google Flow</p>
-            <p>Video cinematográfico + audio nativo.</p>
-            <p style="margin-top:0.55rem;color:var(--muted);font-size:1.15rem">Ideal para: demo de producto o clip con sonido incluido</p>
+            <p>Video cinematográfico + <strong>audio nativo</strong>.</p>
+            <p style="margin-top:0.55rem;color:var(--muted);font-size:1.15rem">Ideal: <strong>demo de producto</strong> o clip con sonido</p>
             <a class="tool-link" href="https://labs.google/fx/tools/flow" target="_blank" rel="noopener noreferrer">Abrir Google Flow →</a>
           </div>
         </div>
@@ -1225,15 +1249,15 @@ Poco texto por slide. No inventes cifras.</p>
         <div class="bullet-list" style="margin-top:1.25rem">
           <div class="bullet-row frag">
             <span class="icon">→</span>
-            <span class="bullet tool-bullet"><strong>There's An AI For That</strong> — biblioteca de IAs <a class="tool-link" href="https://theresanaiforthat.com/" target="_blank" rel="noopener noreferrer">Abrir →</a></span>
+            <span class="bullet tool-bullet"><strong class="accent">There's An AI For That</strong> — biblioteca de IAs <a class="tool-link" href="https://theresanaiforthat.com/" target="_blank" rel="noopener noreferrer">Abrir →</a></span>
           </div>
           <div class="bullet-row frag">
             <span class="icon">→</span>
-            <span class="bullet tool-bullet"><strong>Pomelli</strong> — identidad de tu marca <a class="tool-link" href="https://labs.google.com/pomelli" target="_blank" rel="noopener noreferrer">Abrir →</a></span>
+            <span class="bullet tool-bullet"><strong class="accent">Pomelli</strong> — <strong>identidad</strong> de tu marca <a class="tool-link" href="https://labs.google.com/pomelli" target="_blank" rel="noopener noreferrer">Abrir →</a></span>
           </div>
           <div class="bullet-row frag">
             <span class="icon">→</span>
-            <span class="bullet tool-bullet"><strong>PhotoRoom</strong> — quitar fondo y eliminar objetos <a class="tool-link" href="https://www.photoroom.com/" target="_blank" rel="noopener noreferrer">Abrir →</a></span>
+            <span class="bullet tool-bullet"><strong class="accent">PhotoRoom</strong> — <strong>quitar fondo</strong> y eliminar objetos <a class="tool-link" href="https://www.photoroom.com/" target="_blank" rel="noopener noreferrer">Abrir →</a></span>
           </div>
         </div>
       </div>
@@ -1246,13 +1270,13 @@ Poco texto por slide. No inventes cifras.</p>
         <p class="kicker">Para llevar</p>
         <h2>Recuerda esto</h2>
         <div class="bullet-list">
-          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">La IA predice palabras. Puede sonar bien y estar mal. Tú verificas.</span></div>
-          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">Prompt: rol + tarea + contexto + formato. Mejor con tu marca. No copies a ciegas.</span></div>
-          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">Token = gasto. El chat se reenvía. La respuesta cuesta más. Contexto = lo que cabe ahora.</span></div>
-          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">Modelo barato primero. ChatGPT si una sola; Claude si escribes/marca; Gemini si vives en Google.</span></div>
-          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">No pegues datos sensibles. Presentaciones y video: prueba, revisa, publica.</span></div>
+          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">La IA <strong class="accent">predice</strong> palabras. Puede sonar bien y estar mal. <strong>Tú verificas</strong>.</span></div>
+          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet"><strong>Prompt</strong>: rol + tarea + contexto + formato. Mejor con <strong class="accent">tu marca</strong>. No copies a ciegas.</span></div>
+          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet"><strong>Token</strong> = gasto. El chat se <strong>reenvía</strong>. La respuesta cuesta más. <strong>Contexto</strong> = lo que cabe ahora.</span></div>
+          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet"><strong class="accent">Barato primero</strong>. ChatGPT si una sola; Claude si escribes/marca; Gemini si vives en Google.</span></div>
+          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">No pegues <strong class="accent">datos sensibles</strong>. Presentaciones y video: prueba, revisa, publica.</span></div>
         </div>
-        <div class="takeaway tip frag" style="margin-top:1.15rem">La IA potencia tu trabajo. No te reemplaza.</div>
+        <div class="takeaway tip frag" style="margin-top:1.15rem">La IA <strong class="accent">potencia</strong> tu trabajo. <strong>No te reemplaza</strong>.</div>
       </div>
     </section>
 
@@ -1276,7 +1300,7 @@ Poco texto por slide. No inventes cifras.</p>
       <div class="slide-bg" style="background-image:url('assets/cover.png')"></div>
       <div class="slide-inner center-copy" style="min-height:820px;justify-content:center;gap:0.85rem">
         <p class="kicker">Cierre</p>
-        <h1 style="font-size:3.1rem;max-width:18ch">La IA potencia tu trabajo.<br />No te reemplaza.</h1>
+        <h1 style="font-size:3.1rem;max-width:18ch">La IA <strong class="accent">potencia</strong> tu trabajo.<br /><strong>No te reemplaza</strong>.</h1>
         <p class="lead" style="margin-top:0.75rem">¿Preguntas?</p>
         <p class="cover-meta" style="margin-top:0.75rem">Wilman Montenegro · IA Estratégica para Emprendedores</p>
         <div class="share-qr">
@@ -1298,6 +1322,8 @@ Poco texto por slide. No inventes cifras.</p>
     <button type="button" id="prevBtn" aria-label="Anterior">←</button>
     <span id="counter">1 / 1</span>
     <button type="button" id="nextBtn" aria-label="Siguiente">→</button>
+    <button type="button" id="fsBtn" aria-label="Pantalla completa" title="Pantalla completa">⛶</button>
+    <a class="hud-btn" id="dlBtn" href="deck.zip" download="diapos-ia-estrategica.zip" aria-label="Descargar diapositivas" title="Descargar">⬇</a>
   </div>
 
   <script>
@@ -1309,6 +1335,7 @@ Poco texto por slide. No inventes cifras.</p>
     const notesPanel = document.getElementById('notesPanel')
     const prevBtn = document.getElementById('prevBtn')
     const nextBtn = document.getElementById('nextBtn')
+    const fsBtn = document.getElementById('fsBtn')
     const viewport = document.getElementById('viewport')
     const stage = document.getElementById('stage')
     const STORE = 'curso-ia-diapos'
@@ -1402,12 +1429,48 @@ Poco texto por slide. No inventes cifras.</p>
       applyTransform()
     }
 
+    function isFullscreen() {
+      return !!(document.fullscreenElement || document.webkitFullscreenElement)
+    }
+
+    function syncFsBtn() {
+      if (!fsBtn) return
+      const on = isFullscreen()
+      fsBtn.setAttribute('aria-label', on ? 'Salir de pantalla completa' : 'Pantalla completa')
+      fsBtn.title = on ? 'Salir' : 'Pantalla completa'
+      fsBtn.textContent = on ? '✕' : '⛶'
+    }
+
+    async function toggleFullscreen() {
+      try {
+        if (isFullscreen()) {
+          const exit = document.exitFullscreen || document.webkitExitFullscreen
+          await exit?.call(document)
+        } else {
+          const el = document.documentElement
+          const req = el.requestFullscreen || el.webkitRequestFullscreen
+          await req?.call(el)
+        }
+      } catch {
+        // iOS Safari a veces bloquea Fullscreen API fuera de video
+      }
+      syncFsBtn()
+      fit()
+    }
+
     function touchDistance(a, b) {
       return Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY)
     }
 
     prevBtn?.addEventListener('click', () => prev())
     nextBtn?.addEventListener('click', () => next())
+    fsBtn?.addEventListener('click', (e) => {
+      e.stopPropagation()
+      toggleFullscreen()
+    })
+
+    document.addEventListener('fullscreenchange', () => { syncFsBtn(); fit() })
+    document.addEventListener('webkitfullscreenchange', () => { syncFsBtn(); fit() })
 
     document.querySelectorAll('.copy-prompt-btn').forEach((btn) => {
       const label = btn.textContent
@@ -1444,11 +1507,11 @@ Poco texto por slide. No inventes cifras.</p>
         const last = slides.length - 1
         show(last, frags(slides[last]).length)
       } else if (e.key === 'f' || e.key === 'F') {
-        if (!document.fullscreenElement) document.documentElement.requestFullscreen?.()
-        else document.exitFullscreen?.()
+        e.preventDefault()
+        toggleFullscreen()
       } else if (e.key === 'n' || e.key === 'N') {
         document.body.classList.toggle('show-notes')
-      } else if (e.key === '0' || e.key === 'Escape') {
+      } else if (e.key === '0') {
         resetZoom()
       }
     })
