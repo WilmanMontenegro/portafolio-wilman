@@ -337,6 +337,29 @@
       font-weight: 600;
     }
 
+    .takeaway.tip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.85rem 1.15rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .takeaway .tip-mark {
+      flex-shrink: 0;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(12, 255, 255, 0.45);
+      background: rgba(12, 255, 255, 0.14);
+      color: var(--cyan);
+      font-family: "JetBrains Mono", monospace;
+      font-size: clamp(0.85rem, 1.15vw, 1rem);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
     .section-num {
       display: block;
       margin-bottom: 1.1rem;
@@ -762,7 +785,7 @@
             <p>Largo, estructura, cómo termina</p>
           </div>
         </div>
-        <div class="takeaway frag">Sin estas 4, la IA improvisa… y tú pierdes tiempo.</div>
+        <div class="takeaway frag">Sin estas 4, la IA improvisa… y tú pierdes tiempo. Hazlos con <span class="accent">tu</span> marca.</div>
       </div>
     </section>
 
@@ -913,31 +936,34 @@ No inventes precios ni premios.</p>
     </section>
 
     <!-- THREE RISKS -->
-    <section class="slide" data-notes="Una frase por riesgo. Cierre: siempre revisa. Martilla: La IA propone. Tú verificas.">
-      <div class="slide-inner layout-split">
-        <div>
-          <p class="kicker">05 · Riesgos</p>
-          <h2>Tres riesgos reales</h2>
-          <div class="card risk-card frag" data-tone="danger" style="margin-top:1.4rem">
-            <div class="label">Alucinaciones</div>
-            <p>Inventa cosas que suenan verdad.</p>
+    <section class="slide" data-notes="Hechos documentados, no inventos: (1) Alucinaciones = modelos inventan con confianza (literatura OpenAI/Anthropic). (2) Sesgos = datos de entrenamiento. (3) Privacidad: OpenAI/Anthropic/Google piden no pegar datos sensibles. Prompt injection = OWASP LLM01 (entrada no confiable puede manipular al modelo). En chat manual el riesgo típico = que TÚ pegues secretos o sigas instrucciones raras; el prompt solo no ‘hackea’ el PC.">
+      <div class="slide-inner">
+        <div class="layout-split" style="min-height:auto;align-items:start">
+          <div>
+            <p class="kicker">05 · Riesgos</p>
+            <h2>Tres riesgos reales</h2>
+            <div class="card risk-card frag" data-tone="danger" style="margin-top:1.4rem">
+              <div class="label">Alucinaciones</div>
+              <p>Inventa cosas que suenan verdad.</p>
+            </div>
+            <div class="card risk-card frag" data-tone="warn" style="margin-top:1rem">
+              <div class="label">Sesgos</div>
+              <p>Puede repetir prejuicios.</p>
+            </div>
+            <div class="card risk-card frag" data-tone="ok" style="margin-top:1rem">
+              <div class="label">Privacidad</div>
+              <p>No pegues datos sensibles (contraseñas, clientes, docs privados).</p>
+              <p style="margin-top:0.45rem;color:var(--muted);font-size:clamp(1rem,1.35vw,1.15rem)">Prompt de internet: léelo. Si pide datos o “ignora reglas”, no lo uses.</p>
+            </div>
           </div>
-          <div class="card risk-card frag" data-tone="warn" style="margin-top:1rem">
-            <div class="label">Sesgos</div>
-            <p>Puede repetir prejuicios.</p>
-          </div>
-          <div class="card risk-card frag" data-tone="ok" style="margin-top:1rem">
-            <div class="label">Privacidad</div>
-            <p>No pegues datos sensibles.</p>
-          </div>
-          <div class="takeaway frag" style="margin-top:1rem">La IA propone. Tú verificas.</div>
+          <div class="visual frag-auto"><img src="assets/risks.png" alt="" /></div>
         </div>
-        <div class="visual frag-auto"><img src="assets/risks.png" alt="" /></div>
+        <div class="takeaway tip frag" style="margin-top:1.15rem">La IA propone. Tú verificas. Mejor prompts con <span class="accent">tu</span> marca.</div>
       </div>
     </section>
 
     <!-- COMPARISON + LOGOS -->
-    <section class="slide" data-notes="Consenso marketing 2026: ChatGPT = default versátil (texto+imagen+voz). Claude = mejor escritura/voz de marca; Claude Design solo en planes pago. Gemini = si viven en Google + video Veo. Diapo decide: Elígela si… No hay una ganadora absoluta.">
+    <section class="slide" data-notes="Consenso marketing 2026 (guías de practitioners): ChatGPT = all-rounder / default si solo una; Claude = mejor escritura y tono de marca; Gemini = si ya viven en Google Workspace + datos actuales. No hay ganadora absoluta. Fuentes típicas: onbrandmarketer, lilachbullock, comparativas 2026 por tarea.">
       <div class="slide-bg" style="background-image:url('assets/giants.png')"></div>
       <div class="slide-inner">
         <p class="kicker">06 · Elige con criterio</p>
@@ -949,8 +975,9 @@ No inventes precios ni premios.</p>
               <span class="brand">ChatGPT</span>
             </div>
             <p class="pick-if">Elígela si…</p>
-            <p class="pick-why">Quieres <span class="accent">una sola app</span> para casi todo</p>
-            <p class="pick-strong">Fuerte en: texto del día a día, imágenes y voz</p>
+            <p class="pick-why">Quieres <span class="accent">empezar con una sola app</span> y hacer de todo</p>
+            <p class="pick-strong">Fuerte en: ideas rápidas, posts, imágenes y voz</p>
+            <p class="pick-strong" style="margin-top:0.4rem">Default seguro si no sabes por cuál ir</p>
           </div>
           <div class="card frag">
             <div class="brand-row">
@@ -958,9 +985,9 @@ No inventes precios ni premios.</p>
               <span class="brand">Claude</span>
             </div>
             <p class="pick-if">Elígela si…</p>
-            <p class="pick-why">Cómo <span class="accent">suena tu marca</span> te importa</p>
-            <p class="pick-strong">Fuerte en: posts, textos largos y tono de marca</p>
-            <p class="pick-strong" style="margin-top:0.4rem">También hace presentaciones (Claude Design, plan de pago)</p>
+            <p class="pick-why">Escribes mucho y <span class="accent">cómo suena tu marca</span> te importa</p>
+            <p class="pick-strong">Fuerte en: textos que suenan humanos, posts largos, seguir tu tono</p>
+            <p class="pick-strong" style="margin-top:0.4rem">Presentaciones: Claude Design (plan de pago)</p>
           </div>
           <div class="card frag">
             <div class="brand-row">
@@ -968,11 +995,12 @@ No inventes precios ni premios.</p>
               <span class="brand">Gemini</span>
             </div>
             <p class="pick-if">Elígela si…</p>
-            <p class="pick-why">Ya vives en <span class="accent">Gmail, Docs o Drive</span></p>
-            <p class="pick-strong">Fuerte en: Gmail, Docs, Drive y video con IA</p>
+            <p class="pick-why">Ya vives en <span class="accent">Gmail, Docs y Drive</span> todo el día</p>
+            <p class="pick-strong">Fuerte en: trabajar dentro de Google y datos más actuales</p>
+            <p class="pick-strong" style="margin-top:0.4rem">Video con IA: Google Flow (Veo)</p>
           </div>
         </div>
-        <div class="takeaway frag" style="margin-top:1rem;padding:0.85rem 1.15rem;font-size:clamp(1.05rem,1.45vw,1.25rem)">No hay una ganadora. Elige según lo que más usas en tu negocio.</div>
+        <div class="takeaway frag" style="margin-top:1rem;padding:0.85rem 1.15rem;font-size:clamp(1.05rem,1.45vw,1.25rem)">No hay una ganadora. Una sola: ChatGPT. Mucho texto/marca: Claude. Todo en Google: Gemini.</div>
       </div>
     </section>
 
@@ -980,7 +1008,7 @@ No inventes precios ni premios.</p>
     <section class="slide" data-notes="NotebookLM: Studio → Slide Deck desde tus fuentes (blog.google). Claude Design: claude.ai/design → describe y exporta PPTX/PDF/HTML/Canva (anthropic.com/news/claude-design). Gamma: gamma.app si quieres look de pitch muy rápido.">
       <div class="slide-inner">
         <p class="kicker">07 · Presentaciones</p>
-        <h2>Tres herramientas para hacer diapos</h2>
+        <h2>Herramientas para hacer presentaciones</h2>
         <div class="grid-3" style="margin-top:1.25rem">
           <div class="card frag">
             <div class="brand-row">
@@ -1154,40 +1182,44 @@ Poco texto por slide. No inventes cifras.</p>
     </section>
 
     <!-- TAKEAWAYS -->
-    <section class="slide" data-notes="Lee lento. Deja silencio. Luego pasa a Gracias.">
+    <section class="slide" data-notes="Lee lento. Resumen de la sección. Cierra con: potencia, no reemplaza. Luego Referencias o Gracias.">
       <div class="slide-bg" style="background-image:url('assets/cover.png')"></div>
       <div class="slide-inner">
         <p class="kicker">Para llevar</p>
         <h2>Recuerda esto</h2>
         <div class="bullet-list">
-          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">La IA predice palabras. No “sabe” todo. Tú verificas.</span></div>
-          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">Prompt claro: rol + tarea + contexto + formato.</span></div>
-          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">Token: mide gasto. Salida cuesta más. Contexto = lo que cabe ahora.</span></div>
-          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">Modelo barato primero. Caro con intención.</span></div>
-          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">Presentaciones: NotebookLM, Gamma o Claude Design. Revisa antes de publicar.</span></div>
-          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">Video: Kling · Seedance · Wan · Veo 3.1 (Google Flow).</span></div>
+          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">La IA predice palabras. Puede sonar bien y estar mal. Tú verificas.</span></div>
+          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">Prompt: rol + tarea + contexto + formato. Mejor con tu marca. No copies a ciegas.</span></div>
+          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">Token = gasto. El chat se reenvía. La respuesta cuesta más. Contexto = lo que cabe ahora.</span></div>
+          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">Modelo barato primero. ChatGPT si una sola; Claude si escribes/marca; Gemini si vives en Google.</span></div>
+          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">No pegues datos sensibles. Presentaciones y video: prueba, revisa, publica.</span></div>
         </div>
+        <div class="takeaway tip frag" style="margin-top:1.15rem">La IA potencia tu trabajo. No te reemplaza.</div>
       </div>
     </section>
 
     <!-- REFERENCIAS -->
-    <section class="slide" data-notes="Solo si preguntan por la fuente del 86%. No leas en voz alta salvo que pidan.">
+    <section class="slide" data-notes="Apéndice. Solo si preguntan. Fuentes usadas en el bloque: HubSpot, OWASP, comparativas marketing 2026 ChatGPT/Claude/Gemini.">
       <div class="slide-inner">
         <p class="kicker">Apéndice</p>
         <h2>Referencias</h2>
-        <div class="bullet-list" style="margin-top:1.25rem">
-          <div class="bullet-row"><span class="icon">1</span><span class="bullet">HubSpot — <em>State of Marketing 2026</em>: 86%+ de equipos ya usan IA; contenido y media (imagen/video) entre los usos más frecuentes.</span></div>
+        <div class="bullet-list" style="margin-top:1.1rem">
+          <div class="bullet-row"><span class="icon">1</span><span class="bullet">HubSpot — <em>State of Marketing 2026</em> (adopción de IA en equipos de marketing).</span></div>
+          <div class="bullet-row"><span class="icon">2</span><span class="bullet">OWASP — <em>Top 10 for LLM Applications</em>: LLM01 Prompt Injection; LLM06 Sensitive Information. genai.owasp.org</span></div>
+          <div class="bullet-row"><span class="icon">3</span><span class="bullet">Onbrand Marketer — Claude vs ChatGPT vs Gemini for Marketers (2026): por tarea, no hay ganadora única.</span></div>
+          <div class="bullet-row"><span class="icon">4</span><span class="bullet">Lilach Bullock — When to Use ChatGPT vs Claude vs Gemini for Marketing (guía práctica 2026).</span></div>
+          <div class="bullet-row"><span class="icon">5</span><span class="bullet">OpenAI — GPT-5.6 (Luna / Terra / Sol); Anthropic — Claude (Haiku, Sonnet, Opus, Fable); Google — Flow + Veo 3.1.</span></div>
         </div>
       </div>
     </section>
 
     <!-- CIERRE -->
-    <section class="slide" data-notes="Gracias. Abre a preguntas. Silencio. Escucha. Todo visible de una; sin frags.">
+    <section class="slide" data-notes="Frase final visible. Gracias. Preguntas. Todo de una; sin frags.">
       <div class="slide-bg" style="background-image:url('assets/cover.png')"></div>
       <div class="slide-inner center-copy" style="min-height:min(78vh,820px);justify-content:center;gap:0.85rem">
         <p class="kicker">Cierre</p>
-        <h1>Gracias</h1>
-        <p class="lead" style="margin-top:0.5rem">¿Preguntas?</p>
+        <h1 style="font-size:clamp(1.85rem,4.2vw,3.1rem);max-width:18ch">La IA potencia tu trabajo.<br />No te reemplaza.</h1>
+        <p class="lead" style="margin-top:0.75rem">¿Preguntas?</p>
         <p class="cover-meta" style="margin-top:0.75rem">Wilman Montenegro · Marketing con IA</p>
       </div>
     </section>
