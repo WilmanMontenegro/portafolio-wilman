@@ -175,38 +175,36 @@
       top: 0;
       right: 0;
       bottom: 0;
-      width: 56%;
+      width: 58%;
       z-index: 0;
       pointer-events: none;
       overflow: hidden;
     }
 
     .risks-bleed img {
-      width: 125%;
-      height: 112%;
+      width: 100%;
+      height: 100%;
       max-width: none;
-      object-fit: cover;
-      object-position: 42% 48%;
+      object-fit: contain;
+      object-position: center right;
       display: block;
       position: absolute;
-      right: -6%;
-      bottom: -6%;
+      inset: 0;
+      padding: 0.5rem 0.75rem 0.5rem 0;
+      box-sizing: border-box;
+      /* fade solo al borde izq — los 3 iconos completos */
       -webkit-mask-image: linear-gradient(
         90deg,
         transparent 0%,
-        rgba(0, 0, 0, 0.08) 12%,
-        rgba(0, 0, 0, 0.35) 24%,
-        rgba(0, 0, 0, 0.75) 40%,
-        #000 55%,
+        rgba(0, 0, 0, 0.45) 4%,
+        #000 12%,
         #000 100%
       );
       mask-image: linear-gradient(
         90deg,
         transparent 0%,
-        rgba(0, 0, 0, 0.08) 12%,
-        rgba(0, 0, 0, 0.35) 24%,
-        rgba(0, 0, 0, 0.75) 40%,
-        #000 55%,
+        rgba(0, 0, 0, 0.45) 4%,
+        #000 12%,
         #000 100%
       );
     }
@@ -216,9 +214,9 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(90deg, var(--bg) 0%, rgba(7, 2, 20, 0.82) 10%, rgba(7, 2, 20, 0.4) 28%, transparent 52%),
-        linear-gradient(180deg, var(--bg) 0%, transparent 20%),
-        linear-gradient(0deg, var(--bg) 0%, transparent 16%);
+        linear-gradient(90deg, var(--bg) 0%, rgba(7, 2, 20, 0.55) 4%, transparent 16%),
+        linear-gradient(180deg, var(--bg) 0%, transparent 10%),
+        linear-gradient(0deg, var(--bg) 0%, transparent 10%);
       pointer-events: none;
     }
 
