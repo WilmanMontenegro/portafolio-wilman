@@ -31,16 +31,43 @@
       color: var(--text);
       font-family: Inter, system-ui, sans-serif;
       overflow: hidden;
+      touch-action: none;
     }
 
-    .deck { position: relative; width: 100vw; height: 100vh; }
+    .viewport {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      touch-action: none;
+    }
+
+    .stage {
+      position: relative;
+      width: 1920px;
+      height: 1080px;
+      flex-shrink: 0;
+      transform-origin: center center;
+      will-change: transform;
+      background: var(--bg);
+    }
+
+    .deck {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
 
     .slide {
       position: absolute;
       inset: 0;
       display: grid;
       place-items: center;
-      padding: clamp(2rem, 4vh, 3.5rem) clamp(2rem, 5vw, 4.5rem);
+      padding: 3.5rem 4.5rem;
       opacity: 0;
       visibility: hidden;
       transform: translateY(16px) scale(0.985);
@@ -105,9 +132,9 @@
     .layout-split {
       display: grid;
       grid-template-columns: 1.05fr 0.95fr;
-      gap: clamp(1.75rem, 3.5vw, 3.25rem);
+      gap: 3.25rem;
       align-items: center;
-      min-height: min(78vh, 820px);
+      min-height: 780px;
     }
 
     .layout-split .visual {
@@ -126,11 +153,6 @@
       display: block;
     }
 
-    @media (max-width: 980px) {
-      .layout-split { grid-template-columns: 1fr; }
-      .layout-split .visual { max-height: 34vh; }
-    }
-
     .kicker {
       display: inline-flex;
       margin-bottom: 1.25rem;
@@ -139,7 +161,7 @@
       border-radius: 999px;
       color: var(--cyan);
       font-family: "JetBrains Mono", monospace;
-      font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+      font-size: 1.15rem;
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -148,7 +170,7 @@
 
     h1 {
       font-family: "JetBrains Mono", monospace;
-      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-size: 5rem;
       font-weight: 800;
       line-height: 1.08;
       letter-spacing: -0.03em;
@@ -157,7 +179,7 @@
 
     h2 {
       font-family: "JetBrains Mono", monospace;
-      font-size: clamp(2.3rem, 4.6vw, 3.8rem);
+      font-size: 3.8rem;
       font-weight: 800;
       line-height: 1.12;
       letter-spacing: -0.03em;
@@ -169,7 +191,7 @@
       margin-top: 0.7rem;
       color: var(--muted);
       font-family: Inter, sans-serif;
-      font-size: clamp(1.15rem, 2vw, 1.55rem);
+      font-size: 1.55rem;
       font-weight: 500;
       line-height: 1.35;
     }
@@ -178,7 +200,7 @@
       margin-top: 1.5rem;
       max-width: 32ch;
       color: var(--muted);
-      font-size: clamp(1.3rem, 2.2vw, 1.75rem);
+      font-size: 1.75rem;
       line-height: 1.45;
       font-weight: 500;
     }
@@ -195,13 +217,6 @@
     .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 
-    @media (max-width: 1100px) {
-      .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
-    @media (max-width: 700px) {
-      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-    }
-
     .card {
       padding: 1.4rem 1.5rem;
       border: 1px solid rgba(12, 255, 255, 0.2);
@@ -214,7 +229,7 @@
       margin-bottom: 0.65rem;
       color: var(--cyan);
       font-family: "JetBrains Mono", monospace;
-      font-size: clamp(0.9rem, 1.3vw, 1.1rem);
+      font-size: 1.1rem;
       letter-spacing: 0.05em;
       text-transform: uppercase;
       font-weight: 700;
@@ -222,7 +237,7 @@
 
     .card p, .bullet {
       color: var(--text);
-      font-size: clamp(1.2rem, 1.9vw, 1.5rem);
+      font-size: 1.5rem;
       line-height: 1.4;
       font-weight: 500;
     }
@@ -247,7 +262,7 @@
     .brand-row .brand {
       color: var(--cyan);
       font-family: "JetBrains Mono", monospace;
-      font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+      font-size: 1.3rem;
       font-weight: 700;
     }
 
@@ -273,12 +288,12 @@
       color: var(--cyan);
       font-family: "JetBrains Mono", monospace;
       font-weight: 700;
-      font-size: clamp(1.2rem, 2vw, 1.5rem);
+      font-size: 1.5rem;
     }
 
     .big-number {
       font-family: "JetBrains Mono", monospace;
-      font-size: clamp(5rem, 14vw, 9rem);
+      font-size: 9rem;
       font-weight: 800;
       line-height: 0.95;
       background: linear-gradient(120deg, var(--cyan), var(--purple));
@@ -291,7 +306,7 @@
       margin-top: 1.4rem;
       max-width: 28ch;
       color: var(--muted);
-      font-size: clamp(1.35rem, 2.4vw, 1.9rem);
+      font-size: 1.9rem;
       line-height: 1.35;
       font-weight: 500;
     }
@@ -303,7 +318,7 @@
       border: 1px solid rgba(255, 79, 216, 0.4);
       background: rgba(255, 79, 216, 0.1);
       font-family: "JetBrains Mono", monospace;
-      font-size: clamp(1.2rem, 2.3vw, 1.7rem);
+      font-size: 1.7rem;
       text-align: center;
       font-weight: 600;
       line-height: 1.4;
@@ -322,7 +337,7 @@
       border: 1px solid rgba(12, 255, 255, 0.3);
       background: rgba(12, 255, 255, 0.1);
       color: var(--text);
-      font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+      font-size: 1.35rem;
       font-weight: 600;
     }
 
@@ -332,7 +347,7 @@
       border-radius: var(--radius);
       background: linear-gradient(120deg, rgba(12, 255, 255, 0.14), rgba(255, 79, 216, 0.14));
       border: 1px solid rgba(12, 255, 255, 0.25);
-      font-size: clamp(1.25rem, 2.1vw, 1.65rem);
+      font-size: 1.65rem;
       line-height: 1.35;
       font-weight: 600;
     }
@@ -354,7 +369,7 @@
       background: rgba(12, 255, 255, 0.14);
       color: var(--cyan);
       font-family: "JetBrains Mono", monospace;
-      font-size: clamp(0.85rem, 1.15vw, 1rem);
+      font-size: 1rem;
       font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -365,7 +380,7 @@
       margin-bottom: 1.1rem;
       color: var(--purple);
       font-family: "JetBrains Mono", monospace;
-      font-size: clamp(1.2rem, 2vw, 1.6rem);
+      font-size: 1.6rem;
       letter-spacing: 0.16em;
       font-weight: 700;
     }
@@ -373,7 +388,7 @@
     .cover-meta {
       margin-top: 2.2rem;
       color: var(--muted);
-      font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+      font-size: 1.45rem;
       font-weight: 500;
     }
 
@@ -387,20 +402,15 @@
 
     .route .arrow {
       color: var(--cyan);
-      font-size: clamp(2rem, 4vw, 3rem);
+      font-size: 3rem;
       font-family: "JetBrains Mono", monospace;
       font-weight: 700;
-    }
-
-    @media (max-width: 700px) {
-      .route { grid-template-columns: 1fr; text-align: center; }
-      .hint { display: none; }
     }
 
     /* Centered slides: wide + airy, not cramped */
     .center-copy {
       text-align: center;
-      max-width: min(52ch, 94vw);
+      max-width: 52ch;
       margin-inline: auto;
       display: flex;
       flex-direction: column;
@@ -411,16 +421,16 @@
     .center-copy .kicker { margin-bottom: 0.5rem; }
     .center-copy h1,
     .center-copy h2 {
-      max-width: min(48ch, 94vw);
+      max-width: 48ch;
     }
     .center-copy .gloss {
       margin-top: 0.85rem;
-      max-width: min(40ch, 90vw);
+      max-width: 40ch;
     }
     .center-copy .lead,
     .center-copy .stat-caption {
       margin-top: 1.6rem;
-      max-width: min(34ch, 90vw);
+      max-width: 34ch;
       margin-inline: auto;
     }
     .center-copy .formula {
@@ -460,46 +470,89 @@
 
     .hud {
       position: fixed;
-      right: 1.4rem;
-      bottom: 1.2rem;
+      right: 1rem;
+      bottom: 1rem;
       z-index: 50;
       display: flex;
       align-items: center;
-      gap: 0.85rem;
+      gap: 0.75rem;
       color: var(--muted);
       font-family: "JetBrains Mono", monospace;
       font-size: 0.95rem;
+      touch-action: manipulation;
     }
 
     .hud button {
       appearance: none;
       border: 1px solid rgba(12, 255, 255, 0.3);
-      background: rgba(22, 8, 48, 0.8);
+      background: rgba(22, 8, 48, 0.85);
       color: var(--text);
-      border-radius: 0.65rem;
-      padding: 0.55rem 0.85rem;
+      border-radius: 0.75rem;
+      min-width: 2.75rem;
+      min-height: 2.75rem;
+      padding: 0.65rem 0.95rem;
       cursor: pointer;
       font: inherit;
-      font-size: 1.1rem;
+      font-size: 1.25rem;
+      touch-action: manipulation;
     }
 
     .hud button:hover { border-color: var(--cyan); color: var(--cyan); }
 
-    .hint {
-      position: fixed;
-      left: 1.4rem;
-      bottom: 1.2rem;
-      z-index: 50;
-      color: var(--muted);
-      font-size: 0.9rem;
+    .share-qr {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      margin-top: 1.75rem;
+      padding: 0.85rem 1.1rem;
+      max-width: 34rem;
+      border-radius: var(--radius);
+      border: 1px solid rgba(12, 255, 255, 0.28);
+      background: rgba(22, 8, 48, 0.72);
+      backdrop-filter: blur(8px);
+    }
+
+    .share-qr img {
+      width: 7.5rem;
+      height: 7.5rem;
+      flex-shrink: 0;
+      border-radius: 0.65rem;
+      background: #fff;
+      padding: 0.35rem;
+    }
+
+    .share-qr .share-label {
+      color: var(--cyan);
       font-family: "JetBrains Mono", monospace;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+
+    .share-qr .share-link {
+      color: var(--text);
+      font-size: 1.05rem;
+      font-weight: 500;
+      line-height: 1.35;
+      word-break: break-all;
+      text-decoration: underline;
+      text-underline-offset: 0.2em;
+    }
+
+    .share-qr .share-link:hover { color: var(--cyan); }
+
+    .center-copy .share-qr {
+      margin-inline: auto;
+      text-align: left;
     }
 
     .notes-panel {
       display: none;
       position: fixed;
       left: 0; right: 0; bottom: 0;
-      max-height: 26vh;
+      max-height: 280px;
       overflow: auto;
       padding: 1rem 1.25rem 3.4rem;
       background: rgba(0, 0, 0, 0.9);
@@ -529,7 +582,7 @@
       background: rgba(12, 255, 255, 0.12);
       color: var(--cyan);
       font-family: "JetBrains Mono", monospace;
-      font-size: clamp(0.85rem, 1.15vw, 1rem);
+      font-size: 1rem;
       font-weight: 700;
       text-decoration: none;
       pointer-events: auto;
@@ -563,7 +616,7 @@
       background: rgba(93, 255, 176, 0.12);
       color: var(--ok);
       font-family: "JetBrains Mono", monospace;
-      font-size: clamp(0.7rem, 0.95vw, 0.85rem);
+      font-size: 0.85rem;
       font-weight: 700;
       letter-spacing: 0.04em;
       text-transform: uppercase;
@@ -575,14 +628,14 @@
       margin-bottom: 0.45rem;
       color: var(--cyan);
       font-family: "JetBrains Mono", monospace;
-      font-size: clamp(0.85rem, 1.15vw, 0.95rem);
+      font-size: 0.95rem;
       letter-spacing: 0.05em;
       text-transform: uppercase;
       font-weight: 700;
     }
 
     .pick-why {
-      font-size: clamp(1.15rem, 1.65vw, 1.35rem);
+      font-size: 1.35rem;
       line-height: 1.35;
       font-weight: 600;
     }
@@ -590,14 +643,14 @@
     .pick-strong {
       margin-top: 0.85rem;
       color: var(--muted);
-      font-size: clamp(0.95rem, 1.25vw, 1.1rem);
+      font-size: 1.1rem;
       line-height: 1.4;
     }
 
     .prompt-ex {
       margin-top: 0.35rem;
       font-family: "JetBrains Mono", monospace;
-      font-size: clamp(0.95rem, 1.35vw, 1.15rem);
+      font-size: 1.15rem;
       line-height: 1.45;
       color: var(--text);
       white-space: pre-wrap;
@@ -616,15 +669,11 @@
       align-items: start;
     }
 
-    @media (max-width: 900px) {
-      .prompt-pair { grid-template-columns: 1fr; }
-    }
-
     .prompt-col .label {
       margin-bottom: 0.45rem;
       color: var(--cyan);
       font-family: "JetBrains Mono", monospace;
-      font-size: clamp(0.85rem, 1.15vw, 1rem);
+      font-size: 1rem;
       letter-spacing: 0.05em;
       text-transform: uppercase;
       font-weight: 700;
@@ -632,7 +681,7 @@
 
     .prompt-box {
       margin-top: 0.55rem;
-      max-height: min(42vh, 420px);
+      max-height: 420px;
       overflow: auto;
       padding: 0.9rem 1rem;
       border-radius: var(--radius);
@@ -641,7 +690,7 @@
     }
 
     .prompt-box .prompt-ex {
-      font-size: clamp(0.78rem, 1.05vw, 0.95rem);
+      font-size: 0.95rem;
       line-height: 1.4;
     }
 
@@ -659,7 +708,7 @@
       padding: 0.4rem 0.9rem;
       cursor: pointer;
       font-family: "JetBrains Mono", monospace;
-      font-size: clamp(0.8rem, 1.05vw, 0.95rem);
+      font-size: 0.95rem;
       font-weight: 700;
     }
 
@@ -678,16 +727,25 @@
 <body>
   <div class="progress" id="progress"></div>
 
+  <div class="viewport" id="viewport">
+  <div class="stage" id="stage">
   <main class="deck" id="deck">
 
     <!-- COVER -->
-    <section class="slide is-active" data-notes="Presenta el bloque. Calma. Una frase: usar IA con criterio.">
+    <section class="slide is-active" data-notes="Presenta el bloque. Calma. Una frase: usar IA con criterio. Muestra el QR para que abran en el celular.">
       <div class="slide-bg" style="background-image:url('assets/cover.png')"></div>
       <div class="slide-inner">
         <p class="kicker frag-auto">Bloque técnico · Curso 2026</p>
         <h1 class="frag-auto">IA <span class="accent">Estratégica</span><br />para Emprendedores</h1>
         <p class="lead frag-auto">Usar inteligencia artificial con criterio.</p>
-        <p class="cover-meta frag-auto">Wilman Montenegro · Marketing con IA</p>
+        <p class="cover-meta frag-auto">Wilman Montenegro · IA Estratégica para Emprendedores</p>
+        <div class="share-qr frag-auto">
+          <img src="assets/qr-diapos.png" alt="Código QR para abrir las diapositivas" width="120" height="120" />
+          <div>
+            <p class="share-label">Abre en tu celular</p>
+            <a class="share-link" href="https://wilman.dev/curso-ia-marketing/diapos/" target="_blank" rel="noopener noreferrer">wilman.dev/curso-ia-marketing/diapos/</a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -798,7 +856,7 @@
           <div class="card risk-card frag" data-tone="danger">
             <div class="label">Prompt malo</div>
             <p class="prompt-ex">Escribe un copy para Instagram.</p>
-            <p style="margin-top:0.85rem;color:var(--muted);font-size:clamp(1rem,1.4vw,1.2rem)">Vago. Sin marca, tono ni formato. Respuesta genérica.</p>
+            <p style="margin-top:0.85rem;color:var(--muted);font-size:1.2rem">Vago. Sin marca, tono ni formato. Respuesta genérica.</p>
           </div>
           <div class="card risk-card frag" data-tone="ok">
             <div class="label">Prompt bueno</div>
@@ -824,12 +882,12 @@ No inventes precios ni premios.</p>
             <div class="label">Regla práctica</div>
             <p><strong>1 token</strong> ≈ 3–4 caracteres</p>
             <p style="margin-top:0.45rem"><strong>100 palabras</strong> ≈ 130–150 tokens</p>
-            <p style="margin-top:0.5rem;color:var(--muted);font-size:clamp(1rem,1.35vw,1.15rem)">Caption corto ≈ 40–80 · post largo ≈ 200–400</p>
+            <p style="margin-top:0.5rem;color:var(--muted);font-size:1.15rem">Caption corto ≈ 40–80 · post largo ≈ 200–400</p>
           </div>
           <div class="card frag">
             <div class="label">Por qué te importa</div>
             <p>Cada mensaje reenvía el chat: <strong>lo anterior</strong> + <strong>lo nuevo</strong> + <strong>la respuesta</strong>.</p>
-            <p style="margin-top:0.5rem;color:var(--muted);font-size:clamp(1rem,1.35vw,1.15rem)">No “recuerda” gratis. Chat largo = más gasto. Sé claro y corto.</p>
+            <p style="margin-top:0.5rem;color:var(--muted);font-size:1.15rem">No “recuerda” gratis. Chat largo = más gasto. Sé claro y corto.</p>
           </div>
           <div class="card frag">
             <div class="label">Entrada</div>
@@ -908,7 +966,7 @@ No inventes precios ni premios.</p>
             <p style="margin-top:0.65rem"><strong style="color:var(--ok)">Gratis</strong> → modelo automático (en el chat normal casi no eliges)</p>
             <p style="margin-top:0.55rem"><strong style="color:var(--cyan)">Plus</strong> → puedes subir el “razonamiento” si la tarea es difícil</p>
             <p style="margin-top:0.55rem"><strong style="color:var(--purple)">Familia GPT-5.6</strong> → Luna / Terra / Sol (más en plan pago o Work)</p>
-            <p style="margin-top:0.55rem;color:var(--muted);font-size:clamp(0.95rem,1.25vw,1.1rem)">Idea: empieza simple. Sube solo si la respuesta no alcanza.</p>
+            <p style="margin-top:0.55rem;color:var(--muted);font-size:1.1rem">Idea: empieza simple. Sube solo si la respuesta no alcanza.</p>
           </div>
           <div class="card frag">
             <div class="brand-row">
@@ -918,7 +976,7 @@ No inventes precios ni premios.</p>
             <p style="margin-top:0.65rem"><strong style="color:var(--ok)">Haiku 4.5</strong> → clasificar contactos, respuestas cortas</p>
             <p style="margin-top:0.55rem"><strong style="color:var(--cyan)">Sonnet 5</strong> → posts, correos y anuncios</p>
             <p style="margin-top:0.55rem"><strong style="color:var(--purple)">Opus 4.8</strong> → estrategia o análisis difícil</p>
-            <p style="margin-top:0.55rem;color:var(--muted);font-size:clamp(0.95rem,1.25vw,1.1rem)">Extra: Fable 5 → lo más difícil (solo si Opus no alcanza)</p>
+            <p style="margin-top:0.55rem;color:var(--muted);font-size:1.1rem">Extra: Fable 5 → lo más difícil (solo si Opus no alcanza)</p>
           </div>
           <div class="card frag">
             <div class="brand-row">
@@ -928,7 +986,7 @@ No inventes precios ni premios.</p>
             <p style="margin-top:0.65rem"><strong style="color:var(--ok)">3.1 Flash-Lite</strong> → borradores rápidos y mucho volumen</p>
             <p style="margin-top:0.55rem"><strong style="color:var(--cyan)">3.5 Flash</strong> → resumir Docs/Sheets o chats del día a día</p>
             <p style="margin-top:0.55rem"><strong style="color:var(--purple)">3.1 Pro</strong> → auditoría o tareas difíciles (math, código, varios archivos)</p>
-            <p style="margin-top:0.55rem;color:var(--muted);font-size:clamp(0.95rem,1.25vw,1.1rem)">Extra: Razonamiento ampliado → problemas complejos</p>
+            <p style="margin-top:0.55rem;color:var(--muted);font-size:1.1rem">Extra: Razonamiento ampliado → problemas complejos</p>
           </div>
         </div>
         <div class="takeaway frag" style="margin-top:1.25rem">Empieza en el barato. Sube solo si la respuesta no alcanza.</div>
@@ -953,7 +1011,7 @@ No inventes precios ni premios.</p>
             <div class="card risk-card frag" data-tone="ok" style="margin-top:1rem">
               <div class="label">Privacidad</div>
               <p>No pegues datos sensibles (contraseñas, clientes, docs privados).</p>
-              <p style="margin-top:0.45rem;color:var(--muted);font-size:clamp(1rem,1.35vw,1.15rem)">Prompt de internet: léelo. Si pide datos o “ignora reglas”, no lo uses.</p>
+              <p style="margin-top:0.45rem;color:var(--muted);font-size:1.15rem">Prompt de internet: léelo. Si pide datos o “ignora reglas”, no lo uses.</p>
             </div>
           </div>
           <div class="visual frag-auto"><img src="assets/risks.png" alt="" /></div>
@@ -1000,7 +1058,7 @@ No inventes precios ni premios.</p>
             <p class="pick-strong" style="margin-top:0.4rem">Video con IA: Google Flow (Veo)</p>
           </div>
         </div>
-        <div class="takeaway frag" style="margin-top:1rem;padding:0.85rem 1.15rem;font-size:clamp(1.05rem,1.45vw,1.25rem)">No hay una ganadora. Una sola: ChatGPT. Mucho texto/marca: Claude. Todo en Google: Gemini.</div>
+        <div class="takeaway frag" style="margin-top:1rem;padding:0.85rem 1.15rem;font-size:1.25rem">No hay una ganadora. Una sola: ChatGPT. Mucho texto/marca: Claude. Todo en Google: Gemini.</div>
       </div>
     </section>
 
@@ -1015,18 +1073,18 @@ No inventes precios ni premios.</p>
               <img class="logo" src="assets/logos/googlegemini.svg" alt="" width="32" height="32" />
               <span class="brand">NotebookLM</span>
             </div>
-            <p style="color:var(--muted);font-size:clamp(0.95rem,1.3vw,1.1rem);margin-bottom:0.45rem">Google</p>
+            <p style="color:var(--muted);font-size:1.1rem;margin-bottom:0.45rem">Google</p>
             <p>Sube PDFs, briefs o notas → <strong>Slide Deck</strong> en Studio</p>
-            <p style="margin-top:0.55rem;color:var(--muted);font-size:clamp(1rem,1.35vw,1.2rem)">Fuerte: se basa en <em>tus</em> fuentes (menos inventos)</p>
+            <p style="margin-top:0.55rem;color:var(--muted);font-size:1.2rem">Fuerte: se basa en <em>tus</em> fuentes (menos inventos)</p>
             <a class="tool-link" href="https://notebooklm.google/" target="_blank" rel="noopener noreferrer">Abrir NotebookLM →</a>
           </div>
           <div class="card frag">
             <div class="brand-row">
               <span class="brand">Gamma</span>
             </div>
-            <p style="color:var(--muted);font-size:clamp(0.95rem,1.3vw,1.1rem);margin-bottom:0.45rem">Pitch visual</p>
+            <p style="color:var(--muted);font-size:1.1rem;margin-bottom:0.45rem">Pitch visual</p>
             <p>Prompt → presentación bonita lista para pitch</p>
-            <p style="margin-top:0.55rem;color:var(--muted);font-size:clamp(1rem,1.35vw,1.2rem)">Fuerte en diseño. Tú sigues verificando datos.</p>
+            <p style="margin-top:0.55rem;color:var(--muted);font-size:1.2rem">Fuerte en diseño. Tú sigues verificando datos.</p>
             <a class="tool-link" href="https://gamma.app/" target="_blank" rel="noopener noreferrer">Abrir Gamma →</a>
           </div>
           <div class="card frag">
@@ -1034,9 +1092,9 @@ No inventes precios ni premios.</p>
               <img class="logo" src="assets/logos/anthropic.svg" alt="" width="32" height="32" />
               <span class="brand">Claude Design</span>
             </div>
-            <p style="color:var(--muted);font-size:clamp(0.95rem,1.3vw,1.1rem);margin-bottom:0.45rem">Anthropic · plan de pago</p>
+            <p style="color:var(--muted);font-size:1.1rem;margin-bottom:0.45rem">Anthropic · plan de pago</p>
             <p>Describes la presentación en el chat → diapos en el canvas</p>
-            <p style="margin-top:0.55rem;color:var(--muted);font-size:clamp(1rem,1.35vw,1.2rem)">Exporta PPTX, PDF, HTML o envía a Canva</p>
+            <p style="margin-top:0.55rem;color:var(--muted);font-size:1.2rem">Exporta PPTX, PDF, HTML o envía a Canva</p>
             <a class="tool-link" href="https://claude.ai/design" target="_blank" rel="noopener noreferrer">Abrir Claude Design →</a>
           </div>
         </div>
@@ -1121,18 +1179,18 @@ Poco texto por slide. No inventes cifras.</p>
             <div class="brand-row">
               <span class="brand">Kling</span>
             </div>
-            <p style="color:var(--muted);font-size:clamp(0.95rem,1.3vw,1.1rem);margin-bottom:0.45rem">Empieza aquí</p>
+            <p style="color:var(--muted);font-size:1.1rem;margin-bottom:0.45rem">Empieza aquí</p>
             <p>Texto o foto → video. También con audio nativo.</p>
-            <p style="margin-top:0.55rem;color:var(--muted);font-size:clamp(1rem,1.35vw,1.15rem)">Ideal para: Reels y TikTok de producto o marca</p>
+            <p style="margin-top:0.55rem;color:var(--muted);font-size:1.15rem">Ideal para: Reels y TikTok de producto o marca</p>
             <a class="tool-link" href="https://kling.ai/" target="_blank" rel="noopener noreferrer">Abrir Kling →</a>
           </div>
           <div class="card frag">
             <div class="brand-row">
               <span class="brand">Seedance</span>
             </div>
-            <p style="color:var(--muted);font-size:clamp(0.95rem,1.3vw,1.1rem);margin-bottom:0.45rem">Dreamina / CapCut</p>
+            <p style="color:var(--muted);font-size:1.1rem;margin-bottom:0.45rem">Dreamina / CapCut</p>
             <p>Baile, acción y varios sujetos juntos.</p>
-            <p style="margin-top:0.55rem;color:var(--muted);font-size:clamp(1rem,1.35vw,1.15rem)">Ideal para: anuncios con personas bailando o en movimiento</p>
+            <p style="margin-top:0.55rem;color:var(--muted);font-size:1.15rem">Ideal para: anuncios con personas bailando o en movimiento</p>
             <a class="tool-link" href="https://dreamina.capcut.com/tools/seedance-2-0" target="_blank" rel="noopener noreferrer">Abrir Seedance →</a>
           </div>
           <div class="card frag">
@@ -1140,18 +1198,18 @@ Poco texto por slide. No inventes cifras.</p>
               <span class="brand">Wan</span>
               <span class="tag-free">Gratis</span>
             </div>
-            <p style="color:var(--muted);font-size:clamp(0.95rem,1.3vw,1.1rem);margin-bottom:0.45rem">Tongyi Wanxiang</p>
+            <p style="color:var(--muted);font-size:1.1rem;margin-bottom:0.45rem">Tongyi Wanxiang</p>
             <p>Foto → video limpio y cámara suave.</p>
-            <p style="margin-top:0.55rem;color:var(--muted);font-size:clamp(1rem,1.35vw,1.15rem)">Ideal para: animar fotos del catálogo sin pagar</p>
+            <p style="margin-top:0.55rem;color:var(--muted);font-size:1.15rem">Ideal para: animar fotos del catálogo sin pagar</p>
             <a class="tool-link" href="https://tongyi.aliyun.com/wanxiang" target="_blank" rel="noopener noreferrer">Abrir Wan →</a>
           </div>
           <div class="card frag">
             <div class="brand-row">
               <span class="brand">Veo 3.1</span>
             </div>
-            <p style="color:var(--muted);font-size:clamp(0.95rem,1.3vw,1.1rem);margin-bottom:0.45rem">Google Flow</p>
+            <p style="color:var(--muted);font-size:1.1rem;margin-bottom:0.45rem">Google Flow</p>
             <p>Video cinematográfico + audio nativo.</p>
-            <p style="margin-top:0.55rem;color:var(--muted);font-size:clamp(1rem,1.35vw,1.15rem)">Ideal para: demo de producto o clip con sonido incluido</p>
+            <p style="margin-top:0.55rem;color:var(--muted);font-size:1.15rem">Ideal para: demo de producto o clip con sonido incluido</p>
             <a class="tool-link" href="https://labs.google/fx/tools/flow" target="_blank" rel="noopener noreferrer">Abrir Google Flow →</a>
           </div>
         </div>
@@ -1214,20 +1272,28 @@ Poco texto por slide. No inventes cifras.</p>
     </section>
 
     <!-- CIERRE -->
-    <section class="slide" data-notes="Frase final visible. Gracias. Preguntas. Todo de una; sin frags.">
+    <section class="slide" data-notes="Frase final. QR de nuevo por si no lo escanearon. Preguntas.">
       <div class="slide-bg" style="background-image:url('assets/cover.png')"></div>
-      <div class="slide-inner center-copy" style="min-height:min(78vh,820px);justify-content:center;gap:0.85rem">
+      <div class="slide-inner center-copy" style="min-height:820px;justify-content:center;gap:0.85rem">
         <p class="kicker">Cierre</p>
-        <h1 style="font-size:clamp(1.85rem,4.2vw,3.1rem);max-width:18ch">La IA potencia tu trabajo.<br />No te reemplaza.</h1>
+        <h1 style="font-size:3.1rem;max-width:18ch">La IA potencia tu trabajo.<br />No te reemplaza.</h1>
         <p class="lead" style="margin-top:0.75rem">¿Preguntas?</p>
-        <p class="cover-meta" style="margin-top:0.75rem">Wilman Montenegro · Marketing con IA</p>
+        <p class="cover-meta" style="margin-top:0.75rem">Wilman Montenegro · IA Estratégica para Emprendedores</p>
+        <div class="share-qr">
+          <img src="assets/qr-diapos.png" alt="Código QR para abrir las diapositivas" width="120" height="120" />
+          <div>
+            <p class="share-label">Llévatelas</p>
+            <a class="share-link" href="https://wilman.dev/curso-ia-marketing/diapos/" target="_blank" rel="noopener noreferrer">wilman.dev/curso-ia-marketing/diapos/</a>
+          </div>
+        </div>
       </div>
     </section>
 
   </main>
+  </div>
+  </div>
 
   <div class="notes-panel" id="notesPanel"></div>
-  <p class="hint">← → · Espacio revela · F pantalla · N notas</p>
   <div class="hud">
     <button type="button" id="prevBtn" aria-label="Anterior">←</button>
     <span id="counter">1 / 1</span>
@@ -1235,15 +1301,32 @@ Poco texto por slide. No inventes cifras.</p>
   </div>
 
   <script>
+    const STAGE_W = 1920
+    const STAGE_H = 1080
     const slides = [...document.querySelectorAll('.slide')]
     const progress = document.getElementById('progress')
     const counter = document.getElementById('counter')
     const notesPanel = document.getElementById('notesPanel')
     const prevBtn = document.getElementById('prevBtn')
     const nextBtn = document.getElementById('nextBtn')
+    const viewport = document.getElementById('viewport')
+    const stage = document.getElementById('stage')
     const STORE = 'curso-ia-diapos'
 
     let index = 0
+    let fitScale = 1
+    let userZoom = 1
+    let panX = 0
+    let panY = 0
+    let touchMode = null
+    let startX = 0
+    let startY = 0
+    let lastX = 0
+    let lastY = 0
+    let startDist = 0
+    let startZoom = 1
+    let lastTap = 0
+    let ignoreSwipe = false
 
     function frags(slide) {
       return [...slide.querySelectorAll('.frag')]
@@ -1292,6 +1375,37 @@ Poco texto por slide. No inventes cifras.</p>
       show(i, frags(slides[i]).length)
     }
 
+    function clampPan() {
+      const scale = fitScale * userZoom
+      const maxX = Math.max(0, (STAGE_W * scale - window.innerWidth) / 2)
+      const maxY = Math.max(0, (STAGE_H * scale - window.innerHeight) / 2)
+      panX = Math.min(maxX, Math.max(-maxX, panX))
+      panY = Math.min(maxY, Math.max(-maxY, panY))
+    }
+
+    function applyTransform() {
+      if (!stage) return
+      const scale = fitScale * userZoom
+      stage.style.transform = `translate(${panX}px, ${panY}px) scale(${scale})`
+    }
+
+    function fit() {
+      fitScale = Math.min(window.innerWidth / STAGE_W, window.innerHeight / STAGE_H)
+      clampPan()
+      applyTransform()
+    }
+
+    function resetZoom() {
+      userZoom = 1
+      panX = 0
+      panY = 0
+      applyTransform()
+    }
+
+    function touchDistance(a, b) {
+      return Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY)
+    }
+
     prevBtn?.addEventListener('click', () => prev())
     nextBtn?.addEventListener('click', () => next())
 
@@ -1334,8 +1448,91 @@ Poco texto por slide. No inventes cifras.</p>
         else document.exitFullscreen?.()
       } else if (e.key === 'n' || e.key === 'N') {
         document.body.classList.toggle('show-notes')
+      } else if (e.key === '0' || e.key === 'Escape') {
+        resetZoom()
       }
     })
+
+    viewport?.addEventListener('touchstart', (e) => {
+      const target = e.target
+      if (target?.closest?.('a, button, .copy-prompt-btn, .prompt-box')) {
+        ignoreSwipe = true
+        touchMode = null
+        return
+      }
+      ignoreSwipe = false
+      if (e.touches.length === 2) {
+        touchMode = 'pinch'
+        startDist = touchDistance(e.touches[0], e.touches[1])
+        startZoom = userZoom
+        e.preventDefault()
+        return
+      }
+      if (e.touches.length === 1) {
+        const now = Date.now()
+        if (now - lastTap < 280) {
+          resetZoom()
+          lastTap = 0
+          touchMode = null
+          e.preventDefault()
+          return
+        }
+        lastTap = now
+        startX = lastX = e.touches[0].clientX
+        startY = lastY = e.touches[0].clientY
+        touchMode = userZoom > 1.02 ? 'pan' : 'swipe'
+      }
+    }, { passive: false })
+
+    viewport?.addEventListener('touchmove', (e) => {
+      if (touchMode === 'pinch' && e.touches.length === 2) {
+        const d = touchDistance(e.touches[0], e.touches[1])
+        userZoom = Math.min(3, Math.max(1, startZoom * (d / Math.max(startDist, 1))))
+        if (userZoom <= 1.02) {
+          userZoom = 1
+          panX = 0
+          panY = 0
+        }
+        clampPan()
+        applyTransform()
+        e.preventDefault()
+        return
+      }
+      if (touchMode === 'pan' && e.touches.length === 1) {
+        const t = e.touches[0]
+        panX += t.clientX - lastX
+        panY += t.clientY - lastY
+        lastX = t.clientX
+        lastY = t.clientY
+        clampPan()
+        applyTransform()
+        e.preventDefault()
+        return
+      }
+      if (touchMode === 'swipe' && e.touches.length === 1) {
+        lastX = e.touches[0].clientX
+        lastY = e.touches[0].clientY
+      }
+    }, { passive: false })
+
+    viewport?.addEventListener('touchend', (e) => {
+      if (!ignoreSwipe && touchMode === 'swipe' && e.changedTouches.length >= 1) {
+        const t = e.changedTouches[0]
+        const dx = t.clientX - startX
+        const dy = t.clientY - startY
+        if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.15) {
+          if (dx < 0) next()
+          else prev()
+        }
+      }
+      if (e.touches.length === 0) {
+        touchMode = null
+        ignoreSwipe = false
+      }
+    })
+
+    window.addEventListener('resize', fit)
+    fit()
 
     try {
       const saved = JSON.parse(sessionStorage.getItem(STORE) || 'null')
