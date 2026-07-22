@@ -82,8 +82,9 @@
       padding: 3.5rem 4.5rem;
       opacity: 0;
       visibility: hidden;
-      transform: translateY(16px) scale(0.985);
-      transition: opacity 0.45s var(--ease), transform 0.45s var(--ease), visibility 0.45s;
+      /* ponytail: sin scale — scale + borde fino del stage = temblor/subpixel */
+      transform: translateY(12px);
+      transition: opacity 0.4s var(--ease), transform 0.4s var(--ease), visibility 0.4s;
       pointer-events: none;
       overflow: hidden;
     }
@@ -100,12 +101,10 @@
       inset: 0;
       background-size: cover;
       background-position: center;
-      transform: scale(1.04);
-      transition: transform 6s ease;
+      /* sin Ken Burns: el scale 6s hacía temblar bordes y líneas finas del arte */
+      transform: none;
       z-index: 0;
     }
-
-    .slide.is-active .slide-bg { transform: scale(1); }
 
     .slide-bg::after {
       content: "";
@@ -163,6 +162,79 @@
       height: 100%;
       object-fit: cover;
       display: block;
+    }
+
+    /* LLM: 50/50 — copy izq, imagen sangrada der (sin marco) */
+    .llm-slide {
+      place-items: stretch;
+      padding-right: 0;
+    }
+
+    .llm-bleed {
+      position: absolute;
+      top: auto;
+      right: 0;
+      bottom: 0;
+      height: 94%;
+      width: 60%;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .llm-bleed img {
+      width: 118%;
+      height: 118%;
+      max-width: none;
+      object-fit: cover;
+      object-position: 36% 52%;
+      display: block;
+      position: absolute;
+      right: -4%;
+      bottom: -10%;
+      /* un solo fade suave (composite a veces deja borde duro) */
+      -webkit-mask-image: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(0, 0, 0, 0.12) 10%,
+        rgba(0, 0, 0, 0.55) 20%,
+        #000 34%,
+        #000 100%
+      );
+      mask-image: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(0, 0, 0, 0.12) 10%,
+        rgba(0, 0, 0, 0.55) 20%,
+        #000 34%,
+        #000 100%
+      );
+    }
+
+    .llm-bleed::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, var(--bg) 0%, rgba(7, 2, 20, 0.65) 8%, rgba(7, 2, 20, 0.25) 22%, transparent 42%),
+        linear-gradient(180deg, var(--bg) 0%, transparent 24%);
+      pointer-events: none;
+    }
+
+    .llm-slide .llm-copy {
+      position: relative;
+      z-index: 1;
+      width: min(860px, 46%);
+      margin: auto 0 auto 4.5rem;
+      align-self: center;
+      justify-self: start;
+    }
+
+    .llm-slide .llm-copy h2 {
+      font-size: clamp(2.85rem, 3.6vw, 3.55rem);
+      max-width: none;
+      white-space: nowrap;
+      line-height: 1.12;
     }
 
     .kicker {
@@ -593,11 +665,11 @@
     }
 
     .share-qr img {
-      width: 11rem;
-      height: 11rem;
+      width: 13rem;
+      height: 13rem;
       border-radius: 0.5rem;
       background: #fff;
-      padding: 0.4rem;
+      padding: 0.45rem;
     }
 
     .share-qr .share-label {
@@ -610,7 +682,7 @@
       line-height: 1.4;
       margin: 0;
       text-align: center;
-      width: 14rem;
+      width: 15rem;
     }
 
     .notes-panel {
@@ -888,7 +960,7 @@
           <p class="lead frag-auto">Usar inteligencia artificial con <strong class="accent">criterio</strong>.</p>
           <p class="cover-meta frag-auto">Wilman Montenegro · Sección técnica</p>
           <div class="share-qr frag-auto">
-            <img src="assets/qr-diapos.png" alt="Código QR para abrir la presentación en tu dispositivo" width="176" height="176" />
+            <img src="assets/qr-diapos.png" alt="Código QR para abrir la presentación en tu dispositivo" width="208" height="208" />
             <p class="share-label">Abre la presentación en tu dispositivo</p>
           </div>
         </div>
@@ -913,32 +985,32 @@
     </section>
 
     <!-- LLM DEF + NOT DB -->
-    <section class="slide" data-notes="Enfatiza: entiende y escribe texto. No es magia. No busca como Google. Completa texto. Puede equivocarse.">
-      <div class="slide-inner layout-split">
-        <div>
-          <p class="kicker">01 · LLM</p>
-          <h2>Modelo de lenguaje grande</h2>
-          <span class="gloss">Large Language Model · LLM · No es una base de datos</span>
-          <div class="card frag" style="margin-top:1.5rem">
-            <div class="label">En simple</div>
-            <p>Una IA que <strong>entiende</strong> y <strong class="accent">genera texto</strong>.</p>
-          </div>
-          <div class="card frag" style="margin-top:1rem">
-            <div class="label">Cómo funciona</div>
-            <p>No “busca y encuentra”. <strong class="accent">Predice</strong> la siguiente palabra.</p>
-          </div>
-          <div class="formula frag" style="text-align:left;margin-top:1rem">
-            patrones + tu pregunta<br />→ <span class="accent">siguiente palabra</span>
-          </div>
-          <div class="takeaway frag">Puede <strong>sonar bien</strong>… y <strong class="accent">estar mal</strong>.</div>
+    <section class="slide llm-slide" data-notes="Primero el nombre en inglés + sigla. Luego: entiende y escribe texto. No es magia. No busca como Google. Completa texto. Puede equivocarse.">
+      <div class="llm-bleed" aria-hidden="true">
+        <img src="assets/llm.png" alt="" />
+      </div>
+      <div class="slide-inner llm-copy">
+        <p class="kicker">01 · LLM</p>
+        <h2>Large Language Model <strong class="accent">(LLM)</strong></h2>
+        <span class="gloss">Modelo de lenguaje grande · No es una base de datos</span>
+        <div class="card frag" style="margin-top:1.5rem">
+          <div class="label">En simple</div>
+          <p>Una IA que <strong>entiende</strong> y <strong class="accent">genera texto</strong>.</p>
         </div>
-        <div class="visual frag-auto"><img src="assets/llm.png" alt="" /></div>
+        <div class="card frag" style="margin-top:1rem">
+          <div class="label">Cómo funciona</div>
+          <p>No “busca y encuentra”. <strong class="accent">Predice</strong> la siguiente palabra.</p>
+        </div>
+        <div class="formula frag" style="text-align:left;margin-top:1rem">
+          patrones + tu pregunta<br />→ <span class="accent">siguiente palabra</span>
+        </div>
+        <div class="takeaway frag">Puede <strong>sonar bien</strong>… y <strong class="accent">estar mal</strong>.</div>
       </div>
     </section>
 
     <!-- MARKETING USES -->
     <section class="slide" data-notes="Mapa amplio: texto, visual, datos, atención. Cita HubSpot State of Marketing 2026: 86.4% usan IA; usos intensivos: content 42.5%, media 37.2%, automatización admin 35.6%. Imagen/video los detalla la compañera; aquí solo el ‘para qué’.">
-      <div class="slide-bg quiet" aria-hidden="true"></div>
+      <div class="slide-bg center-veil" style="background-image:url('assets/productivity.png')" aria-hidden="true"></div>
       <div class="slide-inner">
         <p class="kicker">En marketing digital</p>
         <h2>¿En qué puedes usar la IA?</h2>
@@ -965,31 +1037,31 @@
     </section>
 
     <!-- PROMPT RECIPE -->
-    <section class="slide" data-notes="Primero define: prompt = lo que escribes para pedirle algo. Luego las 4 piezas. En la receta, Contexto = marca/tono (no confundir con la ventana de contexto, que viene después).">
+    <section class="slide" data-notes="Primero: prompt = lo que le escribes para pedirle algo. Luego las 4 partes. En la receta, Contexto = marca/tono (no confundir con la ventana de contexto, que viene después).">
       <div class="slide-bg" style="background-image:url('assets/productivity.png')"></div>
       <div class="slide-inner">
         <p class="kicker">02 · Prompts</p>
         <h2><strong class="accent">Prompt</strong> = lo que le pides a la IA</h2>
-        <span class="gloss">La instrucción que escribes en el chat. Un buen prompt lleva <strong>4 piezas</strong>:</span>
+        <span class="gloss">Es lo que escribes en el chat. Un buen prompt tiene <strong>4 partes</strong>:</span>
         <div class="grid-4" style="margin-top:1.35rem">
           <div class="card frag">
             <div class="label">01 Rol</div>
-            <p>Quién es la IA</p>
+            <p>Quién quieres que sea</p>
           </div>
           <div class="card frag">
             <div class="label">02 Tarea</div>
-            <p>Qué debe hacer</p>
+            <p>Qué quieres que haga</p>
           </div>
           <div class="card frag">
             <div class="label">03 Contexto</div>
-            <p>Marca, tono, límites</p>
+            <p>Tu marca, tono y límites</p>
           </div>
           <div class="card frag">
             <div class="label">04 Formato</div>
-            <p>Largo, estructura, cómo termina</p>
+            <p>Qué tan largo, cómo se ve y cómo cierra</p>
           </div>
         </div>
-        <div class="takeaway frag">Sin estas 4, la IA <strong>improvisa</strong>… y tú pierdes tiempo. Hazlos con <strong class="accent">tu</strong> marca.</div>
+        <div class="takeaway frag">Sin estas 4 partes, la IA <strong>improvisa</strong>… y pierdes tiempo. Mejor pídeselo con <strong class="accent">tu</strong> marca.</div>
       </div>
     </section>
 
@@ -1560,7 +1632,8 @@ Poco texto por slide. No inventes cifras.</p>
 
     function fit() {
       const { w, h } = viewSize()
-      fitScale = Math.min(w / STAGE_W, h / STAGE_H)
+      // redondeo: scale fraccional + borde cyan 1–3px = shimmer
+      fitScale = Math.round(Math.min(w / STAGE_W, h / STAGE_H) * 1000) / 1000
       clampPan()
       applyTransform()
     }
