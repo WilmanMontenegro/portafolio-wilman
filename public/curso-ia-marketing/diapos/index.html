@@ -519,6 +519,58 @@
       border-color: var(--cyan);
     }
 
+    .tool-bullet {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .tool-bullet .tool-link {
+      margin-top: 0;
+      flex-shrink: 0;
+    }
+
+    .tag-free {
+      display: inline-block;
+      margin-left: 0.35rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(93, 255, 176, 0.45);
+      background: rgba(93, 255, 176, 0.12);
+      color: var(--ok);
+      font-family: "JetBrains Mono", monospace;
+      font-size: clamp(0.7rem, 0.95vw, 0.85rem);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      vertical-align: middle;
+    }
+
+    .pick-if {
+      margin-top: 0.85rem;
+      margin-bottom: 0.45rem;
+      color: var(--cyan);
+      font-family: "JetBrains Mono", monospace;
+      font-size: clamp(0.85rem, 1.15vw, 0.95rem);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .pick-why {
+      font-size: clamp(1.15rem, 1.65vw, 1.35rem);
+      line-height: 1.35;
+      font-weight: 600;
+    }
+
+    .pick-strong {
+      margin-top: 0.85rem;
+      color: var(--muted);
+      font-size: clamp(0.95rem, 1.25vw, 1.1rem);
+      line-height: 1.4;
+    }
+
     .prompt-ex {
       margin-top: 0.35rem;
       font-family: "JetBrains Mono", monospace;
@@ -533,18 +585,70 @@
       font-weight: 700;
     }
 
+    .prompt-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 0.85rem;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .prompt-pair { grid-template-columns: 1fr; }
+    }
+
+    .prompt-col .label {
+      margin-bottom: 0.45rem;
+      color: var(--cyan);
+      font-family: "JetBrains Mono", monospace;
+      font-size: clamp(0.85rem, 1.15vw, 1rem);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
     .prompt-box {
-      margin-top: 1rem;
-      max-height: min(52vh, 520px);
+      margin-top: 0.55rem;
+      max-height: min(42vh, 420px);
       overflow: auto;
-      padding: 1.1rem 1.25rem;
+      padding: 0.9rem 1rem;
       border-radius: var(--radius);
       border: 1px solid rgba(12, 255, 255, 0.25);
       background: rgba(7, 2, 20, 0.55);
     }
 
     .prompt-box .prompt-ex {
-      font-size: clamp(0.88rem, 1.2vw, 1.05rem);
+      font-size: clamp(0.78rem, 1.05vw, 0.95rem);
+      line-height: 1.4;
+    }
+
+    .prompt-actions {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .copy-prompt-btn {
+      appearance: none;
+      border: 1px solid rgba(12, 255, 255, 0.45);
+      background: rgba(12, 255, 255, 0.14);
+      color: var(--cyan);
+      border-radius: 999px;
+      padding: 0.4rem 0.9rem;
+      cursor: pointer;
+      font-family: "JetBrains Mono", monospace;
+      font-size: clamp(0.8rem, 1.05vw, 0.95rem);
+      font-weight: 700;
+    }
+
+    .copy-prompt-btn:hover {
+      background: rgba(12, 255, 255, 0.24);
+      border-color: var(--cyan);
+    }
+
+    .copy-prompt-btn.is-done {
+      border-color: rgba(93, 255, 176, 0.55);
+      background: rgba(93, 255, 176, 0.14);
+      color: var(--ok);
     }
   </style>
 </head>
@@ -572,11 +676,11 @@
         <h2>Qué aprenderás en esta sección</h2>
         <div class="bullet-list">
           <div class="bullet-row frag"><span class="icon">01</span><span class="bullet">Qué es un LLM <span class="gloss" style="display:inline;margin:0;font-size:0.9em">(modelo de lenguaje)</span></span></div>
-          <div class="bullet-row frag"><span class="icon">02</span><span class="bullet">Qué es un token y cómo se cobra</span></div>
-          <div class="bullet-row frag"><span class="icon">03</span><span class="bullet">Qué es el contexto (cuánto “recuerda”)</span></div>
-          <div class="bullet-row frag"><span class="icon">04</span><span class="bullet">Riesgos: errores, sesgos y privacidad</span></div>
-          <div class="bullet-row frag"><span class="icon">05</span><span class="bullet">Prompt malo vs bueno (práctica)</span></div>
-          <div class="bullet-row frag"><span class="icon">06</span><span class="bullet">Proveedores, productividad y decks</span></div>
+          <div class="bullet-row frag"><span class="icon">02</span><span class="bullet">Qué es un prompt (y uno bueno vs malo)</span></div>
+          <div class="bullet-row frag"><span class="icon">03</span><span class="bullet">Qué es un token y cómo ahorrar</span></div>
+          <div class="bullet-row frag"><span class="icon">04</span><span class="bullet">Qué es el contexto</span></div>
+          <div class="bullet-row frag"><span class="icon">05</span><span class="bullet">Riesgos: errores, sesgos y privacidad</span></div>
+          <div class="bullet-row frag"><span class="icon">06</span><span class="bullet">Apps, presentaciones y video</span></div>
         </div>
       </div>
     </section>
@@ -610,185 +714,37 @@
       <div class="slide-bg quiet" aria-hidden="true"></div>
       <div class="slide-inner">
         <p class="kicker">En marketing digital</p>
-        <h2>¿Para qué sirve la IA?</h2>
-        <span class="gloss" style="margin-bottom:0.35rem">No solo texto: también imagen, video, datos y atención al cliente</span>
+        <h2>¿En qué puedes usar la IA?</h2>
         <div class="grid-2" style="margin-top:1.1rem">
           <div class="card frag">
-            <div class="label">Texto</div>
-            <p>Copies, emails, guiones, ideas de contenido</p>
+            <div class="label">Contenido</div>
+            <p>Textos, correos, guiones e ideas de posts y anuncios</p>
           </div>
           <div class="card frag">
-            <div class="label">Visual</div>
-            <p>Imágenes, video corto, presentaciones / decks</p>
+            <div class="label">Creatividades</div>
+            <p>Imágenes, Reels, stories y presentaciones</p>
           </div>
           <div class="card frag">
             <div class="label">Datos</div>
-            <p>Análisis, reportes, SEO y búsqueda con IA</p>
+            <p>Analizar datos, ideas, aparecer en Google, reportes y ver a la competencia</p>
           </div>
           <div class="card frag">
             <div class="label">Atención</div>
-            <p>Chatbots, personalización, tareas repetidas</p>
+            <p>Mensajes, preguntas frecuentes, clientes nuevos y tareas repetidas</p>
           </div>
         </div>
-        <div class="takeaway frag" style="margin-top:1.15rem">La IA acelera. Tú decides marca, verdad y estrategia.</div>
-        <p style="margin-top:0.85rem;color:var(--muted);font-size:clamp(0.9rem,1.2vw,1.05rem)">Fuente: HubSpot State of Marketing 2026 — 86%+ de equipos ya usan IA; contenido y media (imagen/video) entre los usos más frecuentes.</p>
-      </div>
-    </section>
-
-    <!-- TOKEN DEF -->
-    <section class="slide" data-notes="OpenAI da la regla solo para inglés (~750 palabras / 1.000 tokens). En español el mismo mensaje suele gastar más tokens (~20–50%), porque el recorte se entrenó sobre todo en inglés. Conclusión: escribir en español NO es más barato; suele costar más.">
-      <div class="slide-inner layout-split">
-        <div>
-          <p class="kicker">02 · Unidad básica</p>
-          <h2>Token = pedacito de texto</h2>
-          <span class="gloss">Se cobra por tokens, no por palabras</span>
-          <div class="card frag" style="margin-top:1.5rem">
-            <div class="label">Regla OpenAI (solo inglés)</div>
-            <p>1 token ≈ 4 caracteres</p>
-            <p style="margin-top:0.45rem">1.000 tokens ≈ <strong>750</strong> palabras</p>
-            <p style="margin-top:0.55rem;color:var(--muted);font-size:0.95rem">Fuente: OpenAI Help Center</p>
-          </div>
-          <div class="card frag" style="margin-top:1rem">
-            <div class="label">En español</div>
-            <p>Mismo mensaje ≈ <strong>más tokens</strong> (~20–50% más)</p>
-            <p style="margin-top:0.45rem">1.000 tokens ≈ <strong>550–650</strong> palabras</p>
-            <p style="margin-top:0.55rem;color:var(--muted);font-size:0.95rem">Medidas con tiktoken (GPT-4 / GPT-4o)</p>
-          </div>
-        </div>
-        <div class="visual frag-auto"><img src="assets/tokens.png" alt="" /></div>
-      </div>
-    </section>
-
-    <!-- CONTEXT DEF -->
-    <section class="slide" data-notes="Contexto = prompt + historial + archivos. Hay un tope (ventana). Si te pasas, olvida lo de arriba. Takeaway: elige qué meter.">
-      <div class="slide-inner layout-split">
-        <div>
-          <p class="kicker">03 · Ventana de contexto</p>
-          <h2>Cuánto puede leer de una vez</h2>
-          <span class="gloss">No es memoria eterna. Es lo que cabe ahora.</span>
-          <div class="card frag" style="margin-top:1.5rem">
-            <div class="label">Qué entra</div>
-            <p>Tu pregunta + el chat anterior + archivos que subes</p>
-          </div>
-          <div class="card frag" style="margin-top:1rem">
-            <div class="label">El límite</div>
-            <p>Cada modelo tiene un tope de tokens.<br />Si te pasas, “olvida” lo de arriba.</p>
-          </div>
-          <div class="takeaway frag">Más contexto útil ≠ mejor respuesta. Elige qué meter.</div>
-        </div>
-        <div class="visual frag-auto"><img src="assets/llm.png" alt="" /></div>
-      </div>
-    </section>
-
-    <!-- COST -->
-    <section class="slide" data-notes="Salida cuesta más. Prompts cortos ayudan. El contexto de entrada también se cobra.">
-      <div class="slide-bg" style="background-image:url('assets/tokens.png')"></div>
-      <div class="slide-inner">
-        <p class="kicker">Cómo se cobra</p>
-        <h2>Pagas por cada pedacito</h2>
-        <span class="gloss" style="margin-bottom:0.5rem">Entrada = lo que metes al contexto · Salida = la respuesta</span>
-        <div class="grid-2">
-          <div class="card frag">
-            <div class="label">Entrada</div>
-            <p>Lo que tú escribes.<br />Más barato.</p>
-          </div>
-          <div class="card frag">
-            <div class="label">Salida</div>
-            <p>Lo que responde la IA.<br /><strong>3× a 6× más caro.</strong></p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- RIGHT MODEL -->
-    <section class="slide" data-notes="Aquí va el ‘ROI’ simple: barato para volumen; caro solo para decidir. Ahorras plata y tiempo. Luego ejemplos reales Mini/Pro.">
-      <div class="slide-bg" style="background-image:url('assets/roi.png')"></div>
-      <div class="slide-inner">
-        <p class="kicker">Ahorrar bien</p>
-        <h2>El modelo correcto</h2>
-        <span class="gloss" style="margin-bottom:0.75rem">Misma app, varios modelos. No pagues Pro para todo.</span>
-        <div class="route">
-          <div class="card frag-auto">
-            <div class="label">Barato · rápido</div>
-            <p>Resumir, clasificar, borradores simples</p>
-          </div>
-          <div class="arrow frag-auto">→</div>
-          <div class="card frag-auto">
-            <div class="label">Fuerte · caro</div>
-            <p>Estrategia y decisiones difíciles</p>
-          </div>
-        </div>
-        <div class="takeaway frag" style="margin-top:1.35rem">Barato primero. Caro solo si hace falta. Eso es tu retorno: menos gasto y más tiempo.</div>
-      </div>
-    </section>
-
-    <!-- REAL MODEL EXAMPLES -->
-    <section class="slide" data-notes="ChatGPT Mini vs Thinking · Claude Haiku/Sonnet/Opus · Gemini Flash vs Pro. Ejemplos de marketing. En la app eligen el modelo arriba o en ajustes.">
-      <div class="slide-inner">
-        <p class="kicker">Ejemplos reales</p>
-        <h2>Las 3 apps más usadas</h2>
-        <div class="grid-3" style="margin-top:1.25rem">
-          <div class="card frag">
-            <div class="brand-row">
-              <img class="logo" src="assets/logos/openai.svg" alt="" width="32" height="32" />
-              <span class="brand">ChatGPT</span>
-            </div>
-            <p style="margin-top:0.65rem"><strong style="color:var(--ok)">Mini</strong> → clasificar comentarios o resumir reseñas</p>
-            <p style="margin-top:0.55rem"><strong style="color:var(--cyan)">GPT / Thinking</strong> → plan de campaña o propuesta a cliente</p>
-          </div>
-          <div class="card frag">
-            <div class="brand-row">
-              <img class="logo" src="assets/logos/anthropic.svg" alt="" width="32" height="32" />
-              <span class="brand">Claude</span>
-            </div>
-            <p style="margin-top:0.65rem"><strong style="color:var(--ok)">Haiku</strong> → etiquetar leads, respuestas cortas</p>
-            <p style="margin-top:0.55rem"><strong style="color:var(--cyan)">Sonnet</strong> → copy, briefs, correos</p>
-            <p style="margin-top:0.55rem"><strong style="color:var(--purple)">Opus</strong> → estrategia o análisis difícil</p>
-          </div>
-          <div class="card frag">
-            <div class="brand-row">
-              <img class="logo" src="assets/logos/googlegemini.svg" alt="" width="32" height="32" />
-              <span class="brand">Gemini</span>
-            </div>
-            <p style="margin-top:0.65rem"><strong style="color:var(--ok)">Flash</strong> → resumir Docs/Sheets o muchos chats</p>
-            <p style="margin-top:0.55rem"><strong style="color:var(--cyan)">Pro</strong> → auditoría de contenido con varios archivos</p>
-          </div>
-        </div>
-        <div class="takeaway frag" style="margin-top:1.25rem">Empieza en el barato. Sube solo si la respuesta no alcanza.</div>
-      </div>
-    </section>
-
-    <!-- THREE RISKS -->
-    <section class="slide" data-notes="Una frase por riesgo. Cierre: siempre revisa. Martilla: La IA propone. Tú verificas.">
-      <div class="slide-inner layout-split">
-        <div>
-          <p class="kicker">04 · Riesgos</p>
-          <h2>Tres riesgos reales</h2>
-          <div class="card risk-card frag" data-tone="danger" style="margin-top:1.4rem">
-            <div class="label">Alucinaciones</div>
-            <p>Inventa cosas que suenan verdad.</p>
-          </div>
-          <div class="card risk-card frag" data-tone="warn" style="margin-top:1rem">
-            <div class="label">Sesgos</div>
-            <p>Puede repetir prejuicios.</p>
-          </div>
-          <div class="card risk-card frag" data-tone="ok" style="margin-top:1rem">
-            <div class="label">Privacidad</div>
-            <p>No pegues datos sensibles.</p>
-          </div>
-          <div class="takeaway frag" style="margin-top:1rem">La IA propone. Tú verificas.</div>
-        </div>
-        <div class="visual frag-auto"><img src="assets/risks.png" alt="" /></div>
+        <div class="takeaway frag" style="margin-top:1.15rem">La IA acelera tu trabajo. Tú tienes la última palabra.</div>
       </div>
     </section>
 
     <!-- PROMPT RECIPE -->
-    <section class="slide" data-notes="Receta de 4 piezas. Pídeles que la usen siempre.">
+    <section class="slide" data-notes="Primero define: prompt = lo que escribes para pedirle algo. Luego las 4 piezas. En la receta, Contexto = marca/tono (no confundir con la ventana de contexto, que viene después).">
       <div class="slide-bg" style="background-image:url('assets/productivity.png')"></div>
       <div class="slide-inner">
-        <p class="kicker">05 · Prompts</p>
-        <h2>Cuatro piezas de un buen prompt</h2>
-        <div class="grid-4" style="margin-top:1.5rem">
+        <p class="kicker">02 · Prompts</p>
+        <h2>Prompt = lo que le pides a la IA</h2>
+        <span class="gloss">La instrucción que escribes en el chat. Un buen prompt lleva 4 piezas:</span>
+        <div class="grid-4" style="margin-top:1.35rem">
           <div class="card frag">
             <div class="label">01 Rol</div>
             <p>Quién es la IA</p>
@@ -803,7 +759,7 @@
           </div>
           <div class="card frag">
             <div class="label">04 Formato</div>
-            <p>Largo, estructura, CTA</p>
+            <p>Largo, estructura, cómo termina</p>
           </div>
         </div>
         <div class="takeaway frag">Sin estas 4, la IA improvisa… y tú pierdes tiempo.</div>
@@ -830,98 +786,201 @@ Incluye: 1 beneficio, 1 CTA suave, 3 hashtags locales.
 No inventes precios ni premios.</p>
           </div>
         </div>
-        <div class="takeaway frag" style="margin-top:1.15rem">Copia el bueno. Cámbialo a tu negocio. Pruébalo hoy.</div>
       </div>
     </section>
 
-    <!-- COMPARISON + LOGOS -->
-    <section class="slide" data-notes="OpenAI/ChatGPT: multimodal texto+voz+imagen (help.openai.com). Claude/Anthropic: redacción y razonamiento (anthropic.com/claude). Gemini/Google: contexto masivo ~1M tokens, docs/video nativos (ai.google.dev, blog.google). Llama/Meta: pesos abiertos, local/privado (llama.com, ai.meta.com). Diles: no hay uno ‘mejor’; elige por fortaleza.">
-      <div class="slide-bg" style="background-image:url('assets/giants.png')"></div>
+    <!-- TOKEN + COST (fusionada) -->
+    <section class="slide" data-notes="Token = unidad de cobro. Martilla: no recuerda gratis — cada mensaje reenvía el historial (cuesta). Entrada barata / salida 3×–6×. Luego: contexto (ventana).">
+      <div class="slide-bg" style="background-image:url('assets/tokens.png')"></div>
       <div class="slide-inner">
-        <p class="kicker">06 · Elige por fortaleza</p>
-        <h2>Los cuatro grandes</h2>
-        <div class="grid-4">
+        <p class="kicker">03 · Token y ahorrar</p>
+        <h2>Token = pedacito de texto</h2>
+        <span class="gloss" style="margin-bottom:0.5rem">Se cobra por pedacitos, no por “palabras” · Entrada barata · Salida cara</span>
+        <div class="grid-2" style="margin-top:0.85rem">
+          <div class="card frag">
+            <div class="label">Regla práctica</div>
+            <p><strong>1 token</strong> ≈ 3–4 caracteres</p>
+            <p style="margin-top:0.45rem"><strong>100 palabras</strong> ≈ 130–150 tokens</p>
+            <p style="margin-top:0.5rem;color:var(--muted);font-size:clamp(1rem,1.35vw,1.15rem)">Caption corto ≈ 40–80 · post largo ≈ 200–400</p>
+          </div>
+          <div class="card frag">
+            <div class="label">Por qué te importa</div>
+            <p>Cada mensaje reenvía el chat: <strong>lo anterior</strong> + <strong>lo nuevo</strong> + <strong>la respuesta</strong>.</p>
+            <p style="margin-top:0.5rem;color:var(--muted);font-size:clamp(1rem,1.35vw,1.15rem)">No “recuerda” gratis. Chat largo = más gasto. Sé claro y corto.</p>
+          </div>
+          <div class="card frag">
+            <div class="label">Entrada</div>
+            <p>Lo que tú escribes.<br />Más barato.</p>
+          </div>
+          <div class="card frag">
+            <div class="label">Salida</div>
+            <p>Lo que responde la IA.<br /><strong>3× a 6× más caro.</strong></p>
+          </div>
+        </div>
+        <div class="takeaway frag" style="margin-top:1.15rem">Pide formato corto. No pegues chats viejos.</div>
+      </div>
+    </section>
+
+    <!-- CONTEXT DEF -->
+    <section class="slide" data-notes="Aquí Contexto = ventana de lectura (distinto al ‘contexto’ de la receta del prompt = marca/tono). Prácticas: chat nuevo por tarea; solo lo necesario; chat largo = resume o empieza otro.">
+      <div class="slide-inner">
+        <p class="kicker">04 · Ventana de contexto</p>
+        <h2>Contexto = lo que puede leer de una vez</h2>
+        <span class="gloss">Tu pregunta + el chat anterior + archivos. Tiene tope. No es memoria eterna.</span>
+        <div class="grid-2" style="margin-top:1.1rem">
+          <div class="card frag">
+            <div class="label">Chat nuevo por tarea</div>
+            <p>Un chat para captions. Otro para el correo al cliente. No mezcles temas.</p>
+          </div>
+          <div class="card frag">
+            <div class="label">Solo lo necesario</div>
+            <p>Brief, tono, precio, público. No pegues todo el Drive “por si acaso”.</p>
+          </div>
+          <div class="card frag">
+            <div class="label">Si el chat se alarga</div>
+            <p>Resume lo importante en un mensaje… o empieza un chat nuevo.</p>
+          </div>
+          <div class="card frag">
+            <div class="label">Archivos con criterio</div>
+            <p>Sube el PDF o brief correcto. Menos archivos = menos ruido.</p>
+          </div>
+        </div>
+        <div class="takeaway frag" style="margin-top:1.15rem">Buen contexto = lo justo para la tarea. No es “más = mejor”.</div>
+      </div>
+    </section>
+
+    <!-- RIGHT MODEL -->
+    <section class="slide" data-notes="Aquí va el ‘ROI’ simple: barato para volumen; caro solo para decidir. Ahorras plata y tiempo. Luego ejemplos reales Mini/Pro.">
+      <div class="slide-bg" style="background-image:url('assets/roi.png')"></div>
+      <div class="slide-inner">
+        <p class="kicker">Ahorrar bien</p>
+        <h2>El modelo correcto</h2>
+        <span class="gloss" style="margin-bottom:0.75rem">En ChatGPT, Claude o Gemini hay varios modelos. No uses el más Pro para todo.</span>
+        <div class="route">
+          <div class="card frag-auto">
+            <div class="label">Barato · rápido</div>
+            <p>Resumir, clasificar, borradores simples</p>
+          </div>
+          <div class="arrow frag-auto">→</div>
+          <div class="card frag-auto">
+            <div class="label">Fuerte · caro</div>
+            <p>Estrategia y decisiones difíciles</p>
+          </div>
+        </div>
+        <div class="takeaway frag" style="margin-top:1.35rem">Barato primero. Caro solo si hace falta. Eso es tu retorno: menos gasto y más tiempo.</div>
+      </div>
+    </section>
+
+    <!-- REAL MODEL EXAMPLES -->
+    <section class="slide" data-notes="ChatGPT: en gratis el chat normal casi no deja elegir Luna/Terra/Sol (modelo automático). Plus sube razonamiento (Sol). Familia GPT-5.6 completa más en pago/Work/API. Claude: Haiku/Sonnet/Opus/Fable. Gemini: Flash-Lite/Flash/Pro.">
+      <div class="slide-inner">
+        <p class="kicker">Ejemplos reales</p>
+        <h2>Las 3 apps más usadas</h2>
+        <div class="grid-3" style="margin-top:1.25rem">
           <div class="card frag">
             <div class="brand-row">
               <img class="logo" src="assets/logos/openai.svg" alt="" width="32" height="32" />
-              <span class="brand">OpenAI</span>
+              <span class="brand">ChatGPT</span>
             </div>
-            <p style="color:var(--muted);font-size:clamp(0.95rem,1.3vw,1.1rem);margin-bottom:0.35rem">ChatGPT</p>
-            <p>Texto, voz e imágenes<br />en el mismo chat</p>
+            <p style="margin-top:0.65rem"><strong style="color:var(--ok)">Gratis</strong> → modelo automático (en el chat normal casi no eliges)</p>
+            <p style="margin-top:0.55rem"><strong style="color:var(--cyan)">Plus</strong> → puedes subir el “razonamiento” si la tarea es difícil</p>
+            <p style="margin-top:0.55rem"><strong style="color:var(--purple)">Familia GPT-5.6</strong> → Luna / Terra / Sol (más en plan pago o Work)</p>
+            <p style="margin-top:0.55rem;color:var(--muted);font-size:clamp(0.95rem,1.25vw,1.1rem)">Idea: empieza simple. Sube solo si la respuesta no alcanza.</p>
           </div>
           <div class="card frag">
             <div class="brand-row">
               <img class="logo" src="assets/logos/anthropic.svg" alt="" width="32" height="32" />
               <span class="brand">Claude</span>
             </div>
-            <p style="color:var(--muted);font-size:clamp(0.95rem,1.3vw,1.1rem);margin-bottom:0.35rem">Anthropic</p>
-            <p>Redacción clara y<br />razonamiento paso a paso</p>
+            <p style="margin-top:0.65rem"><strong style="color:var(--ok)">Haiku 4.5</strong> → clasificar contactos, respuestas cortas</p>
+            <p style="margin-top:0.55rem"><strong style="color:var(--cyan)">Sonnet 5</strong> → posts, correos y anuncios</p>
+            <p style="margin-top:0.55rem"><strong style="color:var(--purple)">Opus 4.8</strong> → estrategia o análisis difícil</p>
+            <p style="margin-top:0.55rem;color:var(--muted);font-size:clamp(0.95rem,1.25vw,1.1rem)">Extra: Fable 5 → lo más difícil (solo si Opus no alcanza)</p>
           </div>
           <div class="card frag">
             <div class="brand-row">
               <img class="logo" src="assets/logos/googlegemini.svg" alt="" width="32" height="32" />
               <span class="brand">Gemini</span>
             </div>
-            <p style="color:var(--muted);font-size:clamp(0.95rem,1.3vw,1.1rem);margin-bottom:0.35rem">Google</p>
-            <p>Mucho contexto de una vez:<br />docs, audio y video</p>
-          </div>
-          <div class="card frag">
-            <div class="brand-row">
-              <img class="logo" src="assets/logos/meta.svg" alt="" width="32" height="32" />
-              <span class="brand">Llama</span>
-            </div>
-            <p style="color:var(--muted);font-size:clamp(0.95rem,1.3vw,1.1rem);margin-bottom:0.35rem">Meta · abierto</p>
-            <p>Puedes instalarlo en tu PC:<br />más control y privacidad</p>
+            <p style="margin-top:0.65rem"><strong style="color:var(--ok)">3.1 Flash-Lite</strong> → borradores rápidos y mucho volumen</p>
+            <p style="margin-top:0.55rem"><strong style="color:var(--cyan)">3.5 Flash</strong> → resumir Docs/Sheets o chats del día a día</p>
+            <p style="margin-top:0.55rem"><strong style="color:var(--purple)">3.1 Pro</strong> → auditoría o tareas difíciles (math, código, varios archivos)</p>
+            <p style="margin-top:0.55rem;color:var(--muted);font-size:clamp(0.95rem,1.25vw,1.1rem)">Extra: Razonamiento ampliado → problemas complejos</p>
           </div>
         </div>
-        <div class="takeaway frag" style="margin-top:1.25rem">No hay uno “mejor”. Elige según lo que necesitas hoy.</div>
+        <div class="takeaway frag" style="margin-top:1.25rem">Empieza en el barato. Sube solo si la respuesta no alcanza.</div>
       </div>
     </section>
 
-    <!-- STACK -->
-    <section class="slide" data-notes="Emprendedor: ChatGPT/Claude para vender con texto. Gemini si ya vive en Google. ManyChat para DMs IG sin código (manychat.com). Nada de OpenRouter/Botpress aquí.">
+    <!-- THREE RISKS -->
+    <section class="slide" data-notes="Una frase por riesgo. Cierre: siempre revisa. Martilla: La IA propone. Tú verificas.">
+      <div class="slide-inner layout-split">
+        <div>
+          <p class="kicker">05 · Riesgos</p>
+          <h2>Tres riesgos reales</h2>
+          <div class="card risk-card frag" data-tone="danger" style="margin-top:1.4rem">
+            <div class="label">Alucinaciones</div>
+            <p>Inventa cosas que suenan verdad.</p>
+          </div>
+          <div class="card risk-card frag" data-tone="warn" style="margin-top:1rem">
+            <div class="label">Sesgos</div>
+            <p>Puede repetir prejuicios.</p>
+          </div>
+          <div class="card risk-card frag" data-tone="ok" style="margin-top:1rem">
+            <div class="label">Privacidad</div>
+            <p>No pegues datos sensibles.</p>
+          </div>
+          <div class="takeaway frag" style="margin-top:1rem">La IA propone. Tú verificas.</div>
+        </div>
+        <div class="visual frag-auto"><img src="assets/risks.png" alt="" /></div>
+      </div>
+    </section>
+
+    <!-- COMPARISON + LOGOS -->
+    <section class="slide" data-notes="Consenso marketing 2026: ChatGPT = default versátil (texto+imagen+voz). Claude = mejor escritura/voz de marca; Claude Design solo en planes pago. Gemini = si viven en Google + video Veo. Diapo decide: Elígela si… No hay una ganadora absoluta.">
+      <div class="slide-bg" style="background-image:url('assets/giants.png')"></div>
       <div class="slide-inner">
-        <p class="kicker">07 · Productividad</p>
-        <h2>Qué usar el lunes</h2>
-        <div class="grid-3" style="margin-top:1.25rem">
+        <p class="kicker">06 · Elige con criterio</p>
+        <h2>¿Cuál te conviene?</h2>
+        <div class="grid-3" style="margin-top:1.15rem">
           <div class="card frag">
             <div class="brand-row">
-              <img class="logo" src="assets/logos/openai.svg" alt="" width="28" height="28" />
-              <img class="logo" src="assets/logos/anthropic.svg" alt="" width="28" height="28" />
-              <span class="brand">ChatGPT / Claude</span>
+              <img class="logo" src="assets/logos/openai.svg" alt="" width="32" height="32" />
+              <span class="brand">ChatGPT</span>
             </div>
-            <p style="margin-top:0.65rem">Ofertas, correos a clientes, captions y respuestas a dudas</p>
-            <p style="margin-top:0.5rem;color:var(--muted);font-size:clamp(1rem,1.35vw,1.15rem)">Tú copias el texto y lo pegas en WhatsApp, IG o email</p>
-            <a class="tool-link" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">Abrir ChatGPT →</a>
-            <a class="tool-link" href="https://claude.ai/" target="_blank" rel="noopener noreferrer" style="margin-left:0.35rem">Abrir Claude →</a>
+            <p class="pick-if">Elígela si…</p>
+            <p class="pick-why">Quieres <span class="accent">una sola app</span> para casi todo</p>
+            <p class="pick-strong">Fuerte en: texto del día a día, imágenes y voz</p>
           </div>
           <div class="card frag">
             <div class="brand-row">
-              <img class="logo" src="assets/logos/googlegemini.svg" alt="" width="28" height="28" />
+              <img class="logo" src="assets/logos/anthropic.svg" alt="" width="32" height="32" />
+              <span class="brand">Claude</span>
+            </div>
+            <p class="pick-if">Elígela si…</p>
+            <p class="pick-why">Cómo <span class="accent">suena tu marca</span> te importa</p>
+            <p class="pick-strong">Fuerte en: posts, textos largos y tono de marca</p>
+            <p class="pick-strong" style="margin-top:0.4rem">También hace presentaciones (Claude Design, plan de pago)</p>
+          </div>
+          <div class="card frag">
+            <div class="brand-row">
+              <img class="logo" src="assets/logos/googlegemini.svg" alt="" width="32" height="32" />
               <span class="brand">Gemini</span>
             </div>
-            <p style="margin-top:0.65rem">Si ya usas Google: Docs, Sheets y Gmail</p>
-            <p style="margin-top:0.5rem;color:var(--muted);font-size:clamp(1rem,1.35vw,1.15rem)">Resumir tablas, armar listas, mejorar un correo</p>
-            <a class="tool-link" href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer">Abrir Gemini →</a>
-          </div>
-          <div class="card frag">
-            <div class="brand-row">
-              <span class="brand">ManyChat</span>
-            </div>
-            <p style="margin-top:0.65rem">Automatizar DMs de Instagram (sin código)</p>
-            <p style="margin-top:0.5rem;color:var(--muted);font-size:clamp(1rem,1.35vw,1.15rem)">Ej.: comentan “precio” → les llega la info al DM</p>
-            <a class="tool-link" href="https://manychat.com/" target="_blank" rel="noopener noreferrer">Abrir ManyChat →</a>
+            <p class="pick-if">Elígela si…</p>
+            <p class="pick-why">Ya vives en <span class="accent">Gmail, Docs o Drive</span></p>
+            <p class="pick-strong">Fuerte en: Gmail, Docs, Drive y video con IA</p>
           </div>
         </div>
-        <div class="takeaway frag" style="margin-top:1.2rem">Empieza con un chat. Automatiza redes solo cuando ya te ahoguen los mensajes.</div>
+        <div class="takeaway frag" style="margin-top:1rem;padding:0.85rem 1.15rem;font-size:clamp(1.05rem,1.45vw,1.25rem)">No hay una ganadora. Elige según lo que más usas en tu negocio.</div>
       </div>
     </section>
 
     <!-- DECK TOOLS -->
     <section class="slide" data-notes="NotebookLM: Studio → Slide Deck desde tus fuentes (blog.google). Claude Design: claude.ai/design → describe y exporta PPTX/PDF/HTML/Canva (anthropic.com/news/claude-design). Gamma: gamma.app si quieres look de pitch muy rápido.">
       <div class="slide-inner">
-        <p class="kicker">08 · Presentaciones</p>
-        <h2>Dos caminos (más uno extra)</h2>
+        <p class="kicker">07 · Presentaciones</p>
+        <h2>Tres herramientas para hacer diapos</h2>
         <div class="grid-3" style="margin-top:1.25rem">
           <div class="card frag">
             <div class="brand-row">
@@ -935,22 +994,22 @@ No inventes precios ni premios.</p>
           </div>
           <div class="card frag">
             <div class="brand-row">
-              <img class="logo" src="assets/logos/anthropic.svg" alt="" width="32" height="32" />
-              <span class="brand">Claude Design</span>
+              <span class="brand">Gamma</span>
             </div>
-            <p style="color:var(--muted);font-size:clamp(0.95rem,1.3vw,1.1rem);margin-bottom:0.45rem">Anthropic</p>
-            <p>Describes el deck en el chat → slides en el canvas</p>
-            <p style="margin-top:0.55rem;color:var(--muted);font-size:clamp(1rem,1.35vw,1.2rem)">Exporta PPTX, PDF, HTML o envía a Canva</p>
-            <a class="tool-link" href="https://claude.ai/design" target="_blank" rel="noopener noreferrer">Abrir Claude Design →</a>
+            <p style="color:var(--muted);font-size:clamp(0.95rem,1.3vw,1.1rem);margin-bottom:0.45rem">Pitch visual</p>
+            <p>Prompt → presentación bonita lista para pitch</p>
+            <p style="margin-top:0.55rem;color:var(--muted);font-size:clamp(1rem,1.35vw,1.2rem)">Fuerte en diseño. Tú sigues verificando datos.</p>
+            <a class="tool-link" href="https://gamma.app/" target="_blank" rel="noopener noreferrer">Abrir Gamma →</a>
           </div>
           <div class="card frag">
             <div class="brand-row">
-              <span class="brand">Gamma</span>
+              <img class="logo" src="assets/logos/anthropic.svg" alt="" width="32" height="32" />
+              <span class="brand">Claude Design</span>
             </div>
-            <p style="color:var(--muted);font-size:clamp(0.95rem,1.3vw,1.1rem);margin-bottom:0.45rem">Extra · pitch visual</p>
-            <p>Prompt → deck bonito listo para pitch</p>
-            <p style="margin-top:0.55rem;color:var(--muted);font-size:clamp(1rem,1.35vw,1.2rem)">Fuerte en diseño. Tú sigues verificando datos.</p>
-            <a class="tool-link" href="https://gamma.app/" target="_blank" rel="noopener noreferrer">Abrir Gamma →</a>
+            <p style="color:var(--muted);font-size:clamp(0.95rem,1.3vw,1.1rem);margin-bottom:0.45rem">Anthropic · plan de pago</p>
+            <p>Describes la presentación en el chat → diapos en el canvas</p>
+            <p style="margin-top:0.55rem;color:var(--muted);font-size:clamp(1rem,1.35vw,1.2rem)">Exporta PPTX, PDF, HTML o envía a Canva</p>
+            <a class="tool-link" href="https://claude.ai/design" target="_blank" rel="noopener noreferrer">Abrir Claude Design →</a>
           </div>
         </div>
         <div class="takeaway frag" style="margin-top:1.2rem">Copia el prompt de la siguiente diapos · cambia [corchetes] · revisa antes de enviar. NotebookLM: primero sube tus PDFs.</div>
@@ -958,17 +1017,23 @@ No inventes precios ni premios.</p>
     </section>
 
     <!-- DECK PROMPT TEMPLATE -->
-    <section class="slide" data-notes="Lee el prompt. Explica: todo lo que está entre [corchetes] lo cambia cada persona. Sirve en Claude Design y Gamma; en NotebookLM primero suben fuentes y luego pegan una versión corta.">
+    <section class="slide" data-notes="Dos columnas: plantilla con [corchetes] para editar · ejemplo Café Costa listo para copiar. Demo en vivo: copia ejemplo → Gamma. Alumnos editan plantilla con su negocio.">
       <div class="slide-inner">
         <p class="kicker">Prompt listo para copiar</p>
         <h2>Presenta tu producto</h2>
-        <span class="gloss">Cambia solo lo que está entre <span class="accent">[corchetes]</span></span>
-        <div class="prompt-box frag">
-          <p class="prompt-ex">Crea una presentación de <span class="slot">[8]</span> diapositivas para el producto <span class="slot">[nombre del producto]</span> de la marca <span class="slot">[nombre de la marca]</span>.
+        <span class="gloss">Izquierda: edita los <span class="accent">[corchetes]</span>. Derecha: ejemplo listo.</span>
+        <div class="prompt-pair">
+          <div class="prompt-col frag">
+            <div class="label">Plantilla · edítala</div>
+            <div class="prompt-actions">
+              <button type="button" class="copy-prompt-btn" data-copy="promptTemplate" aria-label="Copiar plantilla">Copiar plantilla</button>
+            </div>
+            <div class="prompt-box">
+              <p class="prompt-ex" id="promptTemplate">Crea una presentación de <span class="slot">[8]</span> diapositivas para el producto <span class="slot">[nombre del producto]</span> de la marca <span class="slot">[nombre de la marca]</span>.
 
 Negocio: <span class="slot">[a qué se dedica]</span>.
 Público: <span class="slot">[cliente ideal]</span>.
-Objetivo: <span class="slot">[vender / captar leads / capacitar]</span>.
+Objetivo: <span class="slot">[vender / captar clientes / capacitar]</span>.
 Ciudad o zona: <span class="slot">[ciudad]</span>.
 Tono: <span class="slot">[cercano / profesional]</span>. Idioma: español.
 
@@ -982,27 +1047,148 @@ Estructura:
 7) Prueba social: <span class="slot">[testimonio o caso]</span>
 8) CTA: <span class="slot">[WhatsApp / web / agendar]</span>
 
-Poco texto por slide. No inventes cifras: si falta un dato, escribe <span class="slot">[completar]</span>.</p>
+Poco texto por slide. No inventes cifras.</p>
+            </div>
+          </div>
+          <div class="prompt-col frag">
+            <div class="label">Ejemplo · cópialo tal cual</div>
+            <div class="prompt-actions">
+              <button type="button" class="copy-prompt-btn" data-copy="promptExample" aria-label="Copiar ejemplo">Copiar ejemplo</button>
+            </div>
+            <div class="prompt-box">
+              <p class="prompt-ex" id="promptExample">Crea una presentación de 8 diapositivas para el producto “Kit de café en grano” de la marca Café Costa.
+
+Negocio: cafetería y venta de café tostado en Barranquilla.
+Público: oficinas y personas que trabajan desde casa en la Costa.
+Objetivo: vender el kit por WhatsApp.
+Ciudad o zona: Barranquilla, Colombia.
+Tono: cercano y cálido. Idioma: español.
+
+Estructura:
+1) Portada con promesa
+2) Problema del cliente
+3) Solución / producto
+4) 3 beneficios claros
+5) Cómo funciona o qué incluye
+6) Precio: desde $45.000
+7) Prueba social: pedidos semanales por WhatsApp
+8) CTA: WhatsApp para pedir
+
+Poco texto por slide. No inventes cifras.</p>
+            </div>
+          </div>
         </div>
-        <div class="takeaway frag" style="margin-top:1rem">Copia → cambia los <span class="accent">[corchetes]</span> → pégalo en Claude Design o Gamma. NotebookLM: sube fuentes primero, luego pide el Slide Deck.</div>
+        <div class="takeaway frag" style="margin-top:1rem">Pega en Gamma. Usa la plantilla con <span class="accent">tu</span> negocio.</div>
+      </div>
+    </section>
+
+    <!-- VIDEO TOOLS -->
+    <section class="slide" data-notes="No inventar ‘gratis’ en todas. Solo Wan lleva etiqueta Gratis. Kling/Seedance/Veo: cupos o pago según cuenta. Veo 3.1 = el modelo; para emprendedores úsalo en Google Flow (labs.google/fx/tools/flow), no AI Studio (eso es más de API/devs).">
+      <div class="slide-inner">
+        <p class="kicker">08 · Video con IA</p>
+        <h2>Cuatro herramientas para crear video</h2>
+        <span class="gloss" style="margin-bottom:0.35rem">Abre el link · Prueba un clip · El cupo gratis cambia por cuenta y región</span>
+        <div class="grid-2" style="margin-top:1rem">
+          <div class="card frag">
+            <div class="brand-row">
+              <span class="brand">Kling</span>
+            </div>
+            <p style="color:var(--muted);font-size:clamp(0.95rem,1.3vw,1.1rem);margin-bottom:0.45rem">Empieza aquí</p>
+            <p>Texto o foto → video. También con audio nativo.</p>
+            <p style="margin-top:0.55rem;color:var(--muted);font-size:clamp(1rem,1.35vw,1.15rem)">Ideal para: Reels y TikTok de producto o marca</p>
+            <a class="tool-link" href="https://kling.ai/" target="_blank" rel="noopener noreferrer">Abrir Kling →</a>
+          </div>
+          <div class="card frag">
+            <div class="brand-row">
+              <span class="brand">Seedance</span>
+            </div>
+            <p style="color:var(--muted);font-size:clamp(0.95rem,1.3vw,1.1rem);margin-bottom:0.45rem">Dreamina / CapCut</p>
+            <p>Baile, acción y varios sujetos juntos.</p>
+            <p style="margin-top:0.55rem;color:var(--muted);font-size:clamp(1rem,1.35vw,1.15rem)">Ideal para: anuncios con personas bailando o en movimiento</p>
+            <a class="tool-link" href="https://dreamina.capcut.com/tools/seedance-2-0" target="_blank" rel="noopener noreferrer">Abrir Seedance →</a>
+          </div>
+          <div class="card frag">
+            <div class="brand-row">
+              <span class="brand">Wan</span>
+              <span class="tag-free">Gratis</span>
+            </div>
+            <p style="color:var(--muted);font-size:clamp(0.95rem,1.3vw,1.1rem);margin-bottom:0.45rem">Tongyi Wanxiang</p>
+            <p>Foto → video limpio y cámara suave.</p>
+            <p style="margin-top:0.55rem;color:var(--muted);font-size:clamp(1rem,1.35vw,1.15rem)">Ideal para: animar fotos del catálogo sin pagar</p>
+            <a class="tool-link" href="https://tongyi.aliyun.com/wanxiang" target="_blank" rel="noopener noreferrer">Abrir Wan →</a>
+          </div>
+          <div class="card frag">
+            <div class="brand-row">
+              <span class="brand">Veo 3.1</span>
+            </div>
+            <p style="color:var(--muted);font-size:clamp(0.95rem,1.3vw,1.1rem);margin-bottom:0.45rem">Google Flow</p>
+            <p>Video cinematográfico + audio nativo.</p>
+            <p style="margin-top:0.55rem;color:var(--muted);font-size:clamp(1rem,1.35vw,1.15rem)">Ideal para: demo de producto o clip con sonido incluido</p>
+            <a class="tool-link" href="https://labs.google/fx/tools/flow" target="_blank" rel="noopener noreferrer">Abrir Google Flow →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HERRAMIENTAS ÚTILES -->
+    <section class="slide" data-notes="No expliques. Solo: ‘esto se lo llevan de extra’. Siguiente: Para llevar.">
+      <div class="slide-inner">
+        <p class="kicker">Extra · Para llevar</p>
+        <h2>Herramientas útiles con IA</h2>
+        <span class="gloss">Guárdalas. Pruébalas cuando quieras.</span>
+        <div class="bullet-list" style="margin-top:1.25rem">
+          <div class="bullet-row frag">
+            <span class="icon">→</span>
+            <span class="bullet tool-bullet"><strong>There's An AI For That</strong> — biblioteca de IAs <a class="tool-link" href="https://theresanaiforthat.com/" target="_blank" rel="noopener noreferrer">Abrir →</a></span>
+          </div>
+          <div class="bullet-row frag">
+            <span class="icon">→</span>
+            <span class="bullet tool-bullet"><strong>Pomelli</strong> — identidad de tu marca <a class="tool-link" href="https://labs.google.com/pomelli" target="_blank" rel="noopener noreferrer">Abrir →</a></span>
+          </div>
+          <div class="bullet-row frag">
+            <span class="icon">→</span>
+            <span class="bullet tool-bullet"><strong>PhotoRoom</strong> — quitar fondo y eliminar objetos <a class="tool-link" href="https://www.photoroom.com/" target="_blank" rel="noopener noreferrer">Abrir →</a></span>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- TAKEAWAYS -->
-    <section class="slide" data-notes="Lee lento. Deja silencio. Preguntas. Handoff: creación imagen/video lo cubre la compañera.">
+    <section class="slide" data-notes="Lee lento. Deja silencio. Luego pasa a Gracias.">
       <div class="slide-bg" style="background-image:url('assets/cover.png')"></div>
       <div class="slide-inner">
         <p class="kicker">Para llevar</p>
         <h2>Recuerda esto</h2>
         <div class="bullet-list">
           <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">La IA predice palabras. No “sabe” todo. Tú verificas.</span></div>
-          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">Token mide y cobra. Contexto = lo que cabe ahora. Respuesta cuesta más.</span></div>
           <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">Prompt claro: rol + tarea + contexto + formato.</span></div>
+          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">Token: mide gasto. Salida cuesta más. Contexto = lo que cabe ahora.</span></div>
           <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">Modelo barato primero. Caro con intención.</span></div>
-          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">Decks: NotebookLM, Claude Design o Gamma. Revisa antes de publicar.</span></div>
+          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">Presentaciones: NotebookLM, Gamma o Claude Design. Revisa antes de publicar.</span></div>
+          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">Video: Kling · Seedance · Wan · Veo 3.1 (Google Flow).</span></div>
         </div>
-        <p class="cover-meta frag" style="margin-top:1.5rem">Después: creación visual con IA · ¿Preguntas?</p>
-        <p class="cover-meta frag">Wilman Montenegro</p>
+      </div>
+    </section>
+
+    <!-- REFERENCIAS -->
+    <section class="slide" data-notes="Solo si preguntan por la fuente del 86%. No leas en voz alta salvo que pidan.">
+      <div class="slide-inner">
+        <p class="kicker">Apéndice</p>
+        <h2>Referencias</h2>
+        <div class="bullet-list" style="margin-top:1.25rem">
+          <div class="bullet-row"><span class="icon">1</span><span class="bullet">HubSpot — <em>State of Marketing 2026</em>: 86%+ de equipos ya usan IA; contenido y media (imagen/video) entre los usos más frecuentes.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CIERRE -->
+    <section class="slide" data-notes="Gracias. Abre a preguntas. Silencio. Escucha. Todo visible de una; sin frags.">
+      <div class="slide-bg" style="background-image:url('assets/cover.png')"></div>
+      <div class="slide-inner center-copy" style="min-height:min(78vh,820px);justify-content:center;gap:0.85rem">
+        <p class="kicker">Cierre</p>
+        <h1>Gracias</h1>
+        <p class="lead" style="margin-top:0.5rem">¿Preguntas?</p>
+        <p class="cover-meta" style="margin-top:0.75rem">Wilman Montenegro · Marketing con IA</p>
       </div>
     </section>
 
@@ -1076,6 +1262,28 @@ Poco texto por slide. No inventes cifras: si falta un dato, escribe <span class=
 
     prevBtn?.addEventListener('click', () => prev())
     nextBtn?.addEventListener('click', () => next())
+
+    document.querySelectorAll('.copy-prompt-btn').forEach((btn) => {
+      const label = btn.textContent
+      btn.addEventListener('click', async (e) => {
+        e.stopPropagation()
+        const id = btn.getAttribute('data-copy')
+        const source = id ? document.getElementById(id) : null
+        const text = source?.innerText?.trim()
+        if (!text) return
+        try {
+          await navigator.clipboard.writeText(text)
+          btn.textContent = 'Copiado'
+          btn.classList.add('is-done')
+          window.setTimeout(() => {
+            btn.textContent = label
+            btn.classList.remove('is-done')
+          }, 1800)
+        } catch {
+          btn.textContent = 'Selecciona y Ctrl+C'
+        }
+      })
+    })
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
