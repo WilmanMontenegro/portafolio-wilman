@@ -36,4 +36,6 @@ pnpm-debug.log*
 # Docs laborales sensibles (contratos, cédulas, PDFs privados)
 vida/laboral/
 vida/yo.md
+# Mudanza: presupuesto, fechas y fichas de arriendo (repo público)
+vida/mudanza/
 **/CONTRATO*.pdf

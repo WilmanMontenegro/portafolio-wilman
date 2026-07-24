@@ -14,9 +14,11 @@ vida/
 ├── laboral/          ← contratos, notas de procesos (PDFs no van a git)
 │   ├── cun/
 │   └── sae/
+├── mudanza/          ← Bogotá: enviar vs comprar, shortlist arriendos (no va a git)
 ├── practica/         ← live coding, algoritmos, drills
 │   └── live-coding/
 └── cursos/           ← aprendizaje paralelo (no publicado en la web)
 ```
 
 **Regla:** PDFs y datos sensibles solo en `laboral/`. Están en `.gitignore`.
+`mudanza/` = logística personal (presupuesto y fechas): también en `.gitignore`, el repo es público.
