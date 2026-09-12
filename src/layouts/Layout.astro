@@ -1,7 +1,6 @@
 ---
 import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
-import CoursePromoModal from '../components/CoursePromoModal.astro';
 
 interface Props {
   title?: string;
@@ -11,7 +10,6 @@ interface Props {
   imageWidth?: number;
   imageHeight?: number;
   ogType?: 'website' | 'article';
-  hideCoursePromo?: boolean;
 }
 
 const {
@@ -22,7 +20,6 @@ const {
   imageWidth,
   imageHeight,
   ogType = 'website',
-  hideCoursePromo = false,
 } = Astro.props;
 
 const site = Astro.site ?? Astro.url;
@@ -114,15 +111,6 @@ const schema = {
     </main>
     <footer class="mt-16 border-t border-purple/10 py-6 text-center font-mono text-[0.78rem] text-muted/50">
       <p>© {new Date().getFullYear()} Wilman Montenegro · wilman.dev</p>
-      <p class="mt-2">
-        <a
-          href={`${import.meta.env.BASE_URL}curso-ia-marketing`}
-          class="text-muted/70 underline-offset-2 transition-colors hover:text-cyan hover:underline"
-        >
-          Curso Marketing con IA para Emprendedores
-        </a>
-      </p>
     </footer>
-    {!hideCoursePromo && <CoursePromoModal />}
   </body>
 </html>
