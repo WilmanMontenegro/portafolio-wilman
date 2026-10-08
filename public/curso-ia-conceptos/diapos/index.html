@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <base href="./" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conceptos de IA · Cursor · Wilman Montenegro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #070214;
+      --surface: rgba(22, 8, 48, 0.78);
+      --cyan: #0cffff;
+      --purple: #ff4fd8;
+      --text: #f5f5fb;
+      --muted: #c0c0d8;
+      --danger: #ff7a96;
+      --ok: #5dffb0;
+      --warn: #ffd166;
+      --radius: 1.4rem;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, sans-serif;
+      overflow: hidden;
+      touch-action: none;
+    }
+
+    /* ponytail: rem del stage vía root; 18px ≈ +12% legible en video beam */
+    html { font-size: 18px; }
+
+    .viewport {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 4.5rem; /* franja del HUD — la diapo no se tapa */
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      touch-action: none;
+      background: #02010a;
+    }
+
+    .stage {
+      position: relative;
+      width: 1920px;
+      height: 1080px;
+      flex-shrink: 0;
+      transform-origin: center center;
+      will-change: transform;
+      background: var(--bg);
+      overflow: hidden;
+      box-shadow:
+        0 0 0 3px rgba(12, 255, 255, 0.45),
+        0 0 0 6px rgba(7, 2, 20, 0.95),
+        0 28px 90px rgba(0, 0, 0, 0.7);
+    }
+
+    .deck {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 3.5rem 4.5rem;
+      opacity: 0;
+      visibility: hidden;
+      /* ponytail: sin scale — scale + borde fino del stage = temblor/subpixel */
+      transform: translateY(12px);
+      transition: opacity 0.4s var(--ease), transform 0.4s var(--ease), visibility 0.4s;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .slide.is-active {
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      pointer-events: auto;
+    }
+
+    .slide-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      /* sin Ken Burns: el scale 6s hacía temblar bordes y líneas finas del arte */
+      transform: none;
+      z-index: 0;
+    }
+
+    .slide-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(7, 2, 20, 0.94) 0%, rgba(7, 2, 20, 0.78) 45%, rgba(7, 2, 20, 0.4) 100%),
+        linear-gradient(180deg, rgba(7, 2, 20, 0.25), rgba(7, 2, 20, 0.65));
+    }
+
+    .slide-bg.center-veil::after {
+      background:
+        linear-gradient(180deg, rgba(7, 2, 20, 0.72), rgba(7, 2, 20, 0.88)),
+        radial-gradient(ellipse at center, rgba(7, 2, 20, 0.35), rgba(7, 2, 20, 0.92));
+    }
+
+    /* Fondos de collage (tools.png) se leen como “hormigas”; usar quiet en diapos de texto/dato */
+    .slide-bg.quiet {
+      background-image: none !important;
+      background-color: var(--bg);
+      background:
+        radial-gradient(ellipse at 20% 15%, rgba(12, 255, 255, 0.07), transparent 42%),
+        radial-gradient(ellipse at 85% 80%, rgba(255, 79, 216, 0.06), transparent 40%),
+        var(--bg);
+      transform: none;
+    }
+
+    .slide-bg.quiet::after { display: none; }
+
+    .slide-inner {
+      position: relative;
+      z-index: 1;
+      width: min(1400px, 100%);
+    }
+
+    .layout-split {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 3.25rem;
+      align-items: center;
+      min-height: 780px;
+    }
+
+    .layout-split .visual {
+      border-radius: 1.6rem;
+      overflow: hidden;
+      border: 1px solid rgba(12, 255, 255, 0.18);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+      aspect-ratio: 16 / 10;
+      background: #12062a;
+    }
+
+    .layout-split .visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Riesgos: 50/50 — cards izq, arte sangrado der (sin marco, como LLM) */
+    .risks-slide {
+      place-items: stretch;
+      padding-right: 0;
+    }
+
+    .risks-bleed {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 58%;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .risks-bleed img {
+      width: 100%;
+      height: 100%;
+      max-width: none;
+      object-fit: contain;
+      object-position: center right;
+      display: block;
+      position: absolute;
+      inset: 0;
+      padding: 0.5rem 0.75rem 0.5rem 0;
+      box-sizing: border-box;
+      /* fade solo al borde izq — los 3 iconos completos */
+      -webkit-mask-image: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(0, 0, 0, 0.45) 4%,
+        #000 12%,
+        #000 100%
+      );
+      mask-image: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(0, 0, 0, 0.45) 4%,
+        #000 12%,
+        #000 100%
+      );
+    }
+
+    .risks-bleed::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, var(--bg) 0%, rgba(7, 2, 20, 0.55) 4%, transparent 16%),
+        linear-gradient(180deg, var(--bg) 0%, transparent 10%),
+        linear-gradient(0deg, var(--bg) 0%, transparent 10%);
+      pointer-events: none;
+    }
+
+    .risks-slide .risks-copy {
+      position: relative;
+      z-index: 1;
+      width: min(760px, 44%);
+      margin: auto 0 auto 4.5rem;
+      align-self: center;
+      justify-self: start;
+    }
+
+    .risks-slide .risks-copy .risks-cards {
+      margin-top: 1.25rem;
+    }
+
+    .risks-slide .risks-copy .takeaway {
+      margin-top: 1.15rem;
+    }
+
+    /* LLM: 50/50 — copy izq, imagen sangrada der (sin marco) */
+    .llm-slide {
+      place-items: stretch;
+      padding-right: 0;
+    }
+
+    .llm-bleed {
+      position: absolute;
+      top: auto;
+      right: 0;
+      bottom: 0;
+      height: 94%;
+      width: 60%;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .llm-bleed img {
+      width: 118%;
+      height: 118%;
+      max-width: none;
+      object-fit: cover;
+      object-position: 36% 52%;
+      display: block;
+      position: absolute;
+      right: -4%;
+      bottom: -10%;
+      /* un solo fade suave (composite a veces deja borde duro) */
+      -webkit-mask-image: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(0, 0, 0, 0.12) 10%,
+        rgba(0, 0, 0, 0.55) 20%,
+        #000 34%,
+        #000 100%
+      );
+      mask-image: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(0, 0, 0, 0.12) 10%,
+        rgba(0, 0, 0, 0.55) 20%,
+        #000 34%,
+        #000 100%
+      );
+    }
+
+    .llm-bleed::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, var(--bg) 0%, rgba(7, 2, 20, 0.65) 8%, rgba(7, 2, 20, 0.25) 22%, transparent 42%),
+        linear-gradient(180deg, var(--bg) 0%, transparent 24%);
+      pointer-events: none;
+    }
+
+    .llm-slide .llm-copy {
+      position: relative;
+      z-index: 1;
+      width: min(860px, 46%);
+      margin: auto 0 auto 4.5rem;
+      align-self: center;
+      justify-self: start;
+    }
+
+    .llm-slide .llm-copy h2 {
+      font-size: clamp(2.85rem, 3.6vw, 3.55rem);
+      max-width: none;
+      white-space: nowrap;
+      line-height: 1.12;
+    }
+
+    .kicker {
+      display: inline-flex;
+      margin-bottom: 1.25rem;
+      padding: 0.55rem 1.1rem;
+      border: 1px solid rgba(12, 255, 255, 0.35);
+      border-radius: 999px;
+      color: var(--cyan);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(12, 255, 255, 0.08);
+    }
+
+    h1 {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 5rem;
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      text-wrap: balance;
+    }
+
+    h2 {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 3.8rem;
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      text-wrap: balance;
+    }
+
+    .gloss {
+      display: block;
+      margin-top: 0.7rem;
+      color: var(--muted);
+      font-family: Inter, sans-serif;
+      font-size: 1.55rem;
+      font-weight: 500;
+      line-height: 1.35;
+    }
+
+    .lead {
+      margin-top: 1.5rem;
+      max-width: 32ch;
+      color: var(--muted);
+      font-size: 1.75rem;
+      line-height: 1.45;
+      font-weight: 500;
+    }
+
+    .accent { color: var(--cyan); }
+    .accent-p { color: var(--purple); }
+
+    /* Cue de presentador: negrita = de qué hablar; .accent = lo más clave */
+    .slide strong {
+      font-weight: 800;
+      color: #fff;
+    }
+    .slide strong.accent { color: var(--cyan); }
+    .slide strong.accent-p { color: var(--purple); }
+
+    .grid-2, .grid-3, .grid-4 {
+      display: grid;
+      gap: 1.15rem;
+      margin-top: 1.6rem;
+    }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .card {
+      padding: 1.4rem 1.5rem;
+      border: 1px solid rgba(12, 255, 255, 0.2);
+      border-radius: var(--radius);
+      background: var(--surface);
+      backdrop-filter: blur(10px);
+    }
+
+    /* Cards con botón Abrir: misma altura + botón abajo y centrado */
+    .card:has(> .tool-link) {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .card > *:has(+ .tool-link) {
+      margin-bottom: 1.35rem;
+    }
+
+    .card > .tool-link {
+      margin-top: auto;
+      align-self: center;
+    }
+
+    .card .label {
+      margin-bottom: 0.65rem;
+      color: var(--cyan);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .card p, .bullet {
+      color: var(--text);
+      font-size: 1.5rem;
+      line-height: 1.4;
+      font-weight: 500;
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.55rem;
+    }
+
+    .brand-row img.logo {
+      width: 2rem;
+      height: 2rem;
+      object-fit: contain;
+      flex-shrink: 0;
+      border-radius: 0.35rem;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 0.2rem;
+    }
+
+    .brand-row .brand {
+      color: var(--cyan);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    .bullet-list {
+      display: grid;
+      gap: 1.05rem;
+      margin-top: 1.8rem;
+    }
+
+    .bullet-row {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      padding: 1.15rem 1.35rem;
+      border-left: 4px solid var(--cyan);
+      border-radius: 0 1rem 1rem 0;
+      background: rgba(22, 8, 48, 0.72);
+      backdrop-filter: blur(8px);
+    }
+
+    .bullet-row .icon {
+      flex-shrink: 0;
+      color: var(--cyan);
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+
+    .big-number {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 9rem;
+      font-weight: 800;
+      line-height: 0.95;
+      background: linear-gradient(120deg, var(--cyan), var(--purple));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .stat-caption {
+      margin-top: 1.4rem;
+      max-width: 28ch;
+      color: var(--muted);
+      font-size: 1.9rem;
+      line-height: 1.35;
+      font-weight: 500;
+    }
+
+    .formula {
+      margin-top: 1.75rem;
+      padding: 1.5rem 1.8rem;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 79, 216, 0.4);
+      background: rgba(255, 79, 216, 0.1);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 1.7rem;
+      text-align: center;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-top: 1.7rem;
+    }
+
+    .chip {
+      padding: 0.7rem 1.2rem;
+      border-radius: 999px;
+      border: 1px solid rgba(12, 255, 255, 0.3);
+      background: rgba(12, 255, 255, 0.1);
+      color: var(--text);
+      font-size: 1.35rem;
+      font-weight: 600;
+    }
+
+    .takeaway {
+      margin-top: 1.8rem;
+      padding: 1.35rem 1.55rem;
+      border-radius: var(--radius);
+      background: linear-gradient(120deg, rgba(12, 255, 255, 0.14), rgba(255, 79, 216, 0.14));
+      border: 1px solid rgba(12, 255, 255, 0.25);
+      font-size: 1.65rem;
+      line-height: 1.35;
+      font-weight: 600;
+    }
+
+    .takeaway.tip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.85rem 1.15rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .takeaway .tip-mark {
+      flex-shrink: 0;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(12, 255, 255, 0.45);
+      background: rgba(12, 255, 255, 0.14);
+      color: var(--cyan);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .section-num {
+      display: block;
+      margin-bottom: 1.1rem;
+      color: var(--purple);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 1.6rem;
+      letter-spacing: 0.16em;
+      font-weight: 700;
+    }
+
+    .cover-meta {
+      margin-top: 2.2rem;
+      color: var(--muted);
+      font-size: 1.45rem;
+      font-weight: 500;
+    }
+
+    /* Portada: mitad izq = copy; mitad der = neurona libre */
+    .cover-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      width: 100%;
+      max-width: none;
+      min-height: 780px;
+    }
+
+    .cover-copy {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      justify-self: center;
+      width: min(40rem, 88%);
+      gap: 0;
+    }
+
+    .cover-copy h1 {
+      white-space: nowrap;
+      text-wrap: nowrap;
+    }
+
+    .cover-copy .lead {
+      max-width: none;
+    }
+
+    .cover-copy .cover-meta {
+      margin-top: 1.6rem;
+    }
+
+    .cover-copy .share-qr {
+      margin-top: 1.75rem;
+    }
+
+    .route {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 1.2rem;
+      align-items: center;
+      margin-top: 1.8rem;
+    }
+
+    .route .arrow {
+      color: var(--cyan);
+      font-size: 3rem;
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 700;
+    }
+
+    /* Centered slides: wide + airy, not cramped */
+    .center-copy {
+      text-align: center;
+      max-width: 52ch;
+      margin-inline: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .center-copy .kicker { margin-bottom: 0.5rem; }
+    .center-copy h1,
+    .center-copy h2 {
+      max-width: 48ch;
+    }
+    .center-copy .gloss {
+      margin-top: 0.85rem;
+      max-width: 40ch;
+    }
+    .center-copy .lead,
+    .center-copy .stat-caption {
+      margin-top: 1.6rem;
+      max-width: 34ch;
+      margin-inline: auto;
+    }
+    .center-copy .formula {
+      margin-top: 2rem;
+      width: min(36ch, 100%);
+    }
+    .center-copy .section-num { margin-bottom: 0.75rem; }
+
+    .frag {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+    }
+    .frag.is-shown { opacity: 1; transform: none; }
+
+    .slide.is-active .frag-auto { animation: rise 0.55s var(--ease) both; }
+    .slide.is-active .frag-auto:nth-child(1) { animation-delay: 0.05s; }
+    .slide.is-active .frag-auto:nth-child(2) { animation-delay: 0.14s; }
+    .slide.is-active .frag-auto:nth-child(3) { animation-delay: 0.23s; }
+    .slide.is-active .frag-auto:nth-child(4) { animation-delay: 0.32s; }
+    .slide.is-active .frag-auto:nth-child(5) { animation-delay: 0.41s; }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    .progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 4px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--cyan), var(--purple));
+      z-index: 50;
+      transition: width 0.35s var(--ease);
+    }
+
+    .hud {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 4.5rem;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.95rem;
+      touch-action: manipulation;
+      background: #02010a;
+      border-top: 1px solid rgba(12, 255, 255, 0.12);
+    }
+
+    .hud button,
+    .hud a.hud-btn {
+      appearance: none;
+      border: 1px solid rgba(12, 255, 255, 0.3);
+      background: rgba(22, 8, 48, 0.85);
+      color: var(--text);
+      border-radius: 0.75rem;
+      min-width: 2.75rem;
+      min-height: 2.75rem;
+      padding: 0.65rem 0.95rem;
+      cursor: pointer;
+      font: inherit;
+      font-size: 1.25rem;
+      touch-action: manipulation;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+
+    .hud button:hover,
+    .hud a.hud-btn:hover { border-color: var(--cyan); color: var(--cyan); }
+
+    .share-qr {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.85rem;
+      width: fit-content;
+    }
+
+    .share-qr img {
+      width: 13rem;
+      height: 13rem;
+      border-radius: 0.5rem;
+      background: #fff;
+      padding: 0.45rem;
+    }
+
+    .share-qr .share-label {
+      color: var(--cyan);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      line-height: 1.4;
+      margin: 0;
+      text-align: center;
+      width: 15rem;
+    }
+
+    .notes-panel {
+      display: none;
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      max-height: 280px;
+      overflow: auto;
+      padding: 1rem 1.25rem 3.4rem;
+      background: rgba(0, 0, 0, 0.9);
+      border-top: 1px solid rgba(12, 255, 255, 0.25);
+      color: #ddd;
+      font-size: 1.05rem;
+      line-height: 1.45;
+      z-index: 40;
+    }
+
+    body.show-notes .notes-panel { display: block; }
+
+    .risk-card[data-tone="danger"] { border-color: rgba(255, 122, 150, 0.45); }
+    .risk-card[data-tone="warn"] { border-color: rgba(255, 209, 102, 0.45); }
+    .risk-card[data-tone="ok"] { border-color: rgba(93, 255, 176, 0.45); }
+    .risk-card[data-tone="danger"] .label { color: var(--danger); }
+    .risk-card[data-tone="warn"] .label { color: var(--warn); }
+    .risk-card[data-tone="ok"] .label { color: var(--ok); }
+
+    .tool-link {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 0.85rem;
+      padding: 0.55rem 0.95rem;
+      border-radius: 999px;
+      border: 1px solid rgba(12, 255, 255, 0.45);
+      background: rgba(12, 255, 255, 0.12);
+      color: var(--cyan);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      pointer-events: auto;
+      cursor: pointer;
+      transition: background 0.2s var(--ease), border-color 0.2s var(--ease);
+    }
+
+    .tool-link:hover {
+      background: rgba(12, 255, 255, 0.22);
+      border-color: var(--cyan);
+    }
+
+    .tool-bullet {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .tool-bullet .tool-link {
+      margin-top: 0;
+      flex-shrink: 0;
+    }
+
+    .tag-free {
+      display: inline-block;
+      margin-left: 0.35rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(93, 255, 176, 0.45);
+      background: rgba(93, 255, 176, 0.12);
+      color: var(--ok);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      vertical-align: middle;
+    }
+
+    .pick-if {
+      margin-top: 0.85rem;
+      margin-bottom: 0.45rem;
+      color: var(--cyan);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .pick-why {
+      font-size: 1.35rem;
+      line-height: 1.35;
+      font-weight: 600;
+    }
+
+    .pick-strong {
+      margin-top: 0.85rem;
+      color: var(--muted);
+      font-size: 1.1rem;
+      line-height: 1.4;
+    }
+
+    .prompt-ex {
+      margin-top: 0.35rem;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 1.15rem;
+      line-height: 1.45;
+      color: var(--text);
+      white-space: pre-wrap;
+    }
+
+    .prompt-ex .slot {
+      color: var(--cyan);
+      font-weight: 700;
+    }
+
+    .prompt-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 0.85rem;
+      align-items: start;
+    }
+
+    .prompt-col .label {
+      margin-bottom: 0.45rem;
+      color: var(--cyan);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .prompt-box {
+      margin-top: 0.55rem;
+      max-height: 420px;
+      overflow: auto;
+      padding: 0.9rem 1rem;
+      border-radius: var(--radius);
+      border: 1px solid rgba(12, 255, 255, 0.25);
+      background: rgba(7, 2, 20, 0.55);
+    }
+
+    .prompt-box .prompt-ex {
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    .prompt-actions {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .copy-prompt-btn {
+      appearance: none;
+      border: 1px solid rgba(12, 255, 255, 0.45);
+      background: rgba(12, 255, 255, 0.14);
+      color: var(--cyan);
+      border-radius: 999px;
+      padding: 0.4rem 0.9rem;
+      cursor: pointer;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .copy-prompt-btn:hover {
+      background: rgba(12, 255, 255, 0.24);
+      border-color: var(--cyan);
+    }
+
+    .copy-prompt-btn.is-done {
+      border-color: rgba(93, 255, 176, 0.55);
+      background: rgba(93, 255, 176, 0.14);
+      color: var(--ok);
+    }
+
+    /* Export PDF: una página 16:9 por diapo, sin HUD */
+    @page {
+      size: 1920px 1080px;
+      margin: 0;
+    }
+
+    html.export-pdf,
+    html.export-pdf body {
+      overflow: visible !important;
+      height: auto !important;
+      width: 1920px !important;
+      touch-action: auto;
+      background: var(--bg);
+    }
+
+    html.export-pdf .progress,
+    html.export-pdf .hud,
+    html.export-pdf .notes-panel {
+      display: none !important;
+    }
+
+    html.export-pdf .viewport {
+      position: static !important;
+      inset: auto !important;
+      display: block !important;
+      width: 1920px !important;
+      height: auto !important;
+      overflow: visible !important;
+      background: transparent !important;
+    }
+
+    html.export-pdf .stage {
+      width: 1920px !important;
+      height: auto !important;
+      transform: none !important;
+      box-shadow: none !important;
+      overflow: visible !important;
+      will-change: auto;
+    }
+
+    html.export-pdf .deck {
+      position: static !important;
+      width: 1920px !important;
+      height: auto !important;
+    }
+
+    html.export-pdf .slide {
+      position: relative !important;
+      inset: auto !important;
+      width: 1920px !important;
+      height: 1080px !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: none !important;
+      pointer-events: auto !important;
+      overflow: hidden !important;
+      page-break-after: always;
+      break-after: page;
+    }
+
+    html.export-pdf .slide:last-child {
+      page-break-after: auto;
+      break-after: auto;
+    }
+
+    html.export-pdf .frag,
+    html.export-pdf .frag-auto {
+      opacity: 1 !important;
+      transform: none !important;
+      animation: none !important;
+    }
+
+    html.export-pdf .slide-bg {
+      transform: none !important;
+      transition: none !important;
+    }
+
+    html.export-pdf * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+
+  <div class="viewport" id="viewport">
+  <div class="stage" id="stage">
+  <main class="deck" id="deck">
+
+    <!-- COVER -->
+    <section class="slide is-active" data-notes="Presenta. Conceptos claros antes de practicar en Cursor.">
+      <div class="slide-bg" style="background-image:url('assets/cover.png')"></div>
+      <div class="slide-inner cover-layout">
+        <div class="cover-copy">
+          <p class="kicker frag-auto">Conceptos básicos · Antes de Cursor</p>
+          <h1 class="frag-auto">IA con <span class="accent">criterio</span></h1>
+          <p class="lead frag-auto">Entender qué es, cómo pedir y cuándo <strong class="accent">verificar</strong>.</p>
+          <p class="cover-meta frag-auto">Wilman Montenegro · Primera clase</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- AGENDA -->
+    <section class="slide" data-notes="Lee los 6 puntos. Deck corto: conceptos, luego práctica en Cursor.">
+      <div class="slide-bg center-veil" style="background-image:url('assets/cover.png')"></div>
+      <div class="slide-inner">
+        <p class="kicker">Hoy vas a aprender</p>
+        <h2>Qué aprenderás en esta sección</h2>
+        <div class="bullet-list">
+          <div class="bullet-row frag"><span class="icon">01</span><span class="bullet">Qué es <strong class="accent">IA generativa</strong> y qué es un <strong class="accent">modelo</strong></span></div>
+          <div class="bullet-row frag"><span class="icon">02</span><span class="bullet">Qué es un <strong class="accent">LLM</strong> <span class="gloss" style="display:inline;margin:0;font-size:0.9em">(modelo de lenguaje)</span></span></div>
+          <div class="bullet-row frag"><span class="icon">03</span><span class="bullet">Qué es un <strong class="accent">prompt</strong>, un <strong class="accent">token</strong> y el <strong class="accent">contexto</strong></span></div>
+          <div class="bullet-row frag"><span class="icon">04</span><span class="bullet">Cuál <strong class="accent">modelo</strong> usar (simple vs Pro)</span></div>
+          <div class="bullet-row frag"><span class="icon">05</span><span class="bullet"><strong>Alucinaciones</strong> y otros riesgos</span></div>
+          <div class="bullet-row frag"><span class="icon">06</span><span class="bullet">Qué es <strong class="accent">Cursor</strong> (puente a la práctica)</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IA GENERATIVA + MODELO -->
+    <section class="slide" data-notes="Base: IA generativa crea contenido nuevo. Modelo = el ‘motor’ entrenado. LLM es un tipo de modelo (texto). Luego entramos al LLM.">
+      <div class="slide-bg center-veil" style="background-image:url('assets/llm.png')" aria-hidden="true"></div>
+      <div class="slide-inner">
+        <p class="kicker">01 · Base</p>
+        <h2>IA generativa y <span class="accent">modelo</span></h2>
+        <div class="grid-2" style="margin-top:1.25rem">
+          <div class="card frag">
+            <div class="label">IA generativa</div>
+            <p>Una IA que <strong class="accent">crea</strong> cosas nuevas: texto, imágenes, audio o video. No solo busca lo que ya existe.</p>
+          </div>
+          <div class="card frag">
+            <div class="label">Modelo</div>
+            <p>El <strong class="accent">cerebro entrenado</strong> que hace el trabajo. Hay modelos livianos (rápidos/baratos) y fuertes (más caros).</p>
+          </div>
+        </div>
+        <div class="takeaway frag" style="margin-top:1.25rem">Hoy usamos sobre todo modelos de <strong class="accent">lenguaje</strong> (LLM). En Cursor eliges cuál modelo te conviene.</div>
+      </div>
+    </section>
+
+    <!-- LLM DEF + NOT DB -->
+    <section class="slide llm-slide" data-notes="Primero el nombre en inglés + sigla. Luego: entiende y escribe texto. No es magia. No busca como Google. Completa texto. Puede equivocarse.">
+      <div class="llm-bleed" aria-hidden="true">
+        <img src="assets/llm.png" alt="" />
+      </div>
+      <div class="slide-inner llm-copy">
+        <p class="kicker">02 · LLM</p>
+        <h2>Large Language Model <strong class="accent">(LLM)</strong></h2>
+        <span class="gloss">Modelo de lenguaje grande · No es una base de datos</span>
+        <div class="card frag" style="margin-top:1.5rem">
+          <div class="label">En simple</div>
+          <p>Una IA que <strong>entiende</strong> y <strong class="accent">genera texto</strong>.</p>
+        </div>
+        <div class="card frag" style="margin-top:1rem">
+          <div class="label">Cómo funciona</div>
+          <p>No “busca y encuentra”. <strong class="accent">Predice</strong> la siguiente palabra.</p>
+        </div>
+        <div class="formula frag" style="text-align:left;margin-top:1rem">
+          patrones + tu pregunta<br />→ <span class="accent">siguiente palabra</span>
+        </div>
+        <div class="takeaway frag">Puede <strong>sonar bien</strong> y <strong class="accent">estar mal</strong>.</div>
+      </div>
+    </section>
+
+    <!-- USES NEGOCIO GENERAL -->
+    <section class="slide" data-notes="Mapa amplio para quien administra un negocio: textos/correo, creatividades (imagen/video/campañas), datos, automatizar. No solo contabilidad: también publicidad y operación diaria. Tú verificas, sobre todo cifras.">
+      <div class="slide-bg center-veil" style="background-image:url('assets/productivity.png')" aria-hidden="true"></div>
+      <div class="slide-inner">
+        <p class="kicker">En tu día a día</p>
+        <h2>¿En qué puedes usar la IA?</h2>
+        <div class="grid-2" style="margin-top:1.1rem">
+          <div class="card frag">
+            <div class="label">Textos y correos</div>
+            <p><strong>Escribir</strong> informes, propuestas, mails a clientes, actas y resúmenes sin empezar en blanco</p>
+          </div>
+          <div class="card frag">
+            <div class="label">Campañas y creatividades</div>
+            <p><strong>Ideas</strong> de publicidad, copys, imágenes, videos cortos y presentaciones para vender más</p>
+          </div>
+          <div class="card frag">
+            <div class="label">Datos y números</div>
+            <p><strong>Entender</strong> tablas, ventas, gastos y variaciones; borradores de reportes listos para revisar</p>
+          </div>
+          <div class="card frag">
+            <div class="label">Automatizar</div>
+            <p><strong>Ahorrar tiempo</strong> en tareas repetidas: clasificar, ordenar, responder lo frecuente y organizar el trabajo</p>
+          </div>
+        </div>
+        <div class="takeaway frag" style="margin-top:1.15rem">La IA <strong class="accent">acelera</strong> tu trabajo. <strong>Tú</strong> decides y verificas.</div>
+      </div>
+    </section>
+
+    <!-- PROMPT RECIPE -->
+    <section class="slide" data-notes="Prompt = lo que le escribes. 4 partes. Contexto de la receta = negocio/tono/límites (distinto a la ventana de contexto).">
+      <div class="slide-bg" style="background-image:url('assets/productivity.png')"></div>
+      <div class="slide-inner">
+        <p class="kicker">03 · Prompts</p>
+        <h2><strong class="accent">Prompt</strong> = lo que le pides a la IA</h2>
+        <span class="gloss">Es lo que escribes en el chat. Un buen prompt tiene <strong>4 partes</strong>:</span>
+        <div class="grid-4" style="margin-top:1.35rem">
+          <div class="card frag">
+            <div class="label">01 Rol</div>
+            <p>Quién quieres que sea</p>
+          </div>
+          <div class="card frag">
+            <div class="label">02 Tarea</div>
+            <p>Qué quieres que haga</p>
+          </div>
+          <div class="card frag">
+            <div class="label">03 Contexto</div>
+            <p>Tu negocio, tono y límites</p>
+          </div>
+          <div class="card frag">
+            <div class="label">04 Formato</div>
+            <p>Largo, estructura y cómo debe cerrar</p>
+          </div>
+        </div>
+        <div class="takeaway frag">Sin estas 4 partes, la IA <strong>improvisa</strong> y pierdes tiempo. Mejor pídeselo con <strong class="accent">tu</strong> contexto real.</div>
+      </div>
+    </section>
+
+    <!-- BAD VS GOOD -->
+    <section class="slide" data-notes="Lee el malo. Pausa. Lee el bueno. Pregunta: ¿qué le faltaba al malo? Ejemplo de negocio/admin, no de redes.">
+      <div class="slide-inner">
+        <p class="kicker">Ejemplo real · negocio</p>
+        <h2>Malo vs bueno</h2>
+        <div class="grid-2" style="margin-top:1.25rem">
+          <div class="card risk-card frag" data-tone="danger">
+            <div class="label">Prompt malo</div>
+            <p class="prompt-ex">Hazme un informe de ventas.</p>
+            <p style="margin-top:0.85rem;color:var(--muted);font-size:1.2rem"><strong>Vago</strong>. Sin <strong>rol</strong>, <strong>datos</strong>, <strong>tono</strong> ni <strong>formato</strong>. Respuesta genérica.</p>
+          </div>
+          <div class="card risk-card frag" data-tone="ok">
+            <div class="label">Prompt bueno</div>
+            <p class="prompt-ex">Eres analista financiero de una PYME en Colombia.
+Con estos datos de ventas del mes [pega tabla], arma un resumen ejecutivo de máximo 200 palabras.
+Incluye: 3 hallazgos, 2 riesgos y 1 recomendación.
+Tono profesional. No inventes cifras que no estén en los datos.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOKEN + COST (fusionada) -->
+    <section class="slide" data-notes="Token = unidad de cobro. Cada mensaje reenvía el historial (cuesta). Entrada barata / salida 3x a 6x. Luego: contexto.">
+      <div class="slide-bg" style="background-image:url('assets/tokens.png')"></div>
+      <div class="slide-inner">
+        <p class="kicker">04 · Token y ahorrar</p>
+        <h2>Token = pedacito de texto</h2>
+        <span class="gloss" style="margin-bottom:0.5rem">Se cobra por pedacitos, no por “palabras” · <strong>Entrada barata</strong> · <strong class="accent">Salida cara</strong></span>
+        <div class="grid-2" style="margin-top:0.85rem">
+          <div class="card frag">
+            <div class="label">Regla práctica</div>
+            <p><strong>1 token</strong> ≈ 3–4 caracteres</p>
+            <p style="margin-top:0.45rem"><strong>130–150 tokens</strong> ≈ 100 palabras</p>
+            <p style="margin-top:0.5rem;color:var(--muted);font-size:1.15rem">Mail corto ≈ 40-80 · informe ≈ 200-400</p>
+          </div>
+          <div class="card frag">
+            <div class="label">Por qué te importa</div>
+            <p>Cada mensaje reenvía el chat: <strong>lo anterior</strong> + <strong>lo nuevo</strong> + <strong>la respuesta</strong>.</p>
+            <p style="margin-top:0.5rem;color:var(--muted);font-size:1.15rem">No “<strong>recuerda</strong>” gratis. Chat largo = más gasto. Sé <strong>claro y corto</strong>.</p>
+          </div>
+          <div class="card frag">
+            <div class="label">Entrada</div>
+            <p>Lo que <strong>tú</strong> escribes.<br /><strong>Más barato.</strong></p>
+          </div>
+          <div class="card frag">
+            <div class="label">Salida</div>
+            <p>Lo que responde la IA.<br /><strong class="accent">3× a 6× más caro.</strong></p>
+          </div>
+        </div>
+        <div class="takeaway frag" style="margin-top:1.15rem">Pide <strong>formato corto</strong>. No pegues chats viejos.</div>
+      </div>
+    </section>
+
+    <!-- CONTEXT DEF -->
+    <section class="slide" data-notes="Contexto = ventana de lectura (distinto al contexto del prompt). Chat nuevo por tarea; solo lo necesario; chat largo = resume o empieza otro.">
+      <div class="slide-inner">
+        <p class="kicker">05 · Ventana de contexto</p>
+        <h2>Contexto = lo que puede leer de una vez</h2>
+        <span class="gloss">Tu pregunta + el chat anterior + archivos. Tiene <strong>tope</strong>. No es <strong class="accent">memoria eterna</strong>.</span>
+        <div class="grid-2" style="margin-top:1.1rem">
+          <div class="card frag">
+            <div class="label">Chat nuevo por tarea</div>
+            <p><strong>Un chat</strong> para el informe. Otro para el correo. <strong>No mezcles</strong> temas.</p>
+          </div>
+          <div class="card frag">
+            <div class="label">Solo lo necesario</div>
+            <p><strong>Resumen, tono y datos clave</strong>. No pegues todo el Drive “por si acaso”.</p>
+          </div>
+          <div class="card frag">
+            <div class="label">Si el chat se alarga</div>
+            <p><strong>Resume</strong> lo importante, o abre un <strong class="accent">chat nuevo</strong>.</p>
+          </div>
+          <div class="card frag">
+            <div class="label">Archivos con criterio</div>
+            <p>Sube el PDF o documento <strong>correcto</strong>. Menos archivos = menos ruido.</p>
+          </div>
+        </div>
+        <div class="takeaway frag" style="margin-top:1.15rem">Buen contexto = <strong class="accent">lo justo</strong> para la tarea. No es “más = mejor”.</div>
+      </div>
+    </section>
+
+    <!-- RIGHT MODEL -->
+    <section class="slide" data-notes="Barato para volumen; caro solo para decidir. Ahorras plata y tiempo.">
+      <div class="slide-bg" style="background-image:url('assets/productivity.png')"></div>
+      <div class="slide-inner">
+        <p class="kicker">06 · Modelo correcto</p>
+        <h2>Elige el modelo adecuado</h2>
+        <span class="gloss" style="margin-bottom:0.75rem">En Cursor (y en otras IAs) hay varios modelos. No uses el más Pro para todo.</span>
+        <div class="route">
+          <div class="card frag-auto">
+            <div class="label">Barato · rápido</div>
+            <p><strong>Resumir</strong>, clasificar, borradores simples</p>
+          </div>
+          <div class="arrow frag-auto">→</div>
+          <div class="card frag-auto">
+            <div class="label">Fuerte · caro</div>
+            <p><strong>Estrategia</strong> y decisiones difíciles</p>
+          </div>
+        </div>
+        <div class="takeaway frag" style="margin-top:1.35rem"><strong class="accent">Barato primero</strong>. Caro solo si hace falta. Eso es tu retorno: menos gasto y más tiempo.</div>
+      </div>
+    </section>
+
+    <!-- THREE RISKS -->
+    <section class="slide risks-slide" data-notes="Hechos documentados, no inventos: (1) Alucinaciones = modelos inventan con confianza (literatura OpenAI/Anthropic). (2) Sesgos = datos de entrenamiento. (3) Privacidad: OpenAI/Anthropic/Google piden no pegar datos sensibles. Prompt injection = OWASP LLM01 (entrada no confiable puede manipular al modelo). En chat manual el riesgo típico = que TÚ pegues secretos o sigas instrucciones raras; el prompt solo no ‘hackea’ el PC.">
+      <div class="risks-bleed" aria-hidden="true">
+        <img src="assets/risks.png" alt="" />
+      </div>
+      <div class="slide-inner risks-copy">
+        <p class="kicker">07 · Riesgos</p>
+        <h2>Alucinaciones y riesgos</h2>
+        <div class="risks-cards">
+          <div class="card risk-card frag" data-tone="danger">
+            <div class="label">Alucinaciones</div>
+            <p><strong class="accent">Inventa</strong> cosas que suenan verdad.</p>
+          </div>
+          <div class="card risk-card frag" data-tone="warn" style="margin-top:1rem">
+            <div class="label">Sesgos</div>
+            <p>Puede <strong>repetir prejuicios</strong>.</p>
+          </div>
+          <div class="card risk-card frag" data-tone="ok" style="margin-top:1rem">
+            <div class="label">Privacidad</div>
+            <p>No pegues <strong class="accent">datos sensibles</strong> (contraseñas, clientes, docs privados).</p>
+            <p style="margin-top:0.45rem;color:var(--muted);font-size:1.15rem">Prompt de internet: <strong>léelo</strong>. Si pide datos o “ignora reglas”, <strong>no lo uses</strong>.</p>
+          </div>
+        </div>
+        <div class="takeaway tip frag">La IA <strong>propone</strong>. Tú <strong class="accent">verificas</strong>, sobre todo las cifras.</div>
+      </div>
+    </section>
+
+    <!-- CURSOR · UNA SOLA DIAPO -->
+    <section class="slide" data-notes="Natural. Qué es + 3 ventajas. Una sola desventaja: al inicio se siente más complicado porque nació para programadores. Cuando lo dominas, vuelas. Luego conclusión.">
+      <div class="slide-bg center-veil" style="background-image:url('assets/productivity.png')" aria-hidden="true"></div>
+      <div class="slide-inner">
+        <p class="kicker">08 · Cursor</p>
+        <h2>¿Qué es <span class="accent">Cursor</span>?</h2>
+        <span class="gloss">Un <strong>editor con IA</strong>: escribes, pides y revisas en el mismo lugar.</span>
+        <div class="grid-3" style="margin-top:1.15rem">
+          <div class="card frag">
+            <div class="label">Ve tu trabajo</div>
+            <p>Lee <strong>archivos</strong> y carpetas. No empiezas de cero en cada chat.</p>
+          </div>
+          <div class="card frag">
+            <div class="label">Todo junto</div>
+            <p>Documento + IA + cambios en <strong class="accent">una</strong> pantalla.</p>
+          </div>
+          <div class="card frag">
+            <div class="label">Eliges modelo</div>
+            <p>Rápido o potente según la <strong>tarea</strong> (lo que vimos hoy).</p>
+          </div>
+        </div>
+        <div class="card risk-card frag" data-tone="warn" style="margin-top:1.1rem">
+          <div class="label">Sé realista</div>
+          <p>Al inicio es un <strong>poquito más complicado</strong>: nació pensado para <strong>programadores</strong>. Cuando lo dominas, <strong class="accent">vuelas</strong> con él.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAKEAWAYS · CONCLUSIÓN -->
+    <section class="slide" data-notes="Conclusión antes de la frase final. Lee lento.">
+      <div class="slide-bg" style="background-image:url('assets/cover.png')"></div>
+      <div class="slide-inner">
+        <p class="kicker">Para llevar</p>
+        <h2>Recuerda esto</h2>
+        <div class="bullet-list">
+          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">La IA <strong class="accent">predice</strong> texto. Puede sonar bien y estar mal (<strong>alucinación</strong>). <strong>Tú verificas</strong>.</span></div>
+          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet"><strong>Prompt</strong> = rol + tarea + contexto + formato. Cuanto más claro, mejor respuesta.</span></div>
+          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet"><strong>Token</strong> = pedacito de texto (y gasto). <strong>Contexto</strong> = lo que el modelo puede leer de una vez.</span></div>
+          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">No uses el modelo más <strong class="accent">potente</strong> para todo. Empieza simple; sube solo si hace falta.</span></div>
+          <div class="bullet-row frag"><span class="icon">→</span><span class="bullet">No pegues <strong class="accent">datos sensibles</strong> (clientes, contraseñas, documentos privados). Revisa siempre las cifras.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CIERRE -->
+    <section class="slide" data-notes="Frase matadora. Pausa. Preguntas. Referencias al final si preguntan.">
+      <div class="slide-bg" style="background-image:url('assets/cover.png')"></div>
+      <div class="slide-inner center-copy" style="min-height:820px;justify-content:center;gap:1.25rem">
+        <p class="kicker">Cierre</p>
+        <h1 style="font-size:4.2rem;max-width:16ch;line-height:1.12">La IA <strong class="accent">potencia</strong> tu trabajo.<br /><strong>No te reemplaza</strong>.</h1>
+        <p class="lead" style="margin-top:0.5rem;font-size:1.55rem">¿Preguntas?</p>
+        <p class="cover-meta" style="margin-top:0.35rem">Wilman Montenegro · Primera clase</p>
+      </div>
+    </section>
+
+    <!-- REFERENCIAS -->
+    <section class="slide" data-notes="Apéndice al final. Solo si preguntan.">
+      <div class="slide-inner">
+        <p class="kicker">Apéndice</p>
+        <h2>Referencias</h2>
+        <div class="bullet-list" style="margin-top:1.1rem">
+          <div class="bullet-row"><span class="icon">1</span><span class="bullet"><strong>Tokens:</strong> OpenAI Help, “What are tokens” (help.openai.com).</span></div>
+          <div class="bullet-row"><span class="icon">2</span><span class="bullet"><strong>Riesgos:</strong> OWASP Top 10 for LLM Applications (genai.owasp.org).</span></div>
+          <div class="bullet-row"><span class="icon">3</span><span class="bullet"><strong>Cursor:</strong> documentación oficial en cursor.com/docs.</span></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  </div>
+  </div>
+
+  <div class="notes-panel" id="notesPanel"></div>
+  <div class="hud">
+    <button type="button" id="prevBtn" aria-label="Anterior">←</button>
+    <span id="counter">1 / 1</span>
+    <button type="button" id="nextBtn" aria-label="Siguiente">→</button>
+    <button type="button" id="fsBtn" aria-label="Pantalla completa" title="Pantalla completa">⛶</button>
+  </div>
+
+  <script>
+    const EXPORT_PDF = new URLSearchParams(location.search).has('export')
+    if (EXPORT_PDF) {
+      document.documentElement.classList.add('export-pdf')
+      document.documentElement.dataset.exportReady = '0'
+      const markReady = () => { document.documentElement.dataset.exportReady = '1' }
+      if (document.fonts?.ready) document.fonts.ready.then(markReady).catch(markReady)
+      else markReady()
+    } else {
+    const STAGE_W = 1920
+    const STAGE_H = 1080
+    const slides = [...document.querySelectorAll('.slide')]
+    const progress = document.getElementById('progress')
+    const counter = document.getElementById('counter')
+    const notesPanel = document.getElementById('notesPanel')
+    const prevBtn = document.getElementById('prevBtn')
+    const nextBtn = document.getElementById('nextBtn')
+    const fsBtn = document.getElementById('fsBtn')
+    const viewport = document.getElementById('viewport')
+    const stage = document.getElementById('stage')
+    const STORE = 'curso-ia-diapos'
+
+    let index = 0
+    let fitScale = 1
+    let userZoom = 1
+    let panX = 0
+    let panY = 0
+    let touchMode = null
+    let startX = 0
+    let startY = 0
+    let lastX = 0
+    let lastY = 0
+    let startDist = 0
+    let startZoom = 1
+    let lastTap = 0
+    let ignoreSwipe = false
+
+    function frags(slide) {
+      return [...slide.querySelectorAll('.frag')]
+    }
+
+    function persist() {
+      const frag = frags(slides[index]).filter((f) => f.classList.contains('is-shown')).length
+      sessionStorage.setItem(STORE, JSON.stringify({ i: index, f: frag }))
+    }
+
+    function updateHud() {
+      const total = slides.length
+      if (counter) counter.textContent = `${index + 1} / ${total}`
+      if (progress) progress.style.width = `${((index + 1) / total) * 100}%`
+      const note = slides[index]?.getAttribute('data-notes') ?? ''
+      if (notesPanel) notesPanel.textContent = note
+    }
+
+    function show(i, fragCount = 0) {
+      index = Math.max(0, Math.min(i, slides.length - 1))
+      slides.forEach((s, n) => {
+        s.classList.toggle('is-active', n === index)
+        if (n === index) {
+          frags(s).forEach((f, fi) => f.classList.toggle('is-shown', fi < fragCount))
+        }
+      })
+      updateHud()
+      persist()
+    }
+
+    function revealNextFrag() {
+      const pending = frags(slides[index]).find((f) => !f.classList.contains('is-shown'))
+      if (!pending) return false
+      pending.classList.add('is-shown')
+      return true
+    }
+
+    function next() {
+      if (revealNextFrag()) { persist(); return }
+      if (index < slides.length - 1) show(index + 1, 0)
+    }
+
+    function prev() {
+      if (index <= 0) return
+      const i = index - 1
+      show(i, frags(slides[i]).length)
+    }
+
+    function viewSize() {
+      const w = viewport?.clientWidth || window.innerWidth
+      const h = viewport?.clientHeight || window.innerHeight
+      return { w, h }
+    }
+
+    function clampPan() {
+      const { w, h } = viewSize()
+      const scale = fitScale * userZoom
+      const maxX = Math.max(0, (STAGE_W * scale - w) / 2)
+      const maxY = Math.max(0, (STAGE_H * scale - h) / 2)
+      panX = Math.min(maxX, Math.max(-maxX, panX))
+      panY = Math.min(maxY, Math.max(-maxY, panY))
+    }
+
+    function applyTransform() {
+      if (!stage) return
+      const scale = fitScale * userZoom
+      stage.style.transform = `translate(${panX}px, ${panY}px) scale(${scale})`
+    }
+
+    function fit() {
+      const { w, h } = viewSize()
+      // redondeo: scale fraccional + borde cyan 1–3px = shimmer
+      fitScale = Math.round(Math.min(w / STAGE_W, h / STAGE_H) * 1000) / 1000
+      clampPan()
+      applyTransform()
+    }
+
+    function resetZoom() {
+      userZoom = 1
+      panX = 0
+      panY = 0
+      applyTransform()
+    }
+
+    function isFullscreen() {
+      return !!(document.fullscreenElement || document.webkitFullscreenElement)
+    }
+
+    function syncFsBtn() {
+      if (!fsBtn) return
+      const on = isFullscreen()
+      fsBtn.setAttribute('aria-label', on ? 'Salir de pantalla completa' : 'Pantalla completa')
+      fsBtn.title = on ? 'Salir' : 'Pantalla completa'
+      fsBtn.textContent = on ? '✕' : '⛶'
+    }
+
+    async function toggleFullscreen() {
+      try {
+        if (isFullscreen()) {
+          const exit = document.exitFullscreen || document.webkitExitFullscreen
+          await exit?.call(document)
+        } else {
+          const el = document.documentElement
+          const req = el.requestFullscreen || el.webkitRequestFullscreen
+          await req?.call(el)
+        }
+      } catch {
+        // iOS Safari a veces bloquea Fullscreen API fuera de video
+      }
+      syncFsBtn()
+      fit()
+    }
+
+    function touchDistance(a, b) {
+      return Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY)
+    }
+
+    prevBtn?.addEventListener('click', () => prev())
+    nextBtn?.addEventListener('click', () => next())
+    fsBtn?.addEventListener('click', (e) => {
+      e.stopPropagation()
+      toggleFullscreen()
+    })
+
+    document.addEventListener('fullscreenchange', () => { syncFsBtn(); fit() })
+    document.addEventListener('webkitfullscreenchange', () => { syncFsBtn(); fit() })
+
+    document.querySelectorAll('.copy-prompt-btn').forEach((btn) => {
+      const label = btn.textContent
+      btn.addEventListener('click', async (e) => {
+        e.stopPropagation()
+        const id = btn.getAttribute('data-copy')
+        const source = id ? document.getElementById(id) : null
+        const text = source?.innerText?.trim()
+        if (!text) return
+        try {
+          await navigator.clipboard.writeText(text)
+          btn.textContent = 'Copiado'
+          btn.classList.add('is-done')
+          window.setTimeout(() => {
+            btn.textContent = label
+            btn.classList.remove('is-done')
+          }, 1800)
+        } catch {
+          btn.textContent = 'Selecciona y Ctrl+C'
+        }
+      })
+    })
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+        e.preventDefault()
+        next()
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault()
+        prev()
+      } else if (e.key === 'Home') {
+        show(0, 0)
+      } else if (e.key === 'End') {
+        const last = slides.length - 1
+        show(last, frags(slides[last]).length)
+      } else if (e.key === 'f' || e.key === 'F') {
+        e.preventDefault()
+        toggleFullscreen()
+      } else if (e.key === 'n' || e.key === 'N') {
+        document.body.classList.toggle('show-notes')
+      } else if (e.key === '0') {
+        resetZoom()
+      }
+    })
+
+    viewport?.addEventListener('touchstart', (e) => {
+      const target = e.target
+      if (target?.closest?.('a, button, .copy-prompt-btn, .prompt-box')) {
+        ignoreSwipe = true
+        touchMode = null
+        return
+      }
+      ignoreSwipe = false
+      if (e.touches.length === 2) {
+        touchMode = 'pinch'
+        startDist = touchDistance(e.touches[0], e.touches[1])
+        startZoom = userZoom
+        e.preventDefault()
+        return
+      }
+      if (e.touches.length === 1) {
+        const now = Date.now()
+        if (now - lastTap < 280) {
+          resetZoom()
+          lastTap = 0
+          touchMode = null
+          e.preventDefault()
+          return
+        }
+        lastTap = now
+        startX = lastX = e.touches[0].clientX
+        startY = lastY = e.touches[0].clientY
+        touchMode = userZoom > 1.02 ? 'pan' : 'swipe'
+      }
+    }, { passive: false })
+
+    viewport?.addEventListener('touchmove', (e) => {
+      if (touchMode === 'pinch' && e.touches.length === 2) {
+        const d = touchDistance(e.touches[0], e.touches[1])
+        userZoom = Math.min(3, Math.max(1, startZoom * (d / Math.max(startDist, 1))))
+        if (userZoom <= 1.02) {
+          userZoom = 1
+          panX = 0
+          panY = 0
+        }
+        clampPan()
+        applyTransform()
+        e.preventDefault()
+        return
+      }
+      if (touchMode === 'pan' && e.touches.length === 1) {
+        const t = e.touches[0]
+        panX += t.clientX - lastX
+        panY += t.clientY - lastY
+        lastX = t.clientX
+        lastY = t.clientY
+        clampPan()
+        applyTransform()
+        e.preventDefault()
+        return
+      }
+      if (touchMode === 'swipe' && e.touches.length === 1) {
+        lastX = e.touches[0].clientX
+        lastY = e.touches[0].clientY
+      }
+    }, { passive: false })
+
+    viewport?.addEventListener('touchend', (e) => {
+      if (!ignoreSwipe && touchMode === 'swipe' && e.changedTouches.length >= 1) {
+        const t = e.changedTouches[0]
+        const dx = t.clientX - startX
+        const dy = t.clientY - startY
+        if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.15) {
+          if (dx < 0) next()
+          else prev()
+        }
+      }
+      if (e.touches.length === 0) {
+        touchMode = null
+        ignoreSwipe = false
+      }
+    })
+
+    window.addEventListener('resize', fit)
+    fit()
+
+    try {
+      const saved = JSON.parse(sessionStorage.getItem(STORE) || 'null')
+      if (saved && Number.isFinite(saved.i)) show(saved.i, saved.f ?? 0)
+      else show(0, 0)
+    } catch {
+      show(0, 0)
+    }
+    } // fin modo interactivo (no export)
+  </script>
+</body>
+</html>
