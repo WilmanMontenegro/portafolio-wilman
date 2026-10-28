@@ -250,12 +250,7 @@ const techStack: TechItem[] = [
     padding-top: 6px;
     padding-bottom: 10px;
     margin-top: -6px;
-    cursor: grab;
     user-select: none;
-  }
-
-  .hero-stack:active {
-    cursor: grabbing;
   }
 
   .stack-track {
@@ -282,8 +277,7 @@ const techStack: TechItem[] = [
     border-radius: 10px;
     background: rgba(125, 71, 255, 0.1);
     border: 1px solid rgba(125, 71, 255, 0.25);
-    transition: all 0.2s;
-    cursor: default;
+    transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
     flex-shrink: 0;
   }
 
@@ -294,7 +288,6 @@ const techStack: TechItem[] = [
   .stack-icon:hover {
     background: rgba(125, 71, 255, 0.22);
     border-color: var(--color-purple);
-    transform: translateY(-3px);
     box-shadow: 0 6px 18px rgba(125, 71, 255, 0.3);
   }
 
