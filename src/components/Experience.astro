@@ -17,32 +17,32 @@ interface Experience {
 const experience: Experience[] = [
     {
         period: "Ene 2026 – Actualidad",
-        role: "Desarrollador Full-Stack Freelance",
+        role: "Ingeniero de Desarrollo de Software (Freelance)",
         company: "Independiente · Remoto",
         summary:
-            "Desarrollo de aplicaciones web y móviles para emprendedores, pequeñas empresas e instituciones educativas. Marketplace, sitios corporativos y herramientas de gestión.",
-        tech: ["Astro", "Vue.js", "Supabase", "Firebase", "Flutter", "Node.js", "Tailwind CSS", "Linux", "WordPress"],
+            "Desarrollo de productos web y móviles desde los requerimientos hasta producción. Entregué FruitApp a un cliente de Argentina, puse Tupsicoana en producción y creé sitios en WordPress para Gimnasio Campestre El Rodadero y Ferretería CPJ. También doy soporte a Pedroveglia.",
+        tech: ["Next.js", "NestJS", "Astro", "Vue.js", "Supabase", "Firebase", "Flutter", "Node.js", "Tailwind CSS", "Linux", "WordPress"],
     },
     {
         period: "Jul 2024 – Ene 2026",
         role: "Ingeniero de Desarrollo de Software",
         company: "Zona Franca Las Américas S.A.S (Grupo Daabon) · Santa Marta",
         summary:
-            "Desarrollo y mantenimiento de aplicaciones empresariales, optimización de sistemas y automatización de procesos internos.",
-        tech: ["PHP", "Bootstrap", "jQuery", "MySQL", "JavaScript", "Linux"],
+            "Desarrollo de módulos para plataformas empresariales de recursos humanos e inventario. También construí sitios con React y tecnologías web, y trabajé en automatización, requerimientos, documentación, pruebas, mantenimiento y soporte.",
+        tech: ["PHP", "React", "JavaScript", "HTML", "CSS", "Bootstrap", "Linux", "MySQL", "XAMPP", "Adminer"],
     },
     {
-        period: "Mar 2023 – Dic 2024",
+        period: "Mar 2023 – Nov 2024",
         role: "Tutor de Programación Python",
         company: "Kodland · Remoto (Singapur)",
         summary:
-            "Acompañamiento académico a estudiantes internacionales, resolución de dudas, evaluación de actividades y seguimiento del proceso de aprendizaje.",
+            "Enseñé Python a grupos de 5 a 14 estudiantes de 8 a 17 años; resolví dudas, evalué actividades y acompañé su proceso de aprendizaje.",
         tech: ["Python"],
     },
     {
         period: "May 2023 – Nov 2023",
         role: "Practicante de Ingeniería de Sistemas",
-        company: "Lugnia · Bogotá (Remoto)",
+        company: "Grupo INGCO (hoy Lugnia) · Bogotá (Remoto)",
         summary:
             "Levantamiento de requerimientos, pruebas funcionales, reporte de incidencias y apoyo en documentación técnica.",
         tech: ["PHP", "HTML", "CSS", "JavaScript", "Google Workspace", "Linux"],
@@ -52,8 +52,8 @@ const experience: Experience[] = [
         role: "Desarrollador Frontend Freelancer",
         company: "BermaTech · Guayaquil, Ecuador (Remoto)",
         summary:
-            "Desarrollo de landing pages y aplicaciones web, implementación de interfaces y validación de diseños.",
-        tech: ["React.js", "VTEX IO", "TypeScript", "JavaScript", "MySQL", "Linux", "WordPress"],
+            "Maquetación en VTEX de diseños creados en Adobe Illustrator, usando HTML, CSS, JavaScript, TypeScript, Bootstrap y React.",
+        tech: ["HTML", "CSS", "JavaScript", "TypeScript", "Bootstrap", "React", "VTEX"],
     },
 ];
 
@@ -65,11 +65,11 @@ const items = preview ? experience.slice(0, 3) : experience;
     id="experience"
     aria-labelledby="experience-title"
 >
-    <p class="font-mono text-[0.82rem] text-cyan/65 mb-2 tracking-[0.05em]" aria-hidden="true">
+    <p class="font-display text-[0.82rem] text-cyan/65 mb-2 tracking-[0.05em]" aria-hidden="true">
         &lt;section&gt; experience
     </p>
     <h2
-        class="grad-text font-mono text-[clamp(1.7rem,3vw,2.4rem)] font-bold mb-6"
+        class="grad-text font-display text-[clamp(1.7rem,3vw,2.4rem)] font-bold mb-6"
         id="experience-title"
     >
         Experiencia Profesional
@@ -90,13 +90,13 @@ const items = preview ? experience.slice(0, 3) : experience;
                         aria-hidden="true"
                     />
 
-                    <p class="font-mono text-[0.78rem] text-cyan/65 tracking-[0.04em]">
+                    <p class="font-display text-[0.78rem] text-cyan/65 tracking-[0.04em]">
                         {item.period}
                     </p>
-                    <h3 class="mt-1 font-mono text-[1.05rem] text-text">
+                    <h3 class="mt-1 font-display text-[1.05rem] text-text">
                         {item.role}
                     </h3>
-                    <p class="mt-1 mb-2 font-mono text-[0.85rem] text-purple">
+                    <p class="mt-1 mb-2 font-display text-[0.85rem] text-purple">
                         {item.company}
                     </p>
                     <p class="text-[0.92rem] leading-[1.7] text-muted">
@@ -118,7 +118,7 @@ const items = preview ? experience.slice(0, 3) : experience;
             <div class="mt-6 text-right">
                 <a
                     href={`${base}experiencia`}
-                    class="font-mono text-[0.82rem] text-cyan transition-opacity hover:opacity-70"
+                    class="font-display text-[0.82rem] text-cyan transition-opacity hover:opacity-70"
                     aria-label="Ver toda la experiencia profesional"
                 >
                     Ver toda la experiencia →
@@ -127,7 +127,7 @@ const items = preview ? experience.slice(0, 3) : experience;
         )
     }
     <p
-        class="font-mono text-[0.82rem] text-cyan/65 mt-2 mb-0 text-right tracking-[0.05em]"
+        class="font-display text-[0.82rem] text-cyan/65 mt-2 mb-0 text-right tracking-[0.05em]"
         aria-hidden="true"
     >
         &lt;/section&gt;

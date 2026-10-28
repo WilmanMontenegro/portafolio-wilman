@@ -32,11 +32,11 @@ const references: ReferenceItem[] = [
     id="references"
     aria-labelledby="references-title"
 >
-    <p class="font-mono text-[0.82rem] text-cyan/65 mb-2 tracking-[0.05em]" aria-hidden="true">
+    <p class="font-display text-[0.82rem] text-cyan/65 mb-2 tracking-[0.05em]" aria-hidden="true">
         &lt;section&gt; references
     </p>
     <h2
-        class="grad-text font-mono text-[clamp(1.7rem,3vw,2.4rem)] font-bold mb-6"
+        class="grad-text font-display text-[clamp(1.7rem,3vw,2.4rem)] font-bold mb-6"
         id="references-title"
     >
         Referencias
@@ -46,7 +46,7 @@ const references: ReferenceItem[] = [
         {
             references.map((item) => (
                 <article class="grid gap-4 rounded-xl border border-purple/20 bg-[rgba(27,8,64,0.6)] p-[1.5rem]">
-                    <p class="font-mono text-[0.76rem] text-cyan/70">
+                    <p class="font-display text-[0.76rem] text-cyan/70">
                         {item.context}
                     </p>
                     <p class="text-[0.98rem] leading-[1.9] text-muted">
@@ -62,10 +62,10 @@ const references: ReferenceItem[] = [
                             loading="lazy"
                         />
                         <div>
-                            <p class="font-mono text-[1rem] text-text">
+                            <p class="font-display text-[1rem] text-text">
                                 {item.name}
                             </p>
-                            <p class="font-mono text-[0.82rem] text-purple">
+                            <p class="font-display text-[0.82rem] text-purple">
                                 {item.role}
                             </p>
                         </div>
@@ -75,7 +75,7 @@ const references: ReferenceItem[] = [
         }
     </div>
     <p
-        class="font-mono text-[0.82rem] text-cyan/65 mt-2 mb-0 text-right tracking-[0.05em]"
+        class="font-display text-[0.82rem] text-cyan/65 mt-2 mb-0 text-right tracking-[0.05em]"
         aria-hidden="true"
     >
         &lt;/section&gt;

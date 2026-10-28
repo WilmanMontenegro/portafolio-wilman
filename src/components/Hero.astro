@@ -5,27 +5,31 @@ interface TechItem {
 }
 
 const techStack: TechItem[] = [
-  { label: 'JavaScript', iconClass: 'devicon-javascript-plain colored' },
+  { label: 'React', iconClass: 'devicon-react-original colored' },
+  { label: 'Next.js', iconClass: 'devicon-nextjs-plain' },
+  { label: 'Node.js', iconClass: 'devicon-nodejs-plain colored' },
+  { label: 'NestJS', iconClass: 'devicon-nestjs-plain colored' },
+  { label: 'Java', iconClass: 'devicon-java-plain colored' },
+  { label: 'Spring Boot', iconClass: 'devicon-spring-original colored' },
   { label: 'TypeScript', iconClass: 'devicon-typescript-plain colored' },
   { label: 'PHP', iconClass: 'devicon-php-plain colored' },
   { label: 'Python', iconClass: 'devicon-python-plain colored' },
-  { label: 'Dart', iconClass: 'devicon-dart-plain colored' },
   { label: 'C#', iconClass: 'devicon-csharp-plain colored' },
-  { label: 'React', iconClass: 'devicon-react-original colored' },
-  { label: 'Vue', iconClass: 'devicon-vuejs-plain colored' },
+  { label: '.NET', iconClass: 'devicon-dotnetcore-plain colored' },
+  { label: 'Vue.js', iconClass: 'devicon-vuejs-plain colored' },
   { label: 'Angular', iconClass: 'devicon-angularjs-plain colored' },
-  { label: 'Node.js', iconClass: 'devicon-nodejs-plain colored' },
-  { label: 'NestJS', iconClass: 'devicon-nestjs-plain colored' },
   { label: 'Flutter', iconClass: 'devicon-flutter-plain colored' },
+  { label: 'Docker', iconClass: 'devicon-docker-plain colored' },
+  { label: 'AWS Lightsail', iconClass: 'devicon-amazonwebservices-plain-wordmark colored' },
   { label: 'MySQL', iconClass: 'devicon-mysql-plain colored' },
   { label: 'PostgreSQL', iconClass: 'devicon-postgresql-plain colored' },
   { label: 'MongoDB', iconClass: 'devicon-mongodb-plain colored' },
-  { label: 'Git', iconClass: 'devicon-git-plain colored' },
-  { label: 'Linux', iconClass: 'devicon-linux-plain' },
+  { label: 'Django', iconClass: 'devicon-django-plain colored' },
+  { label: 'Laravel', iconClass: 'devicon-laravel-plain colored' },
 ];
 ---
 
-<section class="mx-auto flex max-w-[var(--max-w)] items-center justify-center gap-12 rounded-[20px] bg-[linear-gradient(135deg,rgba(220,0,211,0.15)_0%,rgba(12,255,255,0.08)_100%)] px-8 py-[clamp(3rem,6vw,5rem)] max-[1024px]:flex-col max-[1024px]:justify-center max-[1024px]:gap-8 max-[640px]:rounded-xl max-[640px]:px-5 max-[640px]:py-10" id="home" aria-labelledby="hero-title">
+<section class="mx-auto flex max-w-[var(--max-w)] items-center justify-center gap-12 rounded-[20px] bg-[linear-gradient(135deg,rgba(220,0,211,0.15)_0%,rgba(12,255,255,0.08)_100%)] px-8 py-[clamp(2rem,4vw,3.5rem)] max-[1024px]:flex-col max-[1024px]:justify-center max-[1024px]:gap-8 max-[640px]:rounded-xl max-[640px]:px-5 max-[640px]:py-8" id="home" aria-labelledby="hero-title">
 
   <!-- Foto -->
   <div class="hero-photo relative shrink-0 self-center">
@@ -45,40 +49,47 @@ const techStack: TechItem[] = [
   <div class="w-full min-w-0 flex-1">
 
     <!-- Saludo -->
-    <p class="mb-4 font-mono text-[0.85rem] text-muted">
-      <span class="text-cyan/50">&lt;span&gt;</span>
-      Hola, soy <strong class="bg-[linear-gradient(90deg,#e8e8f2,#0CFFFF)] bg-clip-text font-bold text-transparent">Wilman Montenegro</strong>
-      <span class="text-cyan/50">&lt;/span&gt;</span>
+    <p class="mb-1 font-display text-[0.85rem] leading-tight text-muted">
+      <span class="text-cyan/60">&lt;span&gt;</span> Hola, soy <strong class="font-bold text-text">Wilman Montenegro</strong> <span class="text-cyan/60">&lt;/span&gt;</span>
     </p>
 
     <!-- Título con typewriter -->
-    <h1 class="mb-4 font-mono text-[clamp(1.8rem,4vw,3rem)] font-bold leading-tight text-text" id="hero-title">
-      Ingeniero de Sistemas &amp;<br>
-      <span class="font-bold text-cyan">&#123;</span><span class="bg-[linear-gradient(90deg,#DC00D3,#0CFFFF)] bg-clip-text font-semibold text-transparent" id="typing"></span><span class="typing-cursor text-cyan">|</span><span class="font-bold text-cyan">&#125;</span>
+    <h1 class="mb-4 font-display text-[clamp(1.8rem,4vw,3rem)] font-bold leading-tight text-text" id="hero-title">
+      <span class="sr-only">Ingeniero de Desarrollo de Software Full-Stack</span>
+      <span class="relative block" aria-hidden="true">
+        <span class="invisible">&#123; Ingeniero de Desarrollo de Software &#125;</span>
+        <span class="absolute inset-0"><span class="text-purple" id="hero-title-open-one"></span><span class="bg-[linear-gradient(90deg,#DC00D3,#0CFFFF)] bg-clip-text text-transparent" id="hero-title-line-one"></span><span class="text-purple" id="hero-title-close-one"></span><span class="typing-cursor text-cyan" id="hero-title-cursor-one">|</span></span>
+      </span>
+      <span class="relative block font-semibold" aria-hidden="true">
+        <span class="invisible">&#123; Full-Stack &#125;</span>
+        <span class="absolute inset-0"><span class="text-purple" id="hero-title-open-two"></span><span class="bg-[linear-gradient(90deg,#DC00D3,#0CFFFF)] bg-clip-text text-transparent" id="hero-title-line-two"></span><span class="text-purple" id="hero-title-close-two"></span><span class="typing-cursor text-cyan" id="hero-title-cursor-two" hidden>|</span></span>
+      </span>
     </h1>
 
     <!-- Ubicación estilo formal, después del título -->
-    <p class="mb-4 font-mono text-[0.75rem] text-muted tracking-wide">
-      <span class="location-inline" aria-label="Ubicación: Santa Marta, Magdalena, Colombia">
+    <p class="mb-4 font-display text-[0.75rem] text-muted tracking-wide">
+      <span class="location-inline" aria-label="Ubicación: Bogotá, Colombia">
         <svg width="8" height="8" viewBox="0 0 10 10" aria-hidden="true" class="inline-block align-middle mr-1.5">
           <circle cx="5" cy="5" r="3" fill="#00ff41" class="pulse-dot"/>
           <circle cx="5" cy="5" r="4.5" fill="none" stroke="#00ff41" stroke-width="0.5" class="pulse-ring"/>
         </svg>
-        <span class="text-cyan/60">Santa Marta, Magdalena, Colombia</span>
+        <span class="text-cyan/60">Bogotá, Colombia</span>
       </span>
     </p>
 
     <!-- Descripción -->
     <p class="mb-4 text-justify hyphens-auto text-[0.97rem] leading-[1.8] text-muted">
-      Me encanta trabajar con tecnología. Creo software que resuelve problemas reales. Me caracterizo por meterle curiosidad y creatividad a cada proyecto. Me gusta garantizar calidad: productos escalables, con las mejores prácticas y los más altos estándares.
+      Ingeniero de Sistemas con cuatro años de experiencia en desarrollo web y móvil. Acompaño cada proyecto desde los requerimientos hasta producción. Ganador de la Hackatón Colombia 5.0 (2026), región Magdalena.
     </p>
 
     <!-- Carrusel de tecnologías -->
-    <div class="hero-stack mb-7 overflow-x-hidden" aria-label="Tecnologías que manejo" role="region" tabindex="0" id="hero-stack">
-      <div class="stack-track flex w-max items-center gap-3" id="stack-track">
-        {[...techStack, ...techStack].map((tech) => (
-          <span class="stack-icon" data-label={tech.label}><i class={tech.iconClass} aria-hidden="true"></i></span>
-        ))}
+    <div class="mb-7">
+      <div class="hero-stack overflow-x-hidden" aria-label="Tecnologías que manejo" role="region" tabindex="0" id="hero-stack">
+        <div class="stack-track flex w-max items-center gap-3" id="stack-track">
+          {[...techStack, ...techStack].map((tech) => (
+            <span class="stack-icon" data-label={tech.label}><i class={tech.iconClass} aria-hidden="true"></i></span>
+          ))}
+        </div>
       </div>
     </div>
 
@@ -137,183 +148,89 @@ const techStack: TechItem[] = [
   };
 
   const initTypewriter = () => {
-    const roles = [
-      'Desarrollador Web',
-      'Desarrollador Movil',
-      'Full Stack Developer',
-      'Freelancer',
+    const firstLine = document.getElementById('hero-title-line-one') as HTMLElement | null;
+    const secondLine = document.getElementById('hero-title-line-two') as HTMLElement | null;
+    const firstOpen = document.getElementById('hero-title-open-one') as HTMLElement | null;
+    const firstClose = document.getElementById('hero-title-close-one') as HTMLElement | null;
+    const secondOpen = document.getElementById('hero-title-open-two') as HTMLElement | null;
+    const secondClose = document.getElementById('hero-title-close-two') as HTMLElement | null;
+    const firstCursor = document.getElementById('hero-title-cursor-one') as HTMLElement | null;
+    const secondCursor = document.getElementById('hero-title-cursor-two') as HTMLElement | null;
+    if (!firstLine || !secondLine || !firstOpen || !firstClose || !secondOpen || !secondClose || !firstCursor || !secondCursor) return;
+    const typingSpeed = 55;
+
+    const lines = [
+      [
+        { element: firstOpen, text: '{ ' },
+        { element: firstLine, text: 'Ingeniero de Desarrollo de Software' },
+        { element: firstClose, text: ' }' },
+      ],
+      [
+        { element: secondOpen, text: '{ ' },
+        { element: secondLine, text: 'Full-Stack' },
+        { element: secondClose, text: ' }' },
+      ],
     ];
-    const typingElement = document.getElementById('typing') as HTMLElement | null;
 
-    if (!typingElement) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      typingElement.textContent = roles[0];
-      return;
-    }
+    const play = () => {
+      [firstOpen, firstLine, firstClose, secondOpen, secondLine, secondClose].forEach((part) => {
+        part.textContent = '';
+      });
+      firstCursor.hidden = false;
+      secondCursor.hidden = true;
+      let lineIndex = 0;
+      let partIndex = 0;
+      let characterIndex = 0;
 
-    let currentRoleIndex = 0;
-    let currentCharIndex = 0;
-    let isDeleting = false;
+      const writeCharacter = () => {
+        const line = lines[lineIndex];
+        const part = line?.[partIndex];
+        if (!part) return;
+        part.element.textContent += part.text[characterIndex];
+        part.element.after(lineIndex === 0 ? firstCursor : secondCursor);
+        characterIndex += 1;
 
-    const animateTyping = () => {
-      const currentRole = roles[currentRoleIndex];
-      currentCharIndex += isDeleting ? -1 : 1;
-      typingElement.textContent = currentRole.substring(0, currentCharIndex);
+        if (characterIndex < part.text.length) {
+          window.setTimeout(writeCharacter, typingSpeed);
+          return;
+        }
 
-      if (!isDeleting && currentCharIndex === currentRole.length) {
-        isDeleting = true;
-        window.setTimeout(animateTyping, 1500);
-        return;
-      }
+        partIndex += 1;
+        characterIndex = 0;
+        if (partIndex < line.length) {
+          window.setTimeout(writeCharacter, typingSpeed);
+          return;
+        }
 
-      if (isDeleting && currentCharIndex === 0) {
-        isDeleting = false;
-        currentRoleIndex = (currentRoleIndex + 1) % roles.length;
-        window.setTimeout(animateTyping, 500);
-        return;
-      }
+        if (lineIndex === 0) {
+          firstCursor.hidden = true;
+          secondCursor.hidden = false;
+          lineIndex = 1;
+          partIndex = 0;
+          window.setTimeout(writeCharacter, 220);
+          return;
+        }
 
-      window.setTimeout(animateTyping, isDeleting ? 50 : 80);
+        window.setTimeout(play, 2600);
+      };
+
+      writeCharacter();
     };
 
-    animateTyping();
+    window.setTimeout(play, 350);
   };
 
   const initStackCarousel = (tooltips: TooltipControls) => {
     const container = document.getElementById('hero-stack') as HTMLElement | null;
     const track = document.getElementById('stack-track') as HTMLElement | null;
     if (!container || !track) return;
-
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const SPEED = 0.6;
-    const STEP_KEY = 60;
-    const RESUME_DELAY = 2000;
-
-    let offset = 0;
-    let autoScrollActive = !reducedMotion;
-    let isDragging = false;
-    let dragStartX = 0;
-    let dragStartOffset = 0;
-    let touchStartX = 0;
-    let touchStartOffset = 0;
-    let resumeTimer = 0;
-
-    const getHalfWidth = () => Math.max(track.scrollWidth / 2, 1);
-
-    const clampOffset = (value: number) => {
-      const half = getHalfWidth();
-      return -(((-value) % half + half) % half);
-    };
-
-    const applyOffset = () => {
-      track.style.transform = `translateX(${offset}px)`;
-    };
-
-    const pauseAutoScroll = (resume = true) => {
-      autoScrollActive = false;
-      window.clearTimeout(resumeTimer);
-
-      if (resume && !reducedMotion) {
-        resumeTimer = window.setTimeout(() => {
-          autoScrollActive = true;
-        }, RESUME_DELAY);
-      }
-    };
-
-    const tick = () => {
-      if (autoScrollActive) {
-        offset = clampOffset(offset - SPEED);
-        applyOffset();
-      }
-      window.requestAnimationFrame(tick);
-    };
-
-    if (!reducedMotion) {
-      window.requestAnimationFrame(tick);
-    }
-
-    const handleMouseMove = (event: MouseEvent) => {
-      if (!isDragging) return;
-      const delta = event.clientX - dragStartX;
-      offset = clampOffset(dragStartOffset + delta);
-      applyOffset();
-    };
-
-    const handleMouseUp = () => {
-      if (!isDragging) return;
-      isDragging = false;
-      container.style.cursor = '';
-      tooltips.enable();
-      pauseAutoScroll(true);
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseup', handleMouseUp);
-    };
-
     container.addEventListener('mouseenter', () => {
-      if (!isDragging) pauseAutoScroll(false);
-    });
-
-    container.addEventListener('mouseleave', () => {
-      if (!isDragging && !reducedMotion) autoScrollActive = true;
-    });
-
-    container.addEventListener('mousedown', (event: MouseEvent) => {
-      isDragging = true;
-      dragStartX = event.clientX;
-      dragStartOffset = offset;
-      pauseAutoScroll(false);
+      track.style.animationPlayState = 'paused';
       tooltips.disable();
-      container.style.cursor = 'grabbing';
-      window.addEventListener('mousemove', handleMouseMove);
-      window.addEventListener('mouseup', handleMouseUp);
-      event.preventDefault();
     });
-
-    container.addEventListener(
-      'touchstart',
-      (event: TouchEvent) => {
-        touchStartX = event.touches[0].clientX;
-        touchStartOffset = offset;
-        pauseAutoScroll(false);
-        tooltips.disable();
-      },
-      { passive: true },
-    );
-
-    container.addEventListener(
-      'touchmove',
-      (event: TouchEvent) => {
-        const delta = event.touches[0].clientX - touchStartX;
-        offset = clampOffset(touchStartOffset + delta);
-        applyOffset();
-      },
-      { passive: true },
-    );
-
-    container.addEventListener('touchend', () => {
+    container.addEventListener('mouseleave', () => {
+      track.style.animationPlayState = 'running';
       tooltips.enable();
-      pauseAutoScroll(true);
-    });
-
-    container.addEventListener('keydown', (event: KeyboardEvent) => {
-      if (event.key === 'ArrowLeft') {
-        offset = clampOffset(offset + STEP_KEY);
-        applyOffset();
-        pauseAutoScroll(true);
-        event.preventDefault();
-      }
-
-      if (event.key === 'ArrowRight') {
-        offset = clampOffset(offset - STEP_KEY);
-        applyOffset();
-        pauseAutoScroll(true);
-        event.preventDefault();
-      }
-    });
-
-    window.addEventListener('resize', () => {
-      offset = clampOffset(offset);
-      applyOffset();
     });
   };
 
@@ -373,6 +290,11 @@ const techStack: TechItem[] = [
 
   .stack-track {
     will-change: transform;
+    animation: stack-scroll 32s linear infinite;
+  }
+
+  @keyframes stack-scroll {
+    to { transform: translateX(-50%); }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -409,7 +331,7 @@ const techStack: TechItem[] = [
   .tippy-box[data-theme~='wilman'] {
     background: rgba(27, 8, 64, 0.97);
     color: #0CFFFF;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Bricolage Grotesque', sans-serif;
     font-size: 0.72rem;
     border: 1px solid rgba(12, 255, 255, 0.3);
     border-radius: 6px;

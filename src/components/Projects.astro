@@ -11,7 +11,7 @@ interface FeaturedProject {
     title: string;
     description: string;
     stack: string[];
-    url: string;
+    url?: string;
     github?: string;
 }
 
@@ -20,7 +20,7 @@ const featuredProjects: FeaturedProject[] = [
         year: "2026",
         title: "FruitApp",
         description:
-            "Marketplace multi-tenant para fruterías y tiendas de barrio. Desarrollado por contrato: catálogo, POS, pagos con Mercado Pago, tracking GPS en tiempo real y PWA sin instalación. 43 pantallas en 2 meses.",
+            "Marketplace multi-tenant para fruterías y tiendas de barrio, desarrollado por contrato para un cliente de Argentina. Incluye catálogo, POS, pagos con Mercado Pago, seguimiento GPS en tiempo real y una PWA. 43 pantallas en dos meses.",
         stack: ["Flutter", "Firebase", "Mercado Pago", "Riverpod"],
         url: "https://web.fruit-app.com",
         github: undefined,
@@ -33,6 +33,15 @@ const featuredProjects: FeaturedProject[] = [
         stack: ["Next.js", "TypeScript", "Supabase", "Zustand"],
         url: "https://gestion-pyme-gamma.vercel.app/login",
         github: "https://github.com/TechCelera/gestion-pyme",
+    },
+    {
+        year: "2026",
+        title: "Ferretería CPJ",
+        description:
+            "Sistema completo de ventas para ferretería: tienda online y punto de venta en mostrador con inventario, catálogo y cobro. Hecho con WordPress y OpenPOS.",
+        stack: ["WordPress", "WooCommerce", "OpenPOS"],
+        url: "https://ferreteriacpj.com/",
+        github: undefined,
     },
     {
         year: "2025",
@@ -62,6 +71,13 @@ const featuredProjects: FeaturedProject[] = [
         github: undefined,
     },
     {
+        year: "2026",
+        title: "Pedroveglia",
+        description:
+            "Mantenimiento y soporte de una plataforma existente en Laravel y Vue.js, desplegada en AWS Lightsail con Docker, y de su aplicación móvil en Flutter.",
+        stack: ["Laravel", "Vue.js", "AWS Lightsail", "Docker", "Flutter"],
+    },
+    {
         year: "2025",
         title: "TechCelera",
         description:
@@ -80,11 +96,11 @@ const items = preview ? featuredProjects.slice(0, 3) : featuredProjects;
     id="projects"
     aria-labelledby="projects-title"
 >
-    <p class="font-mono text-[0.82rem] text-cyan/65 mb-2 tracking-[0.05em]" aria-hidden="true">
+    <p class="font-display text-[0.82rem] text-cyan/65 mb-2 tracking-[0.05em]" aria-hidden="true">
         &lt;section&gt; projects
     </p>
     <h2
-        class="grad-text font-mono text-[clamp(1.7rem,3vw,2.4rem)] font-bold mb-6"
+        class="grad-text font-display text-[clamp(1.7rem,3vw,2.4rem)] font-bold mb-6"
         id="projects-title"
     >
         Proyectos
@@ -94,12 +110,12 @@ const items = preview ? featuredProjects.slice(0, 3) : featuredProjects;
         {
             items.map((project) => (
                 <article class="flex flex-col gap-3 rounded-xl border border-purple/20 bg-[rgba(27,8,64,0.6)] p-[1.4rem] transition-[border-color,box-shadow] duration-200 hover:border-purple/50 hover:shadow-[0_0_30px_rgba(125,71,255,0.15)]">
-                    <p class="font-mono text-[0.78rem] text-cyan/70">
-                        <span class="font-mono text-purple">{"{"}</span>{" "}
+                    <p class="font-display text-[0.78rem] text-cyan/70">
+                        <span class="font-display text-purple">{"{"}</span>{" "}
                         {project.year}{" "}
-                        <span class="font-mono text-purple">{"}"}</span>
+                        <span class="font-display text-purple">{"}"}</span>
                     </p>
-                    <h3 class="grad-text font-mono text-[1.25rem] font-bold">
+                    <h3 class="grad-text font-display text-[1.25rem] font-bold">
                         {project.title}
                     </h3>
                     <p class="text-[0.92rem] leading-[1.7] text-muted">
@@ -111,28 +127,30 @@ const items = preview ? featuredProjects.slice(0, 3) : featuredProjects;
                         aria-label={`Stack de ${project.title}`}
                     >
                         {project.stack.map((item) => (
-                            <li class="rounded border border-cyan/20 bg-cyan/10 px-3 py-1.5 font-mono text-[0.75rem] text-cyan">
+                            <li class="rounded border border-cyan/20 bg-cyan/10 px-3 py-1.5 font-display text-[0.75rem] text-cyan">
                                 {item}
                             </li>
                         ))}
                     </ul>
                     <div class="mt-auto flex flex-wrap gap-4">
-                        <a
-                            href={project.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={`Ver proyecto ${project.title} (abre en nueva pestaña)`}
-                            class="font-mono text-[0.82rem] text-cyan transition-opacity hover:opacity-65"
-                        >
-                            Ver proyecto →
-                        </a>
+                        {project.url && (
+                            <a
+                                href={project.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={`Ver proyecto ${project.title} (abre en nueva pestaña)`}
+                                class="font-display text-[0.82rem] text-cyan transition-opacity hover:opacity-65"
+                            >
+                                Ver proyecto →
+                            </a>
+                        )}
                         {project.github && (
                             <a
                                 href={project.github}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 aria-label={`Código fuente de ${project.title} en GitHub`}
-                                class="font-mono text-[0.82rem] text-purple transition-opacity hover:opacity-65"
+                                class="font-display text-[0.82rem] text-purple transition-opacity hover:opacity-65"
                             >
                                 Código fuente →
                             </a>
@@ -147,7 +165,7 @@ const items = preview ? featuredProjects.slice(0, 3) : featuredProjects;
             <div class="mt-6 text-right">
                 <a
                     href={`${base}proyectos`}
-                    class="font-mono text-[0.82rem] text-cyan transition-opacity hover:opacity-70"
+                    class="font-display text-[0.82rem] text-cyan transition-opacity hover:opacity-70"
                     aria-label="Ver todos los proyectos"
                 >
                     Ver todos los proyectos →
@@ -156,7 +174,7 @@ const items = preview ? featuredProjects.slice(0, 3) : featuredProjects;
         )
     }
     <p
-        class="font-mono text-[0.82rem] text-cyan/65 mt-2 mb-0 text-right tracking-[0.05em]"
+        class="font-display text-[0.82rem] text-cyan/65 mt-2 mb-0 text-right tracking-[0.05em]"
         aria-hidden="true"
     >
         &lt;/section&gt;

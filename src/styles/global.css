@@ -7,8 +7,8 @@
   --color-purple: #DC00D3;
   --color-text: #e8e8f2;
   --color-muted: #9494b0;
-  --font-family-mono: 'JetBrains Mono', monospace;
-  --font-family-sans: 'Inter', sans-serif;
+  --font-display: 'Bricolage Grotesque', sans-serif;
+  --font-family-sans: 'Source Sans 3', sans-serif;
 }
 
 :root {
